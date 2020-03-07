@@ -19,8 +19,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -189,3 +188,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* SECTION end */
+
+/* COUNTDOWN start */
+
+.Countdown div {
+  display: inline;
+  font-size: 30px;
+  margin: 2px;
+  background-color: #80945b;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: white;
+}
+
+.Countdown .NoImpact {
+  background-color: transparent;
+  color: black;
+}
+
+/* COUNTDOWN end */

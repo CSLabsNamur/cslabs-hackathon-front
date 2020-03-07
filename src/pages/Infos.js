@@ -37,7 +37,7 @@ class Infos extends Component {
               Repos: <b>Salle avec des lits prévue</b>
             </p>
             <p>
-              Repas: <b>Cercle Informatique et repas fournis</b>
+              Repas: <b>Repas fournis (au Cercle Informatique)</b>
             </p>
             <p>
               Sanitaire: <b>Installations de l'Université</b>

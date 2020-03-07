@@ -1,5 +1,5 @@
 import { Component } from 'inferno';
-import { Hero } from '../Widgets'
+import { Hero, CountDown } from '../Widgets'
 
 class Inscription extends Component {
   constructor() {
@@ -35,16 +35,24 @@ class Inscription extends Component {
     return partipants;
   }
   render() {
+    // return (
+    //   <div>
+    //     <Hero title='Inscriptions' content="S'inscrire à l'hackathon 2020."></Hero>
+    //     <form className='Form'>
+    //       <label>
+    //         Nombre de participants :
+    //         <input type='number' id='nbParticipant' min='1' max='5' onChange={() => this.setState({ nbParticipant: document.getElementById('nbParticipant').value })} />
+    //       </label>
+    //       {this.drawParticipants()}
+    //     </form>
+    //   </div>
     return (
       <div>
         <Hero title='Inscriptions' content="S'inscrire à l'hackathon 2020."></Hero>
-        <form className='Form'>
-          <label>
-            Nombre de participants :
-            <input type='number' id='nbParticipant' min='1' max='5' onChange={() => this.setState({ nbParticipant: document.getElementById('nbParticipant').value })} />
-          </label>
-          {this.drawParticipants()}
-        </form>
+        <center>
+          <h2>Merci de votre intérêt ! Les inscriptions débuteront en Septembre 2020.</h2>
+          <CountDown destination={new Date(2020, 9, 1)}/>
+        </center>
       </div>
     )
   }

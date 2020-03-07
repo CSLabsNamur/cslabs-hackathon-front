@@ -12,10 +12,10 @@ class Home extends Component {
               Le thème
             </h2>
             <p>
-              Nos ainés sont quotidiennement confrontés à la technologie qui évolue à une vitesse prodigieuse. Comment peuvent-ils les appréhender ? Les comprendre ? Les utiliser ?
+              Nos ainés sont quotidiennement confrontés à la technologie qui évolue à une vitesse prodigieuse. Comment peuvent-ils l'appréhender ? La comprendre ? L'utiliser ?
             </p>
             <p>
-              Trouvez des solutions innovantes face à des problèmes réels. Développer de nouveaux concepts afin de rendre leur vie meilleure.
+              Trouvez des solutions innovantes face à des problèmes réels. Développez de nouveaux concepts afin de rendre leur vie meilleure.
             </p>
             <img src="./old_hands.jpg" alt="Thème du Hackathon CSLabs" />
           </div>
