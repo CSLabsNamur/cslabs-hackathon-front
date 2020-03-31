@@ -3,47 +3,76 @@ import { Component } from 'inferno';
 
 function Header() {
   return (
-    <header className='Header-Menu'>
-      <Link to='/' className='Brand-Link'>Hackathon</Link>
-      <Link to='/inscription'>S'inscrire</Link>
-      <Link to='/sponsors'>Sponsors</Link>
-      <Link to='/infos'>Infos</Link>
-      <Link to='/connection' className='End-Link'>Connexion</Link>
-    </header>
+    <nav>
+      <div className='nav-container'>
+        <div className="nav-logo">
+          <Link to='/'>Hackathon</Link>
+        </div>
+
+        <ul class="nav-links">
+          <li><Link to='/inscription'>S'inscrire</Link></li>
+          <li><Link to='/sponsors'>Sponsors</Link></li>
+          <li><Link to='/infos'>Infos</Link></li>
+          <li><Link to='/connexion' className='End-Link'>Connexion</Link></li>
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+function TeamMenu () {
+  return (
+      <ul className="menu">
+        <li><Link to="/team/team">Mon équipe</Link></li>
+        <li><Link to="/team/profil">Moi</Link></li>
+        <li><Link to="/team/teams/">Autres équipes</Link></li>
+        <li><Link to="/team/vote">Votes</Link></li>
+      </ul>
   )
 }
 
 function Hero(props) {
   // Pick a random color for this Hero
-  let colors = [
-    'Green', 'Blue', 'Orange', 'Yellow', 'Red'
-  ]
-  let imgClass = '';
-  let img;
-  if (props.image) {
-    alert(!props.image);
-    imgClass = 'HeroImage';
-    img = (
-      <img src={props.image} alt={props.title}></img>
-    )
+  // let colors = [
+  //   'Green', 'Blue', 'Orange', 'Yellow', 'Red'
+  // ]
+  // let imgClass = '';
+  // let img;
+  // if (props.image) {
+  //   alert(!props.image);
+  //   imgClass = 'HeroImage';
+  //   img = (
+  //     <img src={props.image} alt={props.title}></img>
+  //   )
+  // }
+  let getStarted = () => {
+    if (props.hasBtn) {
+      return (
+        <Link to={props.getStarted} class="get-started button button-primary button-large">Plus d'infos !</Link>
+      )
+    }
   }
+
   return (
-    <section className={'Hero ' + colors[Math.floor(Math.random() * colors.length)] + ' ' + imgClass}>
-      <h1>
+    <header>
+      <h1 className="title">
         {props.title}
       </h1>
-      <p>
+      <h2 className="subtitle">
         {props.content}
+      </h2>
+      <p className="disclaimer">
+        {props.disclaimer}
       </p>
-      {img};
-    </section>
+      {getStarted()}
+    </header>
   )
 }
 
 function Footer(props) {
   return (
-    <footer className='Footer'>
-      © CSLabs 2020 - Made with <span style={{ color: 'red' }}>❤</span> by <em>ppoitier</em> and <em>vinhig</em>.
+    <footer>
+      <p className="copyright align-center">© CSLabs 2020 - Made with <span style={{ color: 'red' }}>❤</span> by <em>ppoitier</em> and <em>vinhig</em>.</p>
     </footer>
   )
 }
@@ -115,4 +144,4 @@ class CountDown extends Component {
   }
 }
 
-export { Header, Hero, Footer, CountDown };
+export { Header, Hero, Footer, CountDown, TeamMenu };

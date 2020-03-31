@@ -6,8 +6,9 @@ class Infos extends Component {
     return (
       <div>
         <Hero title='Informations' content='Adresse, lieu et commodités.'></Hero>
-        <section class="MainPage">
-          <div>
+
+        <div className="row">
+          <div className="col col-lg-6">
             <h2>Adresse du Hackathon</h2>
             <p>
               <b>Rue Grandgagnage 21</b>
@@ -19,7 +20,7 @@ class Infos extends Component {
               Faculté d'Informatique de l'Université de Namur
             </p>
           </div>
-          <div>
+          <div className="col col-lg-6">
             <h2>Contact de l'Organisation</h2>
             <p>
               Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/">Page Facebook</a>
@@ -31,7 +32,7 @@ class Infos extends Component {
               Serveur Discord: <a href="https://discord.gg/VgWDbPn">https://discord.gg/VgWDbPn</a>
             </p>
           </div>
-          <div>
+          <div className="col col-lg-6">
             <h2>Commodités</h2>
             <p>
               Repos: <b>Salle avec des lits prévue</b>
@@ -43,9 +44,7 @@ class Infos extends Component {
               Sanitaire: <b>Installations de l'Université</b>
             </p>
           </div>
-        </section>
-        <section class="MainPage">
-          <div>
+          <div className="col col-lg-6">
             <h2>Inscription</h2>
             <p>
               Prix: <b>Gratuit</b>
@@ -57,7 +56,7 @@ class Infos extends Component {
               Compte: <b>BE65 8989 8989 8989</b>
             </p>
           </div>
-        </section>
+        </div>
       </div>
     )
   }

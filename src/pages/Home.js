@@ -5,9 +5,14 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Hero title="Le bien vieillir" content="Repenser la technologie pour tous"></Hero>
-        <section class="MainPage">
-          <div>
+        <Hero
+          title="Le bien vieillir"
+          content="Repenser la technologie pour tous"
+          disclaimer="Du 23 au 25 Octobre à l'UNamur"
+          getStarted="infos/"
+          hasBtn={true} />
+        <div className="row">
+          <div className="col col-lg-6">
             <h2>
               Le thème
             </h2>
@@ -19,7 +24,7 @@ class Home extends Component {
             </p>
             <img src="./old_hands.jpg" alt="Thème du Hackathon CSLabs" />
           </div>
-          <div>
+          <div className="col col-lg-6">
             <h2>
               Troisième édition
             </h2>
@@ -28,9 +33,9 @@ class Home extends Component {
             </p>
             <img src="./edition.jpg" alt="Troisième Édition CSLabs" />
           </div>
-        </section>
-        <section class="MainPage">
-          <div>
+        </div>
+        <div className="row">
+          <div className="col col-lg-6">
             <h2>
               Hackathon
             </h2>
@@ -39,7 +44,7 @@ class Home extends Component {
             </p>
             <img src="hackathon_irl.jpg" alt="Hackathon Compétition"></img>
           </div>
-          <div>
+          <div className="col col-lg-6">
             <h2>
               CSLabs - ComputerScienceLabs
             </h2>
@@ -48,7 +53,7 @@ class Home extends Component {
             </p>
             <img src="cslabs_junior.jpg" alt="CSLabs Junior Entreprise"></img>
           </div>
-        </section>
+        </div>
       </div>
     )
   }

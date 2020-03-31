@@ -1,5 +1,5 @@
 import { Component } from 'inferno';
-import { Hero, CountDown } from '../Widgets'
+import { CountDown } from '../Widgets'
 
 class Inscription extends Component {
   constructor() {
@@ -47,12 +47,18 @@ class Inscription extends Component {
     //     </form>
     //   </div>
     return (
-      <div>
-        <Hero title='Inscriptions' content="S'inscrire à l'hackathon 2020."></Hero>
+      <div className="container">
+        <h1>Inscriptions</h1>
         <center>
-          <h2>Merci de votre intérêt ! Les inscriptions débuteront en Septembre 2020.</h2>
-          <CountDown destination={new Date(2020, 9, 1)}/>
+          <p>Merci de votre intérêt ! Les inscriptions débuteront en Septembre 2020.</p>
+          <CountDown destination={new Date(2020, 9, 23)} />
         </center>
+        <style>
+          {`footer {
+            position: fixed;
+            bottom: 0px;
+          }`}
+        </style>
       </div>
     )
   }
