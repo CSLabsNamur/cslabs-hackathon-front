@@ -31,6 +31,12 @@ class Hello extends Component {
             </p>
           </div>
         </div>
+        <style>
+          {`footer {
+            position: fixed;
+            bottom: 0px;
+          }`}
+        </style>
       </div>
     )
   }

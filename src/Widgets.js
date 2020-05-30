@@ -1,7 +1,19 @@
 import { Link } from 'inferno-router'
 import { Component } from 'inferno';
+import Cookies from 'js-cookie'
 
 function Header() {
+  let showConnect = function() {
+    if (Cookies.get('id') === undefined) {
+      return (
+        <li><Link to='/connexion' className='End-Link'>Connexion</Link></li>
+      )
+    } else {
+      return (
+        <li><Link to='/team/hello' className='End-Link'>Ma team</Link></li>
+      )
+    }
+  }
   return (
     <nav>
       <div className='nav-container'>
@@ -13,7 +25,8 @@ function Header() {
           <li><Link to='/inscription'>S'inscrire</Link></li>
           <li><Link to='/sponsors'>Sponsors</Link></li>
           <li><Link to='/infos'>Infos</Link></li>
-          <li><Link to='/connexion' className='End-Link'>Connexion</Link></li>
+          {/* Only show connection if user isn't connected */}
+          {showConnect()}
         </ul>
       </div>
     </nav>

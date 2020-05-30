@@ -1,5 +1,6 @@
 import { Component } from 'inferno';
 import { Redirect } from 'inferno-router';
+import Cookies from 'js-cookie';
 
 class Connexion extends Component {
   constructor() {
@@ -19,6 +20,7 @@ class Connexion extends Component {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
+      credentials: 'include',
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify(data)
@@ -43,10 +45,15 @@ class Connexion extends Component {
         })
       } else if (response.status === 200) {
         // Everything is fine
-        this.setState({
-          connected: true,
-          message: 'Vous êtes connecté !',
-        });
+        response.json().then((body) => {
+          // Stay connected
+          Cookies.set('id', body.id);
+          this.setState({
+            connected: true,
+            message: 'Vous êtes connecté !',
+          });
+        })
+
       } else {
         this.setState({
           connected: false,
@@ -63,9 +70,15 @@ class Connexion extends Component {
   }
 
   isConnected() {
-    if (this.state.connected) {
+    // Check if user is currently connected
+    let stayConnected = false;
+    if (Cookies.get('id') !== undefined) {
+      stayConnected = true;
+    }
+    // Check if user was connected last state
+    if (this.state.connected || stayConnected) {
       return (
-        <Redirect to="team/hello" />
+        <Redirect to="/team/hello" />
       )
     }
   }

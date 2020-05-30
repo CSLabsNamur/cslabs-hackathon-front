@@ -6,6 +6,7 @@
     "inferno": "^7.4.0",
     "inferno-router": "^7.4.0",
     "inferno-scripts": "7.0.4",
+    "js-cookie": "^2.2.1",
     "mustard-ui": "^1.0.4"
   },
   "scripts": {

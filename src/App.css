@@ -6,6 +6,14 @@ img {
 
 /* FOOTER end */
 
+/* MAINPAGE start */
+
+.container {
+  padding: 15px !important;
+}
+
+/* MAINPAGE end */
+
 /* COUNTDOWN start */
 
 .Countdown div {
