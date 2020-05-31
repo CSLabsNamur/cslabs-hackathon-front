@@ -1,5 +1,6 @@
 import { Component } from 'inferno';
-import { TeamMenu } from '../../Widgets';
+
+import TeamMenu from "../../components/team_menu/team_menu";
 
 class Profil extends Component {
   constructor() {

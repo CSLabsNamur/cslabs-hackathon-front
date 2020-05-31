@@ -1,11 +1,12 @@
 import { Component } from 'inferno';
-import { Hero } from '../Widgets'
+
+import HeroWidget from "../components/widgets/hero.widget";
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <Hero
+        <HeroWidget
           title="Le bien vieillir"
           content="Repenser la technologie pour tous"
           disclaimer="Du 23 au 25 Octobre à l'UNamur"

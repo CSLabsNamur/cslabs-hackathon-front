@@ -1,7 +1,10 @@
 import { Component } from 'inferno';
 import { BrowserRouter, Route, Switch } from 'inferno-router';
-import { Header, Footer } from './Widgets';
-import Home from './pages/Home'
+
+import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer/footer";
+
+import Home from './pages/home/Home'
 import './App.css';
 import 'mustard-ui/dist/css/mustard-ui.min.css'
 import Inscription from './pages/Inscription';
@@ -19,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Header />
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/inscription" component={Inscription} />

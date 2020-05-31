@@ -1,5 +1,7 @@
 import { Component } from 'inferno';
-import { TeamMenu, CountDown } from '../../Widgets';
+
+import Countdown from "../../components/countdown/countdown";
+import TeamMenu from "../../components/team_menu/team_menu";
 
 class Vote extends Component {
   render() {
@@ -13,7 +15,7 @@ class Vote extends Component {
             <h2>Votez pour votre projet préféré !</h2>
             <p>Nothing to see here !</p>
             <p>Les votes ne sont pas encore ouvert.</p>
-            <CountDown destination={new Date(2020, 9, 23)} />
+            <Countdown destination={new Date(2020, 9, 23)} />
           </div>
         </div>
         <style>

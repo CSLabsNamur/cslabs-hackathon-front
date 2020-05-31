@@ -1,5 +1,6 @@
 import { Component } from 'inferno';
-import { CountDown } from '../Widgets'
+
+import Countdown from "../components/countdown/countdown";
 
 class Inscription extends Component {
   constructor() {
@@ -51,7 +52,7 @@ class Inscription extends Component {
         <h1>Inscriptions</h1>
         <center>
           <p>Merci de votre intérêt ! Les inscriptions débuteront en Septembre 2020.</p>
-          <CountDown destination={new Date(2020, 9, 23)} />
+          <Countdown destination={new Date(2020, 9, 23)} />
         </center>
         <style>
           {`footer {
