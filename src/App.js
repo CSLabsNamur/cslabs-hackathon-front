@@ -1,5 +1,6 @@
-import { Component } from 'inferno';
-import { BrowserRouter, Route, Switch } from 'inferno-router';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";

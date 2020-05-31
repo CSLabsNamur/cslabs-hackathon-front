@@ -1,11 +1,11 @@
-import { Component } from 'inferno';
+import React, { Component } from 'react';
 import HeroWidget from "../components/widgets/hero.widget";
 
 class Infos extends Component {
   render() {
     return (
       <div>
-        <HeroWidget title='Informations' content='Adresse, lieu et commodités.'></HeroWidget>
+        <HeroWidget title='Informations' content='Adresse, lieu et commodités.'/>
 
         <div className="row">
           <div className="col col-lg-6">

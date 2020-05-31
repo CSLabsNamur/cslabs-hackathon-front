@@ -1,10 +1,10 @@
-import { Component } from 'inferno';
+import React, { Component } from 'react';
 
 import TeamMenu from "../../components/team_menu/team_menu";
 
 class Profil extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       "first": true,
       "teams": []

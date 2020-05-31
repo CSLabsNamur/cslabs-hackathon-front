@@ -1,4 +1,4 @@
-import { Component } from "inferno";
+import React, { Component } from "react";
 
 class Countdown extends Component {
 
@@ -41,7 +41,7 @@ class Countdown extends Component {
             str = '0' + str;
         }
         let divs = [];
-        for (var i = 0; i < str.length; i++) {
+        for (let i = 0; i < str.length; i++) {
             divs.push(
                 <div>
                     {str.charAt(i)}

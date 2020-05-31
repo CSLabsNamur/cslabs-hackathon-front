@@ -1,4 +1,4 @@
-import { Component } from 'inferno';
+import React, { Component } from 'react';
 
 import TeamMenu from "../../components/team_menu/team_menu";
 

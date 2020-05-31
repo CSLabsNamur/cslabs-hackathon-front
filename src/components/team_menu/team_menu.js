@@ -1,6 +1,6 @@
 
-import { Component } from "inferno";
-import {Link} from "inferno-router";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class TeamMenu extends Component {
 

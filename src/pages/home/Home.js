@@ -1,6 +1,7 @@
-import { Component } from 'inferno';
+import React, { Component } from 'react';
 
 import HeroWidget from "../../components/widgets/hero.widget";
+import MainCarousel from "../../components/MainCarousel/main_carousel";
 import './Home.css';
 
 class Home extends Component {
@@ -56,6 +57,11 @@ class Home extends Component {
             <img src="cslabs_junior.jpg" alt="CSLabs Junior Entreprise"/>
           </div>
         </div>
+
+        <div className="row">
+          <MainCarousel/>
+        </div>
+
       </div>
     )
   }

@@ -1,10 +1,10 @@
-import { Component } from 'inferno';
+import React, { Component } from 'react';
 
 import Countdown from "../components/countdown/countdown";
 
 class Inscription extends Component {
-  constructor() {
-    super();
+    constructor(props) {
+    super(props);
     this.state = {
       nbParticipant: 1
     };
