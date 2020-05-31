@@ -1,17 +1,18 @@
 import { Component } from 'inferno';
 
-import HeroWidget from "../components/widgets/hero.widget";
+import HeroWidget from "../../components/widgets/hero.widget";
+import './Home.css';
 
 class Home extends Component {
   render() {
     return (
       <div>
         <HeroWidget
-          title="Le bien vieillir"
-          content="Repenser la technologie pour tous"
-          disclaimer="Du 23 au 25 Octobre à l'UNamur"
-          getStarted="infos/"
-          hasBtn={true} />
+            title="Le bien vieillir"
+            content="Repenser la technologie pour tous"
+            disclaimer="Du 23 au 25 Octobre à l'UNamur"
+            getStarted="infos/"
+            hasBtn={true} />
         <div className="row">
           <div className="col col-lg-6">
             <h2>
@@ -43,7 +44,7 @@ class Home extends Component {
             <p>
               Un Hackathon est un moment de courte durée où des équipes réfléchissent à une thématique particulière. Ils tentent d'y apporter des solutions en développant des projets innovants. À la fin de l'évènement, un jury détermine quels sont les projets qui ont retenu leur attention et qui ont donc gagné la compétition.
             </p>
-            <img src="hackathon_irl.jpg" alt="Hackathon Compétition"></img>
+            <img src="hackathon_irl.jpg" alt="Hackathon Compétition"/>
           </div>
           <div className="col col-lg-6">
             <h2>
@@ -52,7 +53,7 @@ class Home extends Component {
             <p>
               CSLabs est une junior entreprise de la région de Namur. Spécialisée dans l'informatique, elle invite ses membres à participer à des projets, des formations et des activités dans le domaine technologique et informatique.
             </p>
-            <img src="cslabs_junior.jpg" alt="CSLabs Junior Entreprise"></img>
+            <img src="cslabs_junior.jpg" alt="CSLabs Junior Entreprise"/>
           </div>
         </div>
       </div>
