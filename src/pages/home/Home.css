@@ -2,13 +2,10 @@
 /* ---------- Color palette ----------
 
 - light cream : #f5f0e4
+- cream       : #e6d7b5
 - grey cream  : #cccac6
 
 */
-
-header, .header {
-    background-color: #f5f0e4 !important;
-}
 
 .info-text {
     margin-left: 1rem;

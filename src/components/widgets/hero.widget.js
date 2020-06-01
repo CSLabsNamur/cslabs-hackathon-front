@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
+import "./hero.widget.css";
+
 class HeroWidget extends Component {
 
     render() {
@@ -32,16 +34,18 @@ class HeroWidget extends Component {
 
         return (
             <header>
-                <h1 className="title">
-                    {this.props.title}
-                </h1>
-                <h2 className="subtitle">
-                    {this.props.content}
-                </h2>
-                <p className="disclaimer">
-                    {this.props.disclaimer}
-                </p>
-                {getStarted()}
+                <div className="hero-content">
+                    <h1 className="title">
+                        {this.props.title}
+                    </h1>
+                    <h2 className="subtitle">
+                        {this.props.content}
+                    </h2>
+                    <p className="disclaimer">
+                        {this.props.disclaimer}
+                    </p>
+                    {getStarted()}
+                </div>
             </header>
         )
 
