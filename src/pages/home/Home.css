@@ -10,3 +10,20 @@ header, .header {
     background-color: #f5f0e4 !important;
 }
 
+.info-text {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 4rem;
+    text-align: center;
+
+    font-size: 1.2rem;
+}
+
+.info-img {
+    padding: 1rem;
+
+    width: 100%;
+    height: auto;
+}

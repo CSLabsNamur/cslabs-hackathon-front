@@ -28,7 +28,7 @@ class Navbar extends Component {
                         <Link to='/'>Hackathon</Link>
                     </div>
 
-                    <ul Class="nav-links">
+                    <ul className="nav-links">
                         <li><Link to='/inscription'>S'inscrire</Link></li>
                         <li><Link to='/sponsors'>Sponsors</Link></li>
                         <li><Link to='/infos'>Infos</Link></li>
