@@ -1,5 +1,6 @@
-import { Component } from 'inferno';
-import { TeamMenu } from '../../Widgets';
+import React, { Component } from 'react';
+
+import TeamMenu from "../../components/team_menu/team_menu";
 
 class Team extends Component {
   render() {

@@ -1,11 +1,13 @@
-import { Component } from 'inferno';
-import { TeamMenu } from '../../Widgets';
-import { Redirect } from 'inferno-router';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+import TeamMenu from "../../components/team_menu/team_menu";
+
 class Profil extends Component {
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
     this.fields = {
       first: true,
       firstName: '',

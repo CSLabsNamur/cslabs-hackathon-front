@@ -1,10 +1,10 @@
-import { Component } from 'inferno';
-import { Redirect } from 'inferno-router';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import Cookies from 'js-cookie';
 
 class Connexion extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       connected: false,
       message: '',
