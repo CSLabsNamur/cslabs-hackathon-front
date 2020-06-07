@@ -1,0 +1,39 @@
+
+.info-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+
+    width: 100%;
+}
+
+.info-area.left {
+    flex-direction: row;
+}
+
+.info-area.right {
+    flex-direction: row-reverse;
+}
+
+.info-img {
+    width: 600px;
+}
+
+.info-text {
+    width: 500px;
+}
+
+.info-text, h2 {
+    text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+    .info-img {
+        width: 90%;
+    }
+
+    .info-text {
+        width: 90%;
+    }
+}
