@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import HeroWidget from "../../components/widgets/hero.widget";
+import Hero from "../../components/hero/hero";
 import MainCarousel from "../../components/main_carousel/main_carousel";
 import { Topic } from "../../components/topic/topic"
 import './Home.css';
@@ -29,7 +29,7 @@ class Home extends Component {
 
     return (
       <div>
-        <HeroWidget
+        <Hero
             title="Le bien vieillir"
             content="Repenser la technologie pour tous"
             disclaimer="Du 23 au 25 Octobre à l'UNamur"

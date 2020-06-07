@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import HeroWidget from "../components/widgets/hero.widget";
+import Hero from "../components/hero/hero";
 
 class Sponsors extends Component {
 
   render() {
     return (
       <div>
-        <HeroWidget title='Sponsors du hackathon' content='Sans eux, rien ne serait possible !'/>
+        <Hero title='Sponsors du hackathon' content='Sans eux, rien ne serait possible !'/>
       </div>
     )
   }

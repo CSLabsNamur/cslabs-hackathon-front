@@ -2,9 +2,9 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
-import "./hero.widget.css";
+import "./hero.css";
 
-class HeroWidget extends Component {
+class Hero extends Component {
 
     render() {
 
@@ -53,4 +53,4 @@ class HeroWidget extends Component {
 
 }
 
-export default HeroWidget;
+export default Hero;

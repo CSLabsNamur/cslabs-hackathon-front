@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import HeroWidget from "../components/widgets/hero.widget";
+import Hero from "../components/hero/hero";
 
 class Infos extends Component {
   render() {
     return (
       <div>
-        <HeroWidget title='Informations' content='Adresse, lieu et commodités.'/>
+        <Hero title='Informations' content='Adresse, lieu et commodités.'/>
 
         <div className="row">
           <div className="col col-lg-6">
