@@ -31,7 +31,7 @@ class MainCarousel extends Component {
                 <Carousel
                     value={this.state.value}
                     slides={this.state.slides}
-                    slidesPerPage={2}
+                    slidesPerPage={1}
                     onChange={this.onChange}
                     infinite={true}
                     arrows

@@ -6,3 +6,13 @@
 - grey cream  : #cccac6
 
 */
+
+.gallery-carousel {
+    padding: 4rem 20%;
+}
+
+@media screen and (max-width: 640px) {
+    .gallery-carousel {
+        padding: 1rem 0;
+    }
+}

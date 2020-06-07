@@ -16,15 +16,19 @@
     flex-direction: row-reverse;
 }
 
+.info-area:last-child {
+    margin-bottom: 2rem;
+}
+
 .info-img {
-    width: 600px;
+    width: 37.5rem;
 }
 
 .info-text {
-    width: 500px;
+    width: 31.25rem;
 }
 
-.info-text, h2 {
+.info-text > h2 {
     text-align: center;
 }
 

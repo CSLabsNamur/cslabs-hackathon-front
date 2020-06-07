@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import HeroWidget from "../../components/widgets/hero.widget";
-import MainCarousel from "../../components/MainCarousel/main_carousel";
+import MainCarousel from "../../components/main_carousel/main_carousel";
 import { Topic } from "../../components/topic/topic"
 import './Home.css';
 
@@ -35,6 +35,10 @@ class Home extends Component {
             disclaimer="Du 23 au 25 Octobre à l'UNamur"
             getStarted="infos/"
             hasBtn={true} />
+
+        <div className="row gallery-carousel">
+          <MainCarousel/>
+        </div>
 
         <Topic img={images[0]} right>
           <h2>CSLabs</h2>
@@ -79,10 +83,6 @@ class Home extends Component {
             qui ont retenu leur attention et qui ont donc gagné la compétition.
           </p>
         </Topic>
-
-        <div className="row">
-          <MainCarousel/>
-        </div>
 
       </div>
     )
