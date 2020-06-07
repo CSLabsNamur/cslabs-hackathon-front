@@ -1,4 +1,18 @@
 
+.info-row {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 2rem;
+}
+
+.info-row.left {
+    background-color: #f5cb98;
+}
+
+.info-row.right {
+    background-color: #fff2c9;
+}
+
 .info-area {
     display: flex;
     justify-content: space-around;

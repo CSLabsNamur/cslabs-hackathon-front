@@ -1,11 +1,7 @@
 
-/* ---------- Color palette ----------
-
-- light cream : #f5f0e4
-- cream       : #e6d7b5
-- grey cream  : #cccac6
-
-*/
+#home-page {
+    background-color: #f5cb98;
+}
 
 .gallery-carousel {
     padding: 4rem 20%;

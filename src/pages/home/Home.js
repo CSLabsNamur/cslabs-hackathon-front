@@ -28,7 +28,7 @@ class Home extends Component {
     ];
 
     return (
-      <div>
+      <div id="home-page">
         <Hero
             title="Le bien vieillir"
             content="Repenser la technologie pour tous"

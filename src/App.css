@@ -1,23 +1,19 @@
+/* ---------- Color palette ----------
+
+- light orange : #fff2c9
+- orange       : #f5cb98
+
+*/
 
 body {
   font-size: 16px;
+
+  background-color: #fff2c9 !important;
 }
-
-/* FOOTER start */
-
-img {
-  width: 100%;
-}
-
-/* FOOTER end */
-
-/* MAINPAGE start */
 
 .container {
   padding: 1rem !important;
 }
-
-/* MAINPAGE end */
 
 /* COUNTDOWN start */
 
