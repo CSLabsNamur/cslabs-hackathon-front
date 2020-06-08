@@ -15,7 +15,8 @@ class Profil extends Component {
       lastName: '',
       email: '',
       github: '',
-      linkedin: ''
+      linkedin: '',
+      msg: ''
     };
     this.state = {
       first: true,
@@ -23,7 +24,8 @@ class Profil extends Component {
       lastName: '',
       email: '',
       github: '',
-      linkedin: ''
+      linkedin: '',
+      msg: '',
     };
   }
 
@@ -43,11 +45,14 @@ class Profil extends Component {
       body: JSON.stringify(this.state),
     }).then((response) => {
       if (response.status === 200) {
-        console.log("Everything is fine!")
+        console.log('Everything is fine!');
+        this.setState({ ...this.setState, msg: 
+          <span style={{color: 'green'}}>Modifications enregistrées !</span>
+        });
       } else if (response.status === 400) {
-        console.error("Wtf")
+        console.error('Wtf');
         Cookies.remove('id');
-        return <Redirect to="/connexion/" />
+        return <Redirect to='/connexion/' />
       } else {
         response.text().then((text) => {
           console.error(text);
@@ -79,7 +84,8 @@ class Profil extends Component {
               lastName: body.lastName ? body.lastName : 'caca',
               email: body.email ? body.email : 'caca',
               github: body.github ? body.github : '',
-              linkedin: body.linkedin ? body.linkedin : ''
+              linkedin: body.linkedin ? body.linkedin : '',
+              msg: '',
             };
             this.setState(this.fields);
           })
@@ -88,12 +94,17 @@ class Profil extends Component {
           Cookies.remove('id');
           return <Redirect to="/connexion/" />
         } else {
+
           response.text().then((text) => {
             console.error(`While fetching ${API_URL}users/${id}/ : ${text}`);
+            this.setState({ ...this.setState, msg:
+              <span style={{color: 'red'}}>{text}</span>
+            })
           });
         }
       }).catch((err) => {
         console.error(`While fetching ${API_URL}users/${id}/ : ${err}`);
+        this.setState({ ...this.setState, msg: err });
       })
     }
   }
@@ -128,6 +139,9 @@ class Profil extends Component {
             <div className="form-control">
               <label>LinkedIn</label>
               <input type="text" onChange={this.updateProfile.bind(this)} value={this.state.linkedin} placeholder="https://linkedin.com/awesome" name="linkedin" />
+            </div>
+            <div>
+              <p>{this.state.msg}</p>
             </div>
             <button className="button-primary button-round" onClick={this.pushProfile.bind(this)}>Confirmer</button>
           </div>
