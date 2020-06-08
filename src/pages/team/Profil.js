@@ -100,7 +100,7 @@ class Profil extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{ marginTop: 2 * 59, marginBottom: 65 }}>
         {this.fetchProfile()}
         <div className="row">
           <div className="col col-lg-2">
@@ -133,9 +133,11 @@ class Profil extends Component {
           </div>
         </div>
         <style>
-          {`footer {
-            position: fixed;
-            bottom: 0px;
+          {`@media (min-width: 630px) {
+            footer {
+              position: fixed;
+              bottom: 0px;
+            }
           }`}
         </style>
       </div>
