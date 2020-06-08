@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import TeamMenu from "../../components/team_menu/team_menu";
+import { API_URL } from '../../constants';
 
 class Profil extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Profil extends Component {
   drawTeams() {
     if (this.state.first) {
       // Request teams from backend
-      fetch('http://localhost:8080/teams', {
+      fetch(API_URL + '/teams', {
         headers: new Headers({
           'Content-Type': 'application/json'
         }),
