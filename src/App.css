@@ -19,24 +19,6 @@ img {
 
 /* MAINPAGE end */
 
-/* COUNTDOWN start */
-
-.Countdown div {
-  display: inline;
-  font-size: 30px;
-  margin: 5px;
-  background-color: #80945b;
-  padding: 3px 5px;
-  color: white;
-}
-
-.Countdown .NoImpact {
-  background-color: transparent;
-  color: black;
-}
-
-/* COUNTDOWN end */
-
 /* FORM start */
 
 @media (min-width: 500px) {

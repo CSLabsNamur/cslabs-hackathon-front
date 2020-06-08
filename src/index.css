@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.get-started, .button-primary {
+  background-color: #56b65a !important;
+  border: #62bb66 !important;
+  color: whitesmoke !important;
+}
