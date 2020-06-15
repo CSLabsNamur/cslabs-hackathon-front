@@ -46,6 +46,9 @@ class Hero extends Component {
                     </p>
                     {getStarted()}
                 </div>
+                <div onClick={() => window.scrollTo(0, window.innerHeight)}>
+                    <img id="hero--arrow" src="./arrow.svg" alt="Arrow"/>
+                </div>
             </header>
         )
 
