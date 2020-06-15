@@ -5,7 +5,7 @@ import TeamMenu from "../../components/team_menu/team_menu";
 class Hello extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{marginTop: 59}}>
         <div className="row">
           <TeamMenu />
           <div className="col col-lg-9">

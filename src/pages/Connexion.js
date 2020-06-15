@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import Cookies from 'js-cookie';
+import { API_URL } from '../constants';
 
 class Connexion extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Connexion extends Component {
       email: document.getElementById('email').value,
       password: document.getElementById('password').value,
     }
-    fetch('http://localhost:8080/users/login', {
+    fetch(API_URL + 'users/login/', {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
@@ -55,6 +56,8 @@ class Connexion extends Component {
         })
 
       } else {
+        response.text().then((err) => { console.error(err) });
+        console.error(`Server response code : ${response.status}`);
         this.setState({
           connected: false,
           message: 'Erreur interne :-/',

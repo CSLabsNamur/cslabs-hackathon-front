@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import TeamMenu from "../../components/team_menu/team_menu";
+import { API_URL } from '../../constants';
 
 class Profil extends Component {
 
@@ -14,7 +15,8 @@ class Profil extends Component {
       lastName: '',
       email: '',
       github: '',
-      linkedin: ''
+      linkedin: '',
+      msg: ''
     };
     this.state = {
       first: true,
@@ -22,14 +24,41 @@ class Profil extends Component {
       lastName: '',
       email: '',
       github: '',
-      linkedin: ''
-    }
+      linkedin: '',
+      msg: '',
+    };
   }
 
-  updateProfile(element) {
-    alert(element.id);
-    this.fields[element.id] = element.target.value;
+  updateProfile(event) {
+    this.fields[event.currentTarget.name] = event.currentTarget.value;
     this.setState(this.fields);
+  }
+
+  pushProfile() {
+    fetch(API_URL + 'users/update/', {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      body: JSON.stringify(this.state),
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log('Everything is fine!');
+        this.setState({ ...this.setState, msg: 
+          <span style={{color: 'green'}}>Modifications enregistrées !</span>
+        });
+      } else if (response.status === 400) {
+        console.error('Wtf');
+        Cookies.remove('id');
+        return <Redirect to='/connexion/' />
+      } else {
+        response.text().then((text) => {
+          console.error(text);
+        });
+      }
+    })
   }
 
   fetchProfile() {
@@ -39,7 +68,7 @@ class Profil extends Component {
         return <Redirect to="/connexion/" />
       }
       console.log("Salut");
-      fetch(`http://localhost:8080/users/${id}`, {
+      fetch(API_URL + `users/${id}/`, {
         headers: new Headers({
           'Content-Type': 'application/json',
         }),
@@ -49,34 +78,40 @@ class Profil extends Component {
       }).then((response) => {
         if (response.status === 200) {
           response.json().then((body) => {
-            this.fields = body;
-            this.setState({
+            this.fields = {
               first: false,
-              firstName: body.firstName,
-              lastName: body.lastName,
-              email: body.email,
-              github: body.github,
-              linkedin: body.linkedin
-            });
+              firstName: body.firstName ? body.firstName : 'caca',
+              lastName: body.lastName ? body.lastName : 'caca',
+              email: body.email ? body.email : 'caca',
+              github: body.github ? body.github : '',
+              linkedin: body.linkedin ? body.linkedin : '',
+              msg: '',
+            };
+            this.setState(this.fields);
           })
         } else if (response.status === 400) {
           console.error("Wtf")
           Cookies.remove('id');
           return <Redirect to="/connexion/" />
         } else {
+
           response.text().then((text) => {
-            console.error(text);
+            console.error(`While fetching ${API_URL}users/${id}/ : ${text}`);
+            this.setState({ ...this.setState, msg:
+              <span style={{color: 'red'}}>{text}</span>
+            })
           });
         }
       }).catch((err) => {
-        console.error(err);
+        console.error(`While fetching ${API_URL}users/${id}/ : ${err}`);
+        this.setState({ ...this.setState, msg: err });
       })
     }
   }
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{ marginTop: 2 * 59, marginBottom: 65 }}>
         {this.fetchProfile()}
         <div className="row">
           <div className="col col-lg-2">
@@ -87,31 +122,36 @@ class Profil extends Component {
             <p>Mais qui êtes-vous donc ?</p>
             <div className="form-control">
               <label>Prénom</label>
-              <input type="text" onChange={this.updateProfile} value={this.state.firstName} placeholder="Robert" id="firstName" />
+              <input type="text" onChange={this.updateProfile.bind(this)} value={this.state.firstName} placeholder="Robert" name="firstName" />
             </div>
             <div className="form-control">
               <label>Nom</label>
-              <input type="text" onChange={this.updateProfile} value={this.state.lastName} placeholder="de Balzamic" id="lastName" />
+              <input type="text" onChange={this.updateProfile.bind(this)} value={this.state.lastName} placeholder="de Balzamic" name="lastName" />
             </div>
             <div className="form-control">
               <label>E-mail</label>
-              <input type="text" onChange={this.updateProfile} disabled value={this.state.email} placeholder="testimonium@cslabs.be" id="email" />
+              <input type="text" onChange={this.updateProfile.bind(this)} disabled value={this.state.email} placeholder="testimonium@cslabs.be" name="email" />
             </div>
             <div className="form-control">
               <label>Github</label>
-              <input type="text" onChange={this.updateProfile} value={this.state.github} placeholder="https://github.com/awesome" id="github" />
+              <input type="text" onChange={this.updateProfile.bind(this)} value={this.state.github} placeholder="https://github.com/awesome" name="github" />
             </div>
             <div className="form-control">
               <label>LinkedIn</label>
-              <input type="text" onChange={this.updateProfile} value={this.state.linkedin} placeholder="https://linkedin.com/awesome" id="linkedin" />
+              <input type="text" onChange={this.updateProfile.bind(this)} value={this.state.linkedin} placeholder="https://linkedin.com/awesome" name="linkedin" />
             </div>
-            <button className="button-primary button-round">Confirmer</button>
+            <div>
+              <p>{this.state.msg}</p>
+            </div>
+            <button className="button-primary button-round" onClick={this.pushProfile.bind(this)}>Confirmer</button>
           </div>
         </div>
         <style>
-          {`footer {
-            position: fixed;
-            bottom: 0px;
+          {`@media (min-width: 630px) {
+            footer {
+              position: fixed;
+              bottom: 0px;
+            }
           }`}
         </style>
       </div>

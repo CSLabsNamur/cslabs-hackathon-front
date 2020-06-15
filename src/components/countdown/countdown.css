@@ -1,0 +1,17 @@
+
+.Countdown div {
+    display: inline;
+    font-size: 30px;
+    margin: 5px;
+    background-color: #fff2c9;
+    padding: 3px 5px;
+    color: #424242;
+    border: solid 1px #f5cb98;
+  }
+  
+  .Countdown .NoImpact {
+    background-color: transparent;
+    border: none;
+    color: black;
+  }
+  

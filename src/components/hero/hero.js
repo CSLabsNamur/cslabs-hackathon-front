@@ -25,7 +25,7 @@ class Hero extends Component {
         const getStarted = () => {
             if (this.props.hasBtn) {
                 return (
-                    <Link to={this.props.getStarted} class="get-started button button-primary button-large">
+                    <Link to={this.props.getStarted} className="get-started button button-primary button-large">
                         Plus d'infos !
                     </Link>
                 )

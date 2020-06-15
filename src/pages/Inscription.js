@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Countdown from "../components/countdown/countdown";
 
 class Inscription extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       nbParticipant: 1
@@ -48,7 +48,7 @@ class Inscription extends Component {
     //     </form>
     //   </div>
     return (
-      <div className="container">
+      <div className="container" style={{ marginTop: 59 }}>
         <h1>Inscriptions</h1>
         <center>
           <p>Merci de votre intérêt ! Les inscriptions débuteront en Septembre 2020.</p>
