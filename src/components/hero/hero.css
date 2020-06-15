@@ -19,6 +19,16 @@ header, .header {
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
 }
 
+.hero--button {
+    background-color: #fff2c9 !important;
+    color: #424242 !important;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.hero--button:hover {
+    box-shadow: 0 1rem 1.25rem rgba(255, 242, 201, 0.4);
+}
+
 #hero--arrow {
     margin-top: 2rem;
     width: 4rem;

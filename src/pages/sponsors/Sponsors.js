@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import Hero from "../components/hero/hero";
+import Hero from "../../components/hero/hero";
+
+import "./Sponsors.css";
 
 class Sponsors extends Component {
 
@@ -9,7 +11,11 @@ class Sponsors extends Component {
       <div>
         <Hero title='Sponsors du hackathon' content='Sans eux, rien ne serait possible !'>
           <div id="sponsors-list">
-            <img className="sponsor-img" src="./logo.png" alt="Sponsor test"/>
+              <img className="sponsor-img" src="./logo.png" alt="Sponsor test"/>
+              <img className="sponsor-img" src="./logo.png" alt="Sponsor test"/>
+              <img className="sponsor-img" src="./logo.png" alt="Sponsor test"/>
+              <img className="sponsor-img" src="./logo.png" alt="Sponsor test"/>
+              <img className="sponsor-img" src="./logo.png" alt="Sponsor test"/>
           </div>
         </Hero>
       </div>

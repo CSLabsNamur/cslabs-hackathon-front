@@ -34,7 +34,9 @@ class Home extends Component {
             content="Repenser la technologie pour tous"
             disclaimer="Du 23 au 25 Octobre à l'UNamur"
             getStarted="infos/"
-            hasBtn={true} />
+            hasBtn
+            hasArrow
+        />
 
         <div className="row gallery-carousel">
           <MainCarousel/>
