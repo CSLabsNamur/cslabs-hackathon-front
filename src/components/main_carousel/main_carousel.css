@@ -3,3 +3,8 @@
     margin: auto;
     width: 80%;
 }
+
+.BrainhubCarousel__arrows {
+    background-color: #f5cb98 !important;
+    border: 2px solid #fff2c9 !important;
+}
