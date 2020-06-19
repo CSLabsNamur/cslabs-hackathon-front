@@ -1,0 +1,14 @@
+
+#inscription-title {
+    text-align: center;
+    margin-top: 10rem;
+}
+
+#inscription-info {
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
