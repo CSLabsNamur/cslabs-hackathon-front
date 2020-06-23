@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Hero from "../../components/hero/hero";
 
+import "./Infos.css";
 import { InfoItem } from "../../components/info_item/info_item";
 
 class Infos extends Component {
   render() {
     return (
-      <div>
+      <div id="info-page">
         <Hero title='Informations' content='Adresse, lieu et commodités.' hasArrow/>
 
         <div>
