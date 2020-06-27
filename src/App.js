@@ -39,7 +39,6 @@ class App extends Component {
         </Switch>
         <Footer />
       </BrowserRouter>
-
     );
   }
 }
