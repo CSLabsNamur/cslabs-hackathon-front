@@ -17,7 +17,7 @@ export class InfoItem extends Component {
                         </div>
                     </div>
                     <div className="col col-lg-6">
-                        <img src={this.props.icon}
+                        <img src={process.env.REACT_APP_PUBLIC_URL + this.props.icon}
                              alt="Icon"
                              className="info-item-icon"/>
                     </div>

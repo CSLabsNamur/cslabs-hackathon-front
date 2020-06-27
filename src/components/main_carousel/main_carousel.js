@@ -11,10 +11,10 @@ class MainCarousel extends Component {
         this.state = {
             value: 0,
             slides: [
-                (<img src="./old_hands.jpg" alt="Thème du Hackathon CSLabs" />),
-                (<img src="./edition.jpg" alt="Troisième Édition CSLabs" />),
-                (<img src="hackathon_irl.jpg" alt="Hackathon Compétition"/>),
-                (<img src="cslabs_junior.jpg" alt="CSLabs Junior Entreprise"/>)
+                (<img src={process.env.REACT_APP_PUBLIC_URL + "old_hands.jpg"} alt="Thème du Hackathon CSLabs" />),
+                (<img src={process.env.REACT_APP_PUBLIC_URL + "edition.jpg"} alt="Troisième Édition CSLabs" />),
+                (<img src={process.env.REACT_APP_PUBLIC_URL + "hackathon_irl.jpg"} alt="Hackathon Compétition"/>),
+                (<img src={process.env.REACT_APP_PUBLIC_URL + "cslabs_junior.jpg"} alt="CSLabs Junior Entreprise"/>)
             ]
         };
         this.onChange = this.onChange.bind(this);

@@ -14,15 +14,15 @@ class Home extends Component {
         alt: "CSLabs Junior Entreprise"
       },
       {
-        src: "./old_hands.jpg",
+        src: "old_hands.jpg",
         alt: "Thème du Hackathon CSLabs"
       },
       {
-        src: "./edition.jpg",
+        src: "edition.jpg",
         alt: "Troisième Édition CSLabs"
       },
       {
-        src: "./hackathon_irl.jpg",
+        src: "hackathon_irl.jpg",
         alt: "Hackathon Compétition"
       }
     ];
