@@ -34,6 +34,7 @@ class MainCarousel extends Component {
                     slidesPerPage={1}
                     onChange={this.onChange}
                     infinite={true}
+                    centered
                     arrows
                     dots
                     clickToChange
