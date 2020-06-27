@@ -7,7 +7,7 @@
 }
 
 .info-item-area:not(:last-child) {
-    border-bottom: 1rem solid #f5cb98;
+    border-bottom: 0.5rem solid #f5cb98;
 }
 
 .info-item-content {
@@ -21,4 +21,5 @@
     top: 50%;
     left: 20%;
     transform: translate(0, -50%);
+    opacity: 0.5;
 }
