@@ -1,23 +1,38 @@
+/* ---------- Color palette ----------
+
+- light orange : #fff2c9
+- orange       : #f5cb98
+- dark         : #424242
+
+*/
 
 body {
   font-size: 16px;
+
+  background-color: #fff2c9 !important;
 }
-
-/* FOOTER start */
-
-img {
-  width: 100%;
-}
-
-/* FOOTER end */
-
-/* MAINPAGE start */
 
 .container {
   padding: 1rem !important;
 }
 
-/* MAINPAGE end */
+/* COUNTDOWN start */
+
+.Countdown div {
+  display: inline;
+  font-size: 30px;
+  margin: 5px;
+  background-color: #80945b;
+  padding: 3px 5px;
+  color: white;
+}
+
+.Countdown .NoImpact {
+  background-color: transparent;
+  color: black;
+}
+
+/* COUNTDOWN end */
 
 /* FORM start */
 
@@ -39,8 +54,3 @@ img {
 }
 
 /* FORM end */
-
-/* HAMBURGER start */
-
-
-/* HAMBURGER end */

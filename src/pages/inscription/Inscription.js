@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import Countdown from "../components/countdown/countdown";
+import Countdown from "../../components/countdown/countdown";
+import "./Inscription.css";
 
 class Inscription extends Component {
   constructor(props) {
@@ -48,18 +49,12 @@ class Inscription extends Component {
     //     </form>
     //   </div>
     return (
-      <div className="container" style={{ marginTop: 59 }}>
-        <h1>Inscriptions</h1>
-        <center>
-          <p>Merci de votre intérêt ! Les inscriptions débuteront en Septembre 2020.</p>
+      <div className="container">
+        <h1 id="inscription-title">Inscriptions</h1>
+        <div id="inscription-info">
+          <p>Merci de votre intérêt ! Les inscriptions débuteront en <b>Septembre 2020</b>.</p>
           <Countdown destination={new Date(2020, 9, 23)} />
-        </center>
-        <style>
-          {`footer {
-            position: fixed;
-            bottom: 0px;
-          }`}
-        </style>
+        </div>
       </div>
     )
   }

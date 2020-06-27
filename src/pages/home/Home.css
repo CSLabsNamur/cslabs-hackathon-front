@@ -1,26 +1,15 @@
 
-/* ---------- Color palette ----------
-
-- light cream : #f5f0e4
-- cream       : #e6d7b5
-- grey cream  : #cccac6
-
-*/
-
-.info-text {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 4rem;
-    text-align: center;
-
-    font-size: 1.2rem;
+#home-page {
+    background-color: #f5cb98;
+    margin-bottom: 6rem;
 }
 
-.info-img {
-    padding: 1rem;
+.gallery-carousel {
+    padding: 4rem 20%;
+}
 
-    width: 100%;
-    height: auto;
+@media screen and (max-width: 640px) {
+    .gallery-carousel {
+        padding: 1rem 0;
+    }
 }

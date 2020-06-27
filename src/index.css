@@ -1,3 +1,8 @@
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,4 +21,8 @@ code {
   background-color: #56b65a !important;
   border: #62bb66 !important;
   color: whitesmoke !important;
+}
+
+.tx-centered {
+  text-align: center;
 }
