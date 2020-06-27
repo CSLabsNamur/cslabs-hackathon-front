@@ -1,9 +1,47 @@
-
 nav, .nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-    background-color: #fff2c9 !important;
-    border-bottom: 1px solid #f5cb98;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff2c9 !important;
+  border-bottom: 1px solid #f5cb98;
+}
+
+.Hamburger {
+  cursor: pointer;
+}
+
+.Closed {
+  display: none !important;
+}
+
+.Opened {
+  display: block !important;
+}
+
+.Hamburger span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #424242;
+  border-radius: 3px;
+  transform-origin: 4px 0px;
+}
+
+@media (min-width: 768px) {
+  .Hamburger {
+    display: none !important;
+  }
+  .Hamburger-Content {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .Hamburger-Content {
+    display: block;
+    width: 75% !important;
+  }
 }

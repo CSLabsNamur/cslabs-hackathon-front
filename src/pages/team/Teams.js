@@ -45,7 +45,7 @@ class Profil extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{marginTop: 2 * 59}}>
         <div className="row">
           <div className="col col-lg-2">
             <TeamMenu />

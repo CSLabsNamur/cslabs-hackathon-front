@@ -3,16 +3,16 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import Navbar from "./components/navbar/navbar";
-import Footer from "./components/footer/footer";
+import { Footer } from "./components/footer/footer";
 
 import Home from './pages/home/Home'
 import './App.css';
 import 'mustard-ui/dist/css/mustard-ui.min.css'
-import Inscription from './pages/Inscription';
+import Inscription from './pages/inscription/Inscription';
 import Sponsors from './pages/sponsors/Sponsors';
-import Infos from './pages/Infos';
+import Infos from './pages/information/Infos';
 import Error404 from './pages/Error404';
-import Connexion from './pages/Connexion';
+import Connexion from './pages/connexion/Connexion';
 import Hello from './pages/team/Hello';
 import Profil from './pages/team/Profil';
 import Vote from './pages/team/Vote';
@@ -39,7 +39,6 @@ class App extends Component {
         </Switch>
         <Footer />
       </BrowserRouter>
-
     );
   }
 }

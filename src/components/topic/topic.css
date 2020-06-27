@@ -22,6 +22,10 @@
     width: 100%;
 }
 
+.info-area p {
+    text-align: justify;
+}
+
 .info-area.left {
     flex-direction: row;
 }

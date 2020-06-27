@@ -5,6 +5,16 @@
 }
 
 .BrainhubCarousel__arrows {
-    background-color: #f5cb98 !important;
-    border: 2px solid #fff2c9 !important;
+    background-color: #fff2c9 !important;
+    /*border: 2px solid #f5cb98 !important;*/
+    color: black !important;
+}
+
+.BrainhubCarousel__arrows > span {
+    border-color: black !important;
+    opacity: 0.5;
+}
+
+.BrainhubCarousel__arrows:hover > span{
+    opacity: 1.0;
 }

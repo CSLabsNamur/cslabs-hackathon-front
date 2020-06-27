@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import Cookies from 'js-cookie';
-import { API_URL } from '../constants';
+
+import { API_URL } from '../../constants';
+
+import "./Connexion.css";
 
 class Connexion extends Component {
   constructor(props) {
@@ -88,8 +91,8 @@ class Connexion extends Component {
 
   render() {
     return (
-      <div className="Form">
-        <h2>Connexion</h2>
+      <div className="Form" id="connexion-page">
+        <h2 className="tx-centered">Connexion</h2>
         <p className="warning" style={{ color: 'red' }}>{this.state.message}</p>
         <div className="form-control">
           <label>Adresse email</label>
@@ -99,7 +102,9 @@ class Connexion extends Component {
           <label>Mot de passe</label>
           <input type="password" id="password" placeholder="L0L#BoURge10S" />
         </div>
-        <button className="button-primary button-round" onClick={() => this.connect()}>Se connecter</button>
+        <div className="tx-centered">
+          <button className="button-primary button-round" onClick={() => this.connect()}>Se connecter</button>
+        </div>
         {this.isConnected()}
         <style>
           {`footer {

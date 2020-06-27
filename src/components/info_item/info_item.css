@@ -1,0 +1,25 @@
+
+.info-item-area {
+
+    max-width: 80rem;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.info-item-area:not(:last-child) {
+    border-bottom: 0.5rem solid #f5cb98;
+}
+
+.info-item-content {
+    padding-left: 1rem;
+}
+
+.info-item-icon {
+    position: relative;
+    width: 8rem;
+    height: auto;
+    top: 50%;
+    left: 20%;
+    transform: translate(0, -50%);
+    opacity: 0.5;
+}

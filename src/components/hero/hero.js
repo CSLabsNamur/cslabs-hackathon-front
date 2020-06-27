@@ -21,30 +21,33 @@ class Hero extends Component {
         const getArrow = () => {
             if (this.props.hasArrow) {
                 return (
-                    <div onClick={() => window.scrollTo(0, window.innerHeight)}>
-                        <img id="hero--arrow" src="./arrow.svg" alt="Arrow"/>
-                    </div>
+                    <a href="#hero-end-anchor">
+                        <img id="hero--arrow" src={process.env.REACT_APP_PUBLIC_URL + "icons/arrow.svg"} alt="Arrow"/>
+                    </a>
                 );
             }
         }
 
         return (
-            <header>
-                <div className="hero-content">
-                    <h1 className="title">
-                        {this.props.title}
-                    </h1>
-                    <h2 className="subtitle">
-                        {this.props.content}
-                    </h2>
-                    <p className="disclaimer">
-                        {this.props.disclaimer}
-                    </p>
-                    {getStarted()}
-                    {this.props.children}
-                </div>
-                {getArrow()}
-            </header>
+            <div>
+                <header>
+                    <div className="hero-content">
+                        <h1 className="title">
+                            {this.props.title}
+                        </h1>
+                        <h2 className="subtitle">
+                            {this.props.content}
+                        </h2>
+                        <p className="disclaimer">
+                            {this.props.disclaimer}
+                        </p>
+                        {getStarted()}
+                        {this.props.children}
+                    </div>
+                    {getArrow()}
+                </header>
+                <p id="hero-end-anchor"></p>
+            </div>
         )
 
     }
