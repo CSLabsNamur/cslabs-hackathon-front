@@ -22,7 +22,7 @@ class Hero extends Component {
             if (this.props.hasArrow) {
                 return (
                     <a href="#hero-end-anchor">
-                        <img id="hero--arrow" src={process.env.REACT_APP_PUBLIC_URL + "icons/arrow.svg"} alt="Arrow"/>
+                        <img id="hero--arrow" src={process.env.REACT_APP_PUBLIC_URL + "test/arrow.svg"} alt="Arrow"/>
                     </a>
                 );
             }
@@ -38,7 +38,7 @@ class Hero extends Component {
                         <h2 className="subtitle">
                             {this.props.content}
                         </h2>
-                        <p className="disclaimer">
+                        <p className="hero-disclaimer">
                             {this.props.disclaimer}
                         </p>
                         {getStarted()}
