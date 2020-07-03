@@ -1,11 +1,12 @@
-
 import React, { Component } from "react";
+
+import "./footer.css";
 
 export class Footer extends Component {
 
   render() {
     return (
-      <footer>
+      <footer className="footer">
         <p className="copyright align-center">© CSLabs 2020 - Made with <span style={{ color: 'red' }}>❤</span> by <em>ppoitier</em> and <em>vinhig</em> with our sponsors :</p>
         <div id="sponsors-list">
           <a href="https://www.aginsurance.be">
