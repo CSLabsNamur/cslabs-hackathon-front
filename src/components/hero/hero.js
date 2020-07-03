@@ -38,7 +38,7 @@ class Hero extends Component {
                         <h2 className="subtitle">
                             {this.props.content}
                         </h2>
-                        <p className="disclaimer">
+                        <p className="hero-disclaimer">
                             {this.props.disclaimer}
                         </p>
                         {getStarted()}
