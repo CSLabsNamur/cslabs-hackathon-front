@@ -8,9 +8,11 @@ class Infos extends Component {
   render() {
     return (
       <div id="info-page">
-        <Hero title='Informations' content='Adresse, lieu et commodités.' hasArrow/>
-
         <div>
+          <div className="infos-title">
+            <h1>Informations sur l'Hackathon</h1>
+            <h2>Adresse, lieu et commodités</h2>
+          </div>
           <InfoItem title="Adresse du Hackathon" icon="test/location.svg">
             <p><b>Rue Grandgagnage 21</b></p>
             <p>5000 Namur</p>
