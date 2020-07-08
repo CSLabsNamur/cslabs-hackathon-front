@@ -56,14 +56,15 @@ class Countdown extends Component {
         return (
             <div className="Countdown">
                 {this.prettyNumber(this.state.months)}
-                <div className="NoImpact">:</div>
+                <div className="NoImpact">m</div>
                 {this.prettyNumber(this.state.days)}
-                <div className="NoImpact">:</div>
+                <div className="NoImpact">j</div>
                 {this.prettyNumber(this.state.hours)}
-                <div className="NoImpact">:</div>
+                <div className="NoImpact">h</div>
                 {this.prettyNumber(this.state.minutes)}
-                <div className="NoImpact">:</div>
+                <div className="NoImpact">m</div>
                 {this.prettyNumber(this.state.seconds)}
+                <div className="NoImpact">s</div>
             </div>
         )
     }
