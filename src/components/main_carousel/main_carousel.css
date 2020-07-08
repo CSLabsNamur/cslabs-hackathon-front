@@ -1,12 +1,21 @@
 
 #main-carousel {
     margin: auto;
-    width: 80%;
+    max-width: 80%;
+}
+
+li.BrainhubCarouselItem {
+    background-color: #fff2c9;
+    max-height: 500px;
+}
+
+li.BrainhubCarouselItem > img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .BrainhubCarousel__arrows {
     background-color: #fff2c9 !important;
-    /*border: 2px solid #f5cb98 !important;*/
     color: black !important;
 }
 

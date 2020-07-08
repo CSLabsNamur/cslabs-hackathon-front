@@ -93,14 +93,15 @@ class Connexion extends Component {
     return (
       <div className="Form" id="connexion-page">
         <h2 className="tx-centered">Connexion</h2>
+        <h6 className="tx-centered">Les connexions ne sont pas encore autorisées.</h6>
         <p className="warning" style={{ color: 'red' }}>{this.state.message}</p>
         <div className="form-control">
           <label>Adresse email</label>
-          <input type="email" id="email" placeholder="jean@gmail.com" />
+          <input type="email" id="email" placeholder="jean@gmail.com"/>
         </div>
         <div className="form-control">
           <label>Mot de passe</label>
-          <input type="password" id="password" placeholder="L0L#BoURge10S" />
+          <input type="password" id="password" placeholder="L0L#BoURge10S"/>
         </div>
         <div className="tx-centered">
           <button className="button-primary button-round" onClick={() => this.connect()}>Se connecter</button>

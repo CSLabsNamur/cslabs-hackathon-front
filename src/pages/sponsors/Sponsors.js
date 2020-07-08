@@ -12,6 +12,7 @@ class Sponsors extends Component {
       <div id="home-page">
         <Hero title='Sponsors du hackathon' content='Sans eux, rien ne serait possible !' hasArrow>
           <div id="sponsors-list">
+
             <a href="https://www.aginsurance.be">
               <img className="sponsor-img"
                 src={"https://www.aginsurance.be/_Layouts/15/images/AG.Portal/AGInsurance_logo.svg"}
@@ -37,6 +38,7 @@ class Sponsors extends Component {
                 src={process.env.REACT_APP_PUBLIC_URL + "gerontopole.png"}
                 alt="Gérontopôle Namur" />
             </a>
+
           </div>
         </Hero>
         <Topic img={{src: "https://www.aginsurance.be/_Layouts/15/images/AG.Portal/AGInsurance_logo.svg", alt: "AGInsurance"}} right>
