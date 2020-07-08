@@ -19,7 +19,7 @@ export class Topic extends Component {
         return (
             <div className={rowClassName}>
                 <div className={className}>
-                    <img src={process.env.REACT_APP_PUBLIC_URL + this.props.img.src}
+                    <img src={this.props.img.src}
                          alt={this.props.img.alt}
                          className="info-img" />
                     <div className="info-text">

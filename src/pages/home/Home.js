@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Hero from "../../components/hero/hero";
 import MainCarousel from "../../components/main_carousel/main_carousel";
-import { Topic } from "../../components/topic/topic"
+import { Topic } from "../../components/topic/topic";
 import './Home.css';
 
 class Home extends Component {
@@ -10,19 +10,19 @@ class Home extends Component {
 
     const images = [
       {
-        src: "cslabs_junior.jpg",
+        src: process.env.REACT_APP_PUBLIC_URL + "cslabs_junior.jpg",
         alt: "CSLabs Junior Entreprise"
       },
       {
-        src: "old_hands.jpg",
+        src: process.env.REACT_APP_PUBLIC_URL + "old_hands.jpg",
         alt: "Thème du Hackathon CSLabs"
       },
       {
-        src: "edition.jpg",
+        src: process.env.REACT_APP_PUBLIC_URL + "edition.jpg",
         alt: "Troisième Édition CSLabs"
       },
       {
-        src: "hackathon_irl.jpg",
+        src: process.env.REACT_APP_PUBLIC_URL + "hackathon_irl.jpg",
         alt: "Hackathon Compétition"
       }
     ];
@@ -30,16 +30,16 @@ class Home extends Component {
     return (
       <div id="home-page">
         <Hero
-            title="Le bien vieillir"
-            content="Repenser la technologie pour tous"
-            disclaimer="Du 23 au 25 Octobre à l'UNamur"
-            getStarted="infos"
-            hasBtn
-            hasArrow
+          title="Le bien vieillir"
+          content="Repenser la technologie pour tous"
+          disclaimer="Du 23 au 25 Octobre à l'UNamur"
+          getStarted="infos"
+          hasBtn
+          hasArrow
         />
 
         <div className="row gallery-carousel">
-          <MainCarousel/>
+          <MainCarousel />
         </div>
 
         <Topic img={images[0]} right>
