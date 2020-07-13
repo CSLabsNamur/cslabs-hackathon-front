@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
 
-import Home from './pages/home/Home'
+import { Home } from './pages/home/Home'
 import './App.css';
 import 'mustard-ui/dist/css/mustard-ui.min.css'
 import Inscription from './pages/inscription/Inscription';
