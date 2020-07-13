@@ -64,7 +64,7 @@ export class Sponsors extends Component {
 
 
                 <Topic img={{
-                    src: "https://www.mc.be/media/Logo_MC_button_avec_slogan_JPG_tcm49-28473.jpg",
+                    src: process.env.REACT_APP_PUBLIC_URL + "mc_eneo.png",
                     alt: "Mutualité Chrétienne"
                 }} left>
                     <h2>
@@ -106,7 +106,7 @@ export class Sponsors extends Component {
 
 
                 <Topic img={{
-                    src: "https://www.challenge-entreprendre.be/media/media558d6a755880a.png",
+                    src: process.env.REACT_APP_PUBLIC_URL + "trakk_bep.png",
                     alt: "Trakk et BEP"
                 }} right>
                     <h2>
