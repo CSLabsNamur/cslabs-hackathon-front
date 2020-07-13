@@ -12,27 +12,27 @@ export class Sponsors extends Component {
             <div id="home-page">
                 <Hero title='Sponsors du hackathon' content='Sans eux, rien ne serait possible !' hasArrow>
                     <div id="sponsors-list">
-                        <a href="https://www.aginsurance.be">
+                        <a href="#ag_insurance">
                             <img className="sponsor-img"
                                  src={"https://www.aginsurance.be/_Layouts/15/images/AG.Portal/AGInsurance_logo.svg"}
                                  alt="Sponsor AG Insurance"/>
                         </a>
-                        <a href="https://www.mc.be">
+                        <a href="#mutualite_chretienne">
                             <img className="sponsor-img"
                                  src={"https://www.mc.be/media/Logo_MC_button_sans_slogan_PNG_tcm49-28476.png"}
                                  alt="Sponsor Mutualité Chrétienne"/>
                         </a>
-                        <a href="https://www.trakk.be/">
+                        <a href="#trakk">
                             <img className="sponsor-img"
                                  src={"https://www.challenge-entreprendre.be/media/media558d6a755880a.png"}
                                  alt="Sponsor Trakk"/>
                         </a>
-                        <a href="https://www.bep.be">
+                        <a href="#trakk">
                             <img className="sponsor-img"
                                  src={"https://www.bep.be/wp-content/themes/syltaen/_2_assets/img/logo_bep.png"}
                                  alt="Sponsor BEP"/>
                         </a>
-                        <a href="https://www.province.namur.be/index.php?rub=page&page=912">
+                        <a href="#gerontopole">
                             <img className="sponsor-img"
                                  src={process.env.REACT_APP_PUBLIC_URL + "gerontopole.png"}
                                  alt="Gérontopôle Namur"/>
@@ -44,8 +44,10 @@ export class Sponsors extends Component {
                 <Topic img={{
                     src: "https://www.aginsurance.be/_Layouts/15/images/AG.Portal/AGInsurance_logo.svg",
                     alt: "AGInsurance"
-                }} right>
-                    <h2>
+                }}
+                       link="https://www.aginsurance.be"
+                       right>
+                    <h2 id="ag_insurance">
                         AG Insurance
                     </h2>
                     <p>
@@ -66,8 +68,10 @@ export class Sponsors extends Component {
                 <Topic img={{
                     src: process.env.REACT_APP_PUBLIC_URL + "mc_eneo.png",
                     alt: "Mutualité Chrétienne"
-                }} left>
-                    <h2>
+                }}
+                       link="https://www.mc.be/"
+                       left>
+                    <h2 id="mutualite_chretienne">
                         Mutualité Chrétienne
                     </h2>
                     <p>
@@ -108,8 +112,10 @@ export class Sponsors extends Component {
                 <Topic img={{
                     src: process.env.REACT_APP_PUBLIC_URL + "trakk_bep.png",
                     alt: "Trakk et BEP"
-                }} right>
-                    <h2>
+                }}
+                       link="https://www.trakk.be"
+                       right>
+                    <h2 id="trakk">
                         Trakk et BEP
                     </h2>
                     <p>Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
@@ -131,8 +137,10 @@ export class Sponsors extends Component {
                 </Topic>
 
 
-                <Topic img={{src: process.env.REACT_APP_PUBLIC_URL + "gerontopole.png", alt: "Gérontôpole Namur"}} left>
-                    <h2>
+                <Topic img={{src: process.env.REACT_APP_PUBLIC_URL + "gerontopole.png", alt: "Gérontôpole Namur"}}
+                       link="https://www.province.namur.be/index.php?rub=page&page=912"
+                       left>
+                    <h2 id="gerontopole">
                         Gérontopôle Namur
                     </h2>
                     <p>
