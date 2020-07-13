@@ -9,7 +9,7 @@ import { Home } from './pages/home/Home'
 import './App.css';
 import 'mustard-ui/dist/css/mustard-ui.min.css'
 import Inscription from './pages/inscription/Inscription';
-import Sponsors from './pages/sponsors/Sponsors';
+import { Sponsors } from './pages/sponsors/Sponsors';
 import Infos from './pages/information/Infos';
 import Error404 from './pages/Error404';
 import Connexion from './pages/connexion/Connexion';
