@@ -64,6 +64,7 @@ export class Home extends Component {
                         Trouvez des solutions innovantes face à des problèmes réels.
                         Développez de nouveaux concepts afin de rendre leur vie meilleure.
                     </p>
+                    <p>Retrouvez <a href="#thematic-area">la thématique</a> plus en détail !</p>
                 </Topic>
 
                 <Topic img={images[2]} right>
@@ -80,7 +81,7 @@ export class Home extends Component {
                     </h2>
                     <p>
                         Un Hackathon est un moment de courte durée où des équipes
-                        réfléchissent à une thématique particulière. Ils tentent d'y
+                        réfléchissent à une <a href="#thematic-area">thématique particulière</a>. Ils tentent d'y
                         apporter des solutions en développant des projets innovants.
                         À la fin de l'évènement, un jury détermine quels sont les projets
                         qui ont retenu leur attention et qui ont donc gagné la compétition.

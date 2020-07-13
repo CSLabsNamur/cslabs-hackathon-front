@@ -1,5 +1,5 @@
 
-.thematic-area {
+#thematic-area {
     background: #fff2c9;
 }
 
@@ -23,7 +23,7 @@
 .thematic-content ul li {
     padding: .5rem 1rem;
 
-    border: 1px solid #f5cb98;
+    border: 2px solid #f5cb98;
     border-radius: 1rem;
 }
 

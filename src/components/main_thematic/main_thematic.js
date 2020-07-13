@@ -6,7 +6,7 @@ export class MainThematic extends Component {
     render() {
 
         return (
-            <div className="row thematic-area">
+            <div className="row" id="thematic-area">
                 <div className="thematic-content">
                     <h2 className="tx-centered">La thématique plus en profondeur</h2>
 
