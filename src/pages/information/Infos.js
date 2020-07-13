@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Hero from "../../components/hero/hero";
 
 import "./Infos.css";
 import { InfoItem } from "../../components/info_item/info_item";

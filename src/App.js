@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
 
-import Home from './pages/home/Home'
+import { Home } from './pages/home/Home'
 import './App.css';
 import 'mustard-ui/dist/css/mustard-ui.min.css'
 import Inscription from './pages/inscription/Inscription';
@@ -18,6 +18,7 @@ import Profil from './pages/team/Profil';
 import Vote from './pages/team/Vote';
 import Team from './pages/team/Team';
 import Teams from './pages/team/Teams';
+import { Further } from "./pages/further/Further";
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
           <Route exact path="/inscription" component={Inscription} />
           <Route exact path="/sponsors" component={Sponsors} />
           <Route exact path="/infos" component={Infos} />
+          <Route exact path="/plus-loin" component={Further} />
           <Route exact path="/connexion" component={Connexion} />
           <Route exact path="/team/hello" component={Hello} />
           <Route exact path="/team/profil" component={Profil} />

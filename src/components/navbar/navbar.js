@@ -7,8 +7,8 @@ import './navbar.css';
 
 class Navbar extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       hamburger: true
     };
@@ -20,6 +20,7 @@ class Navbar extends Component {
         <li><Link to='/inscription' onClick={() => { this.toggleHamburger() }}>S'inscrire</Link></li>
         <li><Link to='/sponsors' onClick={() => { this.toggleHamburger() }}>Sponsors</Link></li>
         <li><Link to='/infos' onClick={() => { this.toggleHamburger() }}>Infos</Link></li>
+        <li><Link to='/plus-loin' onClick={() => { this.toggleHamburger() }}>Plus loin</Link></li>
         {/* Only show connection if user isn't connected */}
         {this.showConnect()}
       </ul>
@@ -67,6 +68,7 @@ class Navbar extends Component {
             <li><Link to='/inscription'>S'inscrire</Link></li>
             <li><Link to='/sponsors'>Sponsors</Link></li>
             <li><Link to='/infos'>Infos</Link></li>
+            <li><Link to='/plus-loin'>Plus loin</Link></li>
             {/* Only show connection if user isn't connected */}
             {this.showConnect()}
           </ul>
