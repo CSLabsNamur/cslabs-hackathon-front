@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 import Countdown from "../../components/countdown/countdown";
 import "./Inscription.css";
@@ -53,6 +54,7 @@ class Inscription extends Component {
         <h1 id="inscription-title">Inscriptions</h1>
         <div id="inscription-info">
           <p>Merci de votre intérêt ! Les inscriptions débuteront en <b>Septembre 2020</b>.</p>
+            <p><i>L'inscription demandera une caution de 20€. <Link to="/infos">Plus d'information</Link>.</i></p>
           <Countdown destination={new Date(2020, 9, 23)} />
         </div>
       </div>

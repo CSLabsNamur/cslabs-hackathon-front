@@ -34,7 +34,7 @@ class Infos extends Component {
 
           <InfoItem title="Inscription" icon="test/info.svg">
             <p>Prix: <b>Gratuit</b></p>
-            <p>Caution: <b>10 €</b></p>
+            <p>Caution: <b>20 €</b></p>
             <p>Compte: <b>BE65 8989 8989 8989</b></p>
           </InfoItem>
         </div>
