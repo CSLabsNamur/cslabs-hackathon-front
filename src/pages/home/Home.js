@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Hero from "../../components/hero/hero";
 import MainCarousel from "../../components/main_carousel/main_carousel";
@@ -72,6 +73,11 @@ export class Home extends Component {
                     <p>
                         Nous en sommes à notre troisième édition du Hackathon CSLabs !
                         Nous avons hâte de poursuivre l'aventure avec vous !
+                    </p>
+                    <p>
+                        Cette édition est celle de la réalisation !
+                        La concrétisation de vos projets nous importe dans la mesure où
+                        il est envisageable <Link to="/plus-loin">d'aller plus loin</Link> et donc d'apporter votre contribution à l'amélioration du Bien Vieillir !
                     </p>
                 </Topic>
 
