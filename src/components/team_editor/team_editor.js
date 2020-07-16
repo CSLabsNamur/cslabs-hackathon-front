@@ -9,15 +9,45 @@ export class TeamEditor extends Component {
         super(props);
 
         this.state = {
-            exist: true,
+            team_exist: false,
             name: "",
             description: "",
             idea: "",
             members: [
-                {name: "John", status: "Propriétaire"},
-                {name: "Paul", status: "Membre"}
+                {key: 1, name: "John", status: "Propriétaire"},
+                {key: 2, name: "Paul", status: "Membre"}
             ]
         }
+    }
+
+    on_confirm() {
+
+        const data = {
+            name: this.state.name,
+            description: this.state.description,
+            idea: this.state.idea
+        }
+
+        if (this.state.team_exist) {
+            // TODO
+        } else {
+
+            fetch(process.env.REACT_APP_API_URL + "teams/create", {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
+            }).then(response => {
+                alert(JSON.stringify(response));
+            }, error => {
+                alert(error);
+            });
+
+        }
+
     }
 
     render() {
@@ -73,7 +103,7 @@ export class TeamEditor extends Component {
                         <tbody>
                         {this.state.members.map(member => {
                             return (
-                                <tr>
+                                <tr key={member.key}>
                                 <td><strong className="align-left">{member.name}</strong></td>
                                 <td className="align-center">{member.status}</td>
                                 <td className="align-right">
@@ -88,7 +118,7 @@ export class TeamEditor extends Component {
                 </div>
 
                 <div id="team-editor-confirmation">
-                    <button className="button-primary button-round">Confirmer</button>
+                    <button className="button-primary button-round" onClick={this.on_confirm}>Confirmer</button>
                     <button className="button-primary button-round">Annuler</button>
                 </div>
 

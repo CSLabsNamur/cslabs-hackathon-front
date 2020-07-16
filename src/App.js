@@ -13,34 +13,40 @@ import { Sponsors } from './pages/sponsors/Sponsors';
 import Infos from './pages/information/Infos';
 import Error404 from './pages/Error404';
 import Connexion from './pages/connexion/Connexion';
+import { Disconnection } from "./pages/disconnection/Disconnection";
 import Hello from './pages/team/Hello';
 import Profil from './pages/team/Profil';
 import Vote from './pages/team/Vote';
 import Team from './pages/team/Team';
 import Teams from './pages/team/Teams';
 import { Further } from "./pages/further/Further";
+import {UserProvider} from "./context/user";
 
 class App extends Component {
+
   render() {
     return (
-      <BrowserRouter>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/inscription" component={Inscription} />
-          <Route exact path="/sponsors" component={Sponsors} />
-          <Route exact path="/infos" component={Infos} />
-          <Route exact path="/plus-loin" component={Further} />
-          <Route exact path="/connexion" component={Connexion} />
-          <Route exact path="/team/hello" component={Hello} />
-          <Route exact path="/team/profil" component={Profil} />
-          <Route exact path="/team/team" component={Team} />
-          <Route exact path="/team/teams" component={Teams} />
-          <Route exact path="/team/vote" component={Vote} />
-          <Route component={Error404} />
-        </Switch>
-        <Footer />
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/inscription" component={Inscription} />
+            <Route exact path="/sponsors" component={Sponsors} />
+            <Route exact path="/infos" component={Infos} />
+            <Route exact path="/plus-loin" component={Further} />
+            <Route exact path="/connexion" component={Connexion} />
+            <Route exact path="/deconnexion" component={Disconnection}/>
+            <Route exact path="/team/hello" component={Hello} />
+            <Route exact path="/team/profil" component={Profil} />
+            <Route exact path="/team/team" component={Team} />
+            <Route exact path="/team/teams" component={Teams} />
+            <Route exact path="/team/vote" component={Vote} />
+            <Route component={Error404} />
+          </Switch>
+          <Footer />
+        </BrowserRouter>
+      </UserProvider>
     );
   }
 }

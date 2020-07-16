@@ -1,7 +1,8 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
+
+import {UserContext} from "../../context/user";
 
 import './navbar.css';
 
@@ -39,15 +40,23 @@ class Navbar extends Component {
   }
 
   showConnect() {
-    if (Cookies.get('id') === undefined) {
-      return (
-        <li><Link to='/connexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Connexion</Link></li>
-      )
-    } else {
-      return (
-        <li><Link to='/team/hello' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>
-      )
-    }
+
+    return (
+        <UserContext.Consumer>
+          {value => {
+            if (!value.authenticated) {
+              return (
+                  <li><Link to='/connexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Connexion</Link></li>
+              );
+            } else {
+              const elements = [];
+              elements.push(<li key="1"><Link to='/team/hello' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>);
+              elements.push(<li key="2"><Link to='/deconnexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Déconnexion</Link></li>);
+              return elements;
+            }
+          }}
+        </UserContext.Consumer>
+    );
   }
 
   render() {

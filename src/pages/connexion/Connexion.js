@@ -1,88 +1,81 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import Cookies from 'js-cookie';
-
-import { API_URL } from '../../constants';
+import Cookies from "js-cookie";
 
 import "./Connexion.css";
+import { UserContext } from "../../context/user";
 
 class Connexion extends Component {
+
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
+
     this.state = {
       connected: false,
       message: '',
     }
   }
 
-  connect() {
-    let data = {
+  async connect() {
+
+    const data = {
       email: document.getElementById('email').value,
       password: document.getElementById('password').value,
     }
-    fetch(API_URL + 'users/login/', {
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      credentials: 'include',
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify(data)
-    }).then((response) => {
-      if (response.status === 400) {
-        // Bad credentials
-        response.json().then((body) => {
-          if (body['message'] === 'Wrong password.') {
-            document.getElementById('password').value = '';
-            this.setState({
-              connected: false,
-              message: 'Mot de passe incorrect.',
-            });
-          } else {
-            document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
-            this.setState({
-              connected: false,
-              message: 'Utilisateur inexistant.',
-            });
-          }
-        })
-      } else if (response.status === 200) {
-        // Everything is fine
-        response.json().then((body) => {
-          // Stay connected
-          Cookies.set('id', body.id);
-          this.setState({
-            connected: true,
-            message: 'Vous êtes connecté !',
-          });
-        })
 
-      } else {
-        response.text().then((err) => { console.error(err) });
-        console.error(`Server response code : ${response.status}`);
-        this.setState({
-          connected: false,
-          message: 'Erreur interne :-/',
-        });
-      }
+    let response;
 
-    }).catch((err) => {
+    try {
+      response = await fetch(process.env.REACT_APP_API_URL + 'users/login', {
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        credentials: 'include',
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(data)
+      });
+    } catch (err) {
+      return this.setState({
+        connected: false,
+        message: 'Impossible de joindre l\'hôte distant.',
+      });
+    }
+
+    const body = await response.json();
+
+    if (response.status === 200) {
+
+      // Good credentials
+      Cookies.set('id', body.id);
+      this.setState({
+        connected: true,
+        message: 'Vous êtes connecté !',
+      });
+      this.context.authenticate();
+    } else if (response.status === 400) {
+
+      // Wrong credentials
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
       this.setState({
         connected: false,
-        message: 'Impossible de joindre l\'hôte distant',
+        message: 'Mauvais identifiants.',
       });
-    })
+    } else {
+
+      // Server error
+      this.setState({
+        connected: false,
+        message: 'Erreur du serveur.',
+      });
+    }
   }
 
   isConnected() {
-    // Check if user is currently connected
-    let stayConnected = false;
-    if (Cookies.get('id') !== undefined) {
-      stayConnected = true;
-    }
-    // Check if user was connected last state
-    if (this.state.connected || stayConnected) {
+    if (this.context.authenticated) {
       return (
         <Redirect to="/team/hello" />
       )
