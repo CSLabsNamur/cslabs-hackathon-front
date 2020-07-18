@@ -54,7 +54,7 @@ class Connexion extends Component {
         connected: true,
         message: 'Vous êtes connecté !',
       });
-      this.context.authenticate();
+      this.context.authenticate(body);
     } else if (response.status === 400) {
 
       // Wrong credentials

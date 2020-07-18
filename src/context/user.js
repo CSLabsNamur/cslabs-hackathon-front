@@ -20,23 +20,27 @@ const useAuth = async () => {
                 mode: 'cors',
                 body: "{}"
             });
-
-            return response.status === 200;
-
         } catch (err) {
-            return false;
+            return null;
         }
 
-    } else {
-        return false;
+        if (response.status !== 200) {
+            return null;
+        }
+
+        return await response.json();
     }
 
+    return false;
 }
 
 export const UserContext = createContext({
     authenticated: false,
+    user: null,
+    team: null,
     authenticate: () => {},
-    disconnect: () => {}
+    disconnect: () => {},
+    update_team: () => {}
 });
 
 export class UserProvider extends Component {
@@ -46,32 +50,55 @@ export class UserProvider extends Component {
     constructor(props) {
         super(props);
 
-        this.authenticate = () => {
-            this.setState({authenticated: true});
+        this.authenticate = (user) => {
+            this.setState({
+                authenticated: true,
+                user: user
+            });
         }
 
         this.disconnect = () => {
-            this.setState({authenticated: false});
+            this.setState({
+                authenticated: false,
+                user: null,
+                team: null
+            });
+        }
+
+        this.update_team = (team) => {
+            this.setState({
+                team: team
+            });
         }
 
         this.state = {
             authenticated: false,
+            user: null,
+            team: null,
             authenticate: this.authenticate,
-            disconnect: this.disconnect
+            disconnect: this.disconnect,
+            update_team: this.update_team
         }
     }
 
     componentDidMount() {
 
-        useAuth().then(auth => {
+        useAuth().then(user => {
 
-            if (auth) {
+            if (user) {
                 console.log("Auto login worked.");
+                console.log(`Logged as ${user.email}`);
+                this.setState({
+                    authenticated: true,
+                    user: user
+                });
             } else {
                 console.log("Manual login.");
+                this.setState({
+                    authenticated: false,
+                    user: null
+                });
             }
-
-            this.setState({authenticated: auth});
         });
     }
 

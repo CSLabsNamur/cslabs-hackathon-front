@@ -1,5 +1,6 @@
 
 import React, { Component } from "react";
+import { Modal } from "../modal/modal";
 
 import "./team_editor.css";
 
@@ -16,8 +17,18 @@ export class TeamEditor extends Component {
             members: [
                 {key: 1, name: "John", status: "Propriétaire"},
                 {key: 2, name: "Paul", status: "Membre"}
-            ]
+            ],
+            modals: {
+                team_deletion: false
+            }
         }
+
+        this.on_delete_team = this.on_delete_team.bind(this);
+        this.on_confirm = this.on_confirm.bind(this);
+    }
+
+    on_delete_team() {
+        this.setState({modals: {...this.state.modals, team_deletion: false}});
     }
 
     on_confirm() {
@@ -29,7 +40,21 @@ export class TeamEditor extends Component {
         }
 
         if (this.state.team_exist) {
-            // TODO
+
+            fetch(process.env.REACT_APP_API_URL + "teams/update", {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
+            }).then(response => {
+                alert(JSON.stringify(data));
+            }, error => {
+                alert(error);
+            })
+
         } else {
 
             fetch(process.env.REACT_APP_API_URL + "teams/create", {
@@ -41,7 +66,7 @@ export class TeamEditor extends Component {
                 mode: 'cors',
                 body: JSON.stringify(data)
             }).then(response => {
-                alert(JSON.stringify(response));
+                alert('OK ' + response.status);
             }, error => {
                 alert(error);
             });
@@ -55,9 +80,23 @@ export class TeamEditor extends Component {
         return (
             <div className="col col-lg-6">
 
+                <Modal title={"Ceci est un test"}
+                       button={"Fermer"}
+                       shown={this.state.modals.team_deletion}
+                       onClose={() => this.setState({modals: {...this.state.modals, team_deletion: false}})}>
+                    <h1>Test</h1>
+                </Modal>
+
                 <div className="align-center">
                     <h2>Détail de votre équipe</h2>
-                    <button className="button-danger button-round">Supprimer l'équipe</button>
+                    {
+                        this.state.team_exist ?
+                            <button className="button-danger button-round"
+                                    onClick={this.on_delete_team}>
+                                Supprimer l'équipe
+                            </button> :
+                            null
+                    }
                     <p>Mais qui êtes-vous donc ?</p>
                 </div>
 
