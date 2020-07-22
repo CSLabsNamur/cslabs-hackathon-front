@@ -15,7 +15,15 @@ export class Modal extends Component {
                             {this.props.children}
                         </div>
                         <div className="modal-footer">
-                            <button className="button-primary" onClick={this.props.onClose}>{this.props.button}</button>
+                            {this.props.buttons.map((text, index) => {
+                                return(
+                                    <button key={index}
+                                            className="button-primary"
+                                            onClick={() => this.props.onClose(text)}>
+                                        {text}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div> :

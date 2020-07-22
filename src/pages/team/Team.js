@@ -100,9 +100,11 @@ class Team extends Component {
         if (state === 'loading') {
             content = (<h2>Chargement...</h2>);
         } else if (state === 'create') {
-            content = (<h2>Vous pouvez créer une équipe.</h2>);
+            // Hasn't any team ==> open the editor for creating one.
+            content = (<TeamEditor/>);
         } else if (state === 'update') {
-            content = (<h2>Vous avez une équipe.</h2>);
+            // Has a team ==> open editor with team data.
+            content = (<TeamEditor team={this.state.team}/>);
         } else {
             content = (<h2>Erreur: impossible de récupérer l'équipe.</h2>);
         }

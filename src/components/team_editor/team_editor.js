@@ -3,32 +3,65 @@ import React, { Component } from "react";
 import { Modal } from "../modal/modal";
 
 import "./team_editor.css";
+import {UserContext} from "../../context/user";
 
 export class TeamEditor extends Component {
+
+    static contextType = UserContext;
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            team_exist: false,
-            name: "",
-            description: "",
-            idea: "",
-            members: [
-                {key: 1, name: "John", status: "Propriétaire"},
-                {key: 2, name: "Paul", status: "Membre"}
-            ],
-            modals: {
-                team_deletion: false
+        const {team} = this.props;
+
+        if (team) {
+            this.state = {
+                team_exist: true,
+                name: team.name,
+                description: team.description,
+                idea: team.idea,
+                members: [
+                    {key: 1, name: "John", status: "Propriétaire"},
+                    {key: 2, name: "Paul", status: "Membre"}
+                ],
+                modals: {
+                    team_deletion: false
+                }
+            }
+        } else {
+            this.state = {
+                team_exist: false,
+                name: "",
+                description: "",
+                idea: "",
+                members: [
+                    {key: 1, name: "John", status: "Propriétaire"},
+                    {key: 2, name: "Paul", status: "Membre"}
+                ],
+                modals: {
+                    team_deletion: false
+                }
             }
         }
 
-        this.on_delete_team = this.on_delete_team.bind(this);
+
+
+        this.enable_modal = this.enable_modal.bind(this);
+        this.disable_modal = this.disable_modal.bind(this);
         this.on_confirm = this.on_confirm.bind(this);
+        this.on_cancel = this.on_cancel.bind(this);
     }
 
-    on_delete_team() {
-        this.setState({modals: {...this.state.modals, team_deletion: false}});
+    enable_modal(modal_name) {
+        const modals = {...this.state.modals};
+        modals[modal_name] = true;
+        this.setState({modals});
+    }
+
+    disable_modal(modal_name) {
+        const modals = {...this.state.modals};
+        modals[modal_name] = false;
+        this.setState({modals});
     }
 
     on_confirm() {
@@ -50,9 +83,15 @@ export class TeamEditor extends Component {
                 mode: 'cors',
                 body: JSON.stringify(data)
             }).then(response => {
-                alert(JSON.stringify(data));
-            }, error => {
-                alert(error);
+
+                if (response.status !== 200) {
+                    return console.error("Wrong new data.");
+                }
+
+                this.context.update_team({...this.context.team, ...data});
+                console.log('Team updated.');
+            }, err => {
+                console.error(err);
             })
 
         } else {
@@ -66,12 +105,36 @@ export class TeamEditor extends Component {
                 mode: 'cors',
                 body: JSON.stringify(data)
             }).then(response => {
-                alert('OK ' + response.status);
-            }, error => {
-                alert(error);
+
+                if (response.status !== 200) {
+                    return console.error("Unable to create the team.");
+                }
+
+                return response.json();
+            }).then(body => {
+
+                this.context.update_team(body);
+                this.setState({
+                    team_exist: true,
+                    name: body.name,
+                    description: body.description,
+                    idea: body.idea
+                });
+                console.log("Team created.");
+
+            }).catch(err => {
+                console.error("Failed to create the team.");
+                console.error(err);
             });
 
         }
+
+    }
+
+    on_cancel() {
+
+        // TODO
+        alert('Cancel ???');
 
     }
 
@@ -81,18 +144,30 @@ export class TeamEditor extends Component {
             <div className="col col-lg-6">
 
                 <Modal title={"Ceci est un test"}
-                       button={"Fermer"}
+                       buttons={["Supprimer", "Fermer"]}
                        shown={this.state.modals.team_deletion}
-                       onClose={() => this.setState({modals: {...this.state.modals, team_deletion: false}})}>
+                       onClose={btn => {
+                           this.disable_modal('team_deletion');
+
+                           if (btn === "Supprimer") {
+                               // TODO
+                               alert("Suppression validée ???");
+                           }
+                       }}>
                     <h1>Test</h1>
                 </Modal>
 
                 <div className="align-center">
-                    <h2>Détail de votre équipe</h2>
+                    {
+                        this.state.team_exist ?
+                            <h2>Détail de votre équipe</h2> :
+                            <h2>Création d'une équipe</h2>
+                    }
+
                     {
                         this.state.team_exist ?
                             <button className="button-danger button-round"
-                                    onClick={this.on_delete_team}>
+                                    onClick={() => this.enable_modal('team_deletion')}>
                                 Supprimer l'équipe
                             </button> :
                             null
@@ -158,7 +233,7 @@ export class TeamEditor extends Component {
 
                 <div id="team-editor-confirmation">
                     <button className="button-primary button-round" onClick={this.on_confirm}>Confirmer</button>
-                    <button className="button-primary button-round">Annuler</button>
+                    <button className="button-primary button-round" onClick={this.on_cancel}>Annuler</button>
                 </div>
 
             </div>);
