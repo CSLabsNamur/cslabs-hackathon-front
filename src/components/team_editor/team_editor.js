@@ -14,33 +14,33 @@ export class TeamEditor extends Component {
 
         const {team} = this.props;
 
+        this.state = {
+            members: [
+                {key: 1, name: "John", status: "Propriétaire"},
+                {key: 2, name: "Paul", status: "Membre"}
+            ],
+            modals: {
+                team_deletion: false,
+                team_created: false,
+                team_updated: false
+            }
+        }
+
         if (team) {
             this.state = {
+                ...this.state,
                 team_exist: true,
                 name: team.name,
                 description: team.description,
-                idea: team.idea,
-                members: [
-                    {key: 1, name: "John", status: "Propriétaire"},
-                    {key: 2, name: "Paul", status: "Membre"}
-                ],
-                modals: {
-                    team_deletion: false
-                }
+                idea: team.idea
             }
         } else {
             this.state = {
+                ...this.state,
                 team_exist: false,
                 name: "",
                 description: "",
-                idea: "",
-                members: [
-                    {key: 1, name: "John", status: "Propriétaire"},
-                    {key: 2, name: "Paul", status: "Membre"}
-                ],
-                modals: {
-                    team_deletion: false
-                }
+                idea: ""
             }
         }
 
@@ -85,11 +85,19 @@ export class TeamEditor extends Component {
             }).then(response => {
 
                 if (response.status !== 200) {
-                    return console.error("Wrong new data.");
+
+                    this.setState({
+                        name: "",
+                        description: "",
+                        idea: ""
+                    });
+
+                    return console.error("Wrong changes for the team.");
                 }
 
                 this.context.update_team({...this.context.team, ...data});
                 console.log('Team updated.');
+                this.enable_modal("team_updated");
             }, err => {
                 console.error(err);
             })
@@ -121,6 +129,7 @@ export class TeamEditor extends Component {
                     idea: body.idea
                 });
                 console.log("Team created.");
+                this.enable_modal("team_created");
 
             }).catch(err => {
                 console.error("Failed to create the team.");
@@ -133,8 +142,31 @@ export class TeamEditor extends Component {
 
     on_cancel() {
 
-        // TODO
-        alert('Cancel ???');
+        if (this.state.team_exist) {
+
+            let new_data;
+
+            if (this.context.team) {
+                const {name, description, idea} = this.context.team;
+                new_data = {name, description, idea};
+            } else {
+                new_data = {name: "", description: "", idea: ""};
+            }
+
+            this.setState(new_data);
+
+        } else {
+
+            this.setState({
+                name: "",
+                description: "",
+                idea: ""
+            });
+
+            if (this.props.onCancel) {
+                this.props.onCancel();
+            }
+        }
 
     }
 
@@ -143,7 +175,7 @@ export class TeamEditor extends Component {
         return (
             <div className="col col-lg-6">
 
-                <Modal title={"Ceci est un test"}
+                <Modal title={"Supression de l'équipe"}
                        buttons={["Supprimer", "Fermer"]}
                        shown={this.state.modals.team_deletion}
                        onClose={btn => {
@@ -154,7 +186,21 @@ export class TeamEditor extends Component {
                                alert("Suppression validée ???");
                            }
                        }}>
-                    <h1>Test</h1>
+                    <p>Etes-vous certain de vouloir supprimer l'équipe ?</p>
+                </Modal>
+
+                <Modal title={"Equipe créée !"}
+                       buttons={["D'accord"]}
+                       shown={this.state.modals.team_created}
+                       onClose={() => this.disable_modal("team_created")}>
+                    <p>Votre équipe à bel et bien été créée !</p>
+                </Modal>
+
+                <Modal title={"Equipe mise à jour !"}
+                       buttons={["D'accord"]}
+                       shown={this.state.modals.team_updated}
+                       onClose={() => this.disable_modal("team_updated")}>
+                    <p>Votre équipe à bel et bien été mise à jour !</p>
                 </Modal>
 
                 <div className="align-center">

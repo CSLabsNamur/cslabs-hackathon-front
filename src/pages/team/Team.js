@@ -17,6 +17,9 @@ class Team extends Component {
         }
 
         this._isMounted = false;
+
+        this.switch_no_team_state = this.switch_no_team_state.bind(this);
+        this.switch_creation_state = this.switch_creation_state.bind(this);
     }
 
     async fetch_team() {
@@ -50,6 +53,7 @@ class Team extends Component {
             team = this.context.team;
         } else {
             team = await this.fetch_team();
+            this.context.update_team(team);
         }
 
         return team;
@@ -69,7 +73,7 @@ class Team extends Component {
                         });
                     } else {
                         this.setState({
-                            team_state: 'create',
+                            team_state: 'no-team',
                             team: null
                         });
                     }
@@ -92,6 +96,14 @@ class Team extends Component {
         this._isMounted = false;
     }
 
+    switch_no_team_state() {
+        this.setState({team_state: 'no-team'});
+    }
+
+    switch_creation_state() {
+        this.setState({team_state: 'create'});
+    }
+
     render() {
 
         const state = this.state.team_state;
@@ -99,9 +111,22 @@ class Team extends Component {
 
         if (state === 'loading') {
             content = (<h2>Chargement...</h2>);
+        } else if (state === 'no-team') {
+            // Hasn't any team ==> Ask the user if it wants to create or join one.
+            content = (
+                <div>
+                    <button className="button-primary button-large button-shadow"
+                            onClick={this.switch_creation_state}>
+                        Créer une équipe
+                    </button>
+                    <button className="button-primary button-large button-shadow">
+                        Rejoindre une équipe
+                    </button>
+                </div>
+            );
         } else if (state === 'create') {
-            // Hasn't any team ==> open the editor for creating one.
-            content = (<TeamEditor/>);
+            // Choose to create a team ==> open the editor for creating one.
+            content = (<TeamEditor onCancel={this.switch_no_team_state} />);
         } else if (state === 'update') {
             // Has a team ==> open editor with team data.
             content = (<TeamEditor team={this.state.team}/>);
@@ -116,7 +141,6 @@ class Team extends Component {
                         <TeamMenu/>
                     </div>
                     {content}
-                    {/*<TeamEditor/>*/}
                 </div>
                 <style>
                     {`footer {
