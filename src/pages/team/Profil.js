@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
 import TeamMenu from "../../components/team_menu/team_menu";
 import { UserContext } from "../../context/user";
@@ -13,20 +11,33 @@ class Profil extends Component {
   constructor(props) {
     super(props);
 
-    const {firstName, lastName, email, github, linkedin} = this.context.user;
-
     this.state = {
       first: true,
-      firstName,
-      lastName,
-      email,
-      github: github | "",
-      linkedin: linkedin | "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      github: "",
+      linkedin: "",
       msg: ""
     };
 
     this.updateProfile = this.updateProfile.bind(this);
     this.pushProfile = this.pushProfile.bind(this);
+  }
+
+  componentDidMount() {
+
+    const user = this.context.user;
+
+    if (this.context.user) {
+      this.setState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        github: !!user.github ? user.github : "",
+        linkedin: !!user.linkedin ? user.linkedin : ""
+      });
+    }
   }
 
   updateProfile(event) {
