@@ -4,6 +4,7 @@ import { Modal } from "../modal/modal";
 
 import "./team_editor.css";
 import {UserContext} from "../../context/user";
+import {TeamMembersList} from "../team_members_list/team_members_list";
 
 export class TeamEditor extends Component {
 
@@ -53,15 +54,17 @@ export class TeamEditor extends Component {
     }
 
     enable_modal(modal_name) {
-        const modals = {...this.state.modals};
+        const modals = {};
         modals[modal_name] = true;
         this.setState({modals});
+        console.log(`Open modal: ${modal_name}`);
     }
 
     disable_modal(modal_name) {
-        const modals = {...this.state.modals};
+        const modals = {};
         modals[modal_name] = false;
         this.setState({modals});
+        console.log(`Close modal: ${modal_name}`);
     }
 
     on_confirm() {
@@ -251,31 +254,11 @@ export class TeamEditor extends Component {
                 </div>
 
                 <p>Les membres de votre équipe</p>
-                <div id="team-editor-members-list" className="align-center">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Membres</th>
-                            <th className="align-center">Status</th>
-                            <th/>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.members.map(member => {
-                            return (
-                                <tr key={member.key}>
-                                <td><strong className="align-left">{member.name}</strong></td>
-                                <td className="align-center">{member.status}</td>
-                                <td className="align-right">
-                                    <button className="button-danger-outlined">Supprimer</button>
-                                </td>
-                                </tr>
-                            );
-                        })}
-                        </tbody>
-                    </table>
-                    <button className="button-primary-outlined">Inviter</button>
-                </div>
+
+                {this.state.team_exist ?
+                    <TeamMembersList team={this.props.team}/> :
+                    <TeamMembersList/>
+                }
 
                 <div id="team-editor-confirmation">
                     <button className="button-primary button-round" onClick={this.on_confirm}>Confirmer</button>

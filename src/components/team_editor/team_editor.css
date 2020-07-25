@@ -1,12 +1,4 @@
 
-#team-editor-members-list {
-    margin-bottom: 2rem;
-
-    border: 1px solid #bdbdbd;
-    background-color: #fff;
-    border-radius: 5px;
-}
-
 #team-editor-confirmation {
     display: flex;
     flex-direction: row;
