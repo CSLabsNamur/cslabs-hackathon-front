@@ -18,7 +18,7 @@ import Hello from './pages/team/Hello';
 import Profil from './pages/team/Profil';
 import Vote from './pages/team/Vote';
 import Team from './pages/team/Team';
-import Teams from './pages/team/Teams';
+import { TeamsList } from './pages/team/teams_list/TeamsList';
 import { Further } from "./pages/further/Further";
 import {UserProvider} from "./context/user";
 
@@ -40,7 +40,7 @@ class App extends Component {
             <Route exact path="/team/hello" component={Hello} />
             <Route exact path="/team/profil" component={Profil} />
             <Route exact path="/team/team" component={Team} />
-            <Route exact path="/team/teams" component={Teams} />
+            <Route exact path="/team/teams" component={TeamsList} />
             <Route exact path="/team/vote" component={Vote} />
             <Route component={Error404} />
           </Switch>

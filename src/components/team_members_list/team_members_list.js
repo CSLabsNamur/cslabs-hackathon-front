@@ -54,14 +54,13 @@ export class TeamMembersList extends Component {
 
         } else if (this.state.team) {
 
-            members.push(this.state.team.members.map(member => {
+            members = this.state.team.members.map(member => {
                 return {
                     firstName: member.firstName,
                     lastName: member.lastName,
                     owner: !!member.teamOwner
                 }
-            }));
-
+            });
         }
 
         this.setState({members});
