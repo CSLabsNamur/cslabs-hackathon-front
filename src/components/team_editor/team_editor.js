@@ -16,10 +16,8 @@ export class TeamEditor extends Component {
         const {team} = this.props;
 
         this.state = {
-            members: [
-                {key: 1, name: "John", status: "Propriétaire"},
-                {key: 2, name: "Paul", status: "Membre"}
-            ],
+            disabled: true,
+            invitations: [],
             modals: {
                 team_deletion: false,
                 team_created: false,
@@ -51,6 +49,15 @@ export class TeamEditor extends Component {
         this.disable_modal = this.disable_modal.bind(this);
         this.on_confirm = this.on_confirm.bind(this);
         this.on_cancel = this.on_cancel.bind(this);
+        this.on_invitation = this.on_invitation(this);
+    }
+
+    componentDidMount() {
+
+        if (this.context.user.teamOwner) {
+            this.setState({disabled: false});
+        }
+
     }
 
     enable_modal(modal_name) {
@@ -72,7 +79,8 @@ export class TeamEditor extends Component {
         const data = {
             name: this.state.name,
             description: this.state.description,
-            idea: this.state.idea
+            idea: this.state.idea,
+            invitations: this.state.invitations
         }
 
         if (this.state.team_exist) {
@@ -173,6 +181,13 @@ export class TeamEditor extends Component {
 
     }
 
+    on_invitation(invitation) {
+        const invitations = this.state.invitations;
+        invitations.push(invitation);
+        this.setState({invitations: invitations});
+    }
+
+
     render() {
 
         return (
@@ -216,7 +231,8 @@ export class TeamEditor extends Component {
                     {
                         this.state.team_exist ?
                             <button className="button-danger button-round"
-                                    onClick={() => this.enable_modal('team_deletion')}>
+                                    onClick={() => this.enable_modal('team_deletion')}
+                                    disabled={this.state.disabled}>
                                 Supprimer l'équipe
                             </button> :
                             null
@@ -231,6 +247,7 @@ export class TeamEditor extends Component {
                            id="name"
                            value={this.state.name}
                            onChange={(event) => this.setState({name: event.target.value})}
+                           disabled={this.state.disabled}
                     />
                 </div>
 
@@ -241,6 +258,7 @@ export class TeamEditor extends Component {
                            id="description"
                            value={this.state.description}
                            onChange={(event) => this.setState({description: event.target.value})}
+                           disabled={this.state.disabled}
                     />
                 </div>
 
@@ -250,19 +268,28 @@ export class TeamEditor extends Component {
                               id="idea"
                               value={this.state.idea}
                               onChange={(event) => this.setState({idea: event.target.value})}
+                              disabled={this.state.disabled}
                     />
                 </div>
 
                 <p>Les membres de votre équipe</p>
 
                 {this.state.team_exist ?
-                    <TeamMembersList team={this.props.team}/> :
-                    <TeamMembersList/>
+                    <TeamMembersList team={this.props.team} disabled={this.state.disabled}/> :
+                    <TeamMembersList onInvitation={this.on_invitation} disabled={this.state.disabled}/>
                 }
 
                 <div id="team-editor-confirmation">
-                    <button className="button-primary button-round" onClick={this.on_confirm}>Confirmer</button>
-                    <button className="button-primary button-round" onClick={this.on_cancel}>Annuler</button>
+                    <button className="button-primary button-round"
+                            onClick={this.on_confirm}
+                            disabled={this.state.disabled}>
+                        Confirmer
+                    </button>
+                    <button className="button-primary button-round"
+                            onClick={this.on_cancel}
+                            disabled={this.state.disabled}>
+                        Annuler
+                    </button>
                 </div>
 
             </div>);

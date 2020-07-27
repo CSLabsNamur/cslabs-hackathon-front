@@ -14,7 +14,7 @@ export class TeamMembersList extends Component {
         const team = this.props.team;
 
         this.state = {
-            disabled: false,
+            disabled: !!this.props.disabled,
             new_team: !team,
             members: [],
             invitation_input: "",
@@ -112,7 +112,11 @@ export class TeamMembersList extends Component {
                 invitation_input: ""
             });
 
-            return console.log(`Add invitation: ${this.state.invitation_input}`);
+            if (this.props.onInvitation) {
+                this.props.onInvitation(invitation);
+            }
+
+            return console.log(`Add invitation: ${invitation}`);
         }
 
         // If the team already exists
@@ -243,7 +247,7 @@ export class TeamMembersList extends Component {
                     </td>
                     <td className="align-right">
                         <button className="button-danger-outlined"
-                                disabled={member.owner}>
+                                disabled={(member.owner || this.state.disabled) && member.id !== this.context.user.id}>
                             Supprimer
                         </button>
                     </td>
@@ -292,7 +296,7 @@ export class TeamMembersList extends Component {
                     </tbody>
                 </table>
                 <button className="button-primary-outlined"
-                        onClick={this.open_invitation_modal}>
+                        onClick={this.open_invitation_modal} disabled={this.state.disabled}>
                     {this.state.new_team ? "Ajouter" : "Inviter"}
                 </button>
             </div>
