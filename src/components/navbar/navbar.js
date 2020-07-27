@@ -50,7 +50,7 @@ class Navbar extends Component {
               );
             } else {
               const elements = [];
-              elements.push(<li key="1"><Link to='/team/hello' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>);
+              elements.push(<li key="1"><Link to='/team' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>);
               elements.push(<li key="2"><Link to='/deconnexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Déconnexion</Link></li>);
               return elements;
             }

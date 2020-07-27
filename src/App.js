@@ -14,13 +14,9 @@ import Infos from './pages/information/Infos';
 import Error404 from './pages/Error404';
 import Connexion from './pages/connexion/Connexion';
 import { Disconnection } from "./pages/disconnection/Disconnection";
-import Hello from './pages/team/Hello';
-import Profil from './pages/team/Profil';
-import Vote from './pages/team/Vote';
-import Team from './pages/team/Team';
-import { TeamsList } from './pages/team/teams_list/TeamsList';
 import { Further } from "./pages/further/Further";
 import {UserProvider} from "./context/user";
+import {TeamPage} from "./pages/team/TeamPage";
 
 class App extends Component {
 
@@ -37,11 +33,7 @@ class App extends Component {
             <Route exact path="/plus-loin" component={Further} />
             <Route exact path="/connexion" component={Connexion} />
             <Route exact path="/deconnexion" component={Disconnection}/>
-            <Route exact path="/team/hello" component={Hello} />
-            <Route exact path="/team/profil" component={Profil} />
-            <Route exact path="/team/team" component={Team} />
-            <Route exact path="/team/teams" component={TeamsList} />
-            <Route exact path="/team/vote" component={Vote} />
+            <Route path="/team" component={TeamPage}/>
             <Route component={Error404} />
           </Switch>
           <Footer />

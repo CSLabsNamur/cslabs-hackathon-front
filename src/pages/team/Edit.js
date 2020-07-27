@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 
 import {UserContext} from "../../context/user";
-import TeamMenu from "../../components/team_menu/team_menu";
 import {TeamEditor} from "../../components/team_editor/team_editor";
 
-class Team extends Component {
+export class Edit extends Component {
 
     static contextType = UserContext;
 
@@ -134,23 +133,6 @@ class Team extends Component {
             content = (<h2>Erreur: impossible de récupérer l'équipe.</h2>);
         }
 
-        return (
-            <div className="container" style={{marginTop: 2 * 59}}>
-                <div className="row">
-                    <div className="col col-lg-2">
-                        <TeamMenu/>
-                    </div>
-                    {content}
-                </div>
-                <style>
-                    {`footer {
-            position: fixed;
-            bottom: 0px;
-          }`}
-                </style>
-            </div>
-        );
+        return content;
     }
 }
-
-export default Team;
