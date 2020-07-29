@@ -1,19 +1,26 @@
+import React, {Component} from "react";
+import {Redirect, Route, Switch} from 'react-router';
 
-import React, { Component } from "react";
-import { Route, Switch } from 'react-router';
+import {UserContext} from "../../context/user";
 
-import TeamMenu from "../../components/team_menu/team_menu";
-import { Hello } from "./Hello";
-import { Edit } from "./Edit";
-import { TeamsList } from "./teams_list/TeamsList";
-import { User } from "./User";
-import { Vote } from "./Vote";
+import {TeamMenu} from "../../components/team_menu/team_menu";
+import {Hello} from "./Hello";
+import {Edit} from "./Edit";
+import {TeamsList} from "./teams_list/TeamsList";
+import {User} from "./User";
+import {Vote} from "./Vote";
+import {Invite} from "./invite/Invite";
 
 export class TeamPage extends Component {
 
+    static contextType = UserContext;
+
     render() {
 
-        console.log(this.props);
+        if (!this.context.authenticated) {
+            this.context.set_next(this.props.location.pathname);
+            return (<Redirect to={"/connexion"}/>);
+        }
 
         return (
             <div className="container" style={{marginTop: 2 * 59}}>
@@ -34,6 +41,9 @@ export class TeamPage extends Component {
                         </Route>
                         <Route path="/team/vote">
                             <Vote/>
+                        </Route>
+                        <Route path="/team/invite">
+                            <Invite/>
                         </Route>
                         <Route path="/team">
                             <Hello/>

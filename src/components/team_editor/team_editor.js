@@ -49,12 +49,13 @@ export class TeamEditor extends Component {
         this.disable_modal = this.disable_modal.bind(this);
         this.on_confirm = this.on_confirm.bind(this);
         this.on_cancel = this.on_cancel.bind(this);
-        this.on_invitation = this.on_invitation(this);
+        this.on_invitation = this.on_invitation.bind(this);
     }
 
     componentDidMount() {
 
         if (this.context.user.teamOwner) {
+            console.log("The user is the tea owner. Team edition is enabled.");
             this.setState({disabled: false});
         }
 

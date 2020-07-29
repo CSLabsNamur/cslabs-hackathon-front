@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from "react-router";
 
 import {UserContext} from "../../context/user";
 import {TeamEditor} from "../../components/team_editor/team_editor";
@@ -19,6 +20,7 @@ export class Edit extends Component {
 
         this.switch_no_team_state = this.switch_no_team_state.bind(this);
         this.switch_creation_state = this.switch_creation_state.bind(this);
+        this.switch_join_team_state = this.switch_join_team_state.bind(this);
     }
 
     async fetch_team() {
@@ -103,10 +105,18 @@ export class Edit extends Component {
         this.setState({team_state: 'create'});
     }
 
+    switch_join_team_state() {
+        this.setState({team_state: 'join_team'});
+    }
+
     render() {
 
         const state = this.state.team_state;
         let content;
+
+        if (state === 'join_team') {
+            return (<Redirect to="/team/invite"/>);
+        }
 
         if (state === 'loading') {
             content = (<h2>Chargement...</h2>);
@@ -118,7 +128,8 @@ export class Edit extends Component {
                             onClick={this.switch_creation_state}>
                         Créer une équipe
                     </button>
-                    <button className="button-primary button-large button-shadow">
+                    <button className="button-primary button-large button-shadow"
+                            onClick={this.switch_join_team_state}>
                         Rejoindre une équipe
                     </button>
                 </div>

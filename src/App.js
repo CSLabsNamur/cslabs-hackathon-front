@@ -15,12 +15,13 @@ import Error404 from './pages/Error404';
 import Connexion from './pages/connexion/Connexion';
 import { Disconnection } from "./pages/disconnection/Disconnection";
 import { Further } from "./pages/further/Further";
-import {UserProvider} from "./context/user";
-import {TeamPage} from "./pages/team/TeamPage";
+import { UserProvider } from "./context/user";
+import { TeamPage } from "./pages/team/TeamPage";
 
 class App extends Component {
 
   render() {
+
     return (
       <UserProvider>
         <BrowserRouter>

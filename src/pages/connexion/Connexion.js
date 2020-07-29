@@ -76,9 +76,20 @@ class Connexion extends Component {
 
   isConnected() {
     if (this.context.authenticated) {
+
+      if (this.context.next) {
+
+        const next_page = this.context.next;
+        this.context.clear_next();
+
+        return (
+            <Redirect to={next_page} />
+        );
+      }
+
       return (
-        <Redirect to="/team/hello" />
-      )
+        <Redirect to="/team" />
+      );
     }
   }
 

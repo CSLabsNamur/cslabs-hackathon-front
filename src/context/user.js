@@ -38,9 +38,12 @@ export const UserContext = createContext({
     authenticated: false,
     user: null,
     team: null,
+    next: null,
     authenticate: () => {},
     disconnect: () => {},
-    update_team: () => {}
+    update_team: () => {},
+    set_next: () => {},
+    clear_next: () => {}
 });
 
 export class UserProvider extends Component {
@@ -71,13 +74,28 @@ export class UserProvider extends Component {
             });
         }
 
+        this.set_next = (next_page) => {
+            this.setState({
+                next: next_page
+            });
+        };
+
+        this.clear_next = () => {
+            this.setState({
+                next: null
+            });
+        };
+
         this.state = {
             authenticated: false,
             user: null,
             team: null,
+            next: null,
             authenticate: this.authenticate,
             disconnect: this.disconnect,
-            update_team: this.update_team
+            update_team: this.update_team,
+            set_next: this.set_next,
+            clear_next: this.clear_next
         }
     }
 

@@ -1,19 +1,10 @@
 
 import React, { Component } from "react";
-import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
-import { UserContext } from "../../context/user";
-
-class TeamMenu extends Component {
-
-    static contextType = UserContext;
+export class TeamMenu extends Component {
 
     render() {
-
-        if (!this.context.authenticated) {
-            return (<Redirect to="/connexion" />);
-        }
 
         return (
             <nav style={{ marginTop: 59 }}>
@@ -31,5 +22,3 @@ class TeamMenu extends Component {
     }
 
 }
-
-export default TeamMenu;
