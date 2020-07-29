@@ -55,7 +55,7 @@ export class TeamEditor extends Component {
     componentDidMount() {
 
         if (this.context.user.teamOwner) {
-            console.log("The user is the tea owner. Team edition is enabled.");
+            console.log("The user is the team owner. Team edition is enabled.");
             this.setState({disabled: false});
         }
 

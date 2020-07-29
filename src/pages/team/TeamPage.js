@@ -15,10 +15,24 @@ export class TeamPage extends Component {
 
     static contextType = UserContext;
 
-    render() {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            redirect: false
+        };
+    }
+
+    componentDidMount() {
         if (!this.context.authenticated) {
             this.context.set_next(this.props.location.pathname);
+            this.setState({redirect: true});
+        }
+    }
+
+    render() {
+
+        if (this.state.redirect) {
             return (<Redirect to={"/connexion"}/>);
         }
 
@@ -30,24 +44,12 @@ export class TeamPage extends Component {
                     </div>
 
                     <Switch>
-                        <Route path="/team/edit">
-                            <Edit/>
-                        </Route>
-                        <Route path="/team/all">
-                            <TeamsList/>
-                        </Route>
-                        <Route path="/team/user">
-                            <User/>
-                        </Route>
-                        <Route path="/team/vote">
-                            <Vote/>
-                        </Route>
-                        <Route path="/team/invite">
-                            <Invite/>
-                        </Route>
-                        <Route path="/team">
-                            <Hello/>
-                        </Route>
+                        <Route exact path="/team/edit" component={Edit} />
+                        <Route exact path="/team/all" component={TeamsList} />
+                        <Route exact path="/team/user" component={User} />
+                        <Route exact path="/team/vote" component={Vote} />
+                        <Route exact path="/team/invite/:token?" component={Invite} />
+                        <Route path="/team" component={Hello} />
                     </Switch>
 
                 </div>

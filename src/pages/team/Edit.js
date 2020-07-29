@@ -23,43 +23,6 @@ export class Edit extends Component {
         this.switch_join_team_state = this.switch_join_team_state.bind(this);
     }
 
-    async fetch_team() {
-
-        const response = await fetch(process.env.REACT_APP_API_URL + "teams/me", {
-            credentials: 'include',
-            method: 'GET',
-            mode: 'cors'
-        });
-
-        if (response.status !== 200) {
-            throw Error('Failed to fetch the team.');
-        }
-
-        const body = await response.json();
-
-        if (Object.entries(body).length > 0) {
-            // The user is in a team.
-            return body;
-        } else {
-            // The user is not in a team.
-            return null;
-        }
-
-    }
-
-    async refresh_team() {
-        let team;
-
-        if (this.context.team) {
-            team = this.context.team;
-        } else {
-            team = await this.fetch_team();
-            this.context.update_team(team);
-        }
-
-        return team;
-    }
-
     componentDidMount() {
         this._isMounted = true;
 
@@ -91,6 +54,13 @@ export class Edit extends Component {
                 }
             });
 
+    }
+
+    async refresh_team() {
+
+        await this.context.update_team();
+
+        return this.context.team;
     }
 
     componentWillUnmount() {

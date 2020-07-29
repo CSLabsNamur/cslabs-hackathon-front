@@ -1,49 +1,23 @@
-
 import React, {Component, createContext} from "react";
 import Cookies from "js-cookie";
-
-const useAuth = async () => {
-
-    const id = Cookies.get("id");
-
-    if (id) {
-
-        let response;
-
-        try {
-            response = await fetch(process.env.REACT_APP_API_URL + "users/login", {
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                credentials: 'include',
-                method: 'POST',
-                mode: 'cors',
-                body: "{}"
-            });
-        } catch (err) {
-            return null;
-        }
-
-        if (response.status !== 200) {
-            return null;
-        }
-
-        return await response.json();
-    }
-
-    return false;
-}
 
 export const UserContext = createContext({
     authenticated: false,
     user: null,
     team: null,
     next: null,
-    authenticate: () => {},
-    disconnect: () => {},
-    update_team: () => {},
-    set_next: () => {},
-    clear_next: () => {}
+    fetch_user: async () => {
+    },
+    authenticate: () => {
+    },
+    disconnect: () => {
+    },
+    update_team: async () => {
+    },
+    set_next: () => {
+    },
+    clear_next: () => {
+    }
 });
 
 export class UserProvider extends Component {
@@ -53,7 +27,39 @@ export class UserProvider extends Component {
     constructor(props) {
         super(props);
 
+        this.fetch_user = async () => {
+            const id = Cookies.get("id");
+
+            if (id) {
+
+                let response;
+
+                try {
+                    response = await fetch(process.env.REACT_APP_API_URL + "users/login", {
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        }),
+                        credentials: 'include',
+                        method: 'POST',
+                        mode: 'cors',
+                        body: "{}"
+                    });
+                } catch (err) {
+                    return null;
+                }
+
+                if (response.status !== 200) {
+                    return null;
+                }
+
+                return await response.json();
+            }
+
+            return false;
+        }
+
         this.authenticate = (user) => {
+
             this.setState({
                 authenticated: true,
                 user: user
@@ -68,9 +74,36 @@ export class UserProvider extends Component {
             });
         }
 
-        this.update_team = (team) => {
+        this.update_team = async (team) => {
+
+            console.log("Update the user's team.");
+
+            let updated_team = null;
+
+            if (team) {
+                updated_team = team;
+            } else {
+                const response = await fetch(process.env.REACT_APP_API_URL + "teams/me", {
+                    credentials: 'include',
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                if (response.status !== 200) {
+                    throw Error('Failed to fetch the team.');
+                }
+
+                const body = await response.json();
+
+                if (Object.entries(body).length > 0) {
+                    // The user is in a team.
+                    updated_team = body;
+                    console.log("User team fetched.");
+                }
+            }
+
             this.setState({
-                team: team
+                team: updated_team
             });
         }
 
@@ -91,6 +124,7 @@ export class UserProvider extends Component {
             user: null,
             team: null,
             next: null,
+            fetch_user: this.fetch_user,
             authenticate: this.authenticate,
             disconnect: this.disconnect,
             update_team: this.update_team,
@@ -101,23 +135,25 @@ export class UserProvider extends Component {
 
     componentDidMount() {
 
-        useAuth().then(user => {
+        if (!this.authenticated) {
+            this.fetch_user().then(user => {
 
-            if (user) {
-                console.log("Auto login worked.");
-                console.log(`Logged as ${user.email}`);
-                this.setState({
-                    authenticated: true,
-                    user: user
-                });
-            } else {
-                console.log("Manual login.");
-                this.setState({
-                    authenticated: false,
-                    user: null
-                });
-            }
-        });
+                if (user) {
+                    console.log("Auto login worked.");
+                    console.log(`Logged as ${user.email}`);
+                    this.setState({
+                        authenticated: true,
+                        user: user
+                    });
+                } else {
+                    console.log("Manual login.");
+                    this.setState({
+                        authenticated: false,
+                        user: null
+                    });
+                }
+            });
+        }
     }
 
     render() {
