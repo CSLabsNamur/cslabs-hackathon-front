@@ -11,8 +11,10 @@
 
 .team-card-description {
     margin-bottom: .5rem;
+    word-wrap: break-word;
 }
 
 .team-card-idea {
     margin-bottom: 1rem;
+    word-wrap: break-word;
 }

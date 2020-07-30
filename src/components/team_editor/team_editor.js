@@ -1,10 +1,10 @@
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
-import React, { Component } from "react";
-import { Modal } from "../modal/modal";
-
-import "./team_editor.css";
+import {Modal} from "../modal/modal";
 import {UserContext} from "../../context/user";
 import {TeamMembersList} from "../team_members_list/team_members_list";
+import "./team_editor.css";
 
 export class TeamEditor extends Component {
 
@@ -16,12 +16,18 @@ export class TeamEditor extends Component {
         const {team} = this.props;
 
         this.state = {
-            disabled: true,
+            disabled: false,
             invitations: [],
             modals: {
                 team_deletion: false,
                 team_created: false,
                 team_updated: false
+            },
+            validation: {
+                name: null,
+                description: null,
+                idea: null,
+                agreement: null
             }
         }
 
@@ -31,7 +37,8 @@ export class TeamEditor extends Component {
                 team_exist: true,
                 name: team.name,
                 description: team.description,
-                idea: team.idea
+                idea: team.idea,
+                agreement_value: true
             }
         } else {
             this.state = {
@@ -39,10 +46,10 @@ export class TeamEditor extends Component {
                 team_exist: false,
                 name: "",
                 description: "",
-                idea: ""
+                idea: "",
+                agreement_value: false
             }
         }
-
 
 
         this.enable_modal = this.enable_modal.bind(this);
@@ -54,10 +61,12 @@ export class TeamEditor extends Component {
 
     componentDidMount() {
 
-        if (this.context.user.teamOwner) {
-            console.log("The user is the team owner. Team edition is enabled.");
-            this.setState({disabled: false});
+        if (this.state.team_exist && !this.context.user.teamOwner) {
+            console.log("The user is not the team owner. Team edition is disabled.");
+            this.setState({disabled: true});
         }
+
+        console.log(this.state);
 
     }
 
@@ -75,7 +84,53 @@ export class TeamEditor extends Component {
         console.log(`Close modal: ${modal_name}`);
     }
 
+    validate() {
+
+        let validate = true;
+
+        const {name, description, idea, agreement_value} = this.state;
+
+        const validation = {
+            name: null,
+            description: null,
+            idea: null,
+            agreement: null
+        }
+
+        if (name.length < 3 || name.length > 35) {
+            validation.name = "Le nom de l'équipe doit être de minimum 3 et maximum 35 caractères.";
+            validate = false;
+        }
+
+        if (description.length < 3 || description.length > 256) {
+            validation.description = "La description doit être de minimum 3 et maximum 256 caractères.";
+            validate = false;
+        }
+
+        if (idea.length < 3 || idea.length > 256) {
+            validation.idea = "La description de votre idée doit être de minimum 3 et maximum 256 caractères.";
+            validate = false;
+        }
+
+        if (!agreement_value) {
+            validation.agreement = `Il est nécessaire de prendre connaissance des informations relatives
+                                    à la participation au hackathon et à ensuite cocher cette case.`
+            validate = false;
+        }
+
+        this.setState({
+            validation: validation
+        });
+
+        return validate;
+    }
+
     on_confirm() {
+
+        if (!this.validate()) {
+            console.log("Team edition form validation failed.");
+            return;
+        }
 
         const data = {
             name: this.state.name,
@@ -165,6 +220,13 @@ export class TeamEditor extends Component {
                 new_data = {name: "", description: "", idea: ""};
             }
 
+            new_data.validation = {
+                name: null,
+                description: null,
+                idea: null,
+                agreement: null
+            }
+
             this.setState(new_data);
 
         } else {
@@ -188,6 +250,33 @@ export class TeamEditor extends Component {
         this.setState({invitations: invitations});
     }
 
+    render_agreement_checkbox() {
+
+        return (
+            <div className="form-control">
+                <input type="checkbox"
+                       id="invitation-accept-rules"
+                       name="invitation-accept-rules"
+                       value="accept-rules"
+                       checked={this.state.agreement_value}
+                       onChange={(event) => this.setState({agreement_value: event.target.checked})}/>
+                <label htmlFor="invitation-accept-rules">
+                   J'ai pris connaissances des <Link to="/infos">modalités</Link> ainsi que
+                    de la <strong>caution de 20€</strong>.
+                </label>
+                {this.render_error_message(this.state.validation.agreement)}
+            </div>
+        );
+
+    }
+
+    render_error_message(message) {
+        return !!message ? (
+            <p className="validation-error">
+                {message}
+            </p>
+        ) : null;
+    }
 
     render() {
 
@@ -213,6 +302,10 @@ export class TeamEditor extends Component {
                        shown={this.state.modals.team_created}
                        onClose={() => this.disable_modal("team_created")}>
                     <p>Votre équipe à bel et bien été créée !</p>
+                    <p>Chaque membre invité va recevoir un email contenant le lien leur permettant de rejoindre
+                        l'équipe. Ils recevront également le code d'invitation.</p>
+                    <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
+                        confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
                 </Modal>
 
                 <Modal title={"Equipe mise à jour !"}
@@ -246,10 +339,12 @@ export class TeamEditor extends Component {
                     <input type="text"
                            placeholder="Les Grille-Pain Musclés, par exemple..."
                            id="name"
+                           className={!!this.state.validation.name ? "invalid" : ""}
                            value={this.state.name}
                            onChange={(event) => this.setState({name: event.target.value})}
                            disabled={this.state.disabled}
                     />
+                    {this.render_error_message(this.state.validation.name)}
                 </div>
 
                 <div className="form-control">
@@ -257,20 +352,24 @@ export class TeamEditor extends Component {
                     <input type="text"
                            placeholder="Magnifique description de mon équipe..."
                            id="description"
+                           className={!!this.state.validation.description ? "invalid" : ""}
                            value={this.state.description}
                            onChange={(event) => this.setState({description: event.target.value})}
                            disabled={this.state.disabled}
                     />
+                    {this.render_error_message(this.state.validation.description)}
                 </div>
 
                 <div className="form-control">
                     <label>Description de l'idée</label>
                     <textarea placeholder="Formidable description de mon idée originale..."
                               id="idea"
+                              className={!!this.state.validation.idea ? "invalid" : ""}
                               value={this.state.idea}
                               onChange={(event) => this.setState({idea: event.target.value})}
                               disabled={this.state.disabled}
                     />
+                    {this.render_error_message(this.state.validation.idea)}
                 </div>
 
                 <p>Les membres de votre équipe</p>
@@ -279,6 +378,8 @@ export class TeamEditor extends Component {
                     <TeamMembersList team={this.props.team} disabled={this.state.disabled}/> :
                     <TeamMembersList onInvitation={this.on_invitation} disabled={this.state.disabled}/>
                 }
+
+                {!this.state.team_exist ? this.render_agreement_checkbox() : null}
 
                 <div id="team-editor-confirmation">
                     <button className="button-primary button-round"
