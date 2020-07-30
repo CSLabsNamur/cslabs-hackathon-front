@@ -19,6 +19,10 @@ export class Invite extends Component {
             redirect_user: false,
             modals: {
                 invitation_succeed: false
+            },
+            validation: {
+                checkbox: true,
+                token: true
             }
         }
 
@@ -109,6 +113,7 @@ export class Invite extends Component {
 
                     this.setState({redirect_user: true});
                 } else {
+                    this.setState({validation: {token: false}});
                     console.log("Wrong token.");
                 }
 
@@ -119,7 +124,20 @@ export class Invite extends Component {
     }
 
     validate_form() {
-        return true;
+
+        let validate = true;
+
+        if (this.state.token_value.length !== 20) {
+            this.setState({validation: {token: false}});
+            validate = false;
+        }
+
+        if (!this.state.agreement_value) {
+            this.setState({validation: {checkbox: false}});
+            validate = false;
+        }
+
+        return validate;
     }
 
     async send_invitation() {
@@ -154,6 +172,8 @@ export class Invite extends Component {
                    shown={this.state.modals.invitation_succeed}
                    buttons={["Cool !"]} onClose={() => this.close_modal()}>
                 <p>Vous avez rejoint l'équipe !</p>
+                <p>Veuillez à bien prendre connaissance des <Link to="/infos">informations</Link> liées au hackathon.</p>
+                <p>Votre participation n'est effective que lorsque nous avons reçu la <strong>caution de 20€</strong>.</p>
             </Modal>
         );
     }
@@ -195,10 +215,16 @@ export class Invite extends Component {
                         <label htmlFor="input-invitation">Code d'invitation</label>
                         <input type="text"
                                placeholder="Entrez le code d'invitation dans l'équipe ici..."
+                               className={!this.state.validation.token ? "invalid" : ""}
                                id="input-invitation"
                                name="input-invitation"
                                value={this.state.token_value}
                                onChange={this.on_token_change}/>
+                        {!this.state.validation.token ? (
+                            <p className="validation-error">
+                                Ce token est invalide.
+                            </p>
+                        ) : null}
                     </div>
 
                     <div className="form-control">
@@ -211,6 +237,12 @@ export class Invite extends Component {
                         <label htmlFor="invitation-accept-rules">
                             Je veux participer au hackathon et vais payer la <strong>caution de 20€</strong>.
                         </label>
+                        {!this.state.validation.checkbox ? (
+                            <p className="validation-error">
+                                Il est nécessaire d'accepter ces conditions pour poursuivre votre participation au
+                                hackathon.
+                            </p>
+                        ) : null}
                     </div>
 
                     <div className="form-control align-center">

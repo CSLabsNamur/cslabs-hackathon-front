@@ -100,6 +100,7 @@ class Connexion extends Component {
                 message: 'Vous êtes connecté !',
             });
             this.context.authenticate(body);
+            this.choose_redirection();
         } else if (response.status === 400) {
 
             // Wrong credentials
