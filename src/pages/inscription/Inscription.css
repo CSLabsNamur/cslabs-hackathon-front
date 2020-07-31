@@ -1,11 +1,18 @@
 
 #inscription-title {
     text-align: center;
-    margin-top: 10rem;
 }
 
 #inscription-info {
     text-align: center;
+}
+
+.inscription-area {
+    margin-top: 10rem;
+}
+
+#form-inscription-submit {
+    margin-top: 2rem;
 }
 
 footer {
