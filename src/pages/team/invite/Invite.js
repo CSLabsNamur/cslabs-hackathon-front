@@ -70,20 +70,24 @@ export class Invite extends Component {
     }
 
     enable_modal() {
-        this.setState({
-            modals: {
-                invitation_succeed: true
-            }
-        });
+        if (this._isMounted) {
+            this.setState({
+                modals: {
+                    invitation_succeed: true
+                }
+            });
+        }
         console.log(`Open modal: invitation_succeed`);
     }
 
     close_modal() {
-        this.setState({
-            modals: {
-                invitation_succeed: false
-            }
-        });
+        if (this._isMounted) {
+            this.setState({
+                modals: {
+                    invitation_succeed: false
+                }
+            });
+        }
         console.log(`Close modal: invitation_succeed`);
     }
 
@@ -110,10 +114,13 @@ export class Invite extends Component {
                     this.context.update_team(team).then(() => {
                         this.enable_modal();
                     });
-
-                    this.setState({redirect_user: true});
+                    if (this._isMounted) {
+                        this.setState({redirect_user: true});
+                    }
                 } else {
-                    this.setState({validation: {token: false}});
+                    if (this._isMounted) {
+                        this.setState({validation: {token: false}});
+                    }
                     console.log("Wrong token.");
                 }
 
@@ -127,15 +134,24 @@ export class Invite extends Component {
 
         let validate = true;
 
+        const validation = {
+            token: true,
+            checkbox: true
+        }
+
         if (this.state.token_value.length !== 20) {
-            this.setState({validation: {token: false}});
+            validation.token = false;
             validate = false;
         }
 
         if (!this.state.agreement_value) {
-            this.setState({validation: {checkbox: false}});
+            validation.checkbox = false;
             validate = false;
         }
+
+        this.setState({
+            validation: validation
+        });
 
         return validate;
     }

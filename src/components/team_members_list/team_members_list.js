@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from "react-router";
 
 import './team_members_list.css';
 import {UserContext} from "../../context/user";
@@ -25,11 +26,9 @@ export class TeamMembersList extends Component {
                 invitation_sending: false,
                 invitation_sent: false
             },
-            team: !!team ? team : null
+            team: !!team ? team : null,
+            leave: false
         };
-
-        this.enable_modal = this.enable_modal.bind(this);
-        this.disable_modal = this.disable_modal.bind(this);
 
         this.cancel_invitation = this.cancel_invitation.bind(this);
         this.add_invitation = this.add_invitation.bind(this);
@@ -44,12 +43,14 @@ export class TeamMembersList extends Component {
 
         if (this.state.new_team && this.context.user) {
 
-            const {firstName, lastName} = this.context.user;
+            const {firstName, lastName, paid_caution, id} = this.context.user;
 
             members.push({
                 firstName,
                 lastName,
-                owner: true
+                owner: true,
+                paid_caution,
+                id
             });
 
         } else if (this.state.team) {
@@ -58,7 +59,9 @@ export class TeamMembersList extends Component {
                 return {
                     firstName: member.firstName,
                     lastName: member.lastName,
-                    owner: !!member.teamOwner
+                    owner: !!member.teamOwner,
+                    paid_caution: member.paid_caution,
+                    id: member.id
                 }
             });
         }
@@ -149,6 +152,45 @@ export class TeamMembersList extends Component {
         this.enable_modal("invitation_sent");
     }
 
+    async remove_team_member(member_id) {
+
+        let response;
+
+        try {
+            response = await fetch(`${process.env.REACT_APP_API_URL}teams/leave/${member_id}`, {
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors'
+            });
+        } catch (err) {
+            alert(`L'hôte distant de répond pas. Impossible de supprimer ce membre pour le moment.
+                   Veuillez réessayer plus tard.`);
+            return;
+        }
+
+        if (response.status === 200) {
+
+            const members = this.state.members.filter(member => member.id.toString() !== member_id);
+
+            this.setState({
+                ...this.state,
+                members,
+                leave: this.context.user.id.toString() === member_id
+            });
+
+            console.log(`The member ${member_id} has been removed from the team.`);
+
+            if (this.context.user.id.toString() === member_id) {
+                this.context.clear_team();
+            } else {
+                await this.context.update_team({...this.context.team, members});
+            }
+
+        } else {
+            console.error(`Failed to remove the member ${member_id} from the team.`);
+        }
+    }
+
     render_modals() {
 
         const modals = [];
@@ -234,6 +276,10 @@ export class TeamMembersList extends Component {
 
     render() {
 
+        if (this.state.leave) {
+            return (<Redirect to="/team"/>);
+        }
+
         let members = this.state.members.map(
             (member, index) => (
                 <tr key={index}>
@@ -245,9 +291,26 @@ export class TeamMembersList extends Component {
                     <td className="align-center">
                         {member.owner ? "Créateur" : "Membre"}
                     </td>
+                    <td className="align-center">
+                        {member.paid_caution ? (
+                            <span className="tooltip" style={{color: "green"}}>
+                                &#x2714;
+                                <span className="tooltip-text">La caution de ce membre a été payée et approuvée !</span>
+                            </span>
+                        ) : (
+                            <span className="tooltip" style={{color: "red"}}>
+                                &#x2716;
+                                <span className="tooltip-text">
+                                    La caution de ce membre n'a pas été payée ou validée !
+                                </span>
+                            </span>
+                        )}
+                    </td>
                     <td className="align-right">
                         <button className="button-danger-outlined"
-                                disabled={(member.owner || this.state.disabled) && member.id !== this.context.user.id}>
+                                disabled={member.id !== this.context.user.id || member.owner}
+                                value={member.id}
+                                onClick={event => this.remove_team_member(event.target.value).then()}>
                             Supprimer
                         </button>
                     </td>
@@ -268,6 +331,7 @@ export class TeamMembersList extends Component {
                             </strong>
                         </td>
                         <td className="align-center">En attente</td>
+                        <td>/</td>
                         <td className="align-right">
                             <button className="button-danger-outlined button-small"
                                     value={inv}
@@ -287,6 +351,7 @@ export class TeamMembersList extends Component {
                     <tr>
                         <th>Membres</th>
                         <th className="align-center">Status</th>
+                        <th className="align-center">Caution</th>
                         <th/>
                     </tr>
                     </thead>

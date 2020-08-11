@@ -14,6 +14,8 @@ export const UserContext = createContext({
     },
     update_team: async () => {
     },
+    clear_team: () => {
+    },
     set_next: () => {
     },
     clear_next: () => {
@@ -107,6 +109,12 @@ export class UserProvider extends Component {
             });
         }
 
+        this.clear_team = () => {
+            this.setState({
+                team: null
+            });
+        }
+
         this.set_next = (next_page) => {
             this.setState({
                 next: next_page
@@ -128,6 +136,7 @@ export class UserProvider extends Component {
             authenticate: this.authenticate,
             disconnect: this.disconnect,
             update_team: this.update_team,
+            clear_team: this.clear_team,
             set_next: this.set_next,
             clear_next: this.clear_next
         }

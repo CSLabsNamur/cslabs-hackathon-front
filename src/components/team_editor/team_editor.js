@@ -28,7 +28,8 @@ export class TeamEditor extends Component {
                 description: null,
                 idea: null,
                 agreement: null
-            }
+            },
+            deleted: false
         }
 
         if (team) {
@@ -65,8 +66,6 @@ export class TeamEditor extends Component {
             console.log("The user is not the team owner. Team edition is disabled.");
             this.setState({disabled: true});
         }
-
-        console.log(this.state);
 
     }
 
@@ -250,6 +249,11 @@ export class TeamEditor extends Component {
         this.setState({invitations: invitations});
     }
 
+    async remove_team() {
+        // TODO
+        alert("Not yet implemented.");
+    }
+
     render_agreement_checkbox() {
 
         return (
@@ -261,7 +265,7 @@ export class TeamEditor extends Component {
                        checked={this.state.agreement_value}
                        onChange={(event) => this.setState({agreement_value: event.target.checked})}/>
                 <label htmlFor="invitation-accept-rules">
-                   J'ai pris connaissances des <Link to="/infos">modalités</Link> ainsi que
+                    J'ai pris connaissances des <Link to="/infos">modalités</Link> ainsi que
                     de la <strong>caution de 20€</strong>.
                 </label>
                 {this.render_error_message(this.state.validation.agreement)}
@@ -278,6 +282,31 @@ export class TeamEditor extends Component {
         ) : null;
     }
 
+    render_alert() {
+
+        if (!this.state.team_exist) {
+            return (
+                <p className="alert alert-danger team-caution-alert">
+                    L'équipe sera validée et apparaître dans la liste des équipes participantes que lorsqu'au moins
+                    <strong>un de ses membres</strong> aura payé la <strong>caution</strong> !
+                </p>
+            );
+        }
+
+        if (this.props.team.valid) {
+            return null;
+        } else {
+            return (
+                <p className="alert alert-danger team-caution-alert">
+                    L'équipe n'est pas encore validée et n'apparait donc pas dans la liste des équipes participantes.
+                    L'équipe ne sera valide que lorsqu'au moins <strong>un de ses membres</strong> aura payé
+                    la <strong>caution</strong> !
+                </p>
+            );
+        }
+
+    }
+
     render() {
 
         return (
@@ -290,8 +319,7 @@ export class TeamEditor extends Component {
                            this.disable_modal('team_deletion');
 
                            if (btn === "Supprimer") {
-                               // TODO
-                               alert("Suppression validée ???");
+                               this.remove_team().then();
                            }
                        }}>
                     <p>Etes-vous certain de vouloir supprimer l'équipe ?</p>
@@ -393,6 +421,8 @@ export class TeamEditor extends Component {
                         Annuler
                     </button>
                 </div>
+
+                {this.render_alert()}
 
             </div>);
 
