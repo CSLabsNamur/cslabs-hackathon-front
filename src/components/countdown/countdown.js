@@ -12,10 +12,6 @@ class Countdown extends Component {
             this.destination = props.destination;
         }
 
-        setInterval(() => {
-            this.update()
-        }, 1);
-
         this.state = {
             seconds: 0,
             minutes: 0,
@@ -23,6 +19,22 @@ class Countdown extends Component {
             days: 0,
             months: 0
         }
+
+        this._isMounted = false;
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
+
+        setInterval(() => {
+            if (this._isMounted) {
+                this.update();
+            }
+        }, 1);
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     update() {
@@ -44,7 +56,7 @@ class Countdown extends Component {
         let divs = [];
         for (let i = 0; i < str.length; i++) {
             divs.push(
-                <div>
+                <div key={i}>
                     {str.charAt(i)}
                 </div>
             )

@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import {UserContext} from "../context/user";
 
 class Error404 extends Component {
+
+    static contextType = UserContext;
+
   showHome() {
-    if (Cookies.get('id') === undefined) {
-      return (<Link to='/'>Retour à la case départ</Link>);
+    if (this.context.user) {
+      return (<Link to='/team'>Retour à la case départ</Link>);
     } else {
-      return (<Link to='/team/hello'>Retour à la case départ</Link>);
+      return (<Link to='/'>Retour à la case départ</Link>);
     }
   }
+
   render() {
     return (
       <div className="container">
