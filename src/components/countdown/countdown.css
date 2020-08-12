@@ -13,14 +13,14 @@
   color: #424242;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 612px) {
   .Countdown div {
     font-size: 2rem;
     margin: 5px;
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 612px) {
   .Countdown div {
     font-size: 1rem;
     margin: 2px;

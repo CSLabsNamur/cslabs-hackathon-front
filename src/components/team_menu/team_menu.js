@@ -1,23 +1,47 @@
-
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import './team_menu.css'
+
 export class TeamMenu extends Component {
+    constructor(props) {
+        super(props);
+        if (props.urls) {
+            this.state = {
+                urls: [
+                    {
+                        'url': '/no/',
+                        'content': 'empty',
+                    }
+                ]
+            }
+        } else {
+            this.state = {
+                urls: props.urls,
+            };
+        }
+    }
+
+    drawNavLinks() {
+        let navLinks = [];
+        this.state.urls.forEach(element => {
+            navLinks.push(
+                <li><Link key={element.url} to={element.url}>{element.content}</Link></li>
+            );
+        });
+        return navLinks;
+    }
 
     render() {
-
         return (
-            <nav style={{ marginTop: 59 }}>
-                <div className="nav-container">
-                    <ul className="nav-links">
-                        <li><Link to="/team/edit">Mon équipe</Link></li>
-                        <li><Link to="/team/user">Moi</Link></li>
-                        <li><Link to="/team/all/">Autres équipes</Link></li>
-                        <li><Link to="/team/vote">Votes</Link></li>
-                    </ul>
-                </div>
-
-            </nav>
+            <div className="TeamMenu">
+                <ul className="TeamElements">
+                    <li><Link to="/team/edit">Mon équipe</Link></li>
+                    <li><Link to="/team/user">Moi</Link></li>
+                    <li><Link to="/team/all/">Autres équipes</Link></li>
+                    <li><Link to="/team/vote">Votes</Link></li>
+                </ul>
+            </div>
         );
     }
 
