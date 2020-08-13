@@ -293,7 +293,7 @@ export class TeamEditor extends Component {
             );
         }
 
-        if (this.props.team.valid) {
+        if (this.props.team && this.props.team.valid) {
             return null;
         } else {
             return (
@@ -305,6 +305,23 @@ export class TeamEditor extends Component {
             );
         }
 
+    }
+
+    render_confirmation_buttons() {
+        return (
+            <div id="team-editor-confirmation">
+                <button className="button-primary button-round"
+                        onClick={this.on_confirm}
+                        disabled={this.state.disabled}>
+                    Confirmer
+                </button>
+                <button className="button-primary button-round"
+                        onClick={this.on_cancel}
+                        disabled={this.state.disabled}>
+                    Annuler
+                </button>
+            </div>
+        );
     }
 
     render() {
@@ -351,7 +368,7 @@ export class TeamEditor extends Component {
                     }
 
                     {
-                        this.state.team_exist ?
+                        this.state.team_exist && !this.state.disabled ?
                             <button className="button-danger button-round"
                                     onClick={() => this.enable_modal('team_deletion')}
                                     disabled={this.state.disabled}>
@@ -409,18 +426,7 @@ export class TeamEditor extends Component {
 
                 {!this.state.team_exist ? this.render_agreement_checkbox() : null}
 
-                <div id="team-editor-confirmation">
-                    <button className="button-primary button-round"
-                            onClick={this.on_confirm}
-                            disabled={this.state.disabled}>
-                        Confirmer
-                    </button>
-                    <button className="button-primary button-round"
-                            onClick={this.on_cancel}
-                            disabled={this.state.disabled}>
-                        Annuler
-                    </button>
-                </div>
+                {!this.state.disabled ? this.render_confirmation_buttons() : null}
 
                 {this.render_alert()}
 

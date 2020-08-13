@@ -1,20 +1,9 @@
 
-#team-card-list-area {
-    display: flex;
-    flex-direction: column;
+#teams-list-area {
+    background-color: white;
+    border-radius: .5rem;
 }
 
-.team-card {
-    background-color: #f5cb98;
-    font-size: 1.2rem;
-}
-
-.team-card-description {
-    margin-bottom: .5rem;
-    word-wrap: break-word;
-}
-
-.team-card-idea {
-    margin-bottom: 1rem;
-    word-wrap: break-word;
+.team-list-members-tooltip {
+    list-style: none;
 }
