@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import "./TeamsList.css";
+import {Link} from "react-router-dom";
 
 export class TeamsList extends Component {
 
@@ -18,17 +19,7 @@ export class TeamsList extends Component {
     componentDidMount() {
         this._isMounted = true;
         
-        this.fetchTeams()
-            .then(teams => {
-                if (this._isMounted) {
-                    this.setState({teams: teams.filter(team => team.valid)});
-                }
-            })
-            .catch(err => {
-                if (this._isMounted) {
-                    this.setState({message: err.message});
-                }
-            });
+        this.fetchTeams().then();
     }
     
     componentWillUnmount() {
@@ -49,10 +40,25 @@ export class TeamsList extends Component {
                 mode: 'cors'
             });
         } catch (err) {
-            throw Error("Impossible de joindre l'hôte distant.");
+            if (this._isMounted) {
+                this.setState({message: "Impossible de joindre l'hôte distant."});
+            }
+            return;
         }
 
-        return await response.json();
+        if (response.status !== 200) {
+            if (this._isMounted) {
+                this.setState({message: "Une erreur est survenue sur nos serveur. Veuillez nous en excuser."});
+            }
+            return;
+        }
+
+        const teams = await response.json();
+
+        if (this._isMounted) {
+            // TODO: Move the filter to the backend
+            this.setState({teams: teams.filter(team => team.valid)});
+        }
     }
 
     render() {
@@ -60,8 +66,8 @@ export class TeamsList extends Component {
             <div>
                 <h2 className="align-center">Les autres équipes</h2>
                 <h5 className="align-center">Envie d'en savoir plus sur vos concurrents ?</h5>
-                <div className="container">
-                    <table id="teams-list-area">
+                <div id="teams-list-area">
+                    <table id="teams-list-table">
                         <thead>
                             <tr>
                                 <th>Nom</th>
@@ -86,9 +92,11 @@ export class TeamsList extends Component {
                                         </span>
                                     </td>
                                     <td>
-                                        <button className="button-primary-outlined button-small">
-                                            Info
-                                        </button>
+                                        <Link to={`/team/info/${team.id}`}>
+                                            <button className="button-primary-outlined button-small">
+                                                Info
+                                            </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

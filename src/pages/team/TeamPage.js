@@ -9,6 +9,7 @@ import {Edit} from "./Edit";
 import {TeamsList} from "./teams_list/TeamsList";
 import {User} from "./User";
 import {Vote} from "./Vote";
+import {TeamInfo} from "./team_info/TeamInfo";
 import {Invite} from "./invite/Invite";
 
 export class TeamPage extends Component {
@@ -49,6 +50,7 @@ export class TeamPage extends Component {
                         <Route exact path="/team/user" component={User} />
                         <Route exact path="/team/vote" component={Vote} />
                         <Route exact path="/team/invite/:token?" component={Invite} />
+                        <Route exact path="/team/info/:team_id" component={TeamInfo}/>
                         <Route path="/team" component={Hello} />
                     </Switch>
 

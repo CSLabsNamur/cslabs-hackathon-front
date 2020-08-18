@@ -1,7 +1,17 @@
 
 #teams-list-area {
+    margin: 1rem 0;
+
+    border: 1px solid #bdbdbd;
+    border-collapse: inherit;
+    border-radius: 5px;
+
     background-color: white;
-    border-radius: .5rem;
+}
+
+#teams-list-table {
+    margin: 0;
+    width: 100%;
 }
 
 .team-list-members-tooltip {
