@@ -34,6 +34,16 @@ export class Footer extends Component {
               src={process.env.REACT_APP_PUBLIC_URL + "gerontopole.png"}
               alt="Gérontopôle Namur" />
           </a>
+          <a href="https://www.unamur.be/info">
+            <img className="sponsor-img-little"
+              src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_facinfo.png"}
+              alt="Faculté d'informatique" />
+          </a>
+          <a href="https://www.unamur.be/info">
+            <img className="sponsor-img-little"
+              src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_50ans_petit.png"}
+              alt="50 ans de l'Université" />
+          </a>
         </div>
       </footer>
     );
