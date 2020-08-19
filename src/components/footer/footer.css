@@ -5,4 +5,16 @@
 
 .footer p {
     padding-top: 10px !important;
+    
+}
+
+.sponsor-img-little {
+    margin-left: .5rem;
+    margin-right: .5rem;
+    width: 2rem;
+    height: 2rem;
+
+    background-color: #fff2c9;
+
+    border-radius: 50%;
 }
