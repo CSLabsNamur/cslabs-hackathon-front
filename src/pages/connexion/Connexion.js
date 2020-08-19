@@ -152,7 +152,6 @@ class Connexion extends Component {
             <div className="Form" id="connexion-page">
 
                 <h2 className="tx-centered">Connexion</h2>
-                <h6 className="tx-centered">Les connexions ne sont pas encore autorisées.</h6>
                 <p className="warning" style={{color: 'red'}}>{this.state.message}</p>
 
                 <form onSubmit={this.on_submit}>

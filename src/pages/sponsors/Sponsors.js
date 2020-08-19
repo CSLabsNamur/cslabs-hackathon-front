@@ -151,20 +151,22 @@ export class Sponsors extends Component {
           left>
           <h2 id="gerontopole">
             Gérontopôle Namur
-                    </h2>
+          </h2>
           <p>
             GéroNam, le Gérontopôle de la province de Namur est un projet développé à l’initiative de la
             Province de Namur et co-construit avec des acteurs issus des secteurs du bien-vieillir. Il se
             définit comme une communauté de personnes et d’organisations. Il est une ressource territoriale
             pour les citoyens, l’ensemble des professionnels et des acteurs du bien-vieillir. C’est une
             communauté d’échanges et d’actions qui place la personne âgée au centre de la réflexion et de
-            l’action. Sa finalité est centrée sur les aînés et s’articule autour de 4 axes :
-                        <ul>
+              l’action. Sa finalité est centrée sur les aînés et s’articule autour de 4 axes :
+          </p>
+            <ul>
               <li>L'autonomie</li>
               <li>La qualité de vie</li>
               <li>L'inclusion</li>
               <li>L'empowerment</li>
             </ul>
+            <p>
               Envie de nous rejoindre ou de soumettre une idée ? Contactez-nous au 081 77 56 62 ou par mail
               gerontopôle[@]province.namur.be
             </p>

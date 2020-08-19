@@ -1,20 +1,19 @@
 
-#team-card-list-area {
-    display: flex;
-    flex-direction: column;
+#teams-list-area {
+    margin: 1rem 0;
+
+    border: 1px solid #bdbdbd;
+    border-collapse: inherit;
+    border-radius: 5px;
+
+    background-color: white;
 }
 
-.team-card {
-    background-color: #f5cb98;
-    font-size: 1.2rem;
+#teams-list-table {
+    margin: 0;
+    width: 100%;
 }
 
-.team-card-description {
-    margin-bottom: .5rem;
-    word-wrap: break-word;
-}
-
-.team-card-idea {
-    margin-bottom: 1rem;
-    word-wrap: break-word;
+.team-list-members-tooltip {
+    list-style: none;
 }

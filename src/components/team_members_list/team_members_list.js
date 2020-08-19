@@ -15,7 +15,6 @@ export class TeamMembersList extends Component {
         const team = this.props.team;
 
         this.state = {
-            disabled: !!this.props.disabled,
             new_team: !team,
             members: [],
             invitation_input: "",
@@ -308,7 +307,7 @@ export class TeamMembersList extends Component {
                     </td>
                     <td className="align-right">
                         <button className="button-danger-outlined"
-                                disabled={member.id !== this.context.user.id || member.owner}
+                                disabled={this.props.disabled && this.context.user.id !== member.id}
                                 value={member.id}
                                 onClick={event => this.remove_team_member(event.target.value).then()}>
                             Supprimer
@@ -360,10 +359,13 @@ export class TeamMembersList extends Component {
                     {invitations}
                     </tbody>
                 </table>
-                <button className="button-primary-outlined"
-                        onClick={this.open_invitation_modal} disabled={this.state.disabled}>
-                    {this.state.new_team ? "Ajouter" : "Inviter"}
-                </button>
+                {!this.props.disabled ? (
+                    <button className="button-primary-outlined"
+                            onClick={this.open_invitation_modal}
+                            disabled={this.props.disabled}>
+                        {this.state.new_team ? "Ajouter" : "Inviter"}
+                    </button>
+                ) : null}
             </div>
         );
     }

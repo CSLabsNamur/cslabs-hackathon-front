@@ -3,13 +3,14 @@ import { Redirect, Route, Switch } from 'react-router';
 
 import { UserContext } from "../../context/user";
 
-import { TeamMenu } from "../../components/team_menu/team_menu";
-import { Hello } from "./Hello";
-import { Edit } from "./Edit";
-import { TeamsList } from "./teams_list/TeamsList";
-import { User } from "./User";
-import { Vote } from "./Vote";
-import { Invite } from "./invite/Invite";
+import {TeamMenu} from "../../components/team_menu/team_menu";
+import {Hello} from "./Hello";
+import {Edit} from "./Edit";
+import {TeamsList} from "./teams_list/TeamsList";
+import {User} from "./User";
+import {Vote} from "./Vote";
+import {TeamInfo} from "./team_info/TeamInfo";
+import {Invite} from "./invite/Invite";
 
 export class TeamPage extends Component {
 
@@ -38,24 +39,18 @@ export class TeamPage extends Component {
 
         return (
             <div className="container" style={{ marginTop: 50 }}>
-                <TeamMenu urls={
-                    [
+                <TeamMenu urls={[
                         {
                             'url': '/team/edit/',
                             'content': 'Mon équipe',
-                        }
-                    ]
-                } />
-                {/*<li><Link to="/team/edit">Mon équipe</Link></li>
-                        <li><Link to="/team/user">Moi</Link></li>
-                        <li><Link to="/team/all/">Autres équipes</Link></li>
-                    <li><Link to="/team/vote">Votes</Link></li>*/}
+                        }]} />
                 <Switch>
                     <Route exact path="/team/edit" component={Edit} />
                     <Route exact path="/team/all" component={TeamsList} />
                     <Route exact path="/team/user" component={User} />
                     <Route exact path="/team/vote" component={Vote} />
                     <Route exact path="/team/invite/:token?" component={Invite} />
+                    <Route exact path="/team/info/:team_id" component={TeamInfo}/>
                     <Route path="/team" component={Hello} />
                 </Switch>
                 <style>
