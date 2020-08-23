@@ -38,7 +38,7 @@ export class TeamPage extends Component {
         }
 
         return (
-            <div className="container" style={{ marginTop: 50 }}>
+            <div className="container container-page">
                 <TeamMenu urls={[
                         {
                             'url': '/team/edit/',

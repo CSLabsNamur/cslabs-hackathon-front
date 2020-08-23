@@ -287,8 +287,8 @@ export class TeamEditor extends Component {
         if (!this.state.team_exist) {
             return (
                 <p className="alert alert-danger team-caution-alert">
-                    L'équipe sera validée et apparaître dans la liste des équipes participantes que lorsqu'au moins
-                    <strong>un de ses membres</strong> aura payé la <strong>caution</strong> !
+                    L'équipe sera validée et apparaître dans la liste des équipes participantes que lorsqu'au
+                    moins <strong>un de ses membres</strong> aura payé la <strong>caution</strong> !
                 </p>
             );
         }
