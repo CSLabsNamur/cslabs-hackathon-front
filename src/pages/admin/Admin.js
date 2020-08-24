@@ -21,10 +21,8 @@ export class Admin extends Component {
     }
 
     componentDidMount() {
-
-        // TODO : redirect if the user is not an administrator
-
-        if (!this.context.authenticated) {
+        // Redirect if the user is not an administrator.
+        if (!this.context.authenticated || !this.context.user.admin) {
             this.context.set_next(this.props.location.pathname);
             this.setState({ redirect: true });
         }
@@ -50,7 +48,7 @@ export class Admin extends Component {
                     <Route exact path="/admin/users" component={AdminUsers}/>
                     <Route>
                         <div className="container">
-                            <p>Bienvenue sur la page d'administration de l'Hackathon !</p>
+                            <p>Bienvenue sur la page d'administration du Hackathon !</p>
                         </div>
                     </Route>
                 </Switch>

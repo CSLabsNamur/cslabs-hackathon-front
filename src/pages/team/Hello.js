@@ -15,7 +15,8 @@ export class Hello extends Component {
                 <h3>Comment payer la caution ?</h3>
                 <p>La caution devra être payée par un virement bancaire :</p>
                 <ul>
-                    <li>Compte : BEXXX - XXXX - XXXX - XXXX</li>
+                    <li>Caution : 20€</li>
+                    <li>Compte : BE65 8989 8989 8989</li>
                     <li>Communication : NOM Prenom</li>
                 </ul>
 

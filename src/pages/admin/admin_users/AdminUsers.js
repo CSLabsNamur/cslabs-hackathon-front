@@ -186,6 +186,7 @@ export class AdminUsers extends Component {
                         <th>Prénom</th>
                         <th>Nom</th>
                         <th>Team</th>
+                        <th>Créateur</th>
                         <th>Email</th>
                         <th className="align-center">Caution</th>
                         <th className="align-center">Date d'inscription</th>
@@ -204,6 +205,7 @@ export class AdminUsers extends Component {
                                 <span style={{color: user.team.valid ? "green" : "red"}}>{user.team.name}</span>
                             ) : "/"}
                         </td>
+                        <td>{user.teamOwner ? "Oui" : "/"}</td>
                         <td>{user.email}</td>
                         <td className="align-center">
                             {user.paid_caution ? (
@@ -267,6 +269,7 @@ export class AdminUsers extends Component {
                                 </button>
                                 <button className="button button-danger button-small"
                                         value={user.id}
+                                        disabled={user.admin || user.teamOwner}
                                         onClick={(event) => {
                                             this.targetUser(event.target.value).then(() => {
                                                 this.setModalState('remove_user', true);
