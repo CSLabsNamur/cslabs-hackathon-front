@@ -23,7 +23,8 @@ export class TeamMembersList extends Component {
                 add_invitation: false,
                 max_members: false,
                 invitation_sending: false,
-                invitation_sent: false
+                invitation_sent: false,
+                invitation_failed: false
             },
             team: !!team ? team : null,
             leave: false
@@ -33,7 +34,6 @@ export class TeamMembersList extends Component {
         this.add_invitation = this.add_invitation.bind(this);
         this.change_invitation_input = this.change_invitation_input.bind(this);
         this.open_invitation_modal = this.open_invitation_modal.bind(this);
-        this.confirm_invitation_sending = this.confirm_invitation_sending.bind(this);
     }
 
     componentDidMount() {
@@ -141,14 +141,41 @@ export class TeamMembersList extends Component {
         }
     }
 
-    confirm_invitation_sending() {
+    async confirm_invitation_sending() {
+
+        if (!this.state.team) {
+            console.error('Cannot send invitation without team.');
+            return;
+        }
+
+        const email = this.state.invitation_input;
+
         this.setState({
             invitation_input: ""
         });
 
-        // TODO : send HTTP request for inviting user into the team.
+        let response;
 
-        this.enable_modal("invitation_sent");
+        try {
+            response = await fetch(`${process.env.REACT_APP_API_URL}teams/invite/${this.state.team.id}`, {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                method: 'POST',
+                credentials: 'include',
+                mode: 'cors',
+                body: JSON.stringify({email: email})
+            });
+        } catch (err) {
+            this.enable_modal("invitation_failed");
+            return;
+        }
+
+        if (response.status !== 200) {
+            this.enable_modal("invitation_failed");
+        } else {
+            this.enable_modal("invitation_sent");
+        }
     }
 
     async remove_team_member(member_id) {
@@ -248,7 +275,7 @@ export class TeamMembersList extends Component {
                        this.disable_modal("invitation_sending");
 
                        if (action === "Confirmer") {
-                           this.confirm_invitation_sending();
+                           this.confirm_invitation_sending().then();
                        }
                    }}
                    key={3}>
@@ -267,6 +294,19 @@ export class TeamMembersList extends Component {
                    }}
                    key={4}>
                 <p>Votre invitation a bien été envoyée.</p>
+            </Modal>
+        );
+
+        modals.push(
+            <Modal title={"Echec de l'invitation"}
+                   buttons={["Oh..."]}
+                   shown={this.state.modals.invitation_failed}
+                   onClose={() => {
+                       this.disable_modal("invitation_failed");
+                   }}
+                   key={5}>
+                <p>L'invitation a échouée. Veuillez réessayer !</p>
+                <p>Si le problème persiste, informez-nous en par email.</p>
             </Modal>
         );
 

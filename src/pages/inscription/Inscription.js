@@ -20,7 +20,7 @@ class Inscription extends Component {
             firstName: "",
             lastName: "",
             github: "",
-            linkedin: "",
+            linkedIn: "",
             accept_rules: false,
             validation: {
                 email: null,
@@ -29,11 +29,11 @@ class Inscription extends Component {
                 firstName: null,
                 lastName: null,
                 github: null,
-                linkedin: null,
+                linkedIn: null,
                 accept_rules: null,
                 server: null
             },
-            redirect_user: false
+            redirect_user: null
         };
 
         this.on_submit = this.on_submit.bind(this);
@@ -49,7 +49,7 @@ class Inscription extends Component {
             firstName: null,
             lastName: null,
             github: null,
-            linkedin: null,
+            linkedIn: null,
             accept_rules: null,
             server: null
         }
@@ -61,7 +61,7 @@ class Inscription extends Component {
             firstName,
             lastName,
             github,
-            linkedin,
+            linkedIn,
             accept_rules
         } = this.state;
 
@@ -97,9 +97,9 @@ class Inscription extends Component {
             }
         }
 
-        if (linkedin.length > 0) {
-            if (linkedin.length < 3 || linkedin.length > 256) {
-                validation.linkedin = "Le lien linkedin doit avoir minimum 3 caractères et maximum 256 caractères.";
+        if (linkedIn.length > 0) {
+            if (linkedIn.length < 3 || linkedIn.length > 256) {
+                validation.linkedIn = "Le lien linkedIn doit avoir minimum 3 caractères et maximum 256 caractères.";
                 valid = false;
             }
         }
@@ -123,7 +123,7 @@ class Inscription extends Component {
             email: this.state.email,
             password: this.state.password,
             github: this.state.github.length > 0 ? this.state.github : null,
-            linkedin: this.state.linkedin.length > 0 ? this.state.linkedin : null
+            linkedin: this.state.linkedIn.length > 0 ? this.state.linkedIn : null
         }
 
         const response = await fetch(process.env.REACT_APP_API_URL + 'users/add', {
@@ -159,7 +159,17 @@ class Inscription extends Component {
 
         this.create_user()
             .then(() => {
-                this.setState({redirect_user: true});
+
+                let next_page;
+
+                if (this.context.next) {
+                    next_page = this.context.next;
+                    this.context.clear_next();
+                } else {
+                    next_page = "/team";
+                }
+
+                this.setState({redirect_user: next_page});
             })
             .catch(() => {
                 this.setState({validation: {server: "Impossible de joindre l'hôte distant."}});
@@ -261,11 +271,11 @@ class Inscription extends Component {
                                 Votre compte LinkedIn (optionnel)
                             </label>
                             <input type="text" id="form-linkedin" name="form-linkedin"
-                                   placeholder="Lien vers votre linkedin..."
-                                   className={this.state.validation.linkedin ? "invalid" : ""}
-                                   value={this.state.linkedin}
-                                   onChange={event => this.setState({linkedin: event.target.value})}/>
-                            {this.render_form_validation_error(this.state.validation.linkedin)}
+                                   placeholder="Lien vers votre linkedIn..."
+                                   className={this.state.validation.linkedIn ? "invalid" : ""}
+                                   value={this.state.linkedIn}
+                                   onChange={event => this.setState({linkedIn: event.target.value})}/>
+                            {this.render_form_validation_error(this.state.validation.linkedIn)}
                         </div>
 
                     </fieldset>
@@ -312,7 +322,7 @@ class Inscription extends Component {
     render() {
 
         if (this.state.redirect_user) {
-            return (<Redirect to="/team"/>);
+            return (<Redirect to={this.state.redirect_user}/>);
         }
 
         return (
