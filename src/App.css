@@ -16,6 +16,10 @@ body {
   padding: 1rem !important;
 }
 
+.container-page {
+  margin: 3.125rem;
+}
+
 /* COUNTDOWN start */
 
 .Countdown div {

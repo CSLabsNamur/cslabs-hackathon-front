@@ -1,0 +1,17 @@
+
+#admin-panel-teams {
+    background-color: white;
+    overflow: auto;
+}
+
+#admin-panel-teams td:hover {
+    background-color: #ffebee;
+}
+
+td.text-field-table-cell {
+    max-width: 12rem;
+}
+
+.admin-team-members-list {
+    list-style: none;
+}

@@ -1,0 +1,20 @@
+
+#admin-panel-links {
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#admin-panel-links > a {
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    border: 1px solid black;
+}
+
+.admin-panel-action-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: auto;
+}

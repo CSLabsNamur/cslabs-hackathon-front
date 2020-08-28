@@ -49,8 +49,22 @@ class Navbar extends Component {
               );
             } else {
               const elements = [];
-              elements.push(<li key="1"><Link to='/team' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>);
-              elements.push(<li key="2"><Link to='/deconnexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Déconnexion</Link></li>);
+              elements.push(
+                  <li key="1">
+                    <Link to='/team' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link>
+                  </li>);
+              elements.push(
+                  <li key="2">
+                    <Link to='/deconnexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Déconnexion</Link>
+                  </li>);
+
+              if (value.user.admin) {
+                elements.push(
+                    <li key="3">
+                      <Link to='/admin' className='End-Link' onClick={() => { this.toggleHamburger() }}>Admin</Link>
+                    </li>);
+              }
+
               return elements;
             }
           }}
