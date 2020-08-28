@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 
 import "./Admin.css";
 import {AdminUsers} from "./admin_users/AdminUsers";
+import {AdminTeams} from "./admin_teams/AdminTeams";
 
 export class Admin extends Component {
 
@@ -40,12 +41,13 @@ export class Admin extends Component {
                     <h1 className="align-center">Admin panel</h1>
                     <div id="admin-panel-links">
                         <Link to="/admin/users">Users</Link>
-                        <Link to="/">Teams</Link>
+                        <Link to="/admin/teams">Teams</Link>
                     </div>
                     <hr/>
                 </div>
                 <Switch>
                     <Route exact path="/admin/users" component={AdminUsers}/>
+                    <Route exact path="/admin/teams" component={AdminTeams}/>
                     <Route>
                         <div className="container">
                             <p>Bienvenue sur la page d'administration du Hackathon !</p>

@@ -94,7 +94,7 @@ export class AdminUsers extends Component {
             }
         } catch (err) {
             alert(err.message);
-            console.error("Unable to update users.");
+            console.error("Unable to fetch the users.");
         }
     }
 
