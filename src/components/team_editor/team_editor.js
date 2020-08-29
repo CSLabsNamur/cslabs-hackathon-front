@@ -101,13 +101,13 @@ export class TeamEditor extends Component {
             validate = false;
         }
 
-        if (description.length < 3 || description.length > 256) {
-            validation.description = "La description doit être de minimum 3 et maximum 256 caractères.";
+        if (description.length > 256) {
+            validation.description = "La description doit être de maximum 256 caractères.";
             validate = false;
         }
 
-        if (idea.length < 3 || idea.length > 256) {
-            validation.idea = "La description de votre idée doit être de minimum 3 et maximum 256 caractères.";
+        if (idea.length > 256) {
+            validation.idea = "La description de votre idée doit être de maximum 256 caractères.";
             validate = false;
         }
 
