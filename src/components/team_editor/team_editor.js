@@ -250,8 +250,29 @@ export class TeamEditor extends Component {
     }
 
     async remove_team() {
-        // TODO
-        alert("Not yet implemented.");
+
+        let response;
+
+        try {
+            response = await fetch(`${process.env.REACT_APP_API_URL}teams/delete/${this.props.team.id}`, {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                method: 'POST',
+                credentials: 'include',
+                mode: 'cors'
+            });
+        } catch (err) {
+            alert("Impossible de joindre le serveur.");
+            return;
+        }
+
+        if (response.status !== 200) {
+            alert("Opération refusée.");
+            return;
+        }
+
+        this.enable_modal('team_deletion');
     }
 
     render_agreement_checkbox() {
@@ -393,7 +414,7 @@ export class TeamEditor extends Component {
                 </div>
 
                 <div className="form-control">
-                    <label>Brève description de l'équipe</label>
+                    <label>Brève description de l'équipe (optionnel)</label>
                     <input type="text"
                            placeholder="Magnifique description de mon équipe..."
                            id="description"
@@ -406,7 +427,7 @@ export class TeamEditor extends Component {
                 </div>
 
                 <div className="form-control">
-                    <label>Description de l'idée</label>
+                    <label>Description de l'idée (optionnel)</label>
                     <textarea placeholder="Formidable description de mon idée originale..."
                               id="idea"
                               className={!!this.state.validation.idea ? "invalid" : ""}
