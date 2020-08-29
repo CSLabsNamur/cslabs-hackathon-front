@@ -20,9 +20,9 @@ class Connexion extends Component {
             redirection: null
         }
 
-        this.on_email_change = this.on_email_change.bind(this);
+        /*this.on_email_change = this.on_email_change.bind(this);
         this.on_password_change = this.on_password_change.bind(this);
-        this.on_submit = this.on_submit.bind(this);
+        this.on_submit = this.on_submit.bind(this);*/
     }
 
     componentDidMount() {
@@ -158,16 +158,16 @@ class Connexion extends Component {
                 <form onSubmit={this.on_submit}>
                     <div className="form-control">
                         <label htmlFor="email">Adresse email</label>
-                        <input type="email" id="email" name="email" placeholder="jean@example.com"
+                        <input type="email" id="email" name="email" disabled placeholder="jean@example.com"
                                onChange={this.on_email_change}/>
                     </div>
                     <div className="form-control">
                         <label htmlFor="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" placeholder="mot de passe secret"
+                        <input type="password" id="password" name="password" disabled placeholder="mot de passe secret"
                                onChange={this.on_password_change}/>
                     </div>
                     <div className="tx-centered">
-                        <button className="button-primary button-round" type="submit">Se connecter</button>
+                        <button className="button-primary button-round" disabled type="submit">Se connecter</button>
                     </div>
                 </form>
 

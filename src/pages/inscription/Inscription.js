@@ -36,7 +36,7 @@ class Inscription extends Component {
             redirect_user: false
         };
 
-        this.on_submit = this.on_submit.bind(this);
+        // this.on_submit = this.on_submit.bind(this);
     }
 
     validate_form() {
@@ -189,6 +189,7 @@ class Inscription extends Component {
                                placeholder="user@example.com..."
                                className={this.state.validation.email ? "invalid" : ""}
                                value={this.state.email}
+                               disabled
                                onChange={event => this.setState({email: event.target.value})}/>
                         {this.render_form_validation_error(this.state.validation.email)}
                     </div>
@@ -201,6 +202,7 @@ class Inscription extends Component {
                                placeholder="super password..."
                                className={this.state.validation.password ? "invalid" : ""}
                                value={this.state.password}
+                               disabled
                                onChange={event => this.setState({password: event.target.value})}/>
                         {this.render_form_validation_error(this.state.validation.password)}
                     </div>
@@ -213,6 +215,7 @@ class Inscription extends Component {
                                placeholder="super password..."
                                className={this.state.validation.password_confirm ? "invalid" : ""}
                                value={this.state.password_confirm}
+                               disabled
                                onChange={event => this.setState({password_confirm: event.target.value})}/>
                         {this.render_form_validation_error(this.state.validation.password_confirm)}
                     </div>
@@ -225,6 +228,7 @@ class Inscription extends Component {
                                placeholder="Entrez votre prénom..."
                                className={this.state.validation.firstName ? "invalid" : ""}
                                value={this.state.firstName}
+                               disabled
                                onChange={event => this.setState({firstName: event.target.value})}/>
                         {this.render_form_validation_error(this.state.validation.firstName)}
                     </div>
@@ -237,6 +241,7 @@ class Inscription extends Component {
                                placeholder="Entrez votre nom..."
                                className={this.state.validation.lastName ? "invalid" : ""}
                                value={this.state.lastName}
+                               disabled
                                onChange={event => this.setState({lastName: event.target.value})}/>
                         {this.render_form_validation_error(this.state.validation.lastName)}
                     </div>
@@ -252,6 +257,7 @@ class Inscription extends Component {
                                    placeholder="Lien vers votre github..."
                                    className={this.state.validation.github ? "invalid" : ""}
                                    value={this.state.github}
+                                   disabled
                                    onChange={event => this.setState({github: event.target.value})}/>
                             {this.render_form_validation_error(this.state.validation.github)}
                         </div>
@@ -264,6 +270,7 @@ class Inscription extends Component {
                                    placeholder="Lien vers votre linkedin..."
                                    className={this.state.validation.linkedin ? "invalid" : ""}
                                    value={this.state.linkedin}
+                                   disabled
                                    onChange={event => this.setState({linkedin: event.target.value})}/>
                             {this.render_form_validation_error(this.state.validation.linkedin)}
                         </div>
@@ -274,6 +281,7 @@ class Inscription extends Component {
                         <input type="checkbox" id="form-accept-rules" name="form-accept-rules"
                                value="accept-rules"
                                checked={this.state.accept_rules}
+                               disabled
                                onChange={event => this.setState({accept_rules: event.target.checked})}/>
                         <label htmlFor="form-accept-rules">
                             J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon
