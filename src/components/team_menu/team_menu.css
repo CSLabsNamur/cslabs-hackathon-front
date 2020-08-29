@@ -1,0 +1,20 @@
+.TeamMenu {
+    border-bottom: 1px solid #f5cb98;
+}
+
+.TeamElements {
+    flex: auto;
+    display: flex;
+    list-style-type: none;
+}
+
+.TeamElements li {
+    margin: auto;
+    padding: 5px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.TeamMenu li a {
+    color: #424242 !important;
+}

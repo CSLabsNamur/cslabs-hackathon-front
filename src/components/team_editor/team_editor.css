@@ -1,0 +1,11 @@
+
+#team-editor-confirmation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-caution-alert {
+    border: 1px solid red;
+}

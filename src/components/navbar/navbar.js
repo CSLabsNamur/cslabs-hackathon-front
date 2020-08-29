@@ -1,14 +1,14 @@
-
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
+
+import {UserContext} from "../../context/user";
 
 import './navbar.css';
 
 class Navbar extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       hamburger: true
     };
@@ -20,6 +20,7 @@ class Navbar extends Component {
         <li><Link to='/inscription' onClick={() => { this.toggleHamburger() }}>S'inscrire</Link></li>
         <li><Link to='/sponsors' onClick={() => { this.toggleHamburger() }}>Sponsors</Link></li>
         <li><Link to='/infos' onClick={() => { this.toggleHamburger() }}>Infos</Link></li>
+        <li><Link to='/plus-loin' onClick={() => { this.toggleHamburger() }}>Plus loin</Link></li>
         {/* Only show connection if user isn't connected */}
         {this.showConnect()}
       </ul>
@@ -38,15 +39,23 @@ class Navbar extends Component {
   }
 
   showConnect() {
-    if (Cookies.get('id') === undefined) {
-      return (
-        <li><Link to='/connexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Connexion</Link></li>
-      )
-    } else {
-      return (
-        <li><Link to='/team/hello' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>
-      )
-    }
+
+    return (
+        <UserContext.Consumer>
+          {value => {
+            if (!value.authenticated) {
+              return (
+                  <li><Link to='/connexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Connexion</Link></li>
+              );
+            } else {
+              const elements = [];
+              elements.push(<li key="1"><Link to='/team' className='End-Link' onClick={() => { this.toggleHamburger() }}>Ma team</Link></li>);
+              elements.push(<li key="2"><Link to='/deconnexion' className='End-Link' onClick={() => { this.toggleHamburger() }}>Déconnexion</Link></li>);
+              return elements;
+            }
+          }}
+        </UserContext.Consumer>
+    );
   }
 
   render() {
@@ -67,6 +76,7 @@ class Navbar extends Component {
             <li><Link to='/inscription'>S'inscrire</Link></li>
             <li><Link to='/sponsors'>Sponsors</Link></li>
             <li><Link to='/infos'>Infos</Link></li>
+            <li><Link to='/plus-loin'>Plus loin</Link></li>
             {/* Only show connection if user isn't connected */}
             {this.showConnect()}
           </ul>
