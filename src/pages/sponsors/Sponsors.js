@@ -39,13 +39,8 @@ export class Sponsors extends Component {
             </a>
             <a href="#unamur">
               <img className="sponsor-img"
-                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_facinfo.png"}
+                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_unif.png"}
                 alt="Université de Namur" />
-            </a>
-            <a href="#unamur">
-              <img className="sponsor-img"
-                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_50ans_petit.png"}
-                alt="50 ans de l'Université" />
             </a>
           </div>
         </Hero>
