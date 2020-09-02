@@ -39,13 +39,8 @@ export class Sponsors extends Component {
             </a>
             <a href="#unamur">
               <img className="sponsor-img"
-                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_facinfo.png"}
-                alt="Faculté d'informatique" />
-            </a>
-            <a href="#unamur">
-              <img className="sponsor-img"
-                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_50ans_petit.png"}
-                alt="50 ans de l'Université" />
+                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_unif.png"}
+                alt="Université de Namur" />
             </a>
           </div>
         </Hero>
@@ -176,10 +171,11 @@ export class Sponsors extends Component {
           link="https://www.unamur.be/info"
           right>
           <h2 id="unamur">
-            Faculté d'informatique
+            Université de Namur
           </h2>
           <p>
-            Le Hackathon 2020 est organisé dans le cadre du 50e anniversaire de la Facultée d'Informatique de l'UNamur
+            Le Hackathon 2020 est organisé dans le cadre du 50e anniversaire de la Facultée d'Informatique de l'UNamur.
+            L'université et la faculté nous fournissent les locaux et le matériel nécessaires à l'organisation de cet évènement.
           </p>
         </Topic>
       </div>
