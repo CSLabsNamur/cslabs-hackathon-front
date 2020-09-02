@@ -56,7 +56,6 @@ export class TeamsList extends Component {
         const teams = await response.json();
 
         if (this._isMounted) {
-            // TODO: Move the filter to the backend
             this.setState({teams: teams.filter(team => team.valid)});
         }
     }

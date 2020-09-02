@@ -272,6 +272,7 @@ export class TeamEditor extends Component {
             return;
         }
 
+        this.context.clear_team();
         this.enable_modal('team_deletion');
     }
 

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import "./AdminTeams.css";
+import {Modal} from "../../../components/modal/modal";
 
 export class AdminTeams extends Component {
 
@@ -9,7 +10,9 @@ export class AdminTeams extends Component {
 
         this.state = {
             teams: [],
-            edited_team: null
+            edited_team: null,
+            team_deletion_modal: false,
+            team_deletion_id: null
         }
 
         this._isMounted = false;
@@ -134,6 +137,39 @@ export class AdminTeams extends Component {
         }
     }
 
+    async remove_team(id) {
+        try {
+            await this.fetchServer('teams/delete/' + id, 'POST');
+            alert("L'équipe a été supprimée !");
+        } catch (err) {
+            alert(err.message);
+            console.error("Unable to delete the team.");
+        }
+
+        await this.fetchTeams();
+    }
+
+    render_team_deletion_modal() {
+        return (
+            <Modal title="Suppression d'une équipe"
+                   shown={this.state.team_deletion_modal}
+                   buttons={["Confirmer", "Annuler"]}
+                   onClose={action => {
+                       if (action === "Confirmer" && this.state.team_deletion_id) {
+                           this.remove_team(this.state.team_deletion_id)
+                               .then()
+                               .catch();
+                       }
+
+                       this.setState({...this.state, team_deletion_modal: false});
+                   }}>
+                <p>Voulez vous vraiment supprimer cette équipe ?</p>
+                <p>Cette action est irréversible.</p>
+                <p>Les membres de l'équipes se retrouveront sans équipe.</p>
+            </Modal>
+        );
+    }
+
     render_team(team, index) {
 
         const isEdited = this.state.edited_team && this.state.edited_team.id === team.id;
@@ -197,7 +233,18 @@ export class AdminTeams extends Component {
                         }}>
                     Éditer
                 </button>,
-                <button className="button button-danger button-small" key={2}>Supprimer</button>
+                <button className="button button-danger button-small"
+                        key={2}
+                        value={team.id}
+                        onClick={event => {
+                            this.setState({
+                                ...this.state,
+                                team_deletion_id: event.target.value,
+                                team_deletion_modal: true
+                            });
+                        }}>
+                    Supprimer
+                </button>
             ];
         }
 
@@ -267,6 +314,7 @@ export class AdminTeams extends Component {
         return (
             <div id="admin-panel-teams">
                 <h3 className="align-center">Gestion des équipes</h3>
+                {this.render_team_deletion_modal()}
                 <table>
                     <thead>
                     <tr>
