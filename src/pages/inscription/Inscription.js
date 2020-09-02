@@ -37,6 +37,16 @@ class Inscription extends Component {
         };
 
         this.on_submit = this.on_submit.bind(this);
+
+        this._isMounted = false;
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     validate_form() {
@@ -136,7 +146,7 @@ class Inscription extends Component {
             body: JSON.stringify(data)
         });
 
-        if (response.status !== 200) {
+        if (response.status !== 200 && this._isMounted) {
             this.setState({
                 validation: {server: "Des données sont invalides. Impossible de créer le compte."}
             });
@@ -144,7 +154,10 @@ class Inscription extends Component {
         }
 
         const body = await response.json();
-        this.context.authenticate(body);
+
+        if (this._isMounted) {
+            this.context.authenticate(body);
+        }
 
         console.log("Account created.");
     }
@@ -160,19 +173,24 @@ class Inscription extends Component {
         this.create_user()
             .then(() => {
 
-                let next_page;
+                if (this._isMounted) {
+                    let next_page;
 
-                if (this.context.next) {
-                    next_page = this.context.next;
-                    this.context.clear_next();
-                } else {
-                    next_page = "/team";
+                    if (this.context.next) {
+                        next_page = this.context.next;
+                        this.context.clear_next();
+                    } else {
+                        next_page = "/team";
+                    }
+
+                    this.setState({redirect_user: next_page});
                 }
 
-                this.setState({redirect_user: next_page});
             })
             .catch(() => {
-                this.setState({validation: {server: "Impossible de joindre l'hôte distant."}});
+                if (this._isMounted) {
+                    this.setState({validation: {server: "Impossible de joindre l'hôte distant."}});
+                }
             });
     }
 

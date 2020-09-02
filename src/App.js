@@ -18,6 +18,7 @@ import {Further} from "./pages/further/Further";
 import {UserProvider} from "./context/user";
 import {TeamPage} from "./pages/team/TeamPage";
 import {Admin} from "./pages/admin/Admin";
+import {PasswordReset} from "./pages/password_reset/PasswordReset";
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
                         <Route exact path="/plus-loin" component={Further}/>
                         <Route exact path="/connexion" component={Connexion}/>
                         <Route exact path="/deconnexion" component={Disconnection}/>
+                        <Route exact path="/reset-password" component={PasswordReset}/>
                         <Route path="/team" component={TeamPage}/>
                         <Route path="/admin" component={Admin}/>
                         <Route component={Error404}/>

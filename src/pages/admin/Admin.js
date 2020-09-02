@@ -22,9 +22,13 @@ export class Admin extends Component {
     }
 
     componentDidMount() {
-        // Redirect if the user is not an administrator.
-        if (!this.context.authenticated || !this.context.user.admin) {
+
+        if (!this.context.authenticated) {
+            // Redirect if the user is not authenticated.
             this.context.set_next(this.props.location.pathname);
+            this.setState({ redirect: true });
+        } else if (!this.context.user.admin) {
+            // Redirect if the user is not an administrator.
             this.setState({ redirect: true });
         }
     }

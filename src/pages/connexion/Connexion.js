@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router';
-import Cookies from "js-cookie";
+import {Link} from "react-router-dom";
 
+import Cookies from "js-cookie";
 import "./Connexion.css";
 import {UserContext} from "../../context/user";
 
@@ -23,10 +24,17 @@ class Connexion extends Component {
         this.on_email_change = this.on_email_change.bind(this);
         this.on_password_change = this.on_password_change.bind(this);
         this.on_submit = this.on_submit.bind(this);
+
+        this._isMounted = false;
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.check_connection();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     choose_redirection() {
@@ -37,13 +45,17 @@ class Connexion extends Component {
             const next_page = this.context.next;
             this.context.clear_next();
 
-            this.setState({
-                redirection: next_page
-            });
+            if (this._isMounted) {
+                this.setState({
+                    redirection: next_page
+                });
+            }
         } else {
-            this.setState({
-                redirection: "/team"
-            });
+            if (this._isMounted) {
+                this.setState({
+                    redirection: "/team"
+                });
+            }
         }
     }
 
@@ -83,10 +95,15 @@ class Connexion extends Component {
                 body: JSON.stringify(data)
             });
         } catch (err) {
-            return this.setState({
-                connected: false,
-                message: 'Impossible de joindre l\'hôte distant.',
-            });
+
+            if (this._isMounted) {
+                this.setState({
+                    connected: false,
+                    message: 'Impossible de joindre l\'hôte distant.',
+                });
+            }
+
+            return;
         }
 
         const body = await response.json();
@@ -103,20 +120,24 @@ class Connexion extends Component {
             this.choose_redirection();
         } else if (response.status === 400) {
 
-            // Wrong credentials
-            this.setState({
-                email: "",
-                password: "",
-                connected: false,
-                message: 'Mauvais identifiants.',
-            });
-        } else {
+            if (this._isMounted) {
+                // Wrong credentials
+                this.setState({
+                    email: "",
+                    password: "",
+                    connected: false,
+                    message: 'Mauvais identifiants.',
+                });
+            }
 
-            // Server error
-            this.setState({
-                connected: false,
-                message: 'Erreur du serveur.',
-            });
+        } else {
+            if (this._isMounted) {
+                // Server error
+                this.setState({
+                    connected: false,
+                    message: 'Erreur du serveur.',
+                });
+            }
         }
     }
 
@@ -139,15 +160,22 @@ class Connexion extends Component {
         this.connect()
             .then()
             .catch(() => {
-                this.setState({
-                    connected: false,
-                    message: "Impossible de joindre l'hôte distant.",
-                });
+                if (this._isMounted) {
+                    this.setState({
+                        connected: false,
+                        message: "Impossible de joindre l'hôte distant.",
+                    });
+                }
             });
 
     }
 
     render() {
+
+        if (this.state.redirection) {
+            return (<Redirect to={this.state.redirection}/>);
+        }
+
         return (
             <div className="Form" id="connexion-page">
 
@@ -170,14 +198,20 @@ class Connexion extends Component {
                     </div>
                 </form>
 
-                {this.state.redirection ? (<Redirect to={this.state.redirection}/>) : null}
+                <hr/>
 
-                <style>
-                    {`footer {
-            position: fixed;
-            bottom: 0px;
-          }`}
-                </style>
+                <div className="row">
+                    <div className="col col-lg-5">
+                        <Link to="/inscription">
+                            <button type="button" className="button button-primary">S'inscrire</button>
+                        </Link>
+                    </div>
+                    <div className="col col-lg-7">
+                        <Link to="/reset-password">
+                            <button type="button" className="button button-info">Mot de passe oublié</button>
+                        </Link>
+                    </div>
+                </div>
             </div>
         )
     }
