@@ -143,21 +143,34 @@ export class Inscription extends Component {
             linkedin: this.state.linkedIn.length > 0 ? this.state.linkedIn : null
         }
 
-        const response = await fetch(process.env.REACT_APP_API_URL + 'users/add', {
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            credentials: 'include',
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify(data)
-        });
+        let response;
 
-        if (response.status !== 200 && this._isMounted) {
-            this.setState({
-                validation: {server: "Des données sont invalides. Impossible de créer le compte."}
+        try {
+            response = await fetch(process.env.REACT_APP_API_URL + 'users/add', {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
             });
-            return;
+        } catch (err) {
+            throw new Error("Impossible de joindre l'hôte distant.");
+        }
+
+        if (response.status !== 200) {
+
+            const server_error = await response.json();
+            let client_message;
+
+            if (server_error.message === "email must be unique") {
+                client_message = "Un compte possède déjà cette adresse email.";
+            } else {
+                client_message = "Opération refusée. Une erreur est survenue. Vérifiez-bien vos données.";
+            }
+
+            throw new Error(client_message);
         }
 
         const body = await response.json();
@@ -190,13 +203,19 @@ export class Inscription extends Component {
                         next_page = "/team";
                     }
 
-                    this.setState({redirect_user: next_page});
+                    this.setState({
+                        redirect_user: next_page
+                    });
                 }
 
             })
-            .catch(() => {
+            .catch(err => {
                 if (this._isMounted) {
-                    this.setState({validation: {server: "Impossible de joindre l'hôte distant."}});
+                    this.setState({
+                        validation: {
+                            server: err.message
+                        }
+                    });
                 }
             });
     }
@@ -211,8 +230,6 @@ export class Inscription extends Component {
 
         return (
             <div className="Form">
-
-                {this.render_form_validation_error(this.state.validation.server)}
 
                 <form id="form-inscription" onSubmit={this.on_submit}>
 
@@ -323,6 +340,12 @@ export class Inscription extends Component {
                         </button>
                     </div>
 
+                    {this.state.validation.server ? (
+                        <p className="alert alert-danger team-caution-alert">
+                            {this.state.validation.server}
+                        </p>
+                    ) : null}
+
                 </form>
 
             </div>
@@ -335,7 +358,8 @@ export class Inscription extends Component {
             <div className="container">
                 <h1 id="inscription-title">Inscriptions</h1>
                 <div id="inscription-info">
-                    <p>Merci de votre intérêt ! Après votre inscription, vous pourrez constituer une équipe.</p>
+                    <p>Merci de votre intérêt !</p>
+                    <p> Après votre inscription, vous pourrez constituer une équipe.</p>
                     <p><i>La participation au hackathon demande <strong>une caution de 20€.</strong></i></p>
                     <p><Link to="/infos">Plus d'informations.</Link></p>
                     <Countdown destination={new Date(2020, 9, 23)}/>

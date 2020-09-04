@@ -20,6 +20,10 @@ body {
   margin: 3.125rem;
 }
 
+.info--alert {
+  border: 1px solid red;
+}
+
 /* COUNTDOWN start */
 
 .Countdown div {

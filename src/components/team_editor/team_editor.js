@@ -27,7 +27,8 @@ export class TeamEditor extends Component {
                 name: null,
                 description: null,
                 idea: null,
-                agreement: null
+                agreement: null,
+                server: null
             },
             deleted: false
         }
@@ -58,28 +59,38 @@ export class TeamEditor extends Component {
         this.on_confirm = this.on_confirm.bind(this);
         this.on_cancel = this.on_cancel.bind(this);
         this.on_invitation = this.on_invitation.bind(this);
+
+        this._isMounted = false;
     }
 
     componentDidMount() {
+        this._isMounted = true;
 
         if (this.state.team_exist && !this.context.user.teamOwner) {
             console.log("The user is not the team owner. Team edition is disabled.");
             this.setState({disabled: true});
         }
+    }
 
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     enable_modal(modal_name) {
         const modals = {};
         modals[modal_name] = true;
-        this.setState({modals});
+        if (this._isMounted) {
+            this.setState({modals});
+        }
         console.log(`Open modal: ${modal_name}`);
     }
 
     disable_modal(modal_name) {
         const modals = {};
         modals[modal_name] = false;
-        this.setState({modals});
+        if (this._isMounted) {
+            this.setState({modals});
+        }
         console.log(`Close modal: ${modal_name}`);
     }
 
@@ -93,7 +104,8 @@ export class TeamEditor extends Component {
             name: null,
             description: null,
             idea: null,
-            agreement: null
+            agreement: null,
+            server: null
         }
 
         if (name.length < 3 || name.length > 35) {
@@ -140,68 +152,36 @@ export class TeamEditor extends Component {
 
         if (this.state.team_exist) {
 
-            fetch(process.env.REACT_APP_API_URL + "teams/update", {
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                credentials: 'include',
-                method: 'POST',
-                mode: 'cors',
-                body: JSON.stringify(data)
-            }).then(response => {
-
-                if (response.status !== 200) {
-
-                    this.setState({
-                        name: "",
-                        description: "",
-                        idea: ""
-                    });
-
-                    return console.error("Wrong changes for the team.");
-                }
-
-                this.context.update_team({...this.context.team, ...data});
-                console.log('Team updated.');
-                this.enable_modal("team_updated");
-            }, err => {
-                console.error(err);
-            })
+            this.update_team(data)
+                .then(() => {
+                    this.enable_modal("team_updated");
+                }).catch(err => {
+                    if (this._isMounted) {
+                        this.setState({
+                            validation: {
+                                ...this.state.validation,
+                                server: err.message
+                            }
+                        });
+                    }
+                });
 
         } else {
 
-            fetch(process.env.REACT_APP_API_URL + "teams/create", {
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                credentials: 'include',
-                method: 'POST',
-                mode: 'cors',
-                body: JSON.stringify(data)
-            }).then(response => {
-
-                if (response.status !== 200) {
-                    return console.error("Unable to create the team.");
-                }
-
-                return response.json();
-            }).then(body => {
-
-                this.context.update_team(body);
-                this.setState({
-                    team_exist: true,
-                    name: body.name,
-                    description: body.description,
-                    idea: body.idea
-                });
-                console.log("Team created.");
-                this.enable_modal("team_created");
-
-            }).catch(err => {
-                console.error("Failed to create the team.");
-                console.error(err);
-            });
-
+            this.create_team(data)
+                .then(() => {
+                    this.enable_modal("team_created");
+                })
+                .catch(err => {
+                    if (this._isMounted) {
+                        this.setState({
+                            validation: {
+                                ...this.state.validation,
+                                server: err.message
+                            }
+                        });
+                    }
+                })
         }
 
     }
@@ -247,6 +227,98 @@ export class TeamEditor extends Component {
         const invitations = this.state.invitations;
         invitations.push(invitation);
         this.setState({invitations: invitations});
+    }
+
+    async update_team(data) {
+
+        let response;
+
+        try {
+            response = await fetch(process.env.REACT_APP_API_URL + "teams/update", {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            console.log("Failed to update the team.");
+            throw new Error("Impossible de joindre l'hôte distant.");
+        }
+
+        const body = await response.json();
+
+        if (response.status !== 200) {
+
+            if (this._isMounted && this.props.team) {
+
+                const {team} = this.props;
+
+                this.setState({
+                    name: team.name,
+                    description: team.description,
+                    idea: team.idea
+                });
+            }
+
+            let client_message = "Opération refusée";
+
+            if (body.message === "name must be unique") {
+                client_message = "Ce nom d'équipe est déjà pris !";
+            }
+
+            throw new Error(client_message);
+        }
+
+        await this.context.update_team({...this.context.team, ...data});
+        console.log('Team updated.');
+    }
+
+    async create_team(data) {
+
+        let response;
+
+        try {
+            response = await fetch(process.env.REACT_APP_API_URL + "teams/create", {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            throw new Error("Impossible de joindre l'hôte distant.");
+        }
+
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            console.error("Unable to create the team.");
+
+            let client_message = "Opération refusée";
+
+            if (body.message === "name must be unique") {
+                client_message = "Ce nom d'équipe est déjà pris !";
+            }
+
+            throw new Error(client_message);
+        }
+
+        if (this._isMounted) {
+            this.setState({
+                team_exist: true,
+                name: body.name,
+                description: body.description,
+                idea: body.idea
+            });
+        }
+
+        await this.context.update_team(body);
+        console.log("Team created.");
     }
 
     async remove_team() {
@@ -308,7 +380,7 @@ export class TeamEditor extends Component {
 
         if (!this.state.team_exist) {
             return (
-                <p className="alert alert-danger team-caution-alert">
+                <p className="alert alert-danger info--alert">
                     L'équipe sera validée et apparaître dans la liste des équipes participantes que lorsqu'au
                     moins <strong>un de ses membres</strong> aura payé la <strong>caution</strong> !
                 </p>
@@ -319,7 +391,7 @@ export class TeamEditor extends Component {
             return null;
         } else {
             return (
-                <p className="alert alert-danger team-caution-alert">
+                <p className="alert alert-danger info--alert">
                     L'équipe n'est pas encore validée et n'apparait donc pas dans la liste des équipes participantes.
                     L'équipe ne sera valide que lorsqu'au moins <strong>un de ses membres</strong> aura payé
                     la <strong>caution</strong> !
@@ -393,11 +465,12 @@ export class TeamEditor extends Component {
         return modals;
     }
 
-
     render() {
 
         return (
             <div className="col col-lg-6">
+
+                {this.render_modals()}
 
                 <div className="align-center">
                     {
@@ -466,6 +539,10 @@ export class TeamEditor extends Component {
                 {!this.state.team_exist ? this.render_agreement_checkbox() : null}
 
                 {!this.state.disabled ? this.render_confirmation_buttons() : null}
+
+                {this.state.validation.server ? (
+                    <p className="alert alert-danger info--alert">{this.state.validation.server}</p>
+                ) : null}
 
                 {this.render_alert()}
 
