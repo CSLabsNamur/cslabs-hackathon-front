@@ -6,7 +6,7 @@ import Countdown from "../../components/countdown/countdown";
 import "./Inscription.css";
 import {UserContext} from "../../context/user";
 
-class Inscription extends Component {
+export class Inscription extends Component {
 
     static contextType = UserContext;
 
@@ -43,6 +43,13 @@ class Inscription extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+
+        if (this.context.authenticated) {
+            this.setState({
+                ...this.state,
+                redirect_user: "/team"
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -328,7 +335,7 @@ class Inscription extends Component {
             <div className="container">
                 <h1 id="inscription-title">Inscriptions</h1>
                 <div id="inscription-info">
-                    <p>Merci de votre intérêt ! Les inscriptions débuteront en <b>Septembre 2020</b>.</p>
+                    <p>Merci de votre intérêt ! Après votre inscription, vous pourrez constituer une équipe.</p>
                     <p><i>La participation au hackathon demande <strong>une caution de 20€.</strong></i></p>
                     <p><Link to="/infos">Plus d'informations.</Link></p>
                     <Countdown destination={new Date(2020, 9, 23)}/>
@@ -357,5 +364,3 @@ class Inscription extends Component {
         )
     }
 }
-
-export default Inscription;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
 import {UserContext} from "../../context/user";
 
@@ -16,6 +17,7 @@ export class User extends Component {
             email: "",
             github: "",
             linkedin: "",
+            paid_caution: false,
             msg: ""
         };
 
@@ -29,11 +31,13 @@ export class User extends Component {
 
         if (this.context.user) {
             this.setState({
+                first: false,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
                 github: !!user.github ? user.github : "",
-                linkedin: !!user.linkedin ? user.linkedin : ""
+                linkedin: !!user.linkedin ? user.linkedin : "",
+                paid_caution: user.paid_caution
             });
         }
     }
@@ -127,6 +131,15 @@ export class User extends Component {
                            placeholder="https://linkedin.com/awesome"
                            name="linkedin"/>
                 </div>
+
+                {!this.state.first && !this.state.paid_caution ? (
+                    <p className="alert alert-danger team-caution-alert">
+                        Votre caution n'a pas encore été réceptionnée ou validée !
+                        Si vous avez payé votre caution et que ce message tarde à disparaitre,
+                        veuillez contacter un membre du staff.
+                        Cliquez sur ce lien pour plus d'<Link to="/infos">informations</Link>.
+                    </p>
+                ) : null}
 
                 <div>
                     <p>{this.state.msg}</p>

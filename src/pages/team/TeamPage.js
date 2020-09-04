@@ -5,7 +5,7 @@ import { UserContext } from "../../context/user";
 
 import {TeamMenu} from "../../components/team_menu/team_menu";
 import {Hello} from "./Hello";
-import {Edit} from "./Edit";
+import {Edit} from "./team_edit/Edit";
 import {TeamsList} from "./teams_list/TeamsList";
 import {User} from "./User";
 import {Vote} from "./Vote";

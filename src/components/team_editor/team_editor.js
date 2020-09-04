@@ -346,41 +346,58 @@ export class TeamEditor extends Component {
         );
     }
 
+    render_modals() {
+
+        const modals = [];
+
+        modals.push(
+            <Modal title={"Supression de l'équipe"}
+                   key={1}
+                   buttons={["Supprimer", "Fermer"]}
+                   shown={this.state.modals.team_deletion}
+                   onClose={btn => {
+                       this.disable_modal('team_deletion');
+
+                       if (btn === "Supprimer") {
+                           this.remove_team().then();
+                       }
+                   }}>
+                <p>Etes-vous certain de vouloir supprimer l'équipe ?</p>
+            </Modal>
+        );
+
+        modals.push(
+            <Modal title={"Equipe créée !"}
+                   key={2}
+                   buttons={["D'accord"]}
+                   shown={this.state.modals.team_created}
+                   onClose={() => this.disable_modal("team_created")}>
+                <p>Votre équipe à bel et bien été créée !</p>
+                <p>Chaque membre invité va recevoir un email contenant le lien leur permettant de rejoindre
+                    l'équipe. Ils recevront également le code d'invitation.</p>
+                <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
+                    confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
+            </Modal>
+        );
+
+        modals.push(
+            <Modal title={"Equipe mise à jour !"}
+                   key={3}
+                   buttons={["D'accord"]}
+                   shown={this.state.modals.team_updated}
+                   onClose={() => this.disable_modal("team_updated")}>
+                <p>Votre équipe à bel et bien été mise à jour !</p>
+            </Modal>
+        );
+
+        return modals;
+    }
+
+
     render() {
 
         return (
             <div className="col col-lg-6">
-
-                <Modal title={"Supression de l'équipe"}
-                       buttons={["Supprimer", "Fermer"]}
-                       shown={this.state.modals.team_deletion}
-                       onClose={btn => {
-                           this.disable_modal('team_deletion');
-
-                           if (btn === "Supprimer") {
-                               this.remove_team().then();
-                           }
-                       }}>
-                    <p>Etes-vous certain de vouloir supprimer l'équipe ?</p>
-                </Modal>
-
-                <Modal title={"Equipe créée !"}
-                       buttons={["D'accord"]}
-                       shown={this.state.modals.team_created}
-                       onClose={() => this.disable_modal("team_created")}>
-                    <p>Votre équipe à bel et bien été créée !</p>
-                    <p>Chaque membre invité va recevoir un email contenant le lien leur permettant de rejoindre
-                        l'équipe. Ils recevront également le code d'invitation.</p>
-                    <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
-                        confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
-                </Modal>
-
-                <Modal title={"Equipe mise à jour !"}
-                       buttons={["D'accord"]}
-                       shown={this.state.modals.team_updated}
-                       onClose={() => this.disable_modal("team_updated")}>
-                    <p>Votre équipe à bel et bien été mise à jour !</p>
-                </Modal>
 
                 <div className="align-center">
                     {

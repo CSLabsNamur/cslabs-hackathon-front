@@ -38,15 +38,17 @@ export class Home extends Component {
                         <div>
                             <p>Du 23 au 25 Octobre à l'UNamur</p>
                             <p>Le Hackathon CSLabs 2020 est organisé dans le cadre du 50e anniversaire de la Faculté d'Informatique.</p>
-                            <img className="sponsor-img"
-                                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_facinfo.png"}
-                                alt="Université de Namur" />
-                            <img className="sponsor-img"
-                                src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_50ans_petit.png"}
-                                alt="50 ans de l'Université" />
+                            <Link to="/sponsors">
+                                <img className="sponsor-img"
+                                     src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_facinfo.png"}
+                                     alt="Université de Namur" />
+                            </Link>
+                            <Link to="/sponsors">
+                                <img className="sponsor-img"
+                                     src={process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_50ans_petit.png"}
+                                     alt="50 ans de l'Université" />
+                            </Link>
                         </div>}
-                    getStarted="infos"
-                    hasBtn
                     hasArrow
                 />
 
