@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 import {Modal} from "../modal/modal";
 import {UserContext} from "../../context/user";
@@ -37,6 +37,7 @@ export class TeamEditor extends Component {
             this.state = {
                 ...this.state,
                 team_exist: true,
+                team_id: team.id,
                 name: team.name,
                 description: team.description,
                 idea: team.idea,
@@ -47,6 +48,7 @@ export class TeamEditor extends Component {
                 ...this.state,
                 team_exist: false,
                 name: "",
+                team_id: null,
                 description: "",
                 idea: "",
                 agreement_value: false
@@ -113,13 +115,13 @@ export class TeamEditor extends Component {
             validate = false;
         }
 
-        if (description.length > 256) {
-            validation.description = "La description doit être de maximum 256 caractères.";
+        if (description.length > 255) {
+            validation.description = "La description doit être de maximum 255 caractères.";
             validate = false;
         }
 
-        if (idea.length > 256) {
-            validation.idea = "La description de votre idée doit être de maximum 256 caractères.";
+        if (idea.length > 255) {
+            validation.idea = "La description de votre idée doit être de maximum 255 caractères.";
             validate = false;
         }
 
@@ -311,6 +313,7 @@ export class TeamEditor extends Component {
         if (this._isMounted) {
             this.setState({
                 team_exist: true,
+                team_id: body.id,
                 name: body.name,
                 description: body.description,
                 idea: body.idea
@@ -323,10 +326,14 @@ export class TeamEditor extends Component {
 
     async remove_team() {
 
+        if (!this.state.team_exist) {
+            throw new Error("Team editor does not have any team in its registry.");
+        }
+
         let response;
 
         try {
-            response = await fetch(`${process.env.REACT_APP_API_URL}teams/delete/${this.props.team.id}`, {
+            response = await fetch(`${process.env.REACT_APP_API_URL}teams/delete/${this.state.team_id}`, {
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 }),
@@ -335,17 +342,20 @@ export class TeamEditor extends Component {
                 mode: 'cors'
             });
         } catch (err) {
-            alert("Impossible de joindre le serveur.");
-            return;
+            throw new Error("Impossible de joindre le serveur.");
         }
 
         if (response.status !== 200) {
-            alert("Opération refusée.");
-            return;
+            throw new Error("Opération refusée : " + response.status);
         }
 
         this.context.clear_team();
-        this.enable_modal('team_deletion');
+        if (this._isMounted) {
+            this.setState({
+                ...this.state,
+                deleted: true
+            });
+        }
     }
 
     render_agreement_checkbox() {
@@ -423,7 +433,7 @@ export class TeamEditor extends Component {
         const modals = [];
 
         modals.push(
-            <Modal title={"Supression de l'équipe"}
+            <Modal title={"Suppression de l'équipe"}
                    key={1}
                    buttons={["Supprimer", "Fermer"]}
                    shown={this.state.modals.team_deletion}
@@ -431,15 +441,30 @@ export class TeamEditor extends Component {
                        this.disable_modal('team_deletion');
 
                        if (btn === "Supprimer") {
-                           this.remove_team().then();
+                           this.remove_team()
+                               .then(() => console.log("Team deleted."))
+                               .catch(err => {
+
+                                   if (this._isMounted) {
+                                       this.setState({
+                                           ...this.state,
+                                           validation: {
+                                               ...this.state.validation,
+                                               server: "La suppression de l'équipe a échouée !"
+                                           }
+                                       })
+                                   }
+
+                                   console.error(`Failed to delete the team: ${err.message}`);
+                               });
                        }
                    }}>
-                <p>Etes-vous certain de vouloir supprimer l'équipe ?</p>
+                <p>Êtes-vous certain de vouloir supprimer l'équipe ?</p>
             </Modal>
         );
 
         modals.push(
-            <Modal title={"Equipe créée !"}
+            <Modal title={"Équipe créée !"}
                    key={2}
                    buttons={["D'accord"]}
                    shown={this.state.modals.team_created}
@@ -453,7 +478,7 @@ export class TeamEditor extends Component {
         );
 
         modals.push(
-            <Modal title={"Equipe mise à jour !"}
+            <Modal title={"Équipe mise à jour !"}
                    key={3}
                    buttons={["D'accord"]}
                    shown={this.state.modals.team_updated}
@@ -466,6 +491,10 @@ export class TeamEditor extends Component {
     }
 
     render() {
+
+        if (this.state.deleted) {
+            return (<Redirect to="/team"/>);
+        }
 
         return (
             <div className="col col-lg-6">

@@ -92,7 +92,7 @@ export class UserProvider extends Component {
                 });
 
                 if (response.status !== 200) {
-                    throw Error('Failed to fetch the team.');
+                    throw new Error('Failed to fetch the team.');
                 }
 
                 const body = await response.json();
@@ -103,9 +103,20 @@ export class UserProvider extends Component {
                     console.log("User team fetched.");
                 }
             }
+            let user;
+            try {
+                user = await this.state.fetch_user();
+            } catch (err) {
+                throw new Error("Failed to update the user's context.");
+            }
+
+            if (!user) {
+                throw new Error("Invalid user.");
+            }
 
             this.setState({
-                team: updated_team
+                team: updated_team,
+                user: user
             });
         }
 

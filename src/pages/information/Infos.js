@@ -26,7 +26,7 @@ class Infos extends Component {
                     </InfoItem>
 
                     <InfoItem title="Date du Hackathon" icon="infos/info.svg">
-                        <p>Le week-end du <b>19 au 20 septembre 2020</b>.</p>
+                        <p>Le week-end du <b>23 au 25 septembre 2020</b>.</p>
                         <CovidAlert/>
                     </InfoItem>
 

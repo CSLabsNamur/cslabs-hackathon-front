@@ -85,6 +85,9 @@ export class Inscription extends Component {
         if (email.length < 1) {
             validation.email = "Il est nécessaire d'entrer votre email.";
             valid = false;
+        } else if (email.length > 255) {
+            validation.email = "L'email ne peut pas dépasser les 255 caractères.";
+            valid = false;
         }
 
         if (password.length < 10 || password.length > 200) {
@@ -108,15 +111,15 @@ export class Inscription extends Component {
         }
 
         if (github.length > 0) {
-            if (github.length < 3 || github.length > 256) {
-                validation.github = "Le lien github doit avoir minimum 3 caractères et maximum 256 caractères.";
+            if (github.length < 3 || github.length > 255) {
+                validation.github = "Le lien github doit avoir minimum 3 caractères et maximum 255 caractères.";
                 valid = false;
             }
         }
 
         if (linkedIn.length > 0) {
-            if (linkedIn.length < 3 || linkedIn.length > 256) {
-                validation.linkedIn = "Le lien linkedIn doit avoir minimum 3 caractères et maximum 256 caractères.";
+            if (linkedIn.length < 3 || linkedIn.length > 255) {
+                validation.linkedIn = "Le lien linkedIn doit avoir minimum 3 caractères et maximum 255 caractères.";
                 valid = false;
             }
         }
