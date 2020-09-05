@@ -78,7 +78,7 @@ export class Further extends Component {
                                 </li>
                                 <li>Conseils pour améliorer ton projet au regard des besoins ;</li>
                                 <li>Validation de ton projet par le public-cible ;</li>
-                                <li>Comunication et diffusion auprès du public-cible quand ton projet est opérationnel !
+                                <li>Communication et diffusion auprès du public-cible quand ton projet est opérationnel !
                                 </li>
                             </ul>
                         </div>

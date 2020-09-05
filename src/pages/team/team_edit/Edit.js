@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {Redirect} from "react-router";
 
-import {UserContext} from "../../context/user";
-import {TeamEditor} from "../../components/team_editor/team_editor";
+import {UserContext} from "../../../context/user";
+import {TeamEditor} from "../../../components/team_editor/team_editor";
+
+import "./Edit.css";
+import {Link} from "react-router-dom";
+import {CovidAlert} from "../../../components/covid_alert/covid_alert";
 
 export class Edit extends Component {
 
@@ -93,15 +97,27 @@ export class Edit extends Component {
         } else if (state === 'no-team') {
             // Hasn't any team ==> Ask the user if it wants to create or join one.
             content = (
-                <div>
-                    <button className="button-primary button-large button-shadow"
-                            onClick={this.switch_creation_state}>
-                        Créer une équipe
-                    </button>
-                    <button className="button-primary button-large button-shadow"
-                            onClick={this.switch_join_team_state}>
-                        Rejoindre une équipe
-                    </button>
+                <div id="team-editor-choice--area">
+
+                    <h2 className="align-center">Participez au Hackathon !</h2>
+
+                    <div id="team-editor-choice--disclaimer">
+                        <p>Afin de participer au Hackathon, il est nécessaire de créer ou rejoindre une équipe existante.</p>
+                        <p>La participation n'est effective que si vous avez <b>payé votre caution</b> !</p>
+                        <p>N'hésitez pas à consulter les <Link to="/infos">modalités</Link> quant à l'organisation.</p>
+                        <CovidAlert/>
+                    </div>
+
+                    <div id="team-editor-choice--action-bar">
+                        <button className="button-primary button-large button-shadow"
+                                onClick={this.switch_creation_state}>
+                            Créer une équipe
+                        </button>
+                        <button className="button-primary button-large button-shadow"
+                                onClick={this.switch_join_team_state}>
+                            Rejoindre une équipe
+                        </button>
+                    </div>
                 </div>
             );
         } else if (state === 'create') {
@@ -111,7 +127,7 @@ export class Edit extends Component {
             // Has a team ==> open editor with team data.
             content = (<TeamEditor team={this.state.team}/>);
         } else {
-            content = (<h2>Erreur: impossible de récupérer l'équipe.</h2>);
+            content = (<h4 className="align-center">Erreur: impossible de récupérer l'équipe.</h4>);
         }
 
         return content;

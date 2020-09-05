@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router';
 import {Link} from "react-router-dom";
 
-import Cookies from "js-cookie";
 import "./Connexion.css";
 import {UserContext} from "../../context/user";
 
@@ -111,7 +110,6 @@ class Connexion extends Component {
         if (response.status === 200) {
 
             // Good credentials
-            Cookies.set('id', body.id);
             this.setState({
                 connected: true,
                 message: 'Vous êtes connecté !',

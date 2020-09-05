@@ -6,6 +6,10 @@ import "./hero.css";
 
 class Hero extends Component {
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     render() {
 
         const getStarted = () => {
@@ -21,9 +25,12 @@ class Hero extends Component {
         const getArrow = () => {
             if (this.props.hasArrow) {
                 return (
-                    <a href="#hero-end-anchor">
-                        <img id="hero--arrow" src={process.env.REACT_APP_PUBLIC_URL + "test/arrow.svg"} alt="Arrow"/>
-                    </a>
+                    <img id="hero--arrow"
+                         src={process.env.REACT_APP_PUBLIC_URL + "infos/arrow.svg"}
+                         alt="Arrow"
+                         onClick={() => {
+                             window.scrollTo(0, window.innerHeight);
+                         }}/>
                 );
             }
         }
@@ -38,15 +45,14 @@ class Hero extends Component {
                         <h2 className="subtitle">
                             {this.props.content}
                         </h2>
-                        <p className="hero-disclaimer">
+                        <div className="hero-disclaimer">
                             {this.props.disclaimer}
-                        </p>
+                        </div>
                         {getStarted()}
                         {this.props.children}
                     </div>
                     {getArrow()}
                 </header>
-                <p id="hero-end-anchor"></p>
             </div>
         )
 

@@ -47,10 +47,12 @@ export class UserProvider extends Component {
                         body: "{}"
                     });
                 } catch (err) {
+                    console.error("Unable to fetch the user.");
                     return null;
                 }
 
                 if (response.status !== 200) {
+                    console.error("Wrong user credentials.");
                     return null;
                 }
 
@@ -61,7 +63,7 @@ export class UserProvider extends Component {
         }
 
         this.authenticate = (user) => {
-
+            Cookies.set('id', user.id);
             this.setState({
                 authenticated: true,
                 user: user
@@ -91,11 +93,12 @@ export class UserProvider extends Component {
                     mode: 'cors'
                 });
 
-                if (response.status !== 200) {
-                    throw Error('Failed to fetch the team.');
-                }
-
                 const body = await response.json();
+
+                if (response.status !== 200) {
+                    console.error("Server responds: " + body.message);
+                    throw new Error('Failed to fetch the team.');
+                }
 
                 if (Object.entries(body).length > 0) {
                     // The user is in a team.
@@ -103,9 +106,20 @@ export class UserProvider extends Component {
                     console.log("User team fetched.");
                 }
             }
+            let user;
+            try {
+                user = await this.state.fetch_user();
+            } catch (err) {
+                throw new Error("Failed to update the user's context.");
+            }
+
+            if (!user) {
+                throw new Error("Invalid user.");
+            }
 
             this.setState({
-                team: updated_team
+                team: updated_team,
+                user: user
             });
         }
 

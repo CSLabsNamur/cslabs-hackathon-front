@@ -37,6 +37,20 @@ header, .header {
 
     border: 4px solid #f5cb98;
     border-radius: 50%;
+    opacity: 0.8;
+
+    transition: 0.2s;
+}
+
+#hero--arrow:hover {
+    transform: scale(1.4);
+    opacity: 1.0;
+    transition: 0.5s;
+}
+
+#hero--arrow:active {
+    transform: scale(1.2);
+    transition: 0.1s;
 }
 
 .hero-disclaimer {

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 import {Modal} from "../modal/modal";
 import {UserContext} from "../../context/user";
@@ -27,7 +27,8 @@ export class TeamEditor extends Component {
                 name: null,
                 description: null,
                 idea: null,
-                agreement: null
+                agreement: null,
+                server: null
             },
             deleted: false
         }
@@ -36,6 +37,7 @@ export class TeamEditor extends Component {
             this.state = {
                 ...this.state,
                 team_exist: true,
+                team_id: team.id,
                 name: team.name,
                 description: team.description,
                 idea: team.idea,
@@ -46,6 +48,7 @@ export class TeamEditor extends Component {
                 ...this.state,
                 team_exist: false,
                 name: "",
+                team_id: null,
                 description: "",
                 idea: "",
                 agreement_value: false
@@ -58,28 +61,38 @@ export class TeamEditor extends Component {
         this.on_confirm = this.on_confirm.bind(this);
         this.on_cancel = this.on_cancel.bind(this);
         this.on_invitation = this.on_invitation.bind(this);
+
+        this._isMounted = false;
     }
 
     componentDidMount() {
+        this._isMounted = true;
 
         if (this.state.team_exist && !this.context.user.teamOwner) {
             console.log("The user is not the team owner. Team edition is disabled.");
             this.setState({disabled: true});
         }
+    }
 
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     enable_modal(modal_name) {
         const modals = {};
         modals[modal_name] = true;
-        this.setState({modals});
+        if (this._isMounted) {
+            this.setState({modals});
+        }
         console.log(`Open modal: ${modal_name}`);
     }
 
     disable_modal(modal_name) {
         const modals = {};
         modals[modal_name] = false;
-        this.setState({modals});
+        if (this._isMounted) {
+            this.setState({modals});
+        }
         console.log(`Close modal: ${modal_name}`);
     }
 
@@ -93,7 +106,8 @@ export class TeamEditor extends Component {
             name: null,
             description: null,
             idea: null,
-            agreement: null
+            agreement: null,
+            server: null
         }
 
         if (name.length < 3 || name.length > 35) {
@@ -101,13 +115,13 @@ export class TeamEditor extends Component {
             validate = false;
         }
 
-        if (description.length > 256) {
-            validation.description = "La description doit être de maximum 256 caractères.";
+        if (description.length > 255) {
+            validation.description = "La description doit être de maximum 255 caractères.";
             validate = false;
         }
 
-        if (idea.length > 256) {
-            validation.idea = "La description de votre idée doit être de maximum 256 caractères.";
+        if (idea.length > 255) {
+            validation.idea = "La description de votre idée doit être de maximum 255 caractères.";
             validate = false;
         }
 
@@ -140,68 +154,36 @@ export class TeamEditor extends Component {
 
         if (this.state.team_exist) {
 
-            fetch(process.env.REACT_APP_API_URL + "teams/update", {
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                credentials: 'include',
-                method: 'POST',
-                mode: 'cors',
-                body: JSON.stringify(data)
-            }).then(response => {
-
-                if (response.status !== 200) {
-
-                    this.setState({
-                        name: "",
-                        description: "",
-                        idea: ""
-                    });
-
-                    return console.error("Wrong changes for the team.");
-                }
-
-                this.context.update_team({...this.context.team, ...data});
-                console.log('Team updated.');
-                this.enable_modal("team_updated");
-            }, err => {
-                console.error(err);
-            })
+            this.update_team(data)
+                .then(() => {
+                    this.enable_modal("team_updated");
+                }).catch(err => {
+                    if (this._isMounted) {
+                        this.setState({
+                            validation: {
+                                ...this.state.validation,
+                                server: err.message
+                            }
+                        });
+                    }
+                });
 
         } else {
 
-            fetch(process.env.REACT_APP_API_URL + "teams/create", {
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                credentials: 'include',
-                method: 'POST',
-                mode: 'cors',
-                body: JSON.stringify(data)
-            }).then(response => {
-
-                if (response.status !== 200) {
-                    return console.error("Unable to create the team.");
-                }
-
-                return response.json();
-            }).then(body => {
-
-                this.context.update_team(body);
-                this.setState({
-                    team_exist: true,
-                    name: body.name,
-                    description: body.description,
-                    idea: body.idea
-                });
-                console.log("Team created.");
-                this.enable_modal("team_created");
-
-            }).catch(err => {
-                console.error("Failed to create the team.");
-                console.error(err);
-            });
-
+            this.create_team(data)
+                .then(() => {
+                    this.enable_modal("team_created");
+                })
+                .catch(err => {
+                    if (this._isMounted) {
+                        this.setState({
+                            validation: {
+                                ...this.state.validation,
+                                server: err.message
+                            }
+                        });
+                    }
+                })
         }
 
     }
@@ -249,12 +231,109 @@ export class TeamEditor extends Component {
         this.setState({invitations: invitations});
     }
 
-    async remove_team() {
+    async update_team(data) {
 
         let response;
 
         try {
-            response = await fetch(`${process.env.REACT_APP_API_URL}teams/delete/${this.props.team.id}`, {
+            response = await fetch(process.env.REACT_APP_API_URL + "teams/update", {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            console.log("Failed to update the team.");
+            throw new Error("Impossible de joindre l'hôte distant.");
+        }
+
+        const body = await response.json();
+
+        if (response.status !== 200) {
+
+            if (this._isMounted && this.props.team) {
+
+                const {team} = this.props;
+
+                this.setState({
+                    name: team.name,
+                    description: team.description,
+                    idea: team.idea
+                });
+            }
+
+            let client_message = "Opération refusée";
+
+            if (body.message === "name must be unique") {
+                client_message = "Ce nom d'équipe est déjà pris !";
+            }
+
+            throw new Error(client_message);
+        }
+
+        await this.context.update_team({...this.context.team, ...data});
+        console.log('Team updated.');
+    }
+
+    async create_team(data) {
+
+        let response;
+
+        try {
+            response = await fetch(process.env.REACT_APP_API_URL + "teams/create", {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
+            });
+        } catch (err) {
+            throw new Error("Impossible de joindre l'hôte distant.");
+        }
+
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            console.error("Unable to create the team.");
+
+            let client_message = "Opération refusée";
+
+            if (body.message === "name must be unique") {
+                client_message = "Ce nom d'équipe est déjà pris !";
+            }
+
+            throw new Error(client_message);
+        }
+
+        if (this._isMounted) {
+            this.setState({
+                team_exist: true,
+                team_id: body.id,
+                name: body.name,
+                description: body.description,
+                idea: body.idea
+            });
+        }
+
+        await this.context.update_team(body);
+        console.log("Team created.");
+    }
+
+    async remove_team() {
+
+        if (!this.state.team_exist) {
+            throw new Error("Team editor does not have any team in its registry.");
+        }
+
+        let response;
+
+        try {
+            response = await fetch(`${process.env.REACT_APP_API_URL}teams/delete/${this.state.team_id}`, {
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 }),
@@ -263,17 +342,20 @@ export class TeamEditor extends Component {
                 mode: 'cors'
             });
         } catch (err) {
-            alert("Impossible de joindre le serveur.");
-            return;
+            throw new Error("Impossible de joindre le serveur.");
         }
 
         if (response.status !== 200) {
-            alert("Opération refusée.");
-            return;
+            throw new Error("Opération refusée : " + response.status);
         }
 
         this.context.clear_team();
-        this.enable_modal('team_deletion');
+        if (this._isMounted) {
+            this.setState({
+                ...this.state,
+                deleted: true
+            });
+        }
     }
 
     render_agreement_checkbox() {
@@ -308,7 +390,7 @@ export class TeamEditor extends Component {
 
         if (!this.state.team_exist) {
             return (
-                <p className="alert alert-danger team-caution-alert">
+                <p className="alert alert-danger info--alert">
                     L'équipe sera validée et apparaître dans la liste des équipes participantes que lorsqu'au
                     moins <strong>un de ses membres</strong> aura payé la <strong>caution</strong> !
                 </p>
@@ -319,7 +401,7 @@ export class TeamEditor extends Component {
             return null;
         } else {
             return (
-                <p className="alert alert-danger team-caution-alert">
+                <p className="alert alert-danger info--alert">
                     L'équipe n'est pas encore validée et n'apparait donc pas dans la liste des équipes participantes.
                     L'équipe ne sera valide que lorsqu'au moins <strong>un de ses membres</strong> aura payé
                     la <strong>caution</strong> !
@@ -346,41 +428,78 @@ export class TeamEditor extends Component {
         );
     }
 
+    render_modals() {
+
+        const modals = [];
+
+        modals.push(
+            <Modal title={"Suppression de l'équipe"}
+                   key={1}
+                   buttons={["Supprimer", "Fermer"]}
+                   shown={this.state.modals.team_deletion}
+                   onClose={btn => {
+                       this.disable_modal('team_deletion');
+
+                       if (btn === "Supprimer") {
+                           this.remove_team()
+                               .then(() => console.log("Team deleted."))
+                               .catch(err => {
+
+                                   if (this._isMounted) {
+                                       this.setState({
+                                           ...this.state,
+                                           validation: {
+                                               ...this.state.validation,
+                                               server: "La suppression de l'équipe a échouée !"
+                                           }
+                                       })
+                                   }
+
+                                   console.error(`Failed to delete the team: ${err.message}`);
+                               });
+                       }
+                   }}>
+                <p>Êtes-vous certain de vouloir supprimer l'équipe ?</p>
+            </Modal>
+        );
+
+        modals.push(
+            <Modal title={"Équipe créée !"}
+                   key={2}
+                   buttons={["D'accord"]}
+                   shown={this.state.modals.team_created}
+                   onClose={() => this.disable_modal("team_created")}>
+                <p>Votre équipe à bel et bien été créée !</p>
+                <p>Chaque membre invité va recevoir un email contenant le lien leur permettant de rejoindre
+                    l'équipe. Ils recevront également le code d'invitation.</p>
+                <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
+                    confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
+            </Modal>
+        );
+
+        modals.push(
+            <Modal title={"Équipe mise à jour !"}
+                   key={3}
+                   buttons={["D'accord"]}
+                   shown={this.state.modals.team_updated}
+                   onClose={() => this.disable_modal("team_updated")}>
+                <p>Votre équipe à bel et bien été mise à jour !</p>
+            </Modal>
+        );
+
+        return modals;
+    }
+
     render() {
+
+        if (this.state.deleted) {
+            return (<Redirect to="/team"/>);
+        }
 
         return (
             <div className="col col-lg-6">
 
-                <Modal title={"Supression de l'équipe"}
-                       buttons={["Supprimer", "Fermer"]}
-                       shown={this.state.modals.team_deletion}
-                       onClose={btn => {
-                           this.disable_modal('team_deletion');
-
-                           if (btn === "Supprimer") {
-                               this.remove_team().then();
-                           }
-                       }}>
-                    <p>Etes-vous certain de vouloir supprimer l'équipe ?</p>
-                </Modal>
-
-                <Modal title={"Equipe créée !"}
-                       buttons={["D'accord"]}
-                       shown={this.state.modals.team_created}
-                       onClose={() => this.disable_modal("team_created")}>
-                    <p>Votre équipe à bel et bien été créée !</p>
-                    <p>Chaque membre invité va recevoir un email contenant le lien leur permettant de rejoindre
-                        l'équipe. Ils recevront également le code d'invitation.</p>
-                    <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
-                        confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
-                </Modal>
-
-                <Modal title={"Equipe mise à jour !"}
-                       buttons={["D'accord"]}
-                       shown={this.state.modals.team_updated}
-                       onClose={() => this.disable_modal("team_updated")}>
-                    <p>Votre équipe à bel et bien été mise à jour !</p>
-                </Modal>
+                {this.render_modals()}
 
                 <div className="align-center">
                     {
@@ -449,6 +568,10 @@ export class TeamEditor extends Component {
                 {!this.state.team_exist ? this.render_agreement_checkbox() : null}
 
                 {!this.state.disabled ? this.render_confirmation_buttons() : null}
+
+                {this.state.validation.server ? (
+                    <p className="alert alert-danger info--alert">{this.state.validation.server}</p>
+                ) : null}
 
                 {this.render_alert()}
 

@@ -22,16 +22,6 @@ export class TeamMenu extends Component {
         }
     }
 
-    drawNavLinks() {
-        let navLinks = [];
-        this.state.urls.forEach(element => {
-            navLinks.push(
-                <li><Link key={element.url} to={element.url}>{element.content}</Link></li>
-            );
-        });
-        return navLinks;
-    }
-
     render() {
         return (
             <div className="TeamMenu">

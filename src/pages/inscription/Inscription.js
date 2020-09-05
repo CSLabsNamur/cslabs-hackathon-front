@@ -6,7 +6,7 @@ import Countdown from "../../components/countdown/countdown";
 import "./Inscription.css";
 import {UserContext} from "../../context/user";
 
-class Inscription extends Component {
+export class Inscription extends Component {
 
     static contextType = UserContext;
 
@@ -43,6 +43,13 @@ class Inscription extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+
+        if (this.context.authenticated) {
+            this.setState({
+                ...this.state,
+                redirect_user: "/team"
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -78,6 +85,9 @@ class Inscription extends Component {
         if (email.length < 1) {
             validation.email = "Il est nécessaire d'entrer votre email.";
             valid = false;
+        } else if (email.length > 255) {
+            validation.email = "L'email ne peut pas dépasser les 255 caractères.";
+            valid = false;
         }
 
         if (password.length < 10 || password.length > 200) {
@@ -101,15 +111,15 @@ class Inscription extends Component {
         }
 
         if (github.length > 0) {
-            if (github.length < 3 || github.length > 256) {
-                validation.github = "Le lien github doit avoir minimum 3 caractères et maximum 256 caractères.";
+            if (github.length < 3 || github.length > 255) {
+                validation.github = "Le lien github doit avoir minimum 3 caractères et maximum 255 caractères.";
                 valid = false;
             }
         }
 
         if (linkedIn.length > 0) {
-            if (linkedIn.length < 3 || linkedIn.length > 256) {
-                validation.linkedIn = "Le lien linkedIn doit avoir minimum 3 caractères et maximum 256 caractères.";
+            if (linkedIn.length < 3 || linkedIn.length > 255) {
+                validation.linkedIn = "Le lien linkedIn doit avoir minimum 3 caractères et maximum 255 caractères.";
                 valid = false;
             }
         }
@@ -136,21 +146,34 @@ class Inscription extends Component {
             linkedin: this.state.linkedIn.length > 0 ? this.state.linkedIn : null
         }
 
-        const response = await fetch(process.env.REACT_APP_API_URL + 'users/add', {
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            credentials: 'include',
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify(data)
-        });
+        let response;
 
-        if (response.status !== 200 && this._isMounted) {
-            this.setState({
-                validation: {server: "Des données sont invalides. Impossible de créer le compte."}
+        try {
+            response = await fetch(process.env.REACT_APP_API_URL + 'users/add', {
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                credentials: 'include',
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify(data)
             });
-            return;
+        } catch (err) {
+            throw new Error("Impossible de joindre l'hôte distant.");
+        }
+
+        if (response.status !== 200) {
+
+            const server_error = await response.json();
+            let client_message;
+
+            if (server_error.message === "email must be unique") {
+                client_message = "Un compte possède déjà cette adresse email.";
+            } else {
+                client_message = "Opération refusée. Une erreur est survenue. Vérifiez-bien vos données.";
+            }
+
+            throw new Error(client_message);
         }
 
         const body = await response.json();
@@ -183,13 +206,19 @@ class Inscription extends Component {
                         next_page = "/team";
                     }
 
-                    this.setState({redirect_user: next_page});
+                    this.setState({
+                        redirect_user: next_page
+                    });
                 }
 
             })
-            .catch(() => {
+            .catch(err => {
                 if (this._isMounted) {
-                    this.setState({validation: {server: "Impossible de joindre l'hôte distant."}});
+                    this.setState({
+                        validation: {
+                            server: err.message
+                        }
+                    });
                 }
             });
     }
@@ -204,8 +233,6 @@ class Inscription extends Component {
 
         return (
             <div className="Form">
-
-                {this.render_form_validation_error(this.state.validation.server)}
 
                 <form id="form-inscription" onSubmit={this.on_submit}>
 
@@ -316,6 +343,12 @@ class Inscription extends Component {
                         </button>
                     </div>
 
+                    {this.state.validation.server ? (
+                        <p className="alert alert-danger team-caution-alert">
+                            {this.state.validation.server}
+                        </p>
+                    ) : null}
+
                 </form>
 
             </div>
@@ -328,7 +361,8 @@ class Inscription extends Component {
             <div className="container">
                 <h1 id="inscription-title">Inscriptions</h1>
                 <div id="inscription-info">
-                    <p>Merci de votre intérêt ! Les inscriptions débuteront en <b>Septembre 2020</b>.</p>
+                    <p>Merci de votre intérêt !</p>
+                    <p> Après votre inscription, vous pourrez constituer une équipe.</p>
                     <p><i>La participation au hackathon demande <strong>une caution de 20€.</strong></i></p>
                     <p><Link to="/infos">Plus d'informations.</Link></p>
                     <Countdown destination={new Date(2020, 9, 23)}/>
@@ -357,5 +391,3 @@ class Inscription extends Component {
         )
     }
 }
-
-export default Inscription;

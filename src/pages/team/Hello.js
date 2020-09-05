@@ -17,7 +17,7 @@ export class Hello extends Component {
                 <ul>
                     <li>Caution : 20€</li>
                     <li>Compte : BE65 8989 8989 8989</li>
-                    <li>Communication : NOM Prenom</li>
+                    <li>Communication : NOM Prénom</li>
                 </ul>
 
                 <h2>Une nouveauté dans cette édition !</h2>
