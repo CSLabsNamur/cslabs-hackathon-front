@@ -167,7 +167,7 @@ export class Sponsors extends Component {
             </p>
         </Topic>
 
-        <Topic img={{ src: process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_50ans.png", alt: "Gérontôpole Namur" }}
+        <Topic img={{ src: process.env.REACT_APP_PUBLIC_URL + "sponsors/logo_unif_big.png", alt: "Gérontôpole Namur" }}
           link="https://www.unamur.be/info"
           right>
           <h2 id="unamur">
