@@ -47,10 +47,12 @@ export class UserProvider extends Component {
                         body: "{}"
                     });
                 } catch (err) {
+                    console.error("Unable to fetch the user.");
                     return null;
                 }
 
                 if (response.status !== 200) {
+                    console.error("Wrong user credentials.");
                     return null;
                 }
 
@@ -61,7 +63,7 @@ export class UserProvider extends Component {
         }
 
         this.authenticate = (user) => {
-
+            Cookies.set('id', user.id);
             this.setState({
                 authenticated: true,
                 user: user
@@ -91,11 +93,12 @@ export class UserProvider extends Component {
                     mode: 'cors'
                 });
 
+                const body = await response.json();
+
                 if (response.status !== 200) {
+                    console.error("Server responds: " + body.message);
                     throw new Error('Failed to fetch the team.');
                 }
-
-                const body = await response.json();
 
                 if (Object.entries(body).length > 0) {
                     // The user is in a team.

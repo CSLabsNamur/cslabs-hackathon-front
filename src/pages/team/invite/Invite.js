@@ -32,7 +32,6 @@ export class Invite extends Component {
             this.state.token_value = token;
         }
 
-        this.close_modal = this.close_modal.bind(this);
         this.on_token_change = this.on_token_change.bind(this);
         this.on_agreement_change = this.on_agreement_change.bind(this);
         this.on_submit = this.on_submit.bind(this);
@@ -46,7 +45,10 @@ export class Invite extends Component {
 
         this.check_team()
             .then()
-            .catch(() => {
+            .catch(err => {
+
+                console.error(err);
+
                 if (this._isMounted) {
                     this.setState({
                         team_state: "error"
@@ -114,9 +116,6 @@ export class Invite extends Component {
                     this.context.update_team(team).then(() => {
                         this.enable_modal();
                     });
-                    if (this._isMounted) {
-                        this.setState({redirect_user: true});
-                    }
                 } else {
                     if (this._isMounted) {
                         this.setState({validation: {token: false}});
@@ -125,7 +124,7 @@ export class Invite extends Component {
                 }
 
             }).catch(() => {
-            console.error("Failed to join the server.");
+            console.error("Server does not respond.");
         });
 
     }
@@ -186,7 +185,12 @@ export class Invite extends Component {
         return (
             <Modal title="Vous avez rejoint l'équipe !"
                    shown={this.state.modals.invitation_succeed}
-                   buttons={["Cool !"]} onClose={() => this.close_modal()}>
+                   buttons={["Cool !"]} onClose={() => {
+                       this.close_modal();
+                        if (this._isMounted) {
+                            this.setState({redirect_user: true});
+                        }
+                   }}>
                 <p>Vous avez rejoint l'équipe !</p>
                 <p>Veuillez à bien prendre connaissance des <Link to="/infos">informations</Link> liées au hackathon.</p>
                 <p>Votre participation n'est effective que lorsque nous avons reçu la <strong>caution de 20€</strong>.</p>

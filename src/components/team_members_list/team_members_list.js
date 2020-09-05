@@ -19,6 +19,7 @@ export class TeamMembersList extends Component {
             members: [],
             invitation_input: "",
             invitations: [],
+            message: null,
             modals: {
                 add_invitation: false,
                 max_members: false,
@@ -34,9 +35,12 @@ export class TeamMembersList extends Component {
         this.add_invitation = this.add_invitation.bind(this);
         this.change_invitation_input = this.change_invitation_input.bind(this);
         this.open_invitation_modal = this.open_invitation_modal.bind(this);
+
+        this._isMounted = false;
     }
 
     componentDidMount() {
+        this._isMounted = true;
 
         let members = [];
 
@@ -68,17 +72,25 @@ export class TeamMembersList extends Component {
         this.setState({members});
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     enable_modal(modal_name) {
         const modals = {};
         modals[modal_name] = true;
-        this.setState({modals});
+        if (this._isMounted) {
+            this.setState({modals});
+        }
         console.log(`Open modal: ${modal_name}`);
     }
 
     disable_modal(modal_name) {
         const modals = {};
         modals[modal_name] = false;
-        this.setState({modals});
+        if (this._isMounted) {
+            this.setState({modals});
+        }
         console.log(`Close modal: ${modal_name}`);
     }
 
@@ -194,26 +206,31 @@ export class TeamMembersList extends Component {
             return;
         }
 
-        if (response.status === 200) {
+        if (response.status !== 200) {
 
-            const members = this.state.members.filter(member => member.id.toString() !== member_id);
+            const body = await response.json();
+            console.error("The server responds: " + body.message);
+            console.error(`Failed to remove the member ${member_id} from the team.`);
+            alert("Le membre n'a pas pu être supprimé.");
+            return;
+        }
 
+        const members = this.state.members.filter(member => member.id.toString() !== member_id);
+
+        if (this._isMounted) {
             this.setState({
                 ...this.state,
                 members,
                 leave: this.context.user.id.toString() === member_id
             });
+        }
 
-            console.log(`The member ${member_id} has been removed from the team.`);
+        console.log(`The member ${member_id} has been removed from the team.`);
 
-            if (this.context.user.id.toString() === member_id) {
-                this.context.clear_team();
-            } else {
-                await this.context.update_team({...this.context.team, members});
-            }
-
+        if (this.context.user.id.toString() === member_id) {
+            this.context.clear_team();
         } else {
-            console.error(`Failed to remove the member ${member_id} from the team.`);
+            await this.context.update_team({...this.context.team, members});
         }
     }
 
@@ -279,7 +296,7 @@ export class TeamMembersList extends Component {
                        }
                    }}
                    key={3}>
-                <p>Vous êtes sur le point d'envoyer une invation à rejoindre votre équipe à cette e-mail :</p>
+                <p>Vous êtes sur le point d'envoyer une invitation à rejoindre votre équipe à cette e-mail :</p>
                 <h3>{this.state.invitation_input}</h3>
                 <p>Êtes vous certain de vouloir continuer ?</p>
             </Modal>
@@ -298,7 +315,7 @@ export class TeamMembersList extends Component {
         );
 
         modals.push(
-            <Modal title={"Echec de l'invitation"}
+            <Modal title={"Échec de l'invitation"}
                    buttons={["Oh..."]}
                    shown={this.state.modals.invitation_failed}
                    onClose={() => {
@@ -347,7 +364,12 @@ export class TeamMembersList extends Component {
                     </td>
                     <td className="align-right">
                         <button className="button-danger-outlined"
-                                disabled={this.props.disabled && this.context.user.id !== member.id}
+                                disabled={(this.props.disabled && this.context.user.id !== member.id) || member.owner}
+                                style={{
+                                    visibility: this.props.disabled && this.context.user.id !== member.id ?
+                                        "hidden" :
+                                        "visible"
+                                }}
                                 value={member.id}
                                 onClick={event => this.remove_team_member(event.target.value).then()}>
                             Supprimer

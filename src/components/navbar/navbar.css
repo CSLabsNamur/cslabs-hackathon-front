@@ -27,7 +27,7 @@ nav, .nav {
   position: relative;
   background: #424242;
   border-radius: 3px;
-  transform-origin: 4px 0px;
+  transform-origin: 4px 0;
 }
 
 @media (min-width: 768px) {
