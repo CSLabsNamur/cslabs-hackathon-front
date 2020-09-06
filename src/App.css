@@ -17,7 +17,7 @@ body {
 }
 
 .container-page {
-  margin: 3.125rem;
+  margin: 3.125rem auto;
 }
 
 .info--alert {

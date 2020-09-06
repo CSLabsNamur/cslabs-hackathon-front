@@ -344,7 +344,7 @@ export class Inscription extends Component {
                     </div>
 
                     {this.state.validation.server ? (
-                        <p className="alert alert-danger team-caution-alert">
+                        <p className="alert alert-danger info--alert">
                             {this.state.validation.server}
                         </p>
                     ) : null}
