@@ -5,6 +5,7 @@ import {Redirect} from "react-router";
 import Countdown from "../../components/countdown/countdown";
 import "./Inscription.css";
 import {UserContext} from "../../context/user";
+import {CovidAlert} from "../../components/covid_alert/covid_alert";
 
 export class Inscription extends Component {
 
@@ -362,8 +363,10 @@ export class Inscription extends Component {
                 <h1 id="inscription-title">Inscriptions</h1>
                 <div id="inscription-info">
                     <p>Merci de votre intérêt !</p>
-                    <p> Après votre inscription, vous pourrez constituer une équipe.</p>
-                    <p><i>La participation au hackathon demande <strong>une caution de 20€.</strong></i></p>
+                    <p><i>Après votre inscription, vous pourrez constituer une équipe.
+                        Cependant, <strong>une caution de 20€</strong> sera demandée afin
+                        de valider votre participation.</i></p>
+                    <CovidAlert/>
                     <p><Link to="/infos">Plus d'informations.</Link></p>
                     <Countdown destination={new Date(2020, 9, 23)}/>
                 </div>
