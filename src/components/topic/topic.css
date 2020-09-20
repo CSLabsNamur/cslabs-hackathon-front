@@ -18,6 +18,8 @@
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap-reverse;
+    
+    font-size: 1.25rem;
 
     width: 100%;
 }
