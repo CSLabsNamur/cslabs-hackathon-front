@@ -371,7 +371,7 @@ export class TeamEditor extends Component {
                        checked={this.state.agreement_value}
                        onChange={(event) => this.setState({agreement_value: event.target.checked})}/>
                 <label htmlFor="invitation-accept-rules">
-                    J'ai pris connaissances des <Link to="/infos">modalités</Link> ainsi que
+                    J'ai pris connaissance des <Link to="/infos">modalités</Link> ainsi que
                     de la <strong>caution de 20€</strong>.
                 </label>
                 {this.render_error_message(this.state.validation.agreement)}
@@ -390,25 +390,21 @@ export class TeamEditor extends Component {
 
     render_alert() {
 
+        const team_validation_message = (
+            <p className="alert alert-danger info--alert">
+                L'équipe sera validée et apparaîtra dans la liste des équipes participantes que lorsqu'au
+                moins <strong>un de ses membres</strong> aura payé sa <strong>caution</strong> !
+            </p>
+        );
+
         if (!this.state.team_exist) {
-            return (
-                <p className="alert alert-danger info--alert">
-                    L'équipe sera validée et apparaître dans la liste des équipes participantes que lorsqu'au
-                    moins <strong>un de ses membres</strong> aura payé la <strong>caution</strong> !
-                </p>
-            );
+            return team_validation_message;
         }
 
         if (this.state.team && this.state.team.valid) {
             return null;
         } else {
-            return (
-                <p className="alert alert-danger info--alert">
-                    L'équipe n'est pas encore validée et n'apparait donc pas dans la liste des équipes participantes.
-                    L'équipe ne sera valide que lorsqu'au moins <strong>un de ses membres</strong> aura payé
-                    la <strong>caution</strong> !
-                </p>
-            );
+            return team_validation_message;
         }
 
     }
@@ -472,7 +468,7 @@ export class TeamEditor extends Component {
                    shown={this.state.modals.team_created}
                    onClose={() => this.disable_modal("team_created")}>
                 <p>Votre équipe à bel et bien été créée !</p>
-                <p>Chaque membre invité a reçu un email contenant le lien leur permettant de rejoindre
+                <p>Chaque membre invité a reçu un email contenant le lien lui permettant de rejoindre
                     l'équipe. N'oubliez pas de vérifier vos spams.</p>
                 <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
                     confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>

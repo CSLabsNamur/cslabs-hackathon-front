@@ -176,8 +176,10 @@ export class User extends Component {
 
         return (
             <div className="col col-lg-6">
-                <h2>Détail de votre profil</h2>
-                <p>Mais qui êtes-vous donc ?</p>
+                <div className="align-center">
+                    <h2>Détail de votre profil</h2>
+                    <p>Mais qui êtes-vous donc ?</p>
+                </div>
 
                 <div className="form-control">
                     <label>Prénom</label>
@@ -235,8 +237,9 @@ export class User extends Component {
                     <p className="alert alert-danger info--alert">
                         Votre caution n'a pas encore été réceptionnée ou validée !
                         Si vous avez payé votre caution et que ce message tarde à disparaitre,
-                        veuillez contacter un membre du staff.
-                        Cliquez sur ce lien pour plus d'<Link to="/infos">informations</Link>.
+                        veuillez nous contacter à l'adresse mail suivante : {
+                        process.env.REACT_APP_SUPPORT_MAIL_ADDR
+                    }. <Link to="/infos">Plus d'informations</Link>.
                     </p>
                 ) : null}
 

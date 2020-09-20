@@ -9,7 +9,7 @@ export class Modal extends Component {
                 <div className="modal-mask">
                     <div className="modal">
                         <div className="modal-head">
-                            <p className="modal-title">{this.props.title}</p>
+                            <p className="modal-title align-center">{this.props.title}</p>
                         </div>
                         <div className="modal-body">
                             {this.props.children}

@@ -93,7 +93,7 @@ export class Edit extends Component {
         }
 
         if (state === 'loading') {
-            content = (<h2>Chargement...</h2>);
+            content = (<p className="align-center">Chargement...</p>);
         } else if (state === 'no-team') {
             // Hasn't any team ==> Ask the user if it wants to create or join one.
             content = (

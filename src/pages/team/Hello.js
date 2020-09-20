@@ -6,25 +6,25 @@ export class Hello extends Component {
     render() {
         return (
             <div className="col col-lg-9">
-                <h2>Comment assurer ma participation ?</h2>
+                <h2>Confirmer ma participation</h2>
+                <p>Merci pour votre inscription !</p>
                 <p>Afin de participer au hackathon, procédez comme indiqué :</p>
                 <ol>
-                    <li>Créez vous un compte sur le site.</li>
                     <li>Rejoignez ou créez une équipe.</li>
-                    <li>Validez votre compte en payant la caution de 20€.</li>
+                    <li>Validez votre inscription en payant la caution de 20€.</li>
                 </ol>
                 <h3>Comment payer la caution ?</h3>
                 <p>La caution devra être payée par un virement bancaire :</p>
                 <ul>
-                    <li>Caution : 20€</li>
-                    <li>Compte : {process.env.REACT_APP_BANK_NUMBER}</li>
-                    <li>Communication : NOM Prénom</li>
+                    <li>Caution : <b>20€</b></li>
+                    <li>Compte : <b>{process.env.REACT_APP_BANK_NUMBER}</b></li>
+                    <li>Communication : <b>NOM Prénom</b></li>
                 </ul>
 
                 <h2>Une nouveauté dans cette édition !</h2>
                 <p>
-                    Désormais, une partie du site Hackathon vous est destiné en tant que participant. Mais que
-                    comporte-elle ?
+                    Désormais, une partie du site Hackathon vous est destinée en tant que participant. Mais que
+                    comporte-t-elle ?
                 </p>
                 <h3>Aperçu de votre équipe et de vous</h3>
                 <p>
@@ -33,11 +33,11 @@ export class Hello extends Component {
                 </p>
                 <h3>Un peu de suspens</h3>
                 <p>
-                    Outre les prix de l'idée, les prix techniques, un nouveau prix fait son apparition cette année !
+                    Outre le prix de l'idée, le prix de la technique, un nouveau prix fait son apparition cette année !
                 </p>
                 <p>
-                    Il s'agit du Prix du Public. Son concept est très simple : la dernière journée, chacun des
-                    participants pourra voter de manière individuelle pour son équipe préférée.
+                    Il s'agit du prix du public. Son concept est très simple : la dernière journée, chacun des
+                    participants pourra voter de manière individuelle pour le projet qu'il préfère.
                 </p>
                 <p>
                     Un moyen comme un autre de rétablir la démocratie en ce bas monde.

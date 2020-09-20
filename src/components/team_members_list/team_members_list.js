@@ -278,7 +278,7 @@ export class TeamMembersList extends Component {
                         <p>Lien d'invitation:</p>
                         <p>
                             <strong>
-                                {`${process.env.REACT_APP_PUBLIC_URL}/team/invite?token=${this.state.team.token}`}
+                                {`${process.env.REACT_APP_PUBLIC_URL}team/invite/${this.state.team.token}`}
                             </strong>
                         </p>
                         <p>Vous pouvez également envoyer ce code à la personne voulant rejoindre l'équipe.</p>

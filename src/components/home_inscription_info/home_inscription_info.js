@@ -6,7 +6,7 @@ export class HomeInscriptionInfo extends PureComponent {
     render() {
         return (
             <div className="row">
-                <div className="col align-center" style={{margin: "1rem 0"}}>
+                <div className="col align-center" style={{margin: "1rem 0", fontSize: "1.25rem"}}>
                     <h2>Plongez ! Inscrivez vous !</h2>
 
                     <p>Le site vous permet de rejoindre une équipe afin de participer au hackathon. N'hésitez plus et
