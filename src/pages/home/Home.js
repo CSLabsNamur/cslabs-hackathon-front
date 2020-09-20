@@ -5,6 +5,8 @@ import Hero from "../../components/hero/hero";
 import MainCarousel from "../../components/main_carousel/main_carousel";
 import { Topic } from "../../components/topic/topic";
 import { MainThematic } from "../../components/main_thematic/main_thematic";
+import {HomeInscriptionInfo} from "../../components/home_inscription_info/home_inscription_info";
+
 import './Home.css';
 
 export class Home extends Component {
@@ -26,6 +28,10 @@ export class Home extends Component {
             {
                 src: process.env.REACT_APP_PUBLIC_URL + "hackathon_irl.jpg",
                 alt: "Hackathon Compétition"
+            },
+            {
+                src: process.env.REACT_APP_PUBLIC_URL + "hackathon_award.jpg",
+                alt: "Récompense"
             }
         ];
 
@@ -80,7 +86,24 @@ export class Home extends Component {
                     <p>Retrouvez <a href="#thematic-area">la thématique</a> plus en détail !</p>
                 </Topic>
 
-                <Topic img={images[2]} right>
+                <Topic img={images[4]} right>
+                    <h2>Gagner un prix</h2>
+                    <p>
+                        Envie de remporter un de nos prix ? Un jury et le publique désigneront trois vainqueurs !
+                    </p>
+                    <p>
+                        Le <strong>prix de l'idée</strong> sera attribué par le jury à la meilleure idée de projet !
+                    </p>
+                    <p>
+                        Le <strong>prix de la technique</strong> sera, lui aussi par le jury, attribué à la meilleure
+                        réalisation technique !
+                    </p>
+                    <p>
+                        Le <strong>prix du publique</strong> est attribué au projet qui aura séduit le plus d'équipes !
+                    </p>
+                </Topic>
+
+                <Topic img={images[2]} left>
                     <h2>Troisième édition</h2>
                     <p>
                         Nous en sommes à notre troisième édition du Hackathon CSLabs !
@@ -93,7 +116,7 @@ export class Home extends Component {
                     </p>
                 </Topic>
 
-                <Topic img={images[3]} left>
+                <Topic img={images[3]} right>
                     <h2>
                         Hackathon
                     </h2>
@@ -105,6 +128,8 @@ export class Home extends Component {
                         qui ont retenu leur attention et qui ont donc gagné la compétition.
                     </p>
                 </Topic>
+
+                <HomeInscriptionInfo/>
 
                 <MainThematic/>
 

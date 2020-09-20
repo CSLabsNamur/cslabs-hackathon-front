@@ -16,21 +16,18 @@ export class Topic extends Component {
             rowClassName += " left";
         }
 
-        let image;
+        let image = (
+            <img src={this.props.img.src}
+                 alt={this.props.img.alt}
+                 loading="lazy"
+                 className="info-img" />
+        );
 
         if (this.props.link) {
             image = (
                 <a href={this.props.link}>
-                    <img src={this.props.img.src}
-                         alt={this.props.img.alt}
-                         className="info-img" />
+                    {image}
                 </a>
-            );
-        } else {
-            image = (
-                <img src={this.props.img.src}
-                     alt={this.props.img.alt}
-                     className="info-img" />
             );
         }
 

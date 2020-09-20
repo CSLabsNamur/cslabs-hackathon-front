@@ -16,6 +16,7 @@ export class TeamEditor extends Component {
         const {team} = this.props;
 
         this.state = {
+            team: team,
             disabled: false,
             invitations: [],
             modals: {
@@ -254,9 +255,9 @@ export class TeamEditor extends Component {
 
         if (response.status !== 200) {
 
-            if (this._isMounted && this.props.team) {
+            if (this._isMounted && this.state.team) {
 
-                const {team} = this.props;
+                const {team} = this.state;
 
                 this.setState({
                     name: team.name,
@@ -312,6 +313,7 @@ export class TeamEditor extends Component {
 
         if (this._isMounted) {
             this.setState({
+                team: body,
                 team_exist: true,
                 team_id: body.id,
                 name: body.name,
@@ -397,7 +399,7 @@ export class TeamEditor extends Component {
             );
         }
 
-        if (this.props.team && this.props.team.valid) {
+        if (this.state.team && this.state.team.valid) {
             return null;
         } else {
             return (
@@ -470,8 +472,8 @@ export class TeamEditor extends Component {
                    shown={this.state.modals.team_created}
                    onClose={() => this.disable_modal("team_created")}>
                 <p>Votre équipe à bel et bien été créée !</p>
-                <p>Chaque membre invité va recevoir un email contenant le lien leur permettant de rejoindre
-                    l'équipe. Ils recevront également le code d'invitation.</p>
+                <p>Chaque membre invité a reçu un email contenant le lien leur permettant de rejoindre
+                    l'équipe. N'oubliez pas de vérifier vos spams.</p>
                 <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
                     confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
             </Modal>
@@ -561,7 +563,7 @@ export class TeamEditor extends Component {
                 <p>Les membres de votre équipe</p>
 
                 {this.state.team_exist ?
-                    <TeamMembersList team={this.props.team} disabled={this.state.disabled}/> :
+                    <TeamMembersList team={this.state.team} disabled={this.state.disabled}/> :
                     <TeamMembersList onInvitation={this.on_invitation} disabled={this.state.disabled}/>
                 }
 

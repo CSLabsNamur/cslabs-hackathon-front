@@ -7,16 +7,17 @@ export class Hello extends Component {
         return (
             <div className="col col-lg-9">
                 <h2>Comment assurer ma participation ?</h2>
-                <p>Afin de participer au hackathon, plusieurs conditions sont nécessaires :</p>
+                <p>Afin de participer au hackathon, procédez comme indiqué :</p>
                 <ol>
-                    <li>Être dans une équipe</li>
-                    <li>Payer la caution de 20€</li>
+                    <li>Créez vous un compte sur le site.</li>
+                    <li>Rejoignez ou créez une équipe.</li>
+                    <li>Validez votre compte en payant la caution de 20€.</li>
                 </ol>
                 <h3>Comment payer la caution ?</h3>
                 <p>La caution devra être payée par un virement bancaire :</p>
                 <ul>
                     <li>Caution : 20€</li>
-                    <li>Compte : BE65 8989 8989 8989</li>
+                    <li>Compte : {process.env.REACT_APP_BANK_NUMBER}</li>
                     <li>Communication : NOM Prénom</li>
                 </ul>
 

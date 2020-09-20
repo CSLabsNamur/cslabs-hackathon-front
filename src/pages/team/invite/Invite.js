@@ -193,7 +193,7 @@ export class Invite extends Component {
                    }}>
                 <p>Vous avez rejoint l'équipe !</p>
                 <p>Veuillez à bien prendre connaissance des <Link to="/infos">informations</Link> liées au hackathon.</p>
-                <p>Votre participation n'est effective que lorsque nous avons reçu la <strong>caution de 20€</strong>.</p>
+                <p>Une participation n'est effective que lorsque nous avons reçu la <strong>caution de 20€</strong>.</p>
             </Modal>
         );
     }
@@ -227,8 +227,9 @@ export class Invite extends Component {
                     les <Link to="/infos">informations</Link> quant à celui-ci.
                 </p>
                 <p>
-                    Afin qu'une participation soit valide il est nécessaire de payer une caution de 20€. Vous pouvez
-                    néanmoins déjà vous inscrire sur le site et rejoindre une équipe.
+                    À titre informatif, la participation d'une équipe au hackathon n'est valide que si au moins un de
+                    ses membres a bel et bien payé sa caution de 20€.
+                    Cependant, il est d'or et déjà possible de s'inscrire sur le site et de rejoindre une équipe !
                 </p>
                 <form onSubmit={this.on_submit}>
                     <div className="form-control">
@@ -255,7 +256,7 @@ export class Invite extends Component {
                                checked={this.state.agreement_value}
                                onChange={this.on_agreement_change}/>
                         <label htmlFor="invitation-accept-rules">
-                            Je veux participer au hackathon et vais payer la <strong>caution de 20€</strong>.
+                            Je veux participer au hackathon et ai connaissance de la <strong>caution de 20€</strong>.
                         </label>
                         {!this.state.validation.checkbox ? (
                             <p className="validation-error">

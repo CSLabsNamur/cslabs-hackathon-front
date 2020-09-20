@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import "./main_thematic.css";
 
-export class MainThematic extends Component {
+export class MainThematic extends PureComponent {
 
     render() {
 

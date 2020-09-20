@@ -6,11 +6,10 @@ import {CovidAlert} from "../../components/covid_alert/covid_alert";
 
 class Infos extends Component {
 
-    componentDidMount() {
-        window.scrollTo(0, 0);
-    }
-
     render() {
+
+        window.scrollTo(0, 0);
+
         return (
             <div id="info-page">
                 <div>
@@ -47,7 +46,7 @@ class Infos extends Component {
                     <InfoItem title="Inscription" icon="infos/info.svg">
                         <p>Prix: <b>Gratuit</b></p>
                         <p>Caution: <b>20 €</b></p>
-                        <p>Compte: <b>BE65 8989 8989 8989</b></p>
+                        <p>Compte: <b>{process.env.REACT_APP_BANK_NUMBER}</b></p>
                         <p>Communication: <b>NOM Prénom</b></p>
                     </InfoItem>
                 </div>

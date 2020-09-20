@@ -30,7 +30,7 @@ export class UserProvider extends Component {
         super(props);
 
         this.fetch_user = async () => {
-            const id = Cookies.get("id");
+            const id = Cookies.get("id", {sameSite: "Lax"});
 
             if (id) {
 
@@ -63,7 +63,7 @@ export class UserProvider extends Component {
         }
 
         this.authenticate = (user) => {
-            Cookies.set('id', user.id);
+            Cookies.set('id', user.id, {sameSite: "Lax"});
             this.setState({
                 authenticated: true,
                 user: user
@@ -71,6 +71,7 @@ export class UserProvider extends Component {
         }
 
         this.disconnect = () => {
+            Cookies.remove('id', {sameSite: "Lax"});
             this.setState({
                 authenticated: false,
                 user: null,

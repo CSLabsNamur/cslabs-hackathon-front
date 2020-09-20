@@ -39,6 +39,19 @@ export class TeamMembersList extends Component {
         this._isMounted = false;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {team} = this.props;
+
+        if (prevProps.team !== team && this._isMounted) {
+            this.setState({
+               ...this.state,
+                new_team: !team,
+                team: !!team ? team : null,
+                invitations: []
+            });
+        }
+    }
+
     componentDidMount() {
         this._isMounted = true;
 
@@ -262,6 +275,12 @@ export class TeamMembersList extends Component {
                        onChange={this.change_invitation_input}/>
                 {!!this.state.team ? (
                     <div>
+                        <p>Lien d'invitation:</p>
+                        <p>
+                            <strong>
+                                {`${process.env.REACT_APP_PUBLIC_URL}/team/invite?token=${this.state.team.token}`}
+                            </strong>
+                        </p>
                         <p>Vous pouvez également envoyer ce code à la personne voulant rejoindre l'équipe.</p>
                         <h5>{this.state.team.token}</h5>
                         <p>Celui-ci peut être utilisé après avoir appuyé sur le bouton <strong>rejoindre</strong> dans
@@ -323,7 +342,7 @@ export class TeamMembersList extends Component {
                    }}
                    key={5}>
                 <p>L'invitation a échouée. Veuillez réessayer !</p>
-                <p>Si le problème persiste, informez-nous en par email.</p>
+                <p>Si le problème persiste, informez-nous en par email ({process.env.REACT_APP_SUPPORT_MAIL_ADDR}).</p>
             </Modal>
         );
 
