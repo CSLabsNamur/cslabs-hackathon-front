@@ -3,12 +3,12 @@ import './countdown.css'
 
 class Countdown extends Component {
 
-    destination = Date.now();
+    destination = new Date(2020, 10, 23);
 
     constructor(props) {
         super(props);
 
-        if (this.destination) {
+        if (props.destination) {
             this.destination = props.destination;
         }
 
