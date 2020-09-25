@@ -166,8 +166,7 @@ export class Inscription extends Component {
                 credentials: 'include',
                 method: 'POST',
                 mode: 'cors',
-                body: JSON.stringify(data),
-                crossDomain: true
+                body: JSON.stringify(data)
             });
         } catch (err) {
             throw new Error("Impossible de joindre l'hôte distant.");
