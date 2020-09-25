@@ -188,6 +188,7 @@ export class AdminUsers extends Component {
                         <th>Team</th>
                         <th>Créateur</th>
                         <th>Email</th>
+                        <th className="align-center">Remarques</th>
                         <th className="align-center">Caution</th>
                         <th className="align-center">Date d'inscription</th>
                         <th className="align-center">Github</th>
@@ -207,6 +208,16 @@ export class AdminUsers extends Component {
                         </td>
                         <td>{user.teamOwner ? "Oui" : "/"}</td>
                         <td>{user.email}</td>
+                        <td className="align-center">
+                            {user.comment ? (
+                                <span className="tooltip" style={{color: "orange"}}>
+                                    &#9888;
+                                    <span className="tooltip-text">
+                                        {user.comment}
+                                    </span>
+                                </span>
+                            ) : "/"}
+                        </td>
                         <td className="align-center">
                             {user.paid_caution ? (
                                 <span className="tooltip" style={{color: "green"}}>

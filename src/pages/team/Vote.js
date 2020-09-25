@@ -9,7 +9,7 @@ export class Vote extends Component {
         <h2>Votez pour votre projet préféré !</h2>
         <p>Nothing to see here !</p>
         <p>Les votes ne sont pas encore ouverts.</p>
-        <Countdown destination={new Date(2020, 9, 23)} />
+        <Countdown destination={new Date(2020, 10, 23)} />
       </div>
     );
   }

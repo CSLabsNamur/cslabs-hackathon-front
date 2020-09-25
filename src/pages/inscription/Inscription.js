@@ -22,6 +22,7 @@ export class Inscription extends Component {
             lastName: "",
             github: "",
             linkedIn: "",
+            comment: "",
             accept_rules: false,
             validation: {
                 email: null,
@@ -31,6 +32,7 @@ export class Inscription extends Component {
                 lastName: null,
                 github: null,
                 linkedIn: null,
+                comment: null,
                 accept_rules: null,
                 server: null
             },
@@ -80,6 +82,7 @@ export class Inscription extends Component {
             lastName,
             github,
             linkedIn,
+            comment,
             accept_rules
         } = this.state;
 
@@ -125,6 +128,11 @@ export class Inscription extends Component {
             }
         }
 
+        if (comment.length > 2048) {
+            validation.comment = "Les remarques sont de maximum 2048 caractères.";
+            valid = false;
+        }
+
         if (!accept_rules) {
             validation.accept_rules = `Il est nécessaire d'accepter ces conditions pour 
                                        poursuivre votre participation au hackathon.`;
@@ -144,7 +152,8 @@ export class Inscription extends Component {
             email: this.state.email,
             password: this.state.password,
             github: this.state.github.length > 0 ? this.state.github : null,
-            linkedin: this.state.linkedIn.length > 0 ? this.state.linkedIn : null
+            linkedin: this.state.linkedIn.length > 0 ? this.state.linkedIn : null,
+            comment: this.state.comment.length > 0 ? this.state.comment : null
         }
 
         let response;
@@ -152,7 +161,7 @@ export class Inscription extends Component {
         try {
             response = await fetch(process.env.REACT_APP_API_URL + 'users/add', {
                 headers: new Headers({
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 }),
                 credentials: 'include',
                 method: 'POST',
@@ -251,7 +260,7 @@ export class Inscription extends Component {
 
                     <div className="form-control">
                         <label htmlFor="form-password">
-                            Mot de passe
+                            Mot de passe (plus de 10 caractères)
                         </label>
                         <input type="password" id="form-password" name="form-password"
                                placeholder="super password..."
@@ -263,7 +272,7 @@ export class Inscription extends Component {
 
                     <div className="form-control">
                         <label htmlFor="form-password-confirm">
-                            Mot de passe (Confirmation)
+                            Mot de passe (confirmation)
                         </label>
                         <input type="password" id="form-password-confirm" name="form-password-confirm"
                                placeholder="super password..."
@@ -324,6 +333,19 @@ export class Inscription extends Component {
                             {this.render_form_validation_error(this.state.validation.linkedIn)}
                         </div>
 
+                        <div className="form-control">
+                            <label htmlFor="form-comment">
+                                Remarques (allergie, ...) (optionnel)
+                            </label>
+                            <textarea name="form-comment" id="form-comment"
+                                      className={this.state.validation.comment ? "invalid" : ""}
+                                      maxLength={2048}
+                                      placeholder="Mes allergies, difficultés particulière, ..."
+                                      value={this.state.comment}
+                                      onChange={event => this.setState({comment: event.target.value})}/>
+                            {this.render_form_validation_error(this.state.validation.comment)}
+                        </div>
+
                     </fieldset>
 
                     <div className="form-control">
@@ -368,7 +390,7 @@ export class Inscription extends Component {
                         de valider votre participation.</i></p>
                     <CovidAlert/>
                     <p><Link to="/infos">Plus d'informations.</Link></p>
-                    <Countdown destination={new Date(2020, 9, 23)}/>
+                    <Countdown destination={new Date(2020, 10, 23)}/>
                 </div>
             </div>
         );
