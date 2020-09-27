@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Hero from "../../components/hero/hero";
+import {Hero} from "../../components/hero/hero";
 import { Topic } from "../../components/topic/topic";
 
 import "./Sponsors.css";

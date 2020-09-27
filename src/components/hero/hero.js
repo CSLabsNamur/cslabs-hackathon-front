@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import "./hero.css";
 
-class Hero extends Component {
+export class Hero extends Component {
 
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -59,5 +59,3 @@ class Hero extends Component {
     }
 
 }
-
-export default Hero;
