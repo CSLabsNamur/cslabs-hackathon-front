@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import "./hero.css";
 
-class Hero extends Component {
+export class Hero extends Component {
 
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -38,19 +38,24 @@ class Hero extends Component {
         return (
             <div>
                 <header>
-                    <div className="hero-content">
-                        <h1 className="title">
-                            {this.props.title}
-                        </h1>
-                        <h2 className="subtitle">
-                            {this.props.content}
-                        </h2>
-                        <div className="hero-disclaimer">
-                            {this.props.disclaimer}
-                        </div>
-                        {getStarted()}
-                        {this.props.children}
-                    </div>
+                     <div className="hero-area">
+                         <img src={process.env.REACT_APP_PUBLIC_URL + "logo_hackathon_2020.png"}
+                              id="logo-hackathon"
+                              alt="Logo Hackathon"/>
+                         <div className="hero-content">
+                             <h1 className="title">
+                                 {this.props.title}
+                             </h1>
+                             <h2 className="subtitle">
+                                 {this.props.content}
+                             </h2>
+                             <div className="hero-disclaimer">
+                                 {this.props.disclaimer}
+                             </div>
+                             {getStarted()}
+                             {this.props.children}
+                         </div>
+                     </div>
                     {getArrow()}
                 </header>
             </div>
@@ -59,5 +64,3 @@ class Hero extends Component {
     }
 
 }
-
-export default Hero;

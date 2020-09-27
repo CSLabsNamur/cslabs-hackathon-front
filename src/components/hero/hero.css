@@ -5,6 +5,12 @@ header, .header {
     background-color: #fff2c9 !important;
 }
 
+.hero-area {
+    position: relative;
+    margin: 0;
+    width: 100%;
+}
+
 .hero-content {
     display: block;
     width: 100%;
@@ -17,6 +23,16 @@ header, .header {
     background-color: #f5cb98;
 
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+}
+
+#logo-hackathon {
+    position: absolute;
+    top: -5rem;
+    left: 50%;
+    z-index: 10;
+    width: 15rem;
+    height: auto;
+    transform: translate(-50%, 0);
 }
 
 .hero--button {
@@ -54,5 +70,17 @@ header, .header {
 }
 
 .hero-disclaimer {
-    font-size: 18px;
+    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 640px) {
+    .hero-disclaimer {
+        font-size: 1rem;
+    }
+    
+    #logo-hackathon {
+        top: 1rem;
+        width: 8rem;
+        height: auto;
+    }
 }

@@ -9,10 +9,19 @@
 .sponsor-img {
     margin-left: .5rem;
     margin-right: .5rem;
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
 
     background-color: #fff2c9;
 
     border-radius: 50%;
+}
+
+@media screen and (max-width: 640px) {
+    .sponsor-img {
+        margin-left: .2rem;
+        margin-right: .2rem;
+        width: 4rem;
+        height: 4rem;
+    }
 }

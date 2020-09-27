@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Hero from "../../components/hero/hero";
+import {Hero} from "../../components/hero/hero";
 import MainCarousel from "../../components/main_carousel/main_carousel";
 import { Topic } from "../../components/topic/topic";
 import { MainThematic } from "../../components/main_thematic/main_thematic";
@@ -42,7 +42,7 @@ export class Home extends Component {
                     content="Repenser la technologie pour tous"
                     disclaimer={
                         <div>
-                            <p>Du 23 au 25 Octobre à l'UNamur</p>
+                            <p><strong>Du 23 au 25 Octobre à l'UNamur</strong></p>
                             <p>Le Hackathon CSLabs 2020 est organisé dans le cadre du 50e anniversaire de la Faculté d'Informatique.</p>
                             <Link to="/sponsors">
                                 <img className="sponsor-img"
