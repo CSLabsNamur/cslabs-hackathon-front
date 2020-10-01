@@ -89,7 +89,7 @@ export class Home extends Component {
                 <Topic img={images[4]} right>
                     <h2>Gagner un prix</h2>
                     <p>
-                        Envie de remporter un de nos prix ? Un jury et le publique désigneront trois vainqueurs !
+                        Envie de remporter un de nos prix ? Un jury et le public désigneront trois vainqueurs !
                     </p>
                     <p>
                         Le <strong>prix de l'idée</strong> sera attribué par le jury à la meilleure idée de projet !
@@ -99,7 +99,7 @@ export class Home extends Component {
                         réalisation technique !
                     </p>
                     <p>
-                        Le <strong>prix du publique</strong> est attribué au projet qui aura séduit le plus d'équipes !
+                        Le <strong>prix du public</strong> sera attribué au projet qui aura séduit le plus d'équipes !
                     </p>
                 </Topic>
 
