@@ -1,6 +1,8 @@
 
 #thematic-area {
     background: #fff2c9;
+    
+    text-justify: inter-word;
 }
 
 .thematic-content {

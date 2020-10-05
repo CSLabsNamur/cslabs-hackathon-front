@@ -19,9 +19,14 @@ export class Footer extends Component {
               src={"https://www.mc.be/media/Logo_MC_button_sans_slogan_PNG_tcm49-28476.png"}
               alt="Sponsor Mutualité Chrétienne" />
           </a>
+          <a href="https://www.digitalwallonia.be">
+            <img className="sponsor-img-little"
+                 src={process.env.REACT_APP_PUBLIC_URL + "digital_wallonia_logo.png"}
+                 alt="Sponsor Digital Wallonia"/>
+          </a>
           <a href="https://www.trakk.be/">
             <img className="sponsor-img-little"
-              src={"https://www.challenge-entreprendre.be/media/media558d6a755880a.png"}
+              src={process.env.REACT_APP_PUBLIC_URL + "trakk_logo.png"}
               alt="Sponsor Trakk" />
           </a>
           <a href="https://www.bep.be">
@@ -31,7 +36,7 @@ export class Footer extends Component {
           </a>
           <a href="https://www.province.namur.be/index.php?rub=page&page=912">
             <img className="sponsor-img-little"
-              src={process.env.REACT_APP_PUBLIC_URL + "gerontopole.png"}
+              src={process.env.REACT_APP_PUBLIC_URL + "gerontopole_logo.png"}
               alt="Gérontopôle Namur" />
           </a>
           <a href="https://www.unamur.be/info">

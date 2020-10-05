@@ -92,14 +92,14 @@ export class Home extends Component {
                         Envie de remporter un de nos prix ? Un jury et le public désigneront trois vainqueurs !
                     </p>
                     <p>
-                        Le <strong>prix de l'idée</strong> sera attribué par le jury à la meilleure idée de projet !
+                        Le <strong>prix de l'idée</strong> est attribué par le jury à la meilleure idée de projet !
                     </p>
                     <p>
-                        Le <strong>prix de la technique</strong> sera, lui aussi par le jury, attribué à la meilleure
+                        Le <strong>prix de la technique</strong> est, lui aussi par le jury, attribué à la meilleure
                         réalisation technique !
                     </p>
                     <p>
-                        Le <strong>prix du public</strong> sera attribué au projet qui aura séduit le plus d'équipes !
+                        Le <strong>prix du public</strong> est attribué au projet qui aura séduit le plus d'équipes !
                     </p>
                 </Topic>
 

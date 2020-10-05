@@ -344,12 +344,12 @@ export class Inscription extends Component {
 
                         <div className="form-control">
                             <label htmlFor="form-comment">
-                                Remarques (allergie, ...) (optionnel)
+                                Remarques (allergies, ...) (optionnel)
                             </label>
                             <textarea name="form-comment" id="form-comment"
                                       className={this.state.validation.comment ? "invalid" : ""}
                                       maxLength={2048}
-                                      placeholder="Mes allergies, difficultés particulière, ..."
+                                      placeholder="Mes allergies, difficultés particulières, ..."
                                       value={this.state.comment}
                                       onChange={event => this.setState({comment: event.target.value})}/>
                             {this.render_form_validation_error(this.state.validation.comment)}
