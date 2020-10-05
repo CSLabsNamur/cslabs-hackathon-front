@@ -24,6 +24,7 @@ export class Inscription extends Component {
             linkedIn: "",
             comment: "",
             accept_rules: false,
+            accept_conditions: false,
             validation: {
                 email: null,
                 password: null,
@@ -34,6 +35,7 @@ export class Inscription extends Component {
                 linkedIn: null,
                 comment: null,
                 accept_rules: null,
+                accept_conditions: null,
                 server: null
             },
             redirect_user: null
@@ -83,7 +85,8 @@ export class Inscription extends Component {
             github,
             linkedIn,
             comment,
-            accept_rules
+            accept_rules,
+            accept_conditions
         } = this.state;
 
         if (email.length < 1) {
@@ -136,6 +139,12 @@ export class Inscription extends Component {
         if (!accept_rules) {
             validation.accept_rules = `Il est nécessaire d'accepter ces conditions pour 
                                        poursuivre votre participation au hackathon.`;
+            valid = false;
+        }
+
+        if (!accept_conditions) {
+            validation.accept_conditions = `Il est nécessaire d'accepter ces conditions pour 
+                                            poursuivre votre participation au hackathon.`;
             valid = false;
         }
 
@@ -358,6 +367,17 @@ export class Inscription extends Component {
                             et notamment de la <strong>caution de 20€</strong>.
                         </label>
                         {this.render_form_validation_error(this.state.validation.accept_rules)}
+                    </div>
+
+                    <div className="form-control">
+                        <input type="checkbox" id="form-accept-conditions" name="form-accept-conditions"
+                               value="accept-conditions"
+                               checked={this.state.accept_conditions}
+                               onChange={event => this.setState({accept_conditions: event.target.checked})}/>
+                        <label htmlFor="form-accept-conditions">
+                            J'ai lu et accepté les <a href={process.env.REACT_APP_PUBLIC_URL + "documents/termes_et_conditions.pdf"} rel="noopener noreferrer" target="_blank">termes et conditions</a>.
+                        </label>
+                        {this.render_form_validation_error(this.state.validation.accept_conditions)}
                     </div>
 
                     <div className="form-control align-center">
