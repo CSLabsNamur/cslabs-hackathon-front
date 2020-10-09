@@ -159,7 +159,7 @@ export class TeamMembersList extends Component {
     open_invitation_modal() {
         const members_nbr = this.state.members.length + this.state.invitations.length;
 
-        if (members_nbr < 5) {
+        if (members_nbr < 4) {
             this.enable_modal("add_invitation");
         } else {
             this.enable_modal("max_members");
@@ -298,7 +298,7 @@ export class TeamMembersList extends Component {
                        this.disable_modal('max_members')
                    }}
                    key={2}>
-                <p>Une équipe ne peut avoir plus de 5 membres. Il n'est donc pas possible d'envoyer davantage
+                <p>Une équipe ne peut avoir plus de 4 membres. Il n'est donc pas possible d'envoyer davantage
                     d'invitations.</p>
             </Modal>
         );

@@ -18,7 +18,8 @@ export class Invite extends Component {
             agreement_value: false,
             redirect_user: false,
             modals: {
-                invitation_succeed: false
+                invitation_succeed: false,
+                team_full: false
             },
             validation: {
                 checkbox: true,
@@ -71,26 +72,27 @@ export class Invite extends Component {
         }
     }
 
-    enable_modal() {
+    enable_modal(modal_name) {
         if (this._isMounted) {
+            const modals = {...this.state.modals};
+            modals[modal_name] = true;
             this.setState({
-                modals: {
-                    invitation_succeed: true
-                }
+                modals: modals
             });
         }
-        console.log(`Open modal: invitation_succeed`);
+        console.log(`Open modal.`);
     }
 
     close_modal() {
         if (this._isMounted) {
             this.setState({
                 modals: {
-                    invitation_succeed: false
+                    invitation_succeed: false,
+                    team_full: false
                 }
             });
         }
-        console.log(`Close modal: invitation_succeed`);
+        console.log(`Close modals`);
     }
 
     on_token_change(event) {
@@ -114,18 +116,13 @@ export class Invite extends Component {
 
                 if (team) {
                     this.context.update_team(team).then(() => {
-                        this.enable_modal();
+                        this.enable_modal('invitation_succeed');
                     });
-                } else {
-                    if (this._isMounted) {
-                        this.setState({validation: {token: false}});
-                    }
-                    console.log("Wrong token.");
                 }
-
             }).catch(() => {
-            console.error("Server does not respond.");
-        });
+                alert("Le serveur ne répond pas.");
+                console.error("Server does not respond.");
+            });
 
     }
 
@@ -171,30 +168,57 @@ export class Invite extends Component {
             body: JSON.stringify(data)
         });
 
+        const body = await response.json();
+
         if (response.status !== 200) {
             console.log("Failed to join the team.");
+
+            console.log(body.message);
+
+            if (body.message === "The team is already full of members.") {
+                this.enable_modal("team_full");
+                return null;
+            }
+
+            if (this._isMounted) {
+                this.setState({validation: {token: false}});
+            }
+            console.log("Wrong token.");
+
             return null;
         }
 
         console.log("Joined team.");
 
-        return await response.json();
+        return body;
     }
 
     render_modal() {
-        return (
-            <Modal title="Vous avez rejoint l'équipe !"
+
+        const modals = [];
+
+        modals.push(
+            <Modal title="Vous avez rejoint l'équipe !" key={1}
                    shown={this.state.modals.invitation_succeed}
                    buttons={["Cool !"]} onClose={() => {
-                       this.close_modal();
-                        if (this._isMounted) {
-                            this.setState({redirect_user: true});
-                        }
-                   }}>
+                this.close_modal();
+                if (this._isMounted) {
+                    this.setState({redirect_user: true});
+                }}}>
                 <p>Veuillez à bien prendre connaissance des <Link to="/infos">informations</Link> liées au hackathon.</p>
                 <p>Une participation n'est effective que lorsque nous avons reçu la <strong>caution de 20€</strong>.</p>
             </Modal>
         );
+
+        modals.push(
+            <Modal title="Équipe pleine !" key={2}
+                   shown={this.state.modals.team_full} buttons={["Oh..."]} onClose={() => this.close_modal()}>
+                <p>L'équipe que vous voulez rejoindre est déjà pleine.</p>
+                <p>Une équipe est limitée à 4 membres.</p>
+            </Modal>
+        );
+
+        return modals;
     }
 
     render() {

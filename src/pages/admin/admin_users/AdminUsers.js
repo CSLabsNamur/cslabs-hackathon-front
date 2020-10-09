@@ -176,10 +176,15 @@ export class AdminUsers extends Component {
 
     render() {
 
+        const members_with_team = this.state.users.filter(u => u.team);
+        const members_with_team_and_caution = members_with_team.filter(u => u.paid_caution);
+
         return (
             <div id="admin-panel-users">
                 {this.render_modals()}
             <h3 className="align-center">Gestion des utilisateurs</h3>
+                <p className="align-center">Il y a actuellement <strong>{members_with_team.length} participants</strong> qui ont une équipe
+                    dont <strong>{members_with_team_and_caution.length}</strong> qui ont payé leur caution.</p>
             <table>
                 <thead>
                     <tr>

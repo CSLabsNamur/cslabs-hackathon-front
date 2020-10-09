@@ -556,7 +556,7 @@ export class TeamEditor extends Component {
                     {this.render_error_message(this.state.validation.idea)}
                 </div>
 
-                <p>Les membres de votre équipe</p>
+                <p>Les membres de votre équipe (4 maximum)</p>
 
                 {this.state.team_exist ?
                     <TeamMembersList team={this.state.team} disabled={this.state.disabled}/> :
