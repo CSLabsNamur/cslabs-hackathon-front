@@ -4,6 +4,7 @@ import {Redirect} from "react-router";
 
 import {Modal} from "../../../components/modal/modal";
 import {UserContext} from "../../../context/user";
+import {CovidAlert} from "../../../components/covid_alert/covid_alert";
 
 export class Invite extends Component {
 
@@ -246,6 +247,7 @@ export class Invite extends Component {
         return (
             <div>
                 {this.render_modal()}
+                <CovidAlert/>
                 <p>Vous vous apprêtez à rejoindre une équipe dans le cadre du hackathon. Veuillez à bien allez lire
                     les <Link to="/infos">informations</Link> quant à celui-ci.
                 </p>
@@ -263,7 +265,7 @@ export class Invite extends Component {
                                id="input-invitation"
                                name="input-invitation"
                                value={this.state.token_value}
-                               onChange={this.on_token_change}/>
+                               onChange={this.on_token_change} disabled={true}/>
                         {!this.state.validation.token ? (
                             <p className="validation-error">
                                 Ce token est invalide.
@@ -277,7 +279,7 @@ export class Invite extends Component {
                                name="invitation-accept-rules"
                                value="accept-rules"
                                checked={this.state.agreement_value}
-                               onChange={this.on_agreement_change}/>
+                               onChange={this.on_agreement_change} disabled={true}/>
                         <label htmlFor="invitation-accept-rules">
                             Je veux participer au hackathon et j'ai pris connaissance de la <strong>caution de 20€</strong>.
                         </label>
@@ -290,7 +292,7 @@ export class Invite extends Component {
                     </div>
 
                     <div className="form-control align-center">
-                        <button type="submit" className="button-primary">Rejoindre l'équipe</button>
+                        <button type="submit" className="button-primary" disabled={true}>Rejoindre l'équipe</button>
                     </div>
                 </form>
             </div>

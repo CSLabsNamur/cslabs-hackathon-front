@@ -375,7 +375,9 @@ export class Inscription extends Component {
                                checked={this.state.accept_conditions}
                                onChange={event => this.setState({accept_conditions: event.target.checked})}/>
                         <label htmlFor="form-accept-conditions">
-                            J'ai lu et accepté les <a href={process.env.REACT_APP_PUBLIC_URL + "documents/termes_et_conditions.pdf"} rel="noopener noreferrer" target="_blank">termes et conditions</a>.
+                            J'ai lu et accepté les <a
+                            href={process.env.REACT_APP_PUBLIC_URL + "documents/termes_et_conditions.pdf"}
+                            rel="noopener noreferrer" target="_blank">termes et conditions</a>.
                         </label>
                         {this.render_form_validation_error(this.state.validation.accept_conditions)}
                     </div>
@@ -424,6 +426,28 @@ export class Inscription extends Component {
 
         return (
             <div className="container inscription-area">
+                <p>Suite aux mesures Covid qui se durcissent, notamment le passage en code orange dans l’enseignement
+                    supérieur, le CSLabs et la Faculté d’Informatique ont pris la sage décision de reporter le Hackathon
+                    : « Le Bien Vieillir ».</p>
+
+                <p>Nous souhaitons garantir la sécurité de nos participants, de nos invités et partenaires mais aussi
+                    permettre à chacun de découvrir l'ambiance unique qui règne durant notre événement. </p>
+
+                <p>Le Hackathon est prêt et est simplement reporté à une date ultérieure (dans le meilleur des cas,
+                    report au mois de mars 2021 ou, si la situation n'évolue pas dans le bon sens, en octobre
+                    2021). </p>
+
+                <p>Les inscriptions déjà validées sont dès lors annulées. Les cautions payées seront remboursées dans
+                    les plus brefs délais. </p>
+
+                <p>Nous vous informerons des nouvelles dates et de la réouverture des inscriptions.</p>
+
+                <p>L’équipe CSLabs</p>
+            </div>
+        );
+
+        /*return (
+            <div className="container inscription-area">
                 <div className="row">
                     <div className="col col-lg-6">
                         {this.render_form()}
@@ -433,6 +457,6 @@ export class Inscription extends Component {
                     </div>
                 </div>
             </div>
-        )
+        )*/
     }
 }

@@ -110,11 +110,11 @@ export class Edit extends Component {
 
                     <div id="team-editor-choice--action-bar">
                         <button className="button-primary button-large button-shadow"
-                                onClick={this.switch_creation_state}>
+                                onClick={this.switch_creation_state} disabled={true}>
                             Créer une équipe
                         </button>
                         <button className="button-primary button-large button-shadow"
-                                onClick={this.switch_join_team_state}>
+                                onClick={this.switch_join_team_state} disabled={true}>
                             Rejoindre une équipe
                         </button>
                     </div>
