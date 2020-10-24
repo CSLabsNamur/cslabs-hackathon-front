@@ -8,9 +8,8 @@ export class CovidAlert extends PureComponent {
         return (
             <p className="alert alert-danger info--alert align-center">
                 Sous réserve des mesures nécessaires dues à
-                l'épidémie <b>Covid-19</b>, la date du hackathon est sujette à
-                modification ! L'événement est également limite à 52 participants
-                en équipes de <strong>4 personnes</strong> maximum.</p>
+                l'épidémie <b>Covid-19</b>, l'événement est reporté pour mars
+                ou octobre 2021.</p>
         );
 
     }
