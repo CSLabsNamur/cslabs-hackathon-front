@@ -1,0 +1,19 @@
+
+.sponsor-logo__img {
+    margin: 0 .5rem;
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    object-position: center;
+
+    background-color: #fff2c9;
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 .8rem 2.4rem;
+
+    transition: transform .1s;
+}
+
+.sponsor-logo__img:hover {
+    transform: scale(.95);
+    transition: transform .1s;
+}

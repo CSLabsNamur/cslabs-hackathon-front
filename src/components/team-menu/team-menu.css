@@ -1,0 +1,20 @@
+.team-menu {
+    border-bottom: .1rem solid #f5cb98;
+}
+
+.team-menu__elements {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.team-menu__elements > li {
+    margin: auto;
+    padding: 5px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.team-menu__elements > li > a {
+    color: #424242 !important;
+}

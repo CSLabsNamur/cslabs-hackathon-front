@@ -1,0 +1,31 @@
+#main-thematic {
+    background: #fff2c9;
+    text-justify: inter-word;
+}
+
+.main-thematic__content {
+    max-width: 120rem;
+    margin: 1rem auto;
+    padding: 1rem;
+
+    font-size: 2rem;
+}
+
+.main-thematic__content > ul {
+    list-style: none;
+}
+
+.main-thematic__content > ul > li {
+    padding: .5rem 1rem;
+    border: .2rem solid #f5cb98;
+    border-radius: 1.5rem;
+}
+
+.main-thematic__content > ul > li:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.main-thematic__text {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

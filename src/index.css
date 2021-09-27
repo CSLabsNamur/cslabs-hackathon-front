@@ -1,8 +1,3 @@
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -15,14 +10,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.get-started, .button-primary {
-  background-color: #56b65a !important;
-  border: #62bb66 !important;
-  color: whitesmoke !important;
-}
-
-.tx-centered {
-  text-align: center;
 }
