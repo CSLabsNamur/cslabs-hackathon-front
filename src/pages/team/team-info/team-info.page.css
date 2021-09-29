@@ -1,0 +1,9 @@
+
+#team-info-page {
+    max-width: 80rem;
+    margin: 4rem auto;
+}
+
+#team-info-page__footer {
+    overflow: auto;
+}

@@ -3,7 +3,10 @@ import {Link} from 'react-router-dom';
 
 import './team-join.css';
 
-export class TeamJoin extends React.PureComponent {
+export class TeamJoin extends React.PureComponent<{
+  onJoin: () => void,
+  onCreate: () => void,
+}> {
   render() {
     return (
       <div id="team-join">
@@ -18,10 +21,10 @@ export class TeamJoin extends React.PureComponent {
         </div>
 
         <div id="team-join__actions">
-          <button className="button-primary button-large button-shadow">
+          <button className="button-primary button-large button-shadow" onClick={this.props.onCreate}>
             Créer une équipe
           </button>
-          <button className="button-primary button-large button-shadow">
+          <button className="button-primary button-large button-shadow" onClick={this.props.onJoin}>
             Rejoindre une équipe
           </button>
         </div>

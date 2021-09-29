@@ -7,7 +7,6 @@ import {RegistrationInfo} from '../../components/inscription-info/registration-i
 
 import './home.page.css';
 import {MainThematic} from '../../components/main-thematic/main-thematic';
-import {MainCarousel} from '../../components/main-carousel/main-carousel';
 
 export class HomePage extends React.PureComponent {
 
@@ -57,7 +56,7 @@ export class HomePage extends React.PureComponent {
             </div>}>
         </PageHero>
 
-        <MainCarousel />
+        {/*<MainCarousel />*/}
 
         <Topic img={this.images[0]} direction='right'>
           <h2>CSLabs</h2>

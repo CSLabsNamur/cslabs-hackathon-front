@@ -1,9 +1,10 @@
-import React, {FormEvent} from 'react';
-import {Link} from 'react-router-dom';
+import React, {FormEvent, Fragment} from 'react';
+import {Link, Redirect} from 'react-router-dom';
 
 import './registration.page.css';
 import {RegistrationValidation} from './registration.validation';
-import {validate} from 'class-validator';
+import {UserService} from "../../services/user.service";
+import {FormValidationService} from "../../services/form-validation.service";
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -32,6 +33,7 @@ export class RegistrationPage extends React.Component<{}, {
     conditionsAgreement: boolean,
   },
   validationErrors: { [key: string]: string },
+  redirect?: string,
 }> {
 
   constructor(props: any) {
@@ -88,35 +90,27 @@ export class RegistrationPage extends React.Component<{}, {
 
   async validateForm() {
     const registration = new RegistrationValidation();
-    for (const field in this.state.form) {
-      // @ts-ignore
-      const value = this.state.form[field];
-      // @ts-ignore
-      registration[field] = value === "" ? null : value;
-    }
-    const errors = await validate(registration, {validationError: {target: false}});
-
-    if (errors.length > 0) {
-      const newState = {...this.state} as any;
-      newState.validationErrors = {};
-      for (const error of errors) {
-        if (error.constraints) {
-          newState.validationErrors[error.property] = error.constraints[Object.keys(error.constraints)[0]];
-        }
-      }
-      this.setState(newState);
-      return false;
-    }
-
-    return true;
+    const errors = await FormValidationService.validateForm(this.state.form, registration);
+    this.setState({ ...this.state, validationErrors: errors });
+    return Object.keys(errors).length === 0;
   }
-
 
   onFormSubmit(event: FormEvent) {
     event.preventDefault();
-    this.validateForm().then(() => {
-    }).catch();
-    // TODO : Link registration with backend
+    this.validateForm()
+      .then((validated) => {
+        if (validated) {
+          UserService.registerAndLogin(this.state.form).then(() => {
+            console.log('Successfully registered and logged in.');
+            let redirection = UserService.redirect;
+            if (!redirection) {
+              redirection = '/team';
+            }
+            this.setState({ ...this.state, redirect: redirection})
+            UserService.redirect = undefined;
+          });
+        }
+      });
   }
 
   renderForm() {
@@ -277,7 +271,12 @@ export class RegistrationPage extends React.Component<{}, {
   }
 
   render() {
-    return this.renderForm();
+    return (
+      <Fragment>
+        {this.state.redirect ? <Redirect to={this.state.redirect} /> : null}
+        {this.renderForm()}
+      </Fragment>
+    );
   }
 
 }
