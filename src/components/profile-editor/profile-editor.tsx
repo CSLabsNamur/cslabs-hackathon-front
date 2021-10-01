@@ -12,6 +12,7 @@ enum ProfileField {
   GITHUB = "github",
   LINKEDIN = "linkedIn",
   NOTE = "note",
+  CV_FILE = "cvFile",
 }
 
 export class ProfileEditor extends React.Component<{
@@ -27,11 +28,14 @@ export class ProfileEditor extends React.Component<{
   validationErrors: { [key: string]: string },
   showConfirmationModal: boolean,
 }> {
+  private readonly cvInput: React.RefObject<HTMLInputElement>;
 
   constructor(props: any) {
     super(props);
 
     const {user} = this.props;
+
+    this.cvInput = React.createRef();
 
     this.state = {
       form: {
@@ -52,9 +56,15 @@ export class ProfileEditor extends React.Component<{
 
   updateProfile() {
     this.closeConfirmation();
-    UserService.update(this.state.form).then(() => {
-      console.log('Profile successfully updated.');
-    });
+    UserService.update(this.state.form)
+      .then(() => {
+        console.log('Profile successfully updated.');
+        if (this.cvInput.current?.files && this.cvInput.current?.files?.length > 0) {
+          UserService.uploadCv(this.cvInput.current.files[0]).then(() => {
+            console.log('CV successfully uploaded.');
+          });
+        }
+      });
   }
 
   getInputClassname(field: ProfileField) {
@@ -65,11 +75,11 @@ export class ProfileEditor extends React.Component<{
   }
 
   showConfirmation() {
-    this.setState({ ...this.state, showConfirmationModal: true });
+    this.setState({...this.state, showConfirmationModal: true});
   }
 
   closeConfirmation() {
-    this.setState({ ...this.state, showConfirmationModal: false });
+    this.setState({...this.state, showConfirmationModal: false});
   }
 
   onSubmit(event: FormEvent) {
@@ -84,7 +94,15 @@ export class ProfileEditor extends React.Component<{
   async validateForm() {
     const registration = new ProfileEditorValidation();
     const errors = await FormValidationService.validateForm(this.state.form, registration);
-    this.setState({ ...this.state, validationErrors: errors });
+
+    if (this.cvInput.current?.files && this.cvInput.current?.files.length) {
+      const cvError = FormValidationService.validatePdfFile(this.cvInput.current.files[0]);
+      if (cvError) {
+        errors[ProfileField.CV_FILE] = cvError;
+      }
+    }
+
+    this.setState({...this.state, validationErrors: errors});
     return Object.keys(errors).length === 0;
   }
 
@@ -110,6 +128,26 @@ export class ProfileEditor extends React.Component<{
         <div className="align-center">
           <h2>Détail de votre profil</h2>
           <p>Mais qui êtes-vous donc ?</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="form-comment">
+            <span className="tooltip">
+              Votre CV
+              <span className="tooltip-text">
+                Cela remplacera votre ancien CV.
+                N'oubliez pas de sauvegarder le profile pour l'envoyer.
+              </span>
+            </span> (optionnel)
+          </label>
+          <div>
+            <input type="file"
+                   name="form-cv"
+                   accept="application/pdf"
+                   ref={this.cvInput}
+            />
+          </div>
+          {this.renderValidationError(ProfileField.CV_FILE)}
         </div>
 
         <div className="form-control">

@@ -109,7 +109,7 @@ export class ConnectionPage extends React.Component<{
                 </Link>
             </div>
             <div>
-                <Link to="/reset-password">
+                <Link to="/ask-password-reset">
                     <button type="button"
                             className="button button-info">
                       Mot de passe oublié

@@ -1,7 +1,12 @@
 
 # Jetbrains IDE settings
-
 /.idea
 
 # NodeJs modules
 /node_modules
+
+# Build
+/build
+
+# Env variables
+.env

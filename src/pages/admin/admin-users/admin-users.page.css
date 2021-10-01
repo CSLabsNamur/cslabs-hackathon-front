@@ -2,8 +2,15 @@
 #admin-users-page {
     margin-top: 10rem;
     margin-bottom: 6rem;
+}
+
+#admin-users-page > table {
     background-color: white;
     overflow: auto;
+}
+
+#admin-users-page button:disabled {
+    visibility: hidden;
 }
 
 #admin-users-page td:hover {

@@ -11,7 +11,7 @@ export class TeamWelcomePage extends React.PureComponent {
         <p>Merci pour votre inscription !</p>
         <p>Afin de participer au hackathon, procédez comme indiqué :</p>
         <ol>
-          <li>Rejoignez ou créez une équipe.</li>
+          <li>Rejoignez ou créez une équipe (5 membres maximum).</li>
           <li>Validez votre inscription en payant la caution de 20€.</li>
         </ol>
         <h3>Comment payer la caution ?</h3>

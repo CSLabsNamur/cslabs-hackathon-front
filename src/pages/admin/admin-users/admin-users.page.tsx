@@ -1,11 +1,23 @@
-import React from "react";
+import React, {Fragment} from "react";
+import ReactModal from "react-modal";
 import {User} from "../../../domain/user";
 import {AdminService} from "../../../services/admin.service";
 
 import './admin-users.page.css';
+import {Link} from "react-router-dom";
+
+enum AdminUsersModal {
+  KICK_CONFIRM= 'kickConfirm',
+  DELETE_CONFIRM= 'deleteConfirm',
+}
 
 export class AdminUsersPage extends React.Component<{}, {
   users: User[],
+  selectedUser?: string,
+  modal: {
+    kickConfirm: boolean,
+    deleteConfirm: boolean,
+  }
 }> {
 
   constructor(props: any) {
@@ -13,9 +25,14 @@ export class AdminUsersPage extends React.Component<{}, {
 
     this.state = {
       users: [],
+      modal: {
+        kickConfirm: false,
+        deleteConfirm: false,
+      }
     }
 
-    this.onUpdateCaution = this.onUpdateCaution.bind(this);
+    this.onValidateCaution = this.onValidateCaution.bind(this);
+    this.onCancelCaution = this.onCancelCaution.bind(this);
     this.onKickUser = this.onKickUser.bind(this);
     this.onDeleteUser = this.onDeleteUser.bind(this);
   }
@@ -26,20 +43,73 @@ export class AdminUsersPage extends React.Component<{}, {
 
   getUsers() {
     AdminService.getAllUsers().then((users) => {
-      this.setState({users});
+      this.setState({users: users.sort((a, b) => a.id.localeCompare(b.id))});
     });
   }
 
-  onUpdateCaution(event: any) {
-    // TODO
+  onValidateCaution(event: any) {
+    event.preventDefault();
+    AdminService.setCaution(event.target.value, true).then(() => {
+      console.log('Validated caution.');
+      this.getUsers();
+    });
+  }
+
+  onCancelCaution(event: any) {
+    event.preventDefault();
+    AdminService.setCaution(event.target.value, false).then(() => {
+      console.log('Canceled caution.');
+      this.getUsers();
+    });
   }
 
   onKickUser(event: any) {
-    // TODO
+    event.preventDefault();
+    this.openModal(AdminUsersModal.KICK_CONFIRM, event.target.value);
   }
 
   onDeleteUser(event: any) {
-    // TODO
+    event.preventDefault();
+    this.openModal(AdminUsersModal.DELETE_CONFIRM, event.target.value);
+  }
+
+  openModal(modal: AdminUsersModal, userId: string) {
+    const newState = {...this.state};
+    newState.modal[modal] = true;
+    newState.selectedUser = userId;
+    this.setState(newState);
+  }
+
+  closeModals() {
+    const newState = {...this.state};
+    newState.modal = {
+      kickConfirm: false,
+      deleteConfirm: false,
+    };
+    newState.selectedUser = undefined;
+    this.setState(newState);
+  }
+
+  kickUser() {
+    const userId = this.state.selectedUser;
+    if (userId) {
+      AdminService.kickUser(userId).then(() => {
+        console.log('User kicked from its team.');
+      });
+    }
+    this.closeModals();
+    this.getUsers();
+  }
+
+  deleteUser() {
+    const userId = this.state.selectedUser;
+    if (userId) {
+      AdminService.deleteUser(userId).then(() => {
+        console.log('User deleted.');
+      });
+    }
+    this.closeModals();
+    this.getUsers();
   }
 
   renderActionBar(user: User) {
@@ -50,13 +120,13 @@ export class AdminUsersPage extends React.Component<{}, {
         {paidCaution ? (
           <button className="button button-danger button-small"
                   value={id}
-                  onClick={this.onUpdateCaution}>
+                  onClick={this.onCancelCaution}>
             Annuler caution
           </button>
         ) : (
           <button className="button button-primary button-small"
-                  value={user.id}
-                  onClick={this.onUpdateCaution}>
+                  value={id}
+                  onClick={this.onValidateCaution}>
             Valider caution
           </button>
         )}
@@ -69,7 +139,7 @@ export class AdminUsersPage extends React.Component<{}, {
         </button>
 
         <button className="button button-danger button-small"
-                value={user.id}
+                value={id}
                 disabled={isAdmin || isTeamOwner}
                 onClick={this.onDeleteUser}>
           Supprimer
@@ -79,11 +149,70 @@ export class AdminUsersPage extends React.Component<{}, {
     );
   }
 
+  renderModals() {
+    return (
+      <Fragment>
+        <ReactModal isOpen={this.state.modal.kickConfirm}
+                    overlayClassName="modal-mask"
+                    className="modal"
+        >
+          <div className="modal-head">
+            <p className="modal-title">Confirmation de l'expulsion</p>
+          </div>
+          <div className="modal-body">
+            <p>
+              Voulez-vous vraiment expulser ce pauvre membre de son équipe ?
+            </p>
+          </div>
+          <div className="modal-footer">
+            <button className="button-danger"
+                    onClick={() => this.kickUser()}
+            >
+              Et oui...
+            </button>
+            <button className="button-info"
+                    onClick={() => this.closeModals()}
+            >
+              Nope
+            </button>
+          </div>
+        </ReactModal>
+
+        <ReactModal isOpen={this.state.modal.deleteConfirm}
+                    overlayClassName="modal-mask"
+                    className="modal"
+        >
+          <div className="modal-head">
+            <p className="modal-title">Confirmation de la suppression</p>
+          </div>
+          <div className="modal-body">
+            <p>
+              Voulez-vous vraiment supprimer ce pauvre utilisateur ?
+            </p>
+          </div>
+          <div className="modal-footer">
+            <button className="button-danger"
+                    onClick={() => this.deleteUser()}
+            >
+              A mort !
+            </button>
+            <button className="button-info"
+                    onClick={() => this.closeModals()}
+            >
+              Nope
+            </button>
+          </div>
+        </ReactModal>
+      </Fragment>
+    );
+  }
+
   renderUser(user: User, index: number) {
-    const {team, note, paidCaution, github, linkedIn} = user;
+    const {team, note, paidCaution, github, linkedIn, createdAt} = user;
 
     return (
       <tr key={index}>
+        {this.renderModals()}
         <td><strong>{user.firstName}</strong></td>
         <td><strong>{user.lastName}</strong></td>
         <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : '/'}</td>
@@ -110,8 +239,7 @@ export class AdminUsersPage extends React.Component<{}, {
             </span>
           )}
         </td>
-        <td className="tx-centered">/</td>
-        {/* TODO : Date de création */}
+        <td className="tx-centered">{createdAt?.toISOString()}</td>
         <td className="tx-centered">
           {github ?
             <span className="tooltip">
@@ -141,8 +269,21 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   render() {
+    const members = this.state.users.filter((user) => user.team);
+    const membersWithCaution = this.state.users.filter((user) => user.paidCaution);
+
     return (
       <div id="admin-users-page">
+
+        <div className="tx-centered">
+          <h3>Gestion des utilisateurs</h3>
+          <Link to="/admin"><button className="button-primary-outlined button-large">Retour</button></Link>
+          <p>
+            Il y a actuellement <strong>{members.length} participants</strong> qui ont une équipe
+            dont <strong>{membersWithCaution.length}</strong> qui ont payé leur caution.
+          </p>
+        </div>
+
         <table>
           <thead>
           <tr>

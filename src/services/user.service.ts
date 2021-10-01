@@ -38,7 +38,10 @@ export class UserService {
     note?: string
   }) {
     const data = await HttpService.send(HttpMethods.PUT, 'users/me', {
-      firstName, lastName, github, linkedIn, comment: note
+      firstName, lastName,
+      github: github !== "" ? github : undefined,
+      linkedIn: linkedIn !== "" ? linkedIn : undefined,
+      comment: note !== "" ? note : undefined,
     }, true);
     const user = this.userFromData(data);
     this.user.next(user);
@@ -72,10 +75,25 @@ export class UserService {
     return user;
   }
 
+  static async uploadCv(file: File) {
+    await HttpService.send(HttpMethods.FILE, 'users/upload-cv', file, true);
+  }
+
   static async disconnect() {
     await HttpService.send(HttpMethods.POST, 'authentication/log-out', {}, true);
     localStorage.clear();
     this.user.next(null);
+  }
+
+  static async askResetPassword(email: string) {
+    await HttpService.send(HttpMethods.POST, 'authentication/ask-password-reset', {email});
+  }
+
+  static async resetPasswordToken(newPassword: string, resetPasswordToken: string) {
+    await HttpService.send(HttpMethods.POST, 'authentication/reset-password', {
+      newPassword,
+      resetPasswordToken
+    });
   }
 
   static userFromData(userData: any): User {
@@ -84,7 +102,9 @@ export class UserService {
       firstName, lastName,
       github, linkedIn,
       isTeamOwner, isAdmin,
-      comment
+      comment,
+      paidCaution,
+      createdAt,
     } = userData;
 
     let team;
@@ -92,7 +112,20 @@ export class UserService {
       team = TeamsService.teamFromData(userData.team);
     }
 
-    return {id, email, firstName, lastName, github, linkedIn, note: comment, isTeamOwner, isAdmin, team} as User;
+    let creationDate;
+    if (createdAt) {
+      creationDate = new Date(parseInt(createdAt));
+    }
+
+    return {
+      id, email,
+      firstName, lastName,
+      github, linkedIn,
+      note: comment,
+      isTeamOwner, isAdmin,
+      team, paidCaution,
+      createdAt: creationDate,
+    } as User;
   }
 
 }

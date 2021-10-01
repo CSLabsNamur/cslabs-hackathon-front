@@ -14,9 +14,11 @@ import {TeamPage} from './pages/team/team.page';
 import {UserService} from "./services/user.service";
 import {User} from "./domain/user";
 import {DisconnectionPage} from "./pages/disconnection/disconnection.page";
-import {HttpService} from "./services/http.service";
 import {AuthenticatedRoute} from "./components/authenticated-route/authenticated-route";
 import {AdminPage} from "./pages/admin/admin.page";
+import {ScrollToTop} from "./components/scroll-to-top/scroll-to-top";
+import {AskPasswordResetPage} from "./pages/ask-password-reset/ask-password-reset.page";
+import {PasswordResetPage} from "./pages/password-reset/password-reset.page";
 
 ReactModal.setAppElement('#root');
 
@@ -27,10 +29,6 @@ class App extends React.Component<any, any> {
     this.state = {
       user: null
     };
-    const apiUrl = process.env.REACT_APP_API_DOMAIN;
-    if (apiUrl) {
-      HttpService.domain = apiUrl;
-    }
   }
 
   componentDidMount() {
@@ -52,6 +50,7 @@ class App extends React.Component<any, any> {
     return (
       <UserContext.Provider value={{user: this.state.user}}>
         <BrowserRouter>
+          <ScrollToTop/>
           <Navbar/>
           <Switch>
             <Route exact path="/sponsors" component={SponsorsPage}/>
@@ -60,6 +59,8 @@ class App extends React.Component<any, any> {
             <Route exact path="/inscription" component={RegistrationPage}/>
             <Route exact path="/connexion" component={ConnectionPage}/>
             <Route exact path="/deconnexion" component={DisconnectionPage}/>
+            <Route exact path="/ask-password-reset" component={AskPasswordResetPage}/>
+            <Route exact path="/password-reset/:token" component={PasswordResetPage}/>
             <AuthenticatedRoute path="/team" component={TeamPage}/>
             <AuthenticatedRoute path="/admin" component={AdminPage} admin={true}/>
             <Route exact path="/" component={HomePage}/>

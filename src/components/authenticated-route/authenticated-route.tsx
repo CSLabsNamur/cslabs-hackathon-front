@@ -6,7 +6,8 @@ import {Subscription} from "rxjs";
 enum Authentication {
   LOADING,
   SUCCESS,
-  FAILURE,
+  REDIRECT,
+  REFUSED,
 }
 
 export class AuthenticatedRoute extends React.Component<any, {
@@ -27,11 +28,13 @@ export class AuthenticatedRoute extends React.Component<any, {
     }
     const subject = UserService.getUserSubject()
     const subscription = subject.subscribe((user) => {
-      let authState = Authentication.FAILURE;
+      let authState = Authentication.REDIRECT;
 
       if (this.props.admin && user?.isAdmin) {
         authState = Authentication.SUCCESS;
-      }  else if (!this.props.admin && user) {
+      } else if(this.props.admin) {
+        authState = Authentication.REFUSED;
+      } else if (!this.props.admin && user) {
         authState = Authentication.SUCCESS;
       }
 
@@ -47,11 +50,13 @@ export class AuthenticatedRoute extends React.Component<any, {
   }
 
   render() {
-    if (this.state.authenticated === Authentication.FAILURE) {
+    if (this.state.authenticated === Authentication.REDIRECT) {
       UserService.redirect = this.props.location.pathname;
       return <Redirect to={'/connexion'} />
     } else if (this.state.authenticated === Authentication.SUCCESS) {
       return (<Route {...this.props} />);
+    } else if (this.state.authenticated === Authentication.REFUSED) {
+      return <Redirect to={'/not-found'} />;
     }
     return null;
   }

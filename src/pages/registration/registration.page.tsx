@@ -5,6 +5,7 @@ import './registration.page.css';
 import {RegistrationValidation} from './registration.validation';
 import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
+import ReactModal from "react-modal";
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -17,6 +18,7 @@ enum RegistrationField {
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
+  CV_FILE = 'cv_file'
 }
 
 export class RegistrationPage extends React.Component<{}, {
@@ -34,7 +36,11 @@ export class RegistrationPage extends React.Component<{}, {
   },
   validationErrors: { [key: string]: string },
   redirect?: string,
+  modal: {
+    error?: string,
+  },
 }> {
+  private readonly cvInput: React.RefObject<HTMLInputElement>;
 
   constructor(props: any) {
     super(props);
@@ -53,7 +59,10 @@ export class RegistrationPage extends React.Component<{}, {
         conditionsAgreement: false,
       },
       validationErrors: {},
+      modal: {},
     }
+
+    this.cvInput = React.createRef();
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
@@ -91,8 +100,23 @@ export class RegistrationPage extends React.Component<{}, {
   async validateForm() {
     const registration = new RegistrationValidation();
     const errors = await FormValidationService.validateForm(this.state.form, registration);
-    this.setState({ ...this.state, validationErrors: errors });
+
+    if (this.cvInput.current?.files && this.cvInput.current?.files.length) {
+      const cvError = FormValidationService.validatePdfFile(this.cvInput.current.files[0]);
+      if (cvError) {
+        errors[RegistrationField.CV_FILE] = cvError;
+      }
+    }
+
+    this.setState({...this.state, validationErrors: errors});
     return Object.keys(errors).length === 0;
+  }
+
+  showErrorModal(message: string) {
+    this.setState({
+      ...this.state,
+      modal: {error: message},
+    })
   }
 
   onFormSubmit(event: FormEvent) {
@@ -106,17 +130,67 @@ export class RegistrationPage extends React.Component<{}, {
             if (!redirection) {
               redirection = '/team';
             }
-            this.setState({ ...this.state, redirect: redirection})
+
+            if (this.cvInput.current!.files!.length > 0) {
+              UserService.uploadCv(this.cvInput.current!.files![0]).then(() => {
+                console.log('Successfully uploaded CV.');
+              }).catch(() => {
+                return this.showErrorModal("Votre CV n'a pas pu être envoyé.");
+              });
+            }
+
+            this.setState({...this.state, redirect: redirection})
             UserService.redirect = undefined;
+          }).catch(error => {
+            const message = error.response?.data?.message;
+            if (message === "User with that email already exists.") {
+              return this.showErrorModal("Un utilisateur avec cette adresse email existe déjà.");
+            }
+            return this.showErrorModal("Prenez contact: hackathon[@]cslabs.be");
           });
         }
       });
+  }
+
+  renderModal() {
+    const error = this.state.modal.error;
+
+    return (
+      <ReactModal isOpen={!!error}
+                  overlayClassName="modal-mask"
+                  className="modal"
+      >
+        <div className="modal-head">
+          <p className="modal-title">Une erreur est survenue !</p>
+        </div>
+        <div className="modal-body">
+          <p>
+            Oh mon dieu ! Une erreur est survenue !
+          </p>
+          <p>
+            {error}
+          </p>
+        </div>
+        <div className="modal-footer">
+          <button className="button-info-outlined"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    this.setState({...this.state, modal: {error: undefined}});
+                  }}
+          >
+            Dommage...
+          </button>
+        </div>
+      </ReactModal>
+    );
   }
 
   renderForm() {
 
     return (
       <div className="registration-page form-container">
+
+        {this.renderModal()}
 
         <form id="registration-form" onSubmit={this.onFormSubmit}>
 
@@ -228,6 +302,20 @@ export class RegistrationPage extends React.Component<{}, {
               {this.renderValidationError(RegistrationField.NOTE)}
             </div>
 
+            <div className="form-control">
+              <label htmlFor="form-cv">
+                Mon CV (pdf, max 5Mo) (optionnel)
+              </label>
+              <div>
+                <input type="file"
+                       name="form-cv"
+                       accept="application/pdf"
+                       ref={this.cvInput}
+                />
+              </div>
+              {this.renderValidationError(RegistrationField.CV_FILE)}
+            </div>
+
           </fieldset>
 
           <div className="form-control">
@@ -252,7 +340,8 @@ export class RegistrationPage extends React.Component<{}, {
             <label htmlFor="form-accept-conditions">
               J'ai lu et accepté les <a
               href={process.env.PUBLIC_URL + "documents/termes_et_conditions.pdf"}
-              rel="noopener noreferrer" target="_blank">termes et conditions</a>.
+              rel="noopener noreferrer" target="_blank">termes et conditions</a> et ai pris
+              connaissance des mesures sanitaires mises en places.
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
@@ -273,7 +362,7 @@ export class RegistrationPage extends React.Component<{}, {
   render() {
     return (
       <Fragment>
-        {this.state.redirect ? <Redirect to={this.state.redirect} /> : null}
+        {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}
         {this.renderForm()}
       </Fragment>
     );

@@ -22,6 +22,7 @@ enum TeamModal {
   DELETE_TEAM= 'deleteTeam',
   UPDATE_TEAM= 'updateTeam',
   CREATED_CONFIRMATION = 'createdConfirmationTeam',
+  ERROR = 'error',
 }
 
 export class TeamEditor extends React.Component<{
@@ -44,7 +45,9 @@ export class TeamEditor extends React.Component<{
     deleteTeam: boolean,
     updateTeam: boolean,
     createdConfirmationTeam: boolean,
-  }
+    error: boolean,
+  },
+  error?: string,
 }> {
 
   constructor(props: any) {
@@ -67,6 +70,7 @@ export class TeamEditor extends React.Component<{
           deleteTeam: false,
           updateTeam: false,
           createdConfirmationTeam: false,
+          error: false,
         }
       }
     } else {
@@ -85,6 +89,7 @@ export class TeamEditor extends React.Component<{
           deleteTeam: false,
           updateTeam: false,
           createdConfirmationTeam: false,
+          error: false,
         }
       }
     }
@@ -155,6 +160,13 @@ export class TeamEditor extends React.Component<{
     TeamsService.create({name, description, idea, invitations}).then(() => {
       console.log('Team successfully created.');
       this.showModal(TeamModal.CREATED_CONFIRMATION);
+    }).catch(error => {
+      const message = error.response?.data?.message;
+      if (message === "A team with this name already exists.") {
+        this.displayError("Une équipe avec ce nom existe déjà.");
+      } else {
+        this.displayError("Impossible de créer l'équipe.");
+      }
     });
   }
 
@@ -168,6 +180,9 @@ export class TeamEditor extends React.Component<{
         .then(() => {
           console.log('Team successfully updated.');
         })
+        .catch(() => {
+          this.displayError("La mise à jour de l'équipe a échouée.");
+        });
     }
   }
 
@@ -177,7 +192,9 @@ export class TeamEditor extends React.Component<{
     if (team) {
       TeamsService.delete(team.id).then(() => {
         console.log('Team successfully deleted.');
-      });
+      }).catch(() => {
+        this.displayError("La suppression de l'équipe a échouée.");
+      })
     }
   }
 
@@ -192,6 +209,13 @@ export class TeamEditor extends React.Component<{
     const errors = await FormValidationService.validateForm(this.state.form, validator);
     this.setState({ ...this.state, validationErrors: errors });
     return Object.keys(errors).length === 0;
+  }
+
+  displayError(message: string) {
+    const newState = {...this.state};
+    newState.error = message;
+    newState.modal.error = true;
+    this.setState(newState);
   }
 
   getInputClassname(field: TeamField) {
@@ -288,7 +312,7 @@ export class TeamEditor extends React.Component<{
           {this.renderValidationError(TeamField.IDEA)}
         </div>
 
-        <p>Les membres de votre équipe (4 maximum)</p>
+        <p>Les membres de votre équipe (5 maximum)</p>
 
         <TeamMembersList newTeam={this.props.newTeam}
                          user={this.props.user}
@@ -410,6 +434,30 @@ export class TeamEditor extends React.Component<{
           </div>
           <div className="modal-footer">
             <button className="button-primary" onClick={() => this.closeModal(TeamModal.CREATED_CONFIRMATION)}>Let's go !</button>
+          </div>
+        </ReactModal>
+
+        <ReactModal isOpen={this.state.modal.error}
+                    overlayClassName="modal-mask"
+                    className="modal"
+        >
+          <div className="modal-head">
+            <p className="modal-title">Une erreur est survenue !</p>
+          </div>
+          <div className="modal-body">
+            <p>
+              Oh mon dieu ! Une erreur est survenue !
+            </p>
+            <p>
+              {this.state.error}
+            </p>
+          </div>
+          <div className="modal-footer">
+            <button className="button-info-outlined"
+                    onClick={() => this.closeModal(TeamModal.ERROR)}
+            >
+              Dommage...
+            </button>
           </div>
         </ReactModal>
 

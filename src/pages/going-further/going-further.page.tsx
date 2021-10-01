@@ -64,12 +64,7 @@ export class GoingFurtherPage extends React.PureComponent {
                 </li>
               </ul>
 
-              {/* TODO : Discuter de cela avec Florent
-              <p>Le <b>11 février 2021</b> le Mind&Market se tiendra au TRAKK et rassemblera tous les
-                projets sur la
-                Silver économie et issus de LinKube. </p>*/}
-              <p>Un chemin de possibles s’offre à toi pour concrétiser tes beaux projets. On en discute
-                ?</p>
+              <p>Un chemin de possibles s’offre à toi pour concrétiser tes beaux projets. On en discute ?</p>
             </div>
 
             <div className="further-page__sponsor">

@@ -8,4 +8,5 @@ export class Team {
   token?: string;
   valid?: boolean;
   members: User[] = [];
+  createdAt?: Date;
 }

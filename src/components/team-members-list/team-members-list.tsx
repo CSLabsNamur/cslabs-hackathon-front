@@ -335,7 +335,7 @@ export class TeamMembersList extends React.Component<{
                 >
                   {!this.props.newTeam ? "Ajouter" : "Inviter"}
                 </button>
-                {(members.length + invitations.length >= 4) ? <span className="tooltip-text">Maximum 4 par équipe!</span> : null}
+                {(members.length + invitations.length >= 5) ? <span className="tooltip-text">Maximum 5 par équipe!</span> : null}
               </span>
           ) : null}
         </div>

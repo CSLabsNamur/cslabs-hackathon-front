@@ -67,15 +67,20 @@ export class TeamsService {
     await UserService.updateTeam(null, false);
   }
 
-  static teamFromData(teamData: any) {
-    const {id, name, description, idea, token, valid} = teamData;
+  static teamFromData(teamData: any): Team {
+    const {id, name, description, idea, token, valid, createdAt} = teamData;
 
     let members;
     if (teamData.members) {
       members = teamData.members.map((data: any) => UserService.userFromData(data));
     }
 
-    return {id, name, description, idea, token, valid, members};
+    let creationDate;
+    if (createdAt) {
+      creationDate = new Date(parseInt(createdAt));
+    }
+
+    return {id, name, description, idea, token, valid, members, createdAt: creationDate};
   }
 
 }

@@ -12,4 +12,5 @@ export class User {
   paidCaution? = false;
   isAdmin? = false;
   team?: Team;
+  createdAt?: Date;
 }
