@@ -1,9 +1,0 @@
-
-#admin-panel-users {
-    background-color: white;
-    overflow: auto;
-}
-
-#admin-panel-users td:hover {
-    background-color: #ffebee;
-}

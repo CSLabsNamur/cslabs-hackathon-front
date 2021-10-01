@@ -1,0 +1,25 @@
+
+#team-list-page {
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    max-width: 100rem;
+}
+
+#team-list-page__teams {
+    margin-top: 4rem;
+
+    border: .1rem solid #bdbdbd;
+    border-collapse: inherit;
+    border-radius: .5rem;
+
+    background-color: white;
+}
+
+#team-list-page__teams > table {
+    margin: 0;
+    width: 100%;
+}
+
+.team-list-page__member-tooltip {
+    list-style: none;
+}

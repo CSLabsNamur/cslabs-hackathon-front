@@ -1,0 +1,13 @@
+
+#admin-home {
+    margin: 0 auto;
+    padding: 8rem 1rem 4rem 1rem;
+    max-width: 80rem;
+    font-size: 2rem;
+}
+
+#admin-home__menu {
+    margin: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+}

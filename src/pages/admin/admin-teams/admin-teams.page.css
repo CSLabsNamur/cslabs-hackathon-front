@@ -1,0 +1,18 @@
+
+#admin-teams-page {
+    margin-top: 10rem;
+    margin-bottom: 6rem;
+}
+
+#admin-teams-page > table {
+    background-color: white;
+    overflow: auto;
+}
+
+.admin-teams-page__member-list {
+    list-style: none;
+}
+
+.admin-teams-page__text-field {
+    max-width: 15rem;
+}
