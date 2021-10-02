@@ -2,7 +2,7 @@ import React from 'react';
 
 import './team.page.css';
 import {TeamMenu} from '../../components/team-menu/team-menu';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {TeamEditPage} from './team-edit/team-edit.page';
 import {TeamJoinPage} from "./team-join/team-join.page";
 import {TeamWelcomePage} from "./team-welcome/team-welcome.page";
@@ -24,6 +24,9 @@ export class TeamPage extends React.PureComponent {
           <Route exact path="/team/join" component={TeamJoinPage} />
           <Route exact path="/team/join/:token" component={TeamJoinPage} />
           <Route exact path="/team" component={TeamWelcomePage} />
+          <Route>
+            <Redirect to="/not-found" />
+          </Route>
         </Switch>
       </div>
     );

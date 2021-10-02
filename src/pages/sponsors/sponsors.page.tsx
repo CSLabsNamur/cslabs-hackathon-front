@@ -37,7 +37,7 @@ export class SponsorsPage extends React.PureComponent {
         </PageHero>
 
         <Topic img={{
-          src: "/sponsors/AG_insurance.svg",
+          src: "/sponsors/ag.svg",
           alt: "AGInsurance"
         }}
                link="https://www.aginsurance.be"

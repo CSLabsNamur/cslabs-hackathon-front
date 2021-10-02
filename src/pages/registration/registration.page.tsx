@@ -339,7 +339,7 @@ export class RegistrationPage extends React.Component<{}, {
             />
             <label htmlFor="form-accept-conditions">
               J'ai lu et accepté les <a
-              href={process.env.PUBLIC_URL + "documents/termes_et_conditions.pdf"}
+              href={"/documents/termes_et_conditions.pdf"}
               rel="noopener noreferrer" target="_blank">termes et conditions</a> et ai pris
               connaissance des mesures sanitaires mises en places.
             </label>

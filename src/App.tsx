@@ -2,7 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import './App.css';
 import {UserContext} from "./contexts/user.context";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {Navbar} from "./components/navbar/navbar";
 import {ConnectionPage} from "./pages/connection/connection.page";
 import {HomePage} from './pages/home/home.page';
@@ -19,6 +19,7 @@ import {AdminPage} from "./pages/admin/admin.page";
 import {ScrollToTop} from "./components/scroll-to-top/scroll-to-top";
 import {AskPasswordResetPage} from "./pages/ask-password-reset/ask-password-reset.page";
 import {PasswordResetPage} from "./pages/password-reset/password-reset.page";
+import {NotFoundPage} from "./pages/not-found/not-found.page";
 
 ReactModal.setAppElement('#root');
 
@@ -64,6 +65,10 @@ class App extends React.Component<any, any> {
             <AuthenticatedRoute path="/team" component={TeamPage}/>
             <AuthenticatedRoute path="/admin" component={AdminPage} admin={true}/>
             <Route exact path="/" component={HomePage}/>
+            <Route exact path="/not-found" component={NotFoundPage}/>
+            <Route>
+              <Redirect to={"/not-found"}/>
+            </Route>
           </Switch>
         </BrowserRouter>
       </UserContext.Provider>
