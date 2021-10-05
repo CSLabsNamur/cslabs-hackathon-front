@@ -19,7 +19,7 @@ export class TeamsService {
     const token = Buffer.from(encodedToken, 'base64').toString();
     const teamData = await HttpService.send(HttpMethods.POST, `teams/join/${token}`, {}, true);
     const team = this.teamFromData(teamData);
-    await UserService.updateTeam(team, true);
+    await UserService.updateTeam(team, false);
   }
 
   static async leave(user: User, memberId: string) {
