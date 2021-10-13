@@ -3,6 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import {AdminUsersPage} from "./admin-users/admin-users.page";
 import {AdminTeamsPage} from "./admin-teams/admin-teams.page";
 import {AdminHomePage} from "./admin-home/admin-home.page";
+import {AdminAnnouncePage} from "./admin-announce/admin-announce.page";
 
 export class AdminPage extends React.PureComponent {
   render() {
@@ -11,6 +12,7 @@ export class AdminPage extends React.PureComponent {
         <Switch>
           <Route exact path="/admin/users" component={AdminUsersPage}/>
           <Route exact path="/admin/teams" component={AdminTeamsPage}/>
+          <Route exact path="/admin/announce" component={AdminAnnouncePage}/>
           <Route exact path="/admin" component={AdminHomePage}/>
         </Switch>
       </div>
