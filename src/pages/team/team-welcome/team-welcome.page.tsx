@@ -1,12 +1,16 @@
 import React from "react";
 
 import './team-welcome.page.css';
+import {CovidAlert} from "../../../components/covid-alert/covid-alert";
 
 export class TeamWelcomePage extends React.PureComponent {
 
   render() {
     return (
       <div id="team-welcome-page">
+
+        <CovidAlert />
+
         <h2>Confirmer ma participation</h2>
         <p>Merci pour votre inscription !</p>
         <p>Afin de participer au hackathon, procédez comme indiqué :</p>
@@ -14,6 +18,7 @@ export class TeamWelcomePage extends React.PureComponent {
           <li>Rejoignez ou créez une équipe (5 membres maximum).</li>
           <li>Validez votre inscription en payant la caution de 20€.</li>
         </ol>
+        <p>Il est bien entendu possible de rejoindre une équipe sur place !</p>
         <h3>Comment payer la caution ?</h3>
         <p>La caution devra être payée par un virement bancaire :</p>
         <ul>

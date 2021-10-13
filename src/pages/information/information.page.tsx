@@ -2,6 +2,7 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
+import {CovidAlert} from "../../components/covid-alert/covid-alert";
 
 export class InformationPage extends React.PureComponent {
 
@@ -22,14 +23,14 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
           <p>Le week-end du <b>29 au 31 octobre 2021</b>.</p>
-          {/*<CovidAlert/>*/}
+          <CovidAlert />
         </InfoItem>
 
         <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">
           <p>
             Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/">Page Facebook</a>
           </p>
-          <p>Mail: events[@]cslabs.be</p>
+          <p>Mail: <strong>events[@]cslabs.be</strong></p>
           <p>Serveur Discord: <a href="https://discord.gg/Jf2Dht8">https://discord.gg/Jf2Dht8</a></p>
         </InfoItem>
 
@@ -45,6 +46,11 @@ export class InformationPage extends React.PureComponent {
           <p>Caution: <b>20 €</b></p>
           <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
+        </InfoItem>
+
+        <InfoItem title="Attestation" icon="/infos/info.svg">
+          <p>Si nécessaire, nous pouvons fournir des attestations de participation.</p>
+          <p>Contactez-nous à l'adresse <strong>events[@]cslabs.be</strong></p>
         </InfoItem>
 
 

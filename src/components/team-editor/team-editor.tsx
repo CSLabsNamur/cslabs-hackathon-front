@@ -9,6 +9,7 @@ import {TeamEditorValidation} from "./team-editor.validation";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {TeamsService} from "../../services/teams.service";
+import {CovidAlert} from "../covid-alert/covid-alert";
 
 enum TeamField {
   NAME= 'name',
@@ -319,6 +320,8 @@ export class TeamEditor extends React.Component<{
                          disabled={disabled}
                          onInvitationAdded={(email) => this.addInvitation(email)}
         />
+
+        <CovidAlert />
 
         {this.props.newTeam && !disabled ? (
           <Fragment>

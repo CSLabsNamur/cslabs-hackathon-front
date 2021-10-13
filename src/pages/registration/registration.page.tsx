@@ -6,6 +6,7 @@ import {RegistrationValidation} from './registration.validation';
 import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
+import {CovidAlert} from "../../components/covid-alert/covid-alert";
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -345,6 +346,8 @@ export class RegistrationPage extends React.Component<{}, {
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
+
+          <CovidAlert />
 
           <div className="form-control align-center">
             <button type="submit" className="button-primary button-large" id="form-inscription-submit">
