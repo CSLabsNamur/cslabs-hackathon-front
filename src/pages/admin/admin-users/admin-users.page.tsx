@@ -269,8 +269,10 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   render() {
-    const members = this.state.users.filter((user) => user.team);
-    const membersWithCaution = this.state.users.filter((user) => user.paidCaution);
+    const users = this.state.users;
+    const usersWithoutCaution = users.filter((user) => !user.paidCaution);
+    const nonAdminUsers = users.filter((user) => !user.isAdmin);
+    const members = users.filter((user) => user.team);
 
     return (
       <div id="admin-users-page">
@@ -279,9 +281,15 @@ export class AdminUsersPage extends React.Component<{}, {
           <h3>Gestion des utilisateurs</h3>
           <Link to="/admin"><button className="button-primary-outlined button-large">Retour</button></Link>
           <p>
-            Il y a actuellement <strong>{members.length} participants</strong> qui ont une équipe
-            dont <strong>{membersWithCaution.length}</strong> qui ont payé leur caution.
+            Il y a actuellement :
           </p>
+          <ul>
+            <li><strong>{users.length} utilisateurs inscrits</strong></li>
+            <li><strong>{nonAdminUsers.length} utilisateurs inscrits</strong> (sans admins)</li>
+            <li><strong>{usersWithoutCaution.length} utilisateurs qui n'ont pas payé leur caution</strong></li>
+            <li><strong>{members.length} membres d'équipes</strong></li>
+            <li></li>
+          </ul>
         </div>
 
         <table>
