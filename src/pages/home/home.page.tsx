@@ -28,7 +28,7 @@ export class HomePage extends React.PureComponent {
       alt: "Hackathon Compétition"
     },
     {
-      src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
+      src: process.env.PUBLIC_URL + "/images/prix.png",
       alt: "Récompense"
     }
   ];

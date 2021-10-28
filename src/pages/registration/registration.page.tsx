@@ -363,12 +363,23 @@ export class RegistrationPage extends React.Component<{}, {
   }
 
   render() {
+
+    // TODO : reactivate this
     return (
-      <Fragment>
-        {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}
-        {this.renderForm()}
-      </Fragment>
+      <div className="registration-page form-container tx-centered">
+        <h2>Hackathon reporté !</h2>
+        <p>
+          Le hackathon est reporté pour le deuxième quadrimestre. Les inscriptions ouvriront sous peu !
+        </p>
+      </div>
     );
+
+    // return (
+    //   <Fragment>
+    //     {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}
+    //     {this.renderForm()}
+    //   </Fragment>
+    // );
   }
 
 }
