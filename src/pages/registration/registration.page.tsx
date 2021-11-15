@@ -22,6 +22,8 @@ enum RegistrationField {
   CV_FILE = 'cv_file'
 }
 
+const REGISTRATION_DISABLED = false;
+
 export class RegistrationPage extends React.Component<{}, {
   form: {
     email: string,
@@ -364,22 +366,24 @@ export class RegistrationPage extends React.Component<{}, {
 
   render() {
 
-    // TODO : reactivate this
-    return (
-      <div className="registration-page form-container tx-centered">
-        <h2>Hackathon reporté !</h2>
-        <p>
-          Le hackathon est reporté pour le deuxième quadrimestre. Les inscriptions ouvriront sous peu !
-        </p>
-      </div>
-    );
+    if (REGISTRATION_DISABLED) {
+      return (
+        <div className="registration-page form-container tx-centered">
+          <h2>Hackathon reporté !</h2>
+          <p>
+            Le hackathon est reporté pour le deuxième quadrimestre. Les inscriptions ouvriront sous peu !
+          </p>
+        </div>
+      );
+    }
 
-    // return (
-    //   <Fragment>
-    //     {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}
-    //     {this.renderForm()}
-    //   </Fragment>
-    // );
+
+    return (
+      <Fragment>
+        {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}
+        {this.renderForm()}
+      </Fragment>
+    );
   }
 
 }
