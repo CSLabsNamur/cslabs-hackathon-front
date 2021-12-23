@@ -43,7 +43,7 @@ export class HomePage extends React.PureComponent {
           subtitle="Repenser la technologie pour tous"
           disclaimer={
             <div>
-              <p><strong>Du 29 au 31 Octobre à l'UNamur</strong></p>
+              <p><strong>Du 18 au 20 février à l'UNamur</strong></p>
               <p>Le Hackathon CSLabs 2021 est organisé dans le cadre du 50e anniversaire de la Faculté d'Informatique</p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
