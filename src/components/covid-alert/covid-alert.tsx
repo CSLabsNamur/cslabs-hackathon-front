@@ -10,7 +10,7 @@ export class CovidAlert extends React.PureComponent {
         </p>
         <ul>
           <li>La présentation du Covid Safe Ticket à l'entrée</li>
-          <li>Le port du masque jusqu'à présentation du Covid Safe Ticket</li>
+          <li>Port du masque obligatoire lors des déplacements durant l'événement</li>
         </ul>
       </div>
     );
