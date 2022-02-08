@@ -195,7 +195,7 @@ export class TeamMembersList extends React.Component<{
   renderModals(team?: Team) {
 
     const token = team?.token ? Buffer.from(team.token).toString('base64') : null;
-    const inviteLink = `${process.env.REACT_APP_FRONT_DOMAIN}/team/invite/${token}`;
+    const inviteLink = `${process.env.REACT_APP_FRONT_DOMAIN}/team/join/${token}`;
 
     return (
       <Fragment>

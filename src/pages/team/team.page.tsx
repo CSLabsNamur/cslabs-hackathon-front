@@ -23,6 +23,7 @@ export class TeamPage extends React.PureComponent {
           <Route exact path="/team/info/:teamId" component={TeamInfoPage} />
           <Route exact path="/team/join" component={TeamJoinPage} />
           <Route exact path="/team/join/:token" component={TeamJoinPage} />
+          <Route exact path="/team/invite/:token" component={TeamJoinPage} />
           <Route exact path="/team" component={TeamWelcomePage} />
           <Route>
             <Redirect to="/not-found" />
