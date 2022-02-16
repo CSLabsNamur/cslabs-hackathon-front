@@ -22,8 +22,6 @@ enum RegistrationField {
   CV_FILE = 'cv_file'
 }
 
-const REGISTRATION_DISABLED = false;
-
 export class RegistrationPage extends React.Component<{}, {
   form: {
     email: string,
@@ -146,10 +144,21 @@ export class RegistrationPage extends React.Component<{}, {
             UserService.redirect = undefined;
           }).catch(error => {
             const message = error.response?.data?.message;
+
             if (message === "User with that email already exists.") {
               return this.showErrorModal("Un utilisateur avec cette adresse email existe déjà.");
             }
-            return this.showErrorModal("Prenez contact: hackathon[@]cslabs.be");
+
+            else if (message === "Max number of users reached.") {
+              return this.showErrorModal(
+                `Le nombre maximum de participants à été atteint ! Il n'est dès lors plus possible de s'inscrire... 
+                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord où à l'adresse mail events@cslabs.be`
+              )
+            }
+
+            return this.showErrorModal(
+              `Erreur inconnue: ${message}. Prenez-contact sur Discord ou via hackathon@cslabs.be`
+            );
           });
         }
       });
@@ -365,18 +374,6 @@ export class RegistrationPage extends React.Component<{}, {
   }
 
   render() {
-
-    if (REGISTRATION_DISABLED) {
-      return (
-        <div className="registration-page form-container tx-centered">
-          <h2>Hackathon reporté !</h2>
-          <p>
-            Le hackathon est reporté pour le deuxième quadrimestre. Les inscriptions ouvriront sous peu !
-          </p>
-        </div>
-      );
-    }
-
 
     return (
       <Fragment>
