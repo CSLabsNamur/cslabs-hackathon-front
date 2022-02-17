@@ -9,6 +9,7 @@ import {TeamWelcomePage} from "./team-welcome/team-welcome.page";
 import {TeamProfilePage} from "./team-profile/team-profile.page";
 import {TeamListPage} from "./team-list/team-list.page";
 import {TeamInfoPage} from "./team-info/team-info.page";
+import {TeamVotePage} from "./team-vote/team-vote.page";
 
 export class TeamPage extends React.PureComponent {
 
@@ -24,6 +25,7 @@ export class TeamPage extends React.PureComponent {
           <Route exact path="/team/join" component={TeamJoinPage} />
           <Route exact path="/team/join/:token" component={TeamJoinPage} />
           <Route exact path="/team/invite/:token" component={TeamJoinPage} />
+          <Route exact path="/team/vote" component={TeamVotePage} />
           <Route exact path="/team" component={TeamWelcomePage} />
           <Route>
             <Redirect to="/not-found" />

@@ -12,7 +12,7 @@ export class TeamMenu extends React.PureComponent {
           <li><Link to="/team/edit">Mon équipe</Link></li>
           <li><Link to="/team/user">Moi</Link></li>
           <li><Link to="/team/all">Autres équipes</Link></li>
-          {/*<li><Link to="/team/vote">Votes</Link></li>*/}
+          {/*<li><Link to="/team/vote">Mon vote</Link></li>*/}
         </ul>
       </div>
     );

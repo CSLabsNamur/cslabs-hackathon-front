@@ -37,6 +37,12 @@ export class AdminHomePage extends React.PureComponent {
             </button>
           </Link>
 
+          <Link to="/admin/votes">
+            <button className="button-large" id="admin-home__menu__pink-btn">
+              Résultats des votes
+            </button>
+          </Link>
+
         </div>
       </div>
     );
