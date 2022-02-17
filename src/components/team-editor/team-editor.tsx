@@ -9,6 +9,7 @@ import {TeamEditorValidation} from "./team-editor.validation";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {TeamsService} from "../../services/teams.service";
+import {CovidAlert} from "../covid-alert/covid-alert";
 
 enum TeamField {
   NAME= 'name',
@@ -320,6 +321,8 @@ export class TeamEditor extends React.Component<{
                          onInvitationAdded={(email) => this.addInvitation(email)}
         />
 
+        <CovidAlert />
+
         {this.props.newTeam && !disabled ? (
           <Fragment>
             <div className="form-control">
@@ -343,7 +346,7 @@ export class TeamEditor extends React.Component<{
               />
               <label htmlFor="form-accept-conditions">
                 J'ai lu et accepté les <a
-                href={process.env.PUBLIC_URL + "documents/termes_et_conditions.pdf"}
+                href={"/documents/termes_et_conditions.pdf"}
                 rel="noopener noreferrer" target="_blank">termes et conditions</a>.
               </label>
               {this.renderValidationError(TeamField.CONDITIONS_AGREEMENT)}

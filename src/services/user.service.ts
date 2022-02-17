@@ -58,6 +58,16 @@ export class UserService {
     this.user.next(user);
   }
 
+  static async updateVote(newVote: string) {
+    const user = this.lastUserValue;
+    if (!user) {
+      throw Error("cannot set vote of null user instance.");
+    }
+    await HttpService.send(HttpMethods.POST, `teams/vote/${newVote}`, {}, true);
+    user.voteId = newVote;
+    this.user.next(user);
+  }
+
   static async tryAutoLogin() {
     const data = await HttpService.send(HttpMethods.GET, 'users/me', {}, true);
     const user = this.userFromData(data);
@@ -105,6 +115,7 @@ export class UserService {
       comment,
       paidCaution,
       createdAt,
+      voteId,
     } = userData;
 
     let team;
@@ -125,6 +136,7 @@ export class UserService {
       isTeamOwner, isAdmin,
       team, paidCaution,
       createdAt: creationDate,
+      voteId,
     } as User;
   }
 

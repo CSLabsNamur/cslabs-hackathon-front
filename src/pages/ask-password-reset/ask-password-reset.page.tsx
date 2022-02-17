@@ -75,10 +75,10 @@ export class AskPasswordResetPage extends React.Component<{}, {
 
         <form onSubmit={this.onSubmit} className="form-container">
 
-          <h4 className="tx-centered">Vous avez oubliez votre mot de passe ? </h4>
+          <h4 className="tx-centered">Vous avez oublié votre mot de passe ? </h4>
 
           <p>
-            Rentrez votre adresse email afin que nous pouvions vous envoyer un mail.
+            Rentrez votre adresse email afin que nous puissions vous envoyer un mail.
             De cette façon vous pourrez le réinitialiser !
           </p>
 

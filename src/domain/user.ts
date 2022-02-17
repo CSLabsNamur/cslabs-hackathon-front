@@ -11,6 +11,7 @@ export class User {
   isTeamOwner? = false;
   paidCaution? = false;
   isAdmin? = false;
+  voteId?: string;
   team?: Team;
   createdAt?: Date;
 }

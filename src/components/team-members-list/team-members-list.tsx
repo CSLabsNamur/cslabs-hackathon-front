@@ -195,6 +195,7 @@ export class TeamMembersList extends React.Component<{
   renderModals(team?: Team) {
 
     const token = team?.token ? Buffer.from(team.token).toString('base64') : null;
+    const inviteLink = `${process.env.REACT_APP_FRONT_DOMAIN}/team/join/${token}`;
 
     return (
       <Fragment>
@@ -229,9 +230,9 @@ export class TeamMembersList extends React.Component<{
               <div>
                 <p>Lien d'invitation :</p>
                 <p>
-                  <strong>
-                    {`${process.env.REACT_APP_FRONT_DOMAIN}/team/invite/${token}`}
-                  </strong>
+                  <a href={inviteLink} title="Lien d'invitation">
+                    {inviteLink}
+                  </a>
                 </p>
                 <p>Vous pouvez également envoyer ce code à la personne voulant rejoindre l'équipe.</p>
                 <h5 style={{wordBreak: 'break-word'}}>{token}</h5>

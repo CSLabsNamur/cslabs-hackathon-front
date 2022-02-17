@@ -10,4 +10,11 @@
     margin: 2rem 1rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+#admin-home__menu__pink-btn {
+    border-color: #b039db;
+    background-color: #9930bf;
+    color: whitesmoke;
 }

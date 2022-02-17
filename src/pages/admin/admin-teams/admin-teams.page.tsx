@@ -191,6 +191,27 @@ export class AdminTeamsPage extends React.Component<{}, {
     );
   }
 
+  renderTokenField(team: Team) {
+    if (!team.token) {
+      return;
+    }
+    const token = btoa(team.token);
+    return (
+      <div className="button button-info button-small"
+           onClick={() => {
+             navigator.clipboard.writeText(token).then(() => {
+               alert('Le token a bien été copié.');
+             });
+           }}
+      >
+            <span className="tooltip">
+              Token
+              <span className="tooltip-text">{token}</span>
+          </span>
+      </div>
+    )
+  }
+
   renderStaticTeam(team: Team, index: number) {
     const {id, name, description, idea, valid, members, createdAt} = team;
 
@@ -216,6 +237,9 @@ export class AdminTeamsPage extends React.Component<{}, {
         </td>
         <td className="admin-teams-page__text-cell">{description}</td>
         <td className="admin-teams-page__text-cell">{idea}</td>
+        <td>
+          {this.renderTokenField(team)}
+        </td>
         <td>{createdAt?.toISOString()}</td>
         <td>
           <button className="button button-info button-small"
@@ -261,6 +285,9 @@ export class AdminTeamsPage extends React.Component<{}, {
                     onChange={this.onTextChange(AdminTeamsField.IDEA)}
           />
         </td>
+        <td>
+          {this.renderTokenField(team)}
+        </td>
         <td>{team.createdAt?.toISOString()}</td>
         <td>
           <button className="button button-primary button-small"
@@ -299,6 +326,7 @@ export class AdminTeamsPage extends React.Component<{}, {
             <th className="tx-centered">Valide</th>
             <th>Description</th>
             <th>Idée</th>
+            <th></th>
             <th>Date de création</th>
             <th/>
           </tr>

@@ -1,0 +1,21 @@
+
+#team-vote option.voted {
+    border-color: #62bb66;
+    background-color: #56b65a ;
+    color: whitesmoke;
+}
+
+.team-vote__vote {
+    margin-top: 4rem;
+}
+
+.team-vote__current {
+    margin-top: 3rem;
+}
+
+.team-vote__current > span {
+    font-size: 3.2rem;
+    font-weight: normal;
+    color: #56b65a;
+    text-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.4);
+}

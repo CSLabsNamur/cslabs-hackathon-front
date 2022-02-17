@@ -6,6 +6,7 @@ import {RegistrationValidation} from './registration.validation';
 import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
+import {CovidAlert} from "../../components/covid-alert/covid-alert";
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -143,10 +144,21 @@ export class RegistrationPage extends React.Component<{}, {
             UserService.redirect = undefined;
           }).catch(error => {
             const message = error.response?.data?.message;
+
             if (message === "User with that email already exists.") {
               return this.showErrorModal("Un utilisateur avec cette adresse email existe déjà.");
             }
-            return this.showErrorModal("Prenez contact: hackathon[@]cslabs.be");
+
+            else if (message === "Max number of users reached.") {
+              return this.showErrorModal(
+                `Le nombre maximum de participants à été atteint ! Il n'est dès lors plus possible de s'inscrire... 
+                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord où à l'adresse mail events@cslabs.be`
+              )
+            }
+
+            return this.showErrorModal(
+              `Erreur inconnue: ${message}. Prenez-contact sur Discord ou via hackathon@cslabs.be`
+            );
           });
         }
       });
@@ -339,12 +351,14 @@ export class RegistrationPage extends React.Component<{}, {
             />
             <label htmlFor="form-accept-conditions">
               J'ai lu et accepté les <a
-              href={process.env.PUBLIC_URL + "documents/termes_et_conditions.pdf"}
+              href={"/documents/termes_et_conditions.pdf"}
               rel="noopener noreferrer" target="_blank">termes et conditions</a> et ai pris
               connaissance des mesures sanitaires mises en places.
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
+
+          <CovidAlert />
 
           <div className="form-control align-center">
             <button type="submit" className="button-primary button-large" id="form-inscription-submit">
@@ -360,6 +374,7 @@ export class RegistrationPage extends React.Component<{}, {
   }
 
   render() {
+
     return (
       <Fragment>
         {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}

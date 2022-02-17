@@ -12,11 +12,14 @@ export class SponsorsPage extends React.PureComponent {
 
         <PageHero title='Sponsors du hackathon' subtitle='Sans eux, rien ne serait possible !' hasArrow>
           <div className="sponsors-page__sponsors-list">
-            <a href="#ag_insurance">
-              <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
+            <a href="#unamur">
+              <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
             <a href="#mutualite_chretienne">
               <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
+            </a>
+            <a href="#ag_insurance">
+              <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
             </a>
             <a href="#digital-wallonia">
               <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
@@ -30,14 +33,11 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#gerontopole">
               <SponsorLogo title="Gérontopôle Namur" uri="/images/logo/gerontopole.png" />
             </a>
-            <a href="#unamur">
-              <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
-            </a>
           </div>
         </PageHero>
 
         <Topic img={{
-          src: "/sponsors/AG_insurance.svg",
+          src: "/sponsors/ag.svg",
           alt: "AGInsurance"
         }}
                link="https://www.aginsurance.be"
