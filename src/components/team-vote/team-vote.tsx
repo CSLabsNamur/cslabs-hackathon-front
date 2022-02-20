@@ -26,9 +26,6 @@ export class TeamVote extends React.Component<{
 
   filterTeams(teams: Team[]): Team[] {
     return teams.filter((team) => {
-      if (!team.valid) {
-        return false;
-      }
       for (const member of team.members) {
         if (member.isAdmin) {
           return false;
