@@ -20,7 +20,7 @@ header, .header {
     object-fit: contain;
     object-position: center;
     transform: translate(-50%, -100%);
-    z-index: 5;
+    z-index: 1;
 }
 
 .page-hero__content {
