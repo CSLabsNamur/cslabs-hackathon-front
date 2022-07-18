@@ -51,6 +51,8 @@ header, .header {
     opacity: 0.8;
 
     transition: 0.2s;
+
+    cursor: pointer;
 }
 
 .page-hero__arrow:hover {
