@@ -6,7 +6,7 @@
     object-fit: cover;
     object-position: center;
 
-    background-color: #fff2c9;
+    background-color: var(--primary-bg-color);
     border-radius: 50%;
     box-shadow: rgba(149, 157, 165, 0.2) 0 .8rem 2.4rem;
 

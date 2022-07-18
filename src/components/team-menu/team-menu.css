@@ -1,5 +1,5 @@
 .team-menu {
-    border-bottom: .1rem solid #f5cb98;
+    border-bottom: .1rem solid var(--primary-accent-color);
 }
 
 .team-menu__elements {

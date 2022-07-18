@@ -6,7 +6,7 @@
 }
 
 .info-item:not(:last-child) {
-    border-bottom: 0.5rem solid #f5cb98;
+    border-bottom: 0.5rem solid var(--primary-accent-color);
 }
 
 .info-item__content {

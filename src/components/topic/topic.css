@@ -6,11 +6,11 @@
 }
 
 .topic-area.left {
-    background-color: #f5cb98;
+    background-color: var(--primary-accent-color);
 }
 
 .topic-area.right {
-    background-color: #fff2c9;
+    background-color: var(--primary-bg-color);
 }
 
 .topic-area__info {

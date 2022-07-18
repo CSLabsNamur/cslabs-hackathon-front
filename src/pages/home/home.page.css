@@ -1,5 +1,5 @@
 
 #home-page {
-    background-color: #f5cb98;
+    background-color: var(--primary-accent-color);
     padding-bottom: 10rem;
 }
