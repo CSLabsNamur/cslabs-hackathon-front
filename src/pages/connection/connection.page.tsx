@@ -92,7 +92,7 @@ export class ConnectionPage extends React.Component<{
           </div>
 
           <div className="tx-centered">
-            <input className="button-primary button-round" type="submit" value="Se connecter"/>
+            <input className="button-primary button-round" id="input-button" type="submit" value="Se connecter"/>
           </div>
 
         </form>
