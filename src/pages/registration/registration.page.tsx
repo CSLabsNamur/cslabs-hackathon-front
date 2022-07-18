@@ -307,7 +307,7 @@ export class RegistrationPage extends React.Component<{}, {
               <textarea name="form-comment" id="form-comment"
                         className={this.getInputClassname(RegistrationField.NOTE)}
                         maxLength={2048}
-                        placeholder="Mes allergies, difficultés particulières, ..."
+                        placeholder="Vos allergies, difficultés particulières, ..."
                         value={this.state.form.note}
                         onChange={this.onTextChange(RegistrationField.NOTE)}
               />
@@ -316,7 +316,7 @@ export class RegistrationPage extends React.Component<{}, {
 
             <div className="form-control">
               <label htmlFor="form-cv">
-                Mon CV (pdf, max 5Mo) (optionnel)
+                Votre CV (pdf, max 5Mo) (optionnel)
               </label>
               <div>
                 <input type="file"

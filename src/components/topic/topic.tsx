@@ -36,7 +36,7 @@ export class Topic extends React.PureComponent<{
               <div className="tx-centered">
                 <a className="topic-area__info__link button button-primary"
                    href={this.props.link}>
-                  Site officiel.
+                  Site officiel
                 </a>
               </div>
               : null
