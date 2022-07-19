@@ -41,8 +41,8 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Inscription" icon="/infos/info.svg">
-          <p>Équipe: 5 membres maximum</p>
-          <p>Prix: <b>Gratuit</b></p>
+          <p>Équipe: <b>5 membres maximum</b></p>
+          <p>Prix d'entrée: <b>Gratuit</b></p>
           <p>Caution: <b>20 €</b></p>
           <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
