@@ -1,4 +1,8 @@
 
+.form-container {
+    margin-top: 3rem;
+}
+
 .connection__extra-buttons {
     display: flex;
     justify-content: center;
