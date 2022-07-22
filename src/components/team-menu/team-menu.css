@@ -1,5 +1,6 @@
 .team-menu {
     border-bottom: .1rem solid var(--primary-accent-color);
+    padding-top: .5rem;
 }
 
 .team-menu__elements {
