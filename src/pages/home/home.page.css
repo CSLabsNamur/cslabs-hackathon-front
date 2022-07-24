@@ -4,10 +4,10 @@
     padding-bottom: 10rem;
 }
 
-.on-green {
-    color: #424242;
-}
-
 .topic-link {
     font-weight: 400;
+}
+
+.on-green {
+    color: #424242;
 }
