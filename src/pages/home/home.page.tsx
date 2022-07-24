@@ -79,7 +79,7 @@ export class HomePage extends React.PureComponent {
             Trouvez des solutions innovantes face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
           </p>
-          <p>Retrouvez <a href="#main-thematic">la thématique</a> plus en détail !</p>
+          <p>Retrouvez <a href="#main-thematic" className="topic-link on-green">la thématique</a> plus en détail !</p>
         </Topic>
 
         <Topic img={this.images[4]} direction="right">
@@ -108,7 +108,7 @@ export class HomePage extends React.PureComponent {
           <p>
             Cette édition est celle de la réalisation !
             La concrétisation de vos projets nous importe dans la mesure où
-            il est envisageable <Link to="/plus-loin">d'aller plus loin</Link> et donc d'apporter votre contribution à l'amélioration du Bien Vieillir !
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link> et donc d'apporter votre contribution à l'amélioration du Bien Vieillir !
           </p>
         </Topic>
 
@@ -118,7 +118,7 @@ export class HomePage extends React.PureComponent {
           </h2>
           <p>
             Un Hackathon est un moment de courte durée où des équipes
-            réfléchissent à une <a href="#main-thematic">thématique particulière</a>. Ils tentent d'y
+            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Ils tentent d'y
             apporter des solutions en développant des projets innovants.
             À la fin de l'évènement, un jury détermine quels sont les projets
             qui ont retenu leur attention et qui ont donc gagné la compétition.

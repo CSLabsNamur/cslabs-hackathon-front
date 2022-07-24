@@ -3,3 +3,11 @@
     background-color: var(--primary-accent-color);
     padding-bottom: 10rem;
 }
+
+.on-green {
+    color: #424242;
+}
+
+.topic-link {
+    font-weight: 400;
+}
