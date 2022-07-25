@@ -5,6 +5,8 @@ import ReactModal from "react-modal";
 import {UserService} from "../../services/user.service";
 import {Redirect} from "react-router-dom";
 
+import './password-reset.page.css';
+
 enum PasswordResetField {
   PASSWORD = 'password',
   PASSWORD_CONFIRM = 'passwordConfirm',
