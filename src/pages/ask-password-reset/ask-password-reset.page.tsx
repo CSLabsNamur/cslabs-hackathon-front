@@ -3,6 +3,8 @@ import ReactModal from "react-modal";
 import {UserService} from "../../services/user.service";
 import {Redirect} from "react-router-dom";
 
+import './ask-password-reset.page.css';
+
 export class AskPasswordResetPage extends React.Component<{}, {
   emailInput: string,
   emailSent: boolean,
@@ -96,7 +98,7 @@ export class AskPasswordResetPage extends React.Component<{}, {
           </div>
 
           <div className="form-control">
-            <button type="submit" className="button-primary button-large">
+            <button type="submit" className="button-primary button-large" id="button-send">
               Envoyer
             </button>
           </div>
