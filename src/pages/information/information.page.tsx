@@ -2,7 +2,6 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
-import {CovidAlert} from "../../components/covid-alert/covid-alert";
 
 export class InformationPage extends React.PureComponent {
 
@@ -23,7 +22,6 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
           <p>Le week-end du <b>18 au 20 février 2022</b>.</p>
-          <CovidAlert />
         </InfoItem>
 
         <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">
