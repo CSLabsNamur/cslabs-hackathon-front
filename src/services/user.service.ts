@@ -14,14 +14,14 @@ export class UserService {
     return UserService.user;
   }
 
-  static async registerAndLogin({email, password, firstName, lastName, github, linkedIn, note}: {
+  static async registerAndLogin({email, password, firstName, lastName, github, linkedIn, note, imageAgreement}: {
     email: string, password: string,
     firstName: string, lastName: string,
     github?: string, linkedIn?: string,
-    note?: string
+    note?: string, imageAgreement: boolean
   }) {
     await HttpService.send(HttpMethods.POST, 'authentication/register', {
-      email, password, firstName, lastName,
+      email, password, firstName, lastName, imageAgreement,
       github: github !== "" ? github : null,
       linkedIn: linkedIn !== "" ? linkedIn : null,
       comment: note !== "" ? note : null,

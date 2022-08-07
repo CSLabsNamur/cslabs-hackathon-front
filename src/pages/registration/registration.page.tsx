@@ -19,7 +19,8 @@ enum RegistrationField {
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
-  CV_FILE = 'cv_file'
+  CV_FILE = 'cv_file',
+  IMAGE_AGREEMENT = 'imageAgreement'
 }
 
 export class RegistrationPage extends React.Component<{}, {
@@ -34,6 +35,7 @@ export class RegistrationPage extends React.Component<{}, {
     note?: string,
     rulesAgreement: boolean,
     conditionsAgreement: boolean,
+    imageAgreement: boolean,
   },
   validationErrors: { [key: string]: string },
   redirect?: string,
@@ -58,6 +60,7 @@ export class RegistrationPage extends React.Component<{}, {
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
+        imageAgreement: false
       },
       validationErrors: {},
       modal: {},
@@ -271,6 +274,18 @@ export class RegistrationPage extends React.Component<{}, {
             {this.renderValidationError(RegistrationField.LAST_NAME)}
           </div>
 
+          <div className="form-control">
+            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
+                   value="image-agreement"
+                   checked={this.state.form.imageAgreement}
+                   onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
+            />
+            <label htmlFor="form-accept-conditions">
+              Consentez-vous à l'utilisation de votre image au sein de l'événement ? (optionnel)
+            </label>
+            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
+          </div>
+
           <fieldset>
             <legend>Informations complémentaires</legend>
 
@@ -357,6 +372,8 @@ export class RegistrationPage extends React.Component<{}, {
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
+
+
 
           <CovidAlert />
 
