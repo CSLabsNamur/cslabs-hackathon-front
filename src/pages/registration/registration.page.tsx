@@ -18,7 +18,8 @@ enum RegistrationField {
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
-  CV_FILE = 'cv_file'
+  CV_FILE = 'cv_file',
+  SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
 export class RegistrationPage extends React.Component<{}, {
@@ -33,6 +34,7 @@ export class RegistrationPage extends React.Component<{}, {
     note?: string,
     rulesAgreement: boolean,
     conditionsAgreement: boolean,
+    subscribeFormation: boolean,
   },
   validationErrors: { [key: string]: string },
   redirect?: string,
@@ -57,6 +59,7 @@ export class RegistrationPage extends React.Component<{}, {
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
+        subscribeFormation: false,
       },
       validationErrors: {},
       modal: {},
@@ -354,6 +357,18 @@ export class RegistrationPage extends React.Component<{}, {
               rel="noopener noreferrer" target="_blank">termes et conditions</a>.
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
+          </div>
+
+          <div className="form-control">
+            <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
+                   value="subscribe-formation"
+                   checked={this.state.form.subscribeFormation}
+                   onChange={this.onCheckboxChange(RegistrationField.SUBSCRIBE_FORMATION)}
+            />
+            <label htmlFor="form-subscribe-formation">
+              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+            </label>
+            {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
           </div>
 
           <div className="form-control align-center">
