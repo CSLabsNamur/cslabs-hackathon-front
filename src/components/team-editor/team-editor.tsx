@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import './team-editor.css';
 import {TeamMembersList} from "../team-members-list/team-members-list";
 import {User} from "../../domain/user";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {TeamEditorValidation} from "./team-editor.validation";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
@@ -471,7 +471,7 @@ export class TeamEditor extends React.Component<{
   render() {
 
     if (this.state.redirect) {
-      return (<Redirect to={this.state.redirect} />)
+      return (<Navigate to={this.state.redirect} />)
     }
 
     return (

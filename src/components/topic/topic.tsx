@@ -6,6 +6,7 @@ export class Topic extends React.PureComponent<{
   link?: string,
   direction: 'left' | 'right',
   img: {src: string, alt: string},
+  children: React.ReactNode,
 }> {
 
   render() {

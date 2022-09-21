@@ -1,24 +1,21 @@
 import React, {FormEvent} from "react";
-import {Link, Redirect} from "react-router-dom";
-import * as history from 'history';
+import {Link} from "react-router-dom";
 import {UserService} from "../../services/user.service";
+import {withRouter, WithRouterProps} from "../../utils/with-router";
 
-import './connection.page.css';
+import './login.page.css';
 
 enum LoginField {
   EMAIL = 'email',
   PASSWORD = 'password',
 }
 
-export class ConnectionPage extends React.Component<{
-  history: history.History,
-}, {
+class LoginPage extends React.Component<WithRouterProps<{}>, {
   form: {
     email: string,
     password: string,
   },
   authFailed: boolean,
-  redirect?: string,
 }> {
 
   constructor(props: any) {
@@ -39,12 +36,7 @@ export class ConnectionPage extends React.Component<{
     event.preventDefault();
     const {email, password} = this.state.form;
     UserService.loginWithCredentials(email, password).then(() => {
-      let redirection = UserService.redirect;
-      if (!redirection) {
-        redirection = '/team';
-      }
-      this.setState({...this.state, authFailed: false, redirect: redirection});
-      UserService.redirect = undefined;
+        this.props.navigate(-1);
     }).catch((error) => {
       if (error.response?.status === 400) {
         this.setState({...this.state, authFailed: true});
@@ -61,10 +53,6 @@ export class ConnectionPage extends React.Component<{
   }
 
   render() {
-    if (this.state.redirect) {
-      return (<Redirect to={this.state.redirect} />)
-    }
-
     const invalid = this.state.authFailed;
 
     return (
@@ -123,3 +111,5 @@ export class ConnectionPage extends React.Component<{
   }
 
 }
+
+export default withRouter(LoginPage);

@@ -5,8 +5,9 @@ import "./page-hero.css";
 export class PageHero extends React.PureComponent<{
   title: string,
   subtitle: string,
-  disclaimer?: React.ReactChild,
+  disclaimer?: React.ReactElement,
   hasArrow?: boolean,
+  children: React.ReactNode,
 }> {
 
   render() {

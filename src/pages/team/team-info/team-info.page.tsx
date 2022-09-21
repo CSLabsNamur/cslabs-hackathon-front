@@ -5,10 +5,9 @@ import {User} from "../../../domain/user";
 import {TeamsService} from "../../../services/teams.service";
 
 import './team-info.page.css';
+import {withRouter, WithRouterProps} from "../../../utils/with-router";
 
-export class TeamInfoPage extends React.Component<{
-  match: any,
-}, {
+class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
   team?: Team,
 }> {
 
@@ -44,8 +43,13 @@ export class TeamInfoPage extends React.Component<{
   }
 
   componentDidMount() {
-    const teamId: string = this.props.match.params.teamId;
-    TeamsService.get(teamId).then((team) => {
+    const team_id = this.props.params['id'];
+
+    if (!team_id) {
+      throw Error('Missing team id.');
+    }
+
+    TeamsService.get(team_id).then((team) => {
       this.setState({ team });
     });
   }
@@ -98,3 +102,5 @@ export class TeamInfoPage extends React.Component<{
   }
 
 }
+
+export default withRouter(TeamInfoPage)
