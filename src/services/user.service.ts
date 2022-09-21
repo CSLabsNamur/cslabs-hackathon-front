@@ -6,8 +6,6 @@ import {Team} from "../domain/team";
 
 export class UserService {
   private static user = new ReplaySubject<User | null>(1);
-
-  static redirect?: string;
   static lastUserValue: User | null = null;
 
   static getUserSubject() {

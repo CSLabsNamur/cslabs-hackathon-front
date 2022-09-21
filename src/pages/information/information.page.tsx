@@ -2,7 +2,6 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
-import {CovidAlert} from "../../components/covid-alert/covid-alert";
 
 export class InformationPage extends React.PureComponent {
 
@@ -22,15 +21,14 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
-          <p>Le week-end du <b>18 au 20 février 2022</b>.</p>
-          <CovidAlert />
+          <p>Le week-end du <b>17 au 19 février 2023</b>.</p>
         </InfoItem>
 
         <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">
           <p>
             Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/">Page Facebook</a>
           </p>
-          <p>Mail: <strong>events[@]cslabs.be</strong></p>
+          <p>Mail: <a href="mailto:events@cslabs.be" ><strong>events[@]cslabs.be</strong></a></p>
           <p>Serveur Discord: <a href="https://discord.gg/Jf2Dht8">https://discord.gg/Jf2Dht8</a></p>
         </InfoItem>
 
