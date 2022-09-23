@@ -1,5 +1,5 @@
 import React, {FormEvent, Fragment} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import './registration.page.css';
 import {RegistrationValidation} from './registration.validation';
@@ -17,11 +17,13 @@ enum RegistrationField {
   LAST_NAME = "lastName",
   GITHUB = "github",
   LINKEDIN = "linkedIn",
+  ORIGIN = "origin",
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
   CV_FILE = 'cv_file',
-  IMAGE_AGREEMENT = 'imageAgreement'
+  IMAGE_AGREEMENT = 'imageAgreement',
+  SUBSCRIBE_FORMATION='subscribeFormation',
 }
 
 class RegistrationPage extends React.Component<WithRouterProps<{}>, {
@@ -33,11 +35,12 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     lastName: string,
     github?: string,
     linkedIn: string,
+    origin?: string,
     note?: string,
     rulesAgreement: boolean,
     conditionsAgreement: boolean,
-    subscribeFormation: boolean,
     imageAgreement: boolean,
+    subscribeFormation: boolean,
   },
   validationErrors: { [key: string]: string },
   modal: {
@@ -58,11 +61,12 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
         lastName: "",
         github: "",
         linkedIn: "",
+        origin: "",
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
+        imageAgreement: false,
         subscribeFormation: false,
-        imageAgreement: false
       },
       validationErrors: {},
       modal: {},
@@ -280,7 +284,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                    checked={this.state.form.imageAgreement}
                    onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
             />
-            <label htmlFor="form-accept-conditions">
+            <label htmlFor="form-image-agreement">
               Consentez-vous à l'utilisation de votre image au sein de l'événement ? (optionnel)
             </label>
             {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
@@ -313,6 +317,29 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                      onChange={this.onTextChange(RegistrationField.LINKEDIN)}
               />
               {this.renderValidationError(RegistrationField.LINKEDIN)}
+            </div>
+
+            <div className="form-control">
+              <label htmlFor="form-origin">
+                D'où venez-vous ? (optionnel)
+              </label>
+              <input type="text" list="form-origin-list"
+                     id="form-origin" name="form-origin"
+                     placeholder="UNamur..."
+                     className={this.getInputClassname(RegistrationField.ORIGIN)}
+                     value={this.state.form.origin}
+                     onChange={this.onTextChange(RegistrationField.ORIGIN)}
+              />
+              <datalist id="form-origin-list">
+                <option value="UNamur"/>
+                <option value="ULg"/>
+                <option value="UCL"/>
+                <option value="KULeuven"/>
+                <option value="IESN"/>
+                <option value="HEC"/>
+                <option value="Odoo"/>
+              </datalist>
+              {this.renderValidationError(RegistrationField.ORIGIN)}
             </div>
 
             <div className="form-control">
