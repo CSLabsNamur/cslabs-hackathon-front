@@ -66,7 +66,7 @@ class App extends React.Component<any, any> {
               <Route path="/team/*" element={<TeamPage />}/>
             </Route>
             <Route element={<AuthenticatedRoutes admin={true}/>}>
-              <Route path="/admin/*" element={<TeamPage />}/>
+              <Route path="/admin/*" element={<AdminPage />}/>
             </Route>
             {/*<AuthenticatedRoute admin={false} path={'/team/*'} element={<TeamPage/>}/>*/}
             {/*<AuthenticatedRoute admin={true} path={'/admin/*'} element={<AdminPage/>}/>*/}
