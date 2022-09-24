@@ -321,8 +321,6 @@ export class TeamEditor extends React.Component<{
                          onInvitationAdded={(email) => this.addInvitation(email)}
         />
 
-        <CovidAlert />
-
         {this.props.newTeam && !disabled ? (
           <Fragment>
             <div className="form-control">

@@ -413,9 +413,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
           </div>
 
-
-          <CovidAlert />
-
           <div className="form-control align-center">
             <button type="submit" className="button-primary button-large" id="form-inscription-submit">
               M'inscrire
