@@ -13,23 +13,23 @@ export class HomePage extends React.PureComponent {
   private images = [
     {
       src: process.env.PUBLIC_URL + "/images/cslabs_junior.jpg",
-      alt: "CSLabs Junior Entreprise"
+      alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/old_hands.jpg",
-      alt: "Thème du Hackathon CSLabs"
+      src: process.env.PUBLIC_URL + "/images/tampon-en-attente.jpg",
+      alt: "Thème du Hackathon CSLabs",
     },
     {
       src: process.env.PUBLIC_URL + "/images/edition.jpg",
-      alt: "Troisième Édition CSLabs"
+      alt: "Troisième Édition CSLabs",
     },
     {
       src: process.env.PUBLIC_URL + "/images/hackathon_irl.jpg",
-      alt: "Hackathon Compétition"
+      alt: "Hackathon Compétition",
     },
     {
       src: process.env.PUBLIC_URL + "/images/prix.png",
-      alt: "Récompense"
+      alt: "Récompense",
     }
   ];
 
@@ -38,13 +38,13 @@ export class HomePage extends React.PureComponent {
       <div id="home-page">
 
         <PageHero
-          title="Le bien vieillir"
+          title="Le Handicap"
           hasArrow={true}
-          subtitle="Repenser la technologie pour tous"
+          subtitle="Adapté le monde pour tous"
           disclaimer={
             <div>
-              <p><strong>Du 18 au 20 février à l'UNamur</strong></p>
-              <p>Le Hackathon CSLabs 2021 est organisé dans le cadre du 50e anniversaire de la Faculté d'Informatique</p>
+              <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
+              <p>Le Hackathon CSLabs 2023 est organisé dans le cadre du <strong>5e anniversaire de l'A.S.B.L. CSLabs</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/logo_facinfo.png" />
@@ -66,14 +66,15 @@ export class HomePage extends React.PureComponent {
             participer à des projets, des formations et des activités dans le
             domaine technologique et informatique.
           </p>
+          <p>
+          <strong>Notre mission: </strong>"Offrir l'opportunité au étudiant d'entreprendre dans le dommaine de l'informatique"
+          </p>
         </Topic>
 
         <Topic img={this.images[1]} direction='left'>
           <h2>Le thème</h2>
           <p>
-            Nos ainés sont quotidiennement confrontés à la technologie qui
-            évolue à une vitesse prodigieuse. Comment peuvent-ils
-            l'appréhender ? La comprendre ? L'utiliser ?
+            Avoir un handicap c'est une chose, être exclus de la société par oublis des majoritées en est une autre.
           </p>
           <p>
             Trouvez des solutions innovantes face à des problèmes réels.
@@ -100,9 +101,9 @@ export class HomePage extends React.PureComponent {
         </Topic>
 
         <Topic img={this.images[2]} direction="left">
-          <h2>Troisième édition</h2>
+          <h2>Quatrième édition</h2>
           <p>
-            Nous en sommes à notre troisième édition du Hackathon CSLabs !
+            Nous en sommes à notre quatrième édition du Hackathon CSLabs !
             Nous avons hâte de poursuivre l'aventure avec vous !
           </p>
           <p>
