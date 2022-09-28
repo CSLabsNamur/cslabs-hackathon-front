@@ -64,7 +64,4 @@ export class RegistrationValidation {
   @IsBoolean()
   @IsTrue({message: "Il est nécessaire d'accepter le règlement pour s'inscrire."})
   conditionsAgreement: boolean;
-
-  @IsBoolean()
-  subscribeFormation: boolean;
 }

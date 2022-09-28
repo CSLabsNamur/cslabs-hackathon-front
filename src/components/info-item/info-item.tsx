@@ -5,7 +5,6 @@ import './info-item.css';
 export class InfoItem extends React.PureComponent<{
   title: string,
   icon: string,
-  children: React.ReactNode,
 }> {
 
   render() {

@@ -5,7 +5,6 @@ import {Topic} from '../../components/topic/topic';
 import './sponsors.page.css';
 import {SponsorLogo} from '../../components/sponsor-logo/sponsor-logo';
 
-// noinspection HtmlUnknownAnchorTarget
 export class SponsorsPage extends React.PureComponent {
   render() {
     return (

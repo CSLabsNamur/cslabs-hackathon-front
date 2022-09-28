@@ -1,8 +1,8 @@
 import React from "react";
-import {Navigate} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {UserService} from "../../services/user.service";
 
-export class LogoutPage extends React.PureComponent {
+export class DisconnectionPage extends React.PureComponent {
 
   componentDidMount() {
     UserService.disconnect().then(() => {
@@ -14,7 +14,7 @@ export class LogoutPage extends React.PureComponent {
 
   render() {
     return (
-      <Navigate to="/" replace={true} />
+      <Redirect to="/" />
     );
   }
 

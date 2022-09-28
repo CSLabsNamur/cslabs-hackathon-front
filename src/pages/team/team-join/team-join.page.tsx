@@ -1,9 +1,10 @@
 import React, {FormEvent} from "react";
-import {Link, Navigate} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {TeamsService} from "../../../services/teams.service";
-import {withRouter, WithRouterProps} from "../../../utils/with-router";
 
-class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
+export class TeamJoinPage extends React.Component<{
+  match: any,
+}, {
   token: string,
   rulesAgreement: boolean,
   redirect?: string,
@@ -23,7 +24,7 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   }
 
   componentDidMount() {
-    const token = this.props.params['token'];
+    const token = this.props.match.params.token;
     if (token) {
       this.setState({ ...this.state, token });
     }
@@ -62,7 +63,7 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   render() {
 
     if (this.state.redirect) {
-      return (<Navigate to={this.state.redirect} />)
+      return (<Redirect to={this.state.redirect} />)
     }
 
     return (
@@ -117,5 +118,3 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   }
 
 }
-
-export default withRouter(TeamJoinPage);

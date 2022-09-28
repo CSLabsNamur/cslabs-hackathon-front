@@ -1,0 +1,43 @@
+
+#main-carousel {
+    margin: auto;
+    max-width: 82rem;
+}
+
+.main-carousel__img {
+    max-width: 72.8rem;
+    max-height: 50rem;
+    object-fit: contain;
+    object-position: center;
+    user-select: none;
+    pointer-events: none;
+}
+
+.main-carousel__arrow {
+    display: block;
+    width: 6rem;
+    height: 6rem;
+    margin: .5rem;
+
+    background-color: var(--primary-bg-color);
+    text-align: center;
+    border-radius: 1rem;
+
+    font-size: 3rem;
+    line-height: 6rem;
+    color: #888;
+
+    user-select: none;
+
+    transition: transform .2s;
+}
+
+.main-carousel__arrow:hover {
+    filter: brightness(95%);
+    transform: scale(1.05);
+    transition: transform .1s;
+}
+
+.main-carousel__arrow:active {
+    transform: scale(.95);
+}

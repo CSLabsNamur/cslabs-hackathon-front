@@ -3,9 +3,8 @@ import {FormValidationService} from "../../services/form-validation.service";
 import {PasswordResetValidation} from "./password-reset.validation";
 import ReactModal from "react-modal";
 import {UserService} from "../../services/user.service";
-import {Navigate} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
-import {WithRouterProps, withRouter} from '../../utils/with-router'
 import './password-reset.page.css';
 
 enum PasswordResetField {
@@ -13,7 +12,9 @@ enum PasswordResetField {
   PASSWORD_CONFIRM = 'passwordConfirm',
 }
 
-class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
+export class PasswordResetPage extends React.Component<{
+  match: any,
+}, {
   form: {
     password: string,
     passwordConfirm: string,
@@ -40,7 +41,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
         failure: false,
       },
       validationErrors: {},
-      token: this.props.params['token'] ?? "",
+      token: this.props.match.params.token,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -176,7 +177,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to={this.state.redirect}/>
+      return <Redirect to={this.state.redirect}/>
     }
 
     return (
@@ -227,5 +228,3 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
   }
 
 }
-
-export default withRouter<{}>(PasswordResetPage);

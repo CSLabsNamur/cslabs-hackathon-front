@@ -3,7 +3,7 @@ import {TeamJoin} from '../../../components/team-join/team-join';
 import {TeamEditor} from '../../../components/team-editor/team-editor';
 import {UserContext} from "../../../contexts/user.context";
 import {User} from "../../../domain/user";
-import {Navigate} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 enum EditionMode {
   LOADING,
@@ -54,7 +54,7 @@ export class TeamEditPage extends React.Component<{}, {
   render() {
 
     if (this.state.redirect) {
-      return (<Navigate to={this.state.redirect} />);
+      return (<Redirect to={this.state.redirect} />);
     }
 
     return (

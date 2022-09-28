@@ -1,18 +1,16 @@
 import React from "react";
-import {Navigate, Outlet} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import {UserService} from "../../services/user.service";
 import {Subscription} from "rxjs";
 
 enum Authentication {
   LOADING,
   SUCCESS,
-  NEED_LOGIN,
+  REDIRECT,
   REFUSED,
 }
 
-export class AuthenticatedRoutes extends React.Component<{
-  admin: boolean,
-}, {
+export class AuthenticatedRoute extends React.Component<any, {
   authenticated: Authentication,
   subscription?: Subscription,
 }> {
@@ -30,18 +28,17 @@ export class AuthenticatedRoutes extends React.Component<{
     }
     const subject = UserService.getUserSubject()
     const subscription = subject.subscribe((user) => {
+      let authState = Authentication.REDIRECT;
 
-      if (!user) {
-        this.setState({ authenticated: Authentication.NEED_LOGIN});
-        return;
+      if (this.props.admin && user?.isAdmin) {
+        authState = Authentication.SUCCESS;
+      } else if(this.props.admin) {
+        authState = Authentication.REFUSED;
+      } else if (!this.props.admin && user) {
+        authState = Authentication.SUCCESS;
       }
 
-      if (this.props.admin && !user.isAdmin) {
-        this.setState({ authenticated: Authentication.REFUSED});
-        return;
-      }
-
-      this.setState({ authenticated: Authentication.SUCCESS});
+      this.setState({ authenticated: authState});
     });
     this.setState({ subscription });
   }
@@ -53,14 +50,14 @@ export class AuthenticatedRoutes extends React.Component<{
   }
 
   render() {
-    if (this.state.authenticated === Authentication.SUCCESS) {
-      return <Outlet/>;
-    } else if (this.state.authenticated === Authentication.NEED_LOGIN) {
-      return <Navigate to="/connexion"/>;
+    if (this.state.authenticated === Authentication.REDIRECT) {
+      UserService.redirect = this.props.location.pathname;
+      return <Redirect to={'/connexion'} />
+    } else if (this.state.authenticated === Authentication.SUCCESS) {
+      return (<Route {...this.props} />);
     } else if (this.state.authenticated === Authentication.REFUSED) {
-      return <Navigate to="/not-found" replace={true}/>;
+      return <Redirect to={'/not-found'} />;
     }
-
     return null;
   }
 

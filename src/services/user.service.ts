@@ -6,21 +6,22 @@ import {Team} from "../domain/team";
 
 export class UserService {
   private static user = new ReplaySubject<User | null>(1);
+
+  static redirect?: string;
   static lastUserValue: User | null = null;
 
   static getUserSubject() {
     return UserService.user;
   }
 
-  static async registerAndLogin({email, password, firstName, lastName, github, linkedIn, note, imageAgreement, subscribeFormation}: {
+  static async registerAndLogin({email, password, firstName, lastName, github, linkedIn, note}: {
     email: string, password: string,
     firstName: string, lastName: string,
     github?: string, linkedIn?: string,
-    note?: string, imageAgreement: boolean,
-    subscribeFormation: boolean,
+    note?: string
   }) {
     await HttpService.send(HttpMethods.POST, 'authentication/register', {
-      email, password, firstName, lastName, imageAgreement, subscribeFormation,
+      email, password, firstName, lastName,
       github: github !== "" ? github : null,
       linkedIn: linkedIn !== "" ? linkedIn : null,
       comment: note !== "" ? note : null,
