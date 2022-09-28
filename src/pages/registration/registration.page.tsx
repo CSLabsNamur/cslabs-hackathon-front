@@ -1,5 +1,5 @@
 import React, {FormEvent, Fragment} from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import './registration.page.css';
 import {RegistrationValidation} from './registration.validation';
@@ -7,6 +7,7 @@ import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {CovidAlert} from "../../components/covid-alert/covid-alert";
+import {withRouter, WithRouterProps} from "../../utils/with-router";
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -16,13 +17,16 @@ enum RegistrationField {
   LAST_NAME = "lastName",
   GITHUB = "github",
   LINKEDIN = "linkedIn",
+  ORIGIN = "origin",
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
-  CV_FILE = 'cv_file'
+  CV_FILE = 'cv_file',
+  IMAGE_AGREEMENT = 'imageAgreement',
+  SUBSCRIBE_FORMATION='subscribeFormation',
 }
 
-export class RegistrationPage extends React.Component<{}, {
+class RegistrationPage extends React.Component<WithRouterProps<{}>, {
   form: {
     email: string,
     password: string,
@@ -31,12 +35,14 @@ export class RegistrationPage extends React.Component<{}, {
     lastName: string,
     github?: string,
     linkedIn: string,
+    origin?: string,
     note?: string,
     rulesAgreement: boolean,
     conditionsAgreement: boolean,
+    imageAgreement: boolean,
+    subscribeFormation: boolean,
   },
   validationErrors: { [key: string]: string },
-  redirect?: string,
   modal: {
     error?: string,
   },
@@ -55,9 +61,12 @@ export class RegistrationPage extends React.Component<{}, {
         lastName: "",
         github: "",
         linkedIn: "",
+        origin: "",
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
+        imageAgreement: false,
+        subscribeFormation: false,
       },
       validationErrors: {},
       modal: {},
@@ -127,10 +136,11 @@ export class RegistrationPage extends React.Component<{}, {
         if (validated) {
           UserService.registerAndLogin(this.state.form).then(() => {
             console.log('Successfully registered and logged in.');
-            let redirection = UserService.redirect;
-            if (!redirection) {
-              redirection = '/team';
-            }
+            this.props.navigate(-1);
+            // let redirection = UserService.redirect;
+            // if (!redirection) { TODO FIX
+            //   redirection = '/team';
+            // }
 
             if (this.cvInput.current!.files!.length > 0) {
               UserService.uploadCv(this.cvInput.current!.files![0]).then(() => {
@@ -139,9 +149,6 @@ export class RegistrationPage extends React.Component<{}, {
                 return this.showErrorModal("Votre CV n'a pas pu être envoyé.");
               });
             }
-
-            this.setState({...this.state, redirect: redirection})
-            UserService.redirect = undefined;
           }).catch(error => {
             const message = error.response?.data?.message;
 
@@ -271,6 +278,18 @@ export class RegistrationPage extends React.Component<{}, {
             {this.renderValidationError(RegistrationField.LAST_NAME)}
           </div>
 
+          <div className="form-control">
+            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
+                   value="image-agreement"
+                   checked={this.state.form.imageAgreement}
+                   onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
+            />
+            <label htmlFor="form-image-agreement">
+              Consentez-vous à l'utilisation de votre image au sein de l'événement ? (optionnel)
+            </label>
+            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
+          </div>
+
           <fieldset>
             <legend>Informations complémentaires</legend>
 
@@ -298,6 +317,29 @@ export class RegistrationPage extends React.Component<{}, {
                      onChange={this.onTextChange(RegistrationField.LINKEDIN)}
               />
               {this.renderValidationError(RegistrationField.LINKEDIN)}
+            </div>
+
+            <div className="form-control">
+              <label htmlFor="form-origin">
+                D'où venez-vous ? (optionnel)
+              </label>
+              <input type="text" list="form-origin-list"
+                     id="form-origin" name="form-origin"
+                     placeholder="UNamur..."
+                     className={this.getInputClassname(RegistrationField.ORIGIN)}
+                     value={this.state.form.origin}
+                     onChange={this.onTextChange(RegistrationField.ORIGIN)}
+              />
+              <datalist id="form-origin-list">
+                <option value="UNamur"/>
+                <option value="ULg"/>
+                <option value="UCL"/>
+                <option value="KULeuven"/>
+                <option value="IESN"/>
+                <option value="HEC"/>
+                <option value="Odoo"/>
+              </datalist>
+              {this.renderValidationError(RegistrationField.ORIGIN)}
             </div>
 
             <div className="form-control">
@@ -352,13 +394,24 @@ export class RegistrationPage extends React.Component<{}, {
             <label htmlFor="form-accept-conditions">
               J'ai lu et accepté les <a
               href={"/documents/termes_et_conditions.pdf"}
-              rel="noopener noreferrer" target="_blank">termes et conditions</a> et ai pris
-              connaissance des mesures sanitaires mises en places.
+              rel="noopener noreferrer" target="_blank">termes et conditions</a>.
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
 
-          <CovidAlert />
+
+
+          <div className="form-control">
+            <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
+                   value="subscribe-formation"
+                   checked={this.state.form.subscribeFormation}
+                   onChange={this.onCheckboxChange(RegistrationField.SUBSCRIBE_FORMATION)}
+            />
+            <label htmlFor="form-subscribe-formation">
+              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+            </label>
+            {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
+          </div>
 
           <div className="form-control align-center">
             <button type="submit" className="button-primary button-large" id="form-inscription-submit">
@@ -377,10 +430,11 @@ export class RegistrationPage extends React.Component<{}, {
 
     return (
       <Fragment>
-        {this.state.redirect ? <Redirect to={this.state.redirect}/> : null}
         {this.renderForm()}
       </Fragment>
     );
   }
 
 }
+
+export default withRouter(RegistrationPage);
