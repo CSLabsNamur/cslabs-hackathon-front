@@ -47,7 +47,7 @@ export class HomePage extends React.PureComponent {
               <p>Le Hackathon CSLabs 2021 est organisé dans le cadre du 50e anniversaire de la Faculté d'Informatique</p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
-                                uri="/sponsors/logo_facinfo.png" />
+                                uri="/sponsors/unamur.png" />
               </Link>
               <a href="https://www.cslabs.be/">
                   <SponsorLogo  title="CSLabs"
