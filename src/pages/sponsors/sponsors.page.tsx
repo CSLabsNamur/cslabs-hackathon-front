@@ -110,7 +110,6 @@ export class SponsorsPage extends React.PureComponent {
                link=""
                direction="right">
           <h2 id="arhs">Arhs</h2>
-
         </Topic>
 
 
