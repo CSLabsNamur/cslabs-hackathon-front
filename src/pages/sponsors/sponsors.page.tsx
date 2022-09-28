@@ -28,7 +28,7 @@ export class SponsorsPage extends React.PureComponent {
               <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
             </a>
             <a href="#linkube">
-              <SponsorLogo title="LinKube" uri="/images/logo/linkube.png" />
+              <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
             </a>
             <a href="#digital-wallonia">
               <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
@@ -119,7 +119,7 @@ export class SponsorsPage extends React.PureComponent {
         }}
                link=""
                direction="left">
-          <h2 id="trakk">
+          <h2 id="bep">
             Trakk et BEP
           </h2>
           <p>Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
