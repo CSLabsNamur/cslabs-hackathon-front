@@ -1,7 +1,7 @@
 import React, {FormEvent} from "react";
 import ReactModal from "react-modal";
 import {UserService} from "../../services/user.service";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 import './ask-password-reset.page.css';
 
@@ -65,9 +65,8 @@ export class AskPasswordResetPage extends React.Component<{}, {
   }
 
   render() {
-
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect}/>
+      return <Navigate to={this.state.redirect}/>
     }
 
     return (

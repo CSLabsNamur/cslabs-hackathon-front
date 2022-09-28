@@ -9,8 +9,6 @@ export class TeamWelcomePage extends React.PureComponent {
     return (
       <div id="team-welcome-page">
 
-        <CovidAlert />
-
         <h2>Confirmer ma participation</h2>
         <p>Merci pour votre inscription !</p>
         <p>Afin de participer au hackathon, procédez comme indiqué :</p>
