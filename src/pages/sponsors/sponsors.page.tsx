@@ -159,7 +159,6 @@ export class SponsorsPage extends React.PureComponent {
           <p>N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)</p>
           <p>Déjà quelques informations sur notre site</p>  
           <p>Alors… Partant.e.s ?</p>
-
         </Topic>
 
 
@@ -191,7 +190,6 @@ export class SponsorsPage extends React.PureComponent {
             <li>Administration numérique</li>
             <li>Territoire numérique</li>
           </ol>
-
         </Topic>
 
 
