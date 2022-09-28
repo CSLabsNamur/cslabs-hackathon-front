@@ -49,10 +49,10 @@ export class HomePage extends React.PureComponent {
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/logo_facinfo.png" />
               </Link>
-              <Link to="/sponsors">
-                  <SponsorLogo  title="50 ans de l'université"
-                                uri="/sponsors/logo_50ans_petit.png" />
-              </Link>
+              <a href="https://www.cslabs.be/">
+                  <SponsorLogo  title="CSLabs"
+                                uri="/images/logo/CSLabs.png" />
+              </a>
             </div>}>
         </PageHero>
 
