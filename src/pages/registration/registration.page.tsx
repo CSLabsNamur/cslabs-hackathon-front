@@ -6,8 +6,10 @@ import {RegistrationValidation} from './registration.validation';
 import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
-import {CovidAlert} from "../../components/covid-alert/covid-alert";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
+import Timer from "../../components/timer/timer";
+
+const closeSubscription = false;
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -137,10 +139,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           UserService.registerAndLogin(this.state.form).then(() => {
             console.log('Successfully registered and logged in.');
             this.props.navigate(-1);
-            // let redirection = UserService.redirect;
-            // if (!redirection) { TODO FIX
-            //   redirection = '/team';
-            // }
 
             if (this.cvInput.current!.files!.length > 0) {
               UserService.uploadCv(this.cvInput.current!.files![0]).then(() => {
@@ -427,6 +425,15 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
   }
 
   render() {
+
+    if (closeSubscription) {
+      return (<div id="subscription_waiting">
+        <p>
+          Les inscriptions sont bientôt ouvertes !
+        </p>
+        <Timer/>
+      </div>);
+    }
 
     return (
       <Fragment>
