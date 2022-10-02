@@ -5,8 +5,9 @@ import "./page-hero.css";
 export class PageHero extends React.PureComponent<{
   title: string,
   subtitle: string,
-  disclaimer?: React.ReactChild,
+  disclaimer?: React.ReactElement,
   hasArrow?: boolean,
+  children: React.ReactNode,
 }> {
 
   render() {
@@ -15,7 +16,7 @@ export class PageHero extends React.PureComponent<{
     if (this.props.hasArrow) {
       arrow = (
         <img className="page-hero__arrow"
-             src={process.env.PUBLIC_URL + "/infos/arrow.svg"}
+             src={process.env.PUBLIC_URL + "/infos/arrow_green.svg"}
              alt="Flèche vers le bas"
              onClick={() => {
                window.scrollTo(0, window.innerHeight - 48);

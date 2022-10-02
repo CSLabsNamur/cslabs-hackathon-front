@@ -1,0 +1,15 @@
+
+.form-container {
+    margin-top: 3rem;
+}
+
+.connection__extra-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+#input-button {
+    margin: 1rem 0rem 4rem 0rem;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+}

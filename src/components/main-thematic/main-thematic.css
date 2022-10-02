@@ -1,5 +1,5 @@
 #main-thematic {
-    background: #fff2c9;
+    background: var(--primary-bg-color);
     text-justify: inter-word;
 }
 
@@ -17,7 +17,7 @@
 
 .main-thematic__content > ul > li {
     padding: .5rem 1rem;
-    border: .2rem solid #f5cb98;
+    border: .2rem solid var(--primary-accent-color);
     border-radius: 1.5rem;
 }
 

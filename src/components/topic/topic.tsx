@@ -6,6 +6,7 @@ export class Topic extends React.PureComponent<{
   link?: string,
   direction: 'left' | 'right',
   img: {src: string, alt: string},
+  children: React.ReactNode,
 }> {
 
   render() {
@@ -20,7 +21,7 @@ export class Topic extends React.PureComponent<{
     );
     if (this.props.link) {
       image = (
-        <a href={this.props.link}>
+        <a href={this.props.link} target="_blank" rel="noreferrer">
           {image}
         </a>
       );
@@ -35,8 +36,8 @@ export class Topic extends React.PureComponent<{
             {this.props.link ?
               <div className="tx-centered">
                 <a className="topic-area__info__link button button-primary"
-                   href={this.props.link}>
-                  Site officiel.
+                   href={this.props.link} target="_blank" rel="noreferrer">
+                  Site officiel
                 </a>
               </div>
               : null

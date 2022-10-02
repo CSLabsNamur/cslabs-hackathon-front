@@ -5,6 +5,7 @@ import {Topic} from '../../components/topic/topic';
 import './sponsors.page.css';
 import {SponsorLogo} from '../../components/sponsor-logo/sponsor-logo';
 
+// noinspection HtmlUnknownAnchorTarget
 export class SponsorsPage extends React.PureComponent {
   render() {
     return (
@@ -15,23 +16,23 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#unamur">
               <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
-            <a href="#mutualite_chretienne">
-              <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
-            </a>
             <a href="#ag_insurance">
               <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
             </a>
-            <a href="#digital-wallonia">
-              <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
+            <a href="#mutualite_chretienne">
+              <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
             </a>
-            <a href="#trakk">
-              <SponsorLogo title="Trakk" uri="/images/logo/trakk.png" />
+            <a href="#arhs">
+              <SponsorLogo title="Arhs" uri="/images/logo/arhs.png" />
             </a>
-            <a href="#trakk">
+            <a href="#bep">
               <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
             </a>
-            <a href="#gerontopole">
-              <SponsorLogo title="Gérontopôle Namur" uri="/images/logo/gerontopole.png" />
+            <a href="#linkube">
+              <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
+            </a>
+            <a href="#digital-wallonia">
+              <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
             </a>
           </div>
         </PageHero>
@@ -60,7 +61,7 @@ export class SponsorsPage extends React.PureComponent {
 
 
         <Topic img={{
-          src: "/sponsors/mc_eneo.png",
+          src: "/sponsors/mutualite_chretienne.png",
           alt: "Mutualité Chrétienne"
         }}
                link="https://www.mc.be/"
@@ -104,44 +105,22 @@ export class SponsorsPage extends React.PureComponent {
 
 
         <Topic img={{
-          src: "/sponsors/digital_wallonia.png",
-          alt: "Digital Wallonia"
+          src: "/sponsors/arhs.png",
+          alt: "Arhs"
         }}
-               link="https://www.digitalwallonia.be"
+               link=""
                direction="right">
-          <h2 id="digital-wallonia">Digital Wallonia</h2>
-
-          <h5>Stratégie</h5>
-          <p>Programme cadre de la Wallonie numérique qui fixe les priorités et objectifs des politiques
-            publiques et cadre les soutiens aux initiatives privées en faveur du numérique.</p>
-
-          <h5>Plateforme</h5>
-          <p>Vitrine du secteur du numérique en Wallonie qui propose des contenus de référence et fournit des
-            services aux acteurs engagés dans la mise en œuvre de la stratégie numérique.</p>
-
-          <h5>Marque</h5>
-          <p>Identité de l’ambition numérique de la Wallonie et de ses citoyens qui fédère les acteurs et les
-            initiatives publiques et privées lancées dans le cadre de la stratégie numérique.</p>
-
-          <h5>5 thèmes</h5>
-          <ol>
-            <li>Secteur du Numérique</li>
-            <li>Économie numérique</li>
-            <li>Compétences numériques</li>
-            <li>Administration numérique</li>
-            <li>Territoire numérique</li>
-          </ol>
-
+          <h2 id="arhs">Arhs</h2>
         </Topic>
 
 
         <Topic img={{
-          src: "/sponsors/trakk_bep.png",
-          alt: "Trakk et BEP"
+          src: "/sponsors/bep.png",
+          alt: "BEP"
         }}
-               link="https://www.trakk.be"
+               link=""
                direction="left">
-          <h2 id="trakk">
+          <h2 id="bep">
             Trakk et BEP
           </h2>
           <p>Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
@@ -164,40 +143,62 @@ export class SponsorsPage extends React.PureComponent {
 
 
         <Topic img={{
-          src: "/sponsors/gerontopole.png",
-          alt: "Gérontôpole Namur"
+          src: "/sponsors/linkube.png",
+          alt: "LinKube"
         }}
-               link="https://www.province.namur.be/index.php?rub=page&page=912"
+               link="https://www.linkube.be"
                direction="right">
-          <h2 id="gerontopole">
-            Gérontopôle Namur
-          </h2>
-          <p>
-            GéroNam, le Gérontopôle de la province de Namur est un projet développé à l’initiative de la
-            Province de Namur et co-construit avec des acteurs issus des secteurs du bien-vieillir. Il se
-            définit comme une communauté de personnes et d’organisations. Il est une ressource territoriale
-            pour les citoyens, l’ensemble des professionnels et des acteurs du bien-vieillir. C’est une
-            communauté d’échanges et d’actions qui place la personne âgée au centre de la réflexion et de
-            l’action. Sa finalité est centrée sur les aînés et s’articule autour de 4 axes :
-          </p>
-          <ul>
-            <li>L'autonomie</li>
-            <li>La qualité de vie</li>
-            <li>L'inclusion</li>
-            <li>L'empowerment</li>
-          </ul>
-          <p>
-            Envie de nous rejoindre ou de soumettre une idée ? Contactez-nous au 081 77 56 62 ou par mail
-            gerontopôle[@]province.namur.be
-          </p>
+          <h2 id="linkube">LinKube</h2>
+
+          <p>LinKube est l’<b>incubateur étudiant</b> de la province de <b>Namur</b>.</p>
+          <p>Nous avons pour mission d’<b>accompagner des jeunes</b> (étudiants ou jeunes diplômés) <b>à créer leur
+            entreprise en parallèle de leurs études</b> ou de leurs premiers pas dans la vie active.</p>
+          <p>Pour ce faire, nous proposons du <b>coaching personnalisé</b>, de l’<b>expertise</b> « business »,
+            des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le TRAKK), etc.</p>
+          <p><b>Envie d'en savoir plus ?</b></p>
+          <p>N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)</p>
+          <p>Déjà quelques informations sur notre site</p>  
+          <p>Alors… Partant.e.s ?</p>
         </Topic>
+
+
+        <Topic img={{
+          src: "/sponsors/digital_wallonia.png",
+          alt: "Digital Wallonia"
+        }}
+               link="https://www.digitalwallonia.be"
+               direction="left">
+          <h2 id="digital-wallonia">Digital Wallonia</h2>
+
+          <h5>Stratégie</h5>
+          <p>Programme cadre de la Wallonie numérique qui fixe les priorités et objectifs des politiques
+            publiques et cadre les soutiens aux initiatives privées en faveur du numérique.</p>
+
+          <h5>Plateforme</h5>
+          <p>Vitrine du secteur du numérique en Wallonie qui propose des contenus de référence et fournit des
+            services aux acteurs engagés dans la mise en œuvre de la stratégie numérique.</p>
+
+          <h5>Marque</h5>
+          <p>Identité de l’ambition numérique de la Wallonie et de ses citoyens qui fédère les acteurs et les
+            initiatives publiques et privées lancées dans le cadre de la stratégie numérique.</p>
+
+          <h5>5 thèmes</h5>
+          <ol>
+            <li>Secteur du Numérique</li>
+            <li>Économie numérique</li>
+            <li>Compétences numériques</li>
+            <li>Administration numérique</li>
+            <li>Territoire numérique</li>
+          </ol>
+        </Topic>
+
 
         <Topic img={{
           src: "/sponsors/unamur_big.png",
           alt: "Faculté d'informatique de l'Université de Namur"
         }}
                link="https://www.unamur.be/info"
-               direction="left">
+               direction="right">
           <h2 id="unamur">
             Université de Namur
           </h2>
