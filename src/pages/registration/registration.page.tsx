@@ -7,6 +7,9 @@ import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
+import Timer from "../../components/timer/timer";
+
+const closeSubscription = false;
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -422,6 +425,15 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
   }
 
   render() {
+
+    if (closeSubscription) {
+      return (<div id="subscription_waiting">
+        <p>
+          Les inscriptions sont bientôt ouvertes !
+        </p>
+        <Timer/>
+      </div>);
+    }
 
     return (
       <Fragment>

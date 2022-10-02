@@ -2,3 +2,9 @@
     margin: 1rem;
     box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
 }
+
+#subscription_waiting {
+    margin-top: 10rem;
+    text-align: center;
+    font-size: 4.8rem;
+}
