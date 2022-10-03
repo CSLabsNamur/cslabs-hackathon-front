@@ -40,11 +40,11 @@ export class HomePage extends React.PureComponent {
         <PageHero
           title="Le Handicap"
           hasArrow={true}
-          subtitle="Adapté le monde pour tous"
+          subtitle="Adapter le monde pour tous !"
           disclaimer={
             <div>
               <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
-              <p>Le Hackathon CSLabs 2023 est organisé dans le cadre du <strong>5e anniversaire de l'A.S.B.L. CSLabs</strong></p>
+              <p>Le Hackathon CSLabs 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/unamur.png" />
@@ -63,21 +63,21 @@ export class HomePage extends React.PureComponent {
           <p>
             CSLabs est une junior entreprise de la région de Namur.
             Spécialisée dans l'informatique, elle invite ses membres à
-            participer à des projets, des formations et des activités dans le
-            domaine technologique et informatique.
+            participer à des projets, des formations et des activités dans les
+            domaines de la technologie et de l'informatique.
           </p>
           <p>
-          <strong>Notre mission: </strong>"Offrir l'opportunité au étudiant d'entreprendre dans le dommaine de l'informatique"
+          <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le dommaine de l'informatique"
           </p>
         </Topic>
 
         <Topic img={this.images[1]} direction='left'>
           <h2>Le thème</h2>
           <p>
-            Avoir un handicap c'est une chose, être exclus de la société par oublis des majoritées en est une autre.
+            Avoir un handicap est une chose, être exclus de la société par oubli des majorités en est une autre.
           </p>
           <p>
-            Trouvez des solutions innovantes face à des problèmes réels.
+            Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
           </p>
           <p>Retrouvez <a href="#main-thematic" className="topic-link on-green">la thématique</a> plus en détail !</p>
@@ -103,13 +103,13 @@ export class HomePage extends React.PureComponent {
         <Topic img={this.images[2]} direction="left">
           <h2>Quatrième édition</h2>
           <p>
-            Nous en sommes à notre quatrième édition du Hackathon CSLabs !
+            Nous en sommes à la quatrième édition du Hackathon CSLabs !
             Nous avons hâte de poursuivre l'aventure avec vous !
           </p>
           <p>
             Cette édition est celle de la réalisation !
-            La concrétisation de vos projets nous importe dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link> et donc d'apporter votre contribution à l'amélioration du Bien Vieillir !
+            La concrétisation de vos projets nous importe, dans la mesure où
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration des personnes touchés par le handicap !
           </p>
         </Topic>
 
