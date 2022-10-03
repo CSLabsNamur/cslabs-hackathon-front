@@ -59,7 +59,7 @@ export class GoingFurtherPage extends React.PureComponent {
               <p>Un chemin de possibles s’offre à toi pour concrétiser tes beaux projets. On en discute ?</p>
             </div>
 
-            <div className="further-page__sponsor">
+            {/* <div className="further-page__sponsor">
               <h1 className={"tx-centered"}>La Mutualité Chrétienne</h1>
 
               <p>La <a href="https://www.mc.be/">Mutualité Chrétienne</a> sera à tes côtés pour
@@ -74,7 +74,7 @@ export class GoingFurtherPage extends React.PureComponent {
                 <li>Communication et diffusion auprès du public-cible quand ton projet est opérationnel !
                 </li>
               </ul>
-            </div>
+            </div> */}
 
           </div>
         </div>

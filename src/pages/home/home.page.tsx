@@ -40,7 +40,7 @@ export class HomePage extends React.PureComponent {
         <PageHero
           title="Le Handicap"
           hasArrow={true}
-          subtitle="Adapter le monde pour tous !"
+          subtitle="Adaptez le monde pour tous !"
           disclaimer={
             <div>
               <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
@@ -86,7 +86,7 @@ export class HomePage extends React.PureComponent {
         <Topic img={this.images[4]} direction="right">
           <h2>Gagner un prix</h2>
           <p>
-            Envie de remporter un de nos prix ? Un jury et le public désigneront trois vainqueurs !
+            Envie de remporter un de nos prix ?
           </p>
           <p>
             Le <strong>prix de l'idée</strong> est attribué par le jury à la meilleure idée de projet !
@@ -96,7 +96,7 @@ export class HomePage extends React.PureComponent {
             réalisation technique !
           </p>
           <p>
-            Le <strong>prix du public</strong> est attribué au projet qui aura séduit le plus d'équipes !
+            Le <strong>prix de la participation</strong> sera dévoilé le jour J !
           </p>
         </Topic>
 

@@ -11,7 +11,7 @@ export class SponsorsPage extends React.PureComponent {
     return (
       <div id="sponsors-page">
 
-        <PageHero title='Sponsors de ce hackathon' subtitle='Sans eux, rien ne serait possible !' hasArrow>
+        <PageHero title='Nos sponsors' subtitle='Sans eux, rien ne serait possible !' hasArrow>
           <div className="sponsors-page__sponsors-list">
             <a href="#unamur">
               <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
