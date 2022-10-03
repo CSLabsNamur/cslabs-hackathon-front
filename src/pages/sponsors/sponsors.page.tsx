@@ -108,7 +108,7 @@ export class SponsorsPage extends React.PureComponent {
           src: "/sponsors/arhs.png",
           alt: "Arhs"
         }}
-               link=""
+               link="https://www.arhs-group.com"
                direction="right">
           <h2 id="arhs">Arhs</h2>
         </Topic>
@@ -118,7 +118,7 @@ export class SponsorsPage extends React.PureComponent {
           src: "/sponsors/bep.png",
           alt: "BEP"
         }}
-               link=""
+               link="https://www.bep.be"
                direction="left">
           <h2 id="bep">
             Trakk et BEP
