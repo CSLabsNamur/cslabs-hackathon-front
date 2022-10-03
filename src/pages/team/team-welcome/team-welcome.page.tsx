@@ -1,7 +1,6 @@
 import React from "react";
 
 import './team-welcome.page.css';
-import {CovidAlert} from "../../../components/covid-alert/covid-alert";
 
 export class TeamWelcomePage extends React.PureComponent {
 
