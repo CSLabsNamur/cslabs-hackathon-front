@@ -44,7 +44,7 @@ export class HomePage extends React.PureComponent {
           disclaimer={
             <div>
               <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
-              <p>Le Hackathon CSLabs 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
+              <p>Ce Hackathon 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/unamur.png" />
