@@ -111,6 +111,21 @@ export class SponsorsPage extends React.PureComponent {
                link="https://www.arhs-group.com"
                direction="right">
           <h2 id="arhs">Arhs</h2>
+          <p>Arηs Group est un leader du marché dans la gestion de projets et de systèmes informatiques complexes.</p>
+          <p>
+            Fondée au Luxembourg en 2003, nous avons depuis enregistré une croissance organique et nous comptons
+            aujourd’hui 16 entités dans le monde avec plus de 2 500 employés au Luxembourg, en Belgique, en France,
+            en Grèce, en Italie, au Portugal, en Bulgarie et dernièrement en Jordanie.
+          </p>
+          <p>
+            Au cours des 20 dernières années au cours desquelles nous avons été au service de nos clients,
+            nous avons grandi et élargi nos domaines d'expertise. Du développement logiciel, en passant par l'infrastructure,
+            le Cloud ou encore le Machine Learning, nous maîtrisons et faisons évoluer en permanence de nouvelles compétences
+            pour mener le changement dans le secteur informatique.
+          </p>
+          <p>
+          Notre diversité est notre force. Nous voulons que chacun se sente accepté tel qu'il est... alors venez simplement comme vous êtes !
+          </p>
         </Topic>
 
 
