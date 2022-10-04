@@ -110,8 +110,12 @@ export class SponsorsPage extends React.PureComponent {
         }}
                link="https://www.arhs-group.com"
                direction="right">
-          <h2 id="arhs">Arhs</h2>
-          <p>Arηs Group est un leader du marché dans la gestion de projets et de systèmes informatiques complexes.</p>
+          <h2 id="arhs">
+            Arhs
+          </h2>
+          <p>
+            Arηs Group est un leader du marché dans la gestion de projets et de systèmes informatiques complexes.
+          </p>
           <p>
             Fondée au Luxembourg en 2003, nous avons depuis enregistré une croissance organique et nous comptons
             aujourd’hui 16 entités dans le monde avec plus de 2 500 employés au Luxembourg, en Belgique, en France,
@@ -124,7 +128,7 @@ export class SponsorsPage extends React.PureComponent {
             pour mener le changement dans le secteur informatique.
           </p>
           <p>
-          Notre diversité est notre force. Nous voulons que chacun se sente accepté tel qu'il est... alors venez simplement comme vous êtes !
+            Notre diversité est notre force. Nous voulons que chacun se sente accepté tel qu'il est... alors venez simplement comme vous êtes !
           </p>
         </Topic>
 
@@ -138,22 +142,30 @@ export class SponsorsPage extends React.PureComponent {
           <h2 id="bep">
             Trakk et BEP
           </h2>
-          <p>Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
+          <p>
+            Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
             Z ? Sais-tu que LinKube, l’incubateur étudiant du BEP de la province de Namur, t’offre un
             accompagnement spécifique : coaching personnalisé, ateliers, expertises pointues,… Tu rêves de
-            monter ta start up ? Contacte-nous !</p>
-          <p>Mais le TRAKK, c’est quoi ? Tu as envie d’oser, expérimenter, entreprendre, innover de façon plus
+            monter ta start up ? Contacte-nous !
+          </p>
+          <p>
+            Mais le TRAKK, c’est quoi ? Tu as envie d’oser, expérimenter, entreprendre, innover de façon plus
             créative ? Le TRAKK, c’est 3 partenaires : le KIKK, l’UNamur et le BEP. 3 fois plus d’idées et
             d’expériences à partager dans ce lieu composé de différents espaces mis à ta disposition :
             coworking, bureaux, fablab,… Rejoindre le TRAKK peut se faire par différentes portes ! Celle du
             bâtiment au plein centre de Namur, ou en participant à des conférences, des ateliers, ou encore
-            en venant y travailler ! </p>
-          <p>L’innovation est partout ! Le BEP a d’ailleurs développé un accompagnement spécifique pour la
+            en venant y travailler !
+          </p>
+          <p>
+            L’innovation est partout ! Le BEP a d’ailleurs développé un accompagnement spécifique pour la
             Silver économie, cette économie dédiée aux seniors. Tu veux apporter ta pierre à l’édifice pour
-            le « bien vieillir » ? Encore une fois, le BEP est là ! </p>
-          <p>Le 11 février 2021 le Mind&Market se tiendra au TRAKK et rassemblera tous les projets sur la
+            le « bien vieillir » ? Encore une fois, le BEP est là !
+          </p>
+          <p>
+            Le 11 février 2021 le Mind&Market se tiendra au TRAKK et rassemblera tous les projets sur la
             Silver économie et issus de LinKube. Un chemin de possibles s’offre à toi pour concrétiser tes
-            beaux projets. On en discute ?</p>
+            beaux projets. On en discute ?
+          </p>
         </Topic>
 
 
@@ -163,17 +175,32 @@ export class SponsorsPage extends React.PureComponent {
         }}
                link="https://www.linkube.be"
                direction="right">
-          <h2 id="linkube">LinKube</h2>
+          <h2 id="linkube">
+            LinKube
+          </h2>
 
-          <p>LinKube est l’<b>incubateur étudiant</b> de la province de <b>Namur</b>.</p>
-          <p>Nous avons pour mission d’<b>accompagner des jeunes</b> (étudiants ou jeunes diplômés) <b>à créer leur
-            entreprise en parallèle de leurs études</b> ou de leurs premiers pas dans la vie active.</p>
-          <p>Pour ce faire, nous proposons du <b>coaching personnalisé</b>, de l’<b>expertise</b> « business »,
+          <p>
+            LinKube est l’<b>incubateur étudiant</b> de la province de <b>Namur</b>.
+          </p>
+          <p>
+            Nous avons pour mission d’<b>accompagner des jeunes</b> (étudiants ou jeunes diplômés) <b>à créer leur
+            entreprise en parallèle de leurs études</b> ou de leurs premiers pas dans la vie active.
+          </p>
+          <p>
+            Pour ce faire, nous proposons du <b>coaching personnalisé</b>, de l’<b>expertise</b> « business »,
             des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le TRAKK), etc.</p>
-          <p><b>Envie d'en savoir plus ?</b></p>
-          <p>N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)</p>
-          <p>Déjà quelques informations sur notre site</p>  
-          <p>Alors… Partant.e.s ?</p>
+          <p>
+            <b>Envie d'en savoir plus ?</b>
+          </p>
+          <p>
+            N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)
+          </p>
+          <p>
+            Déjà quelques informations sur notre site
+          </p>  
+          <p>
+            Alors… Partant.e.s ?
+          </p>
         </Topic>
 
 
@@ -183,19 +210,27 @@ export class SponsorsPage extends React.PureComponent {
         }}
                link="https://www.digitalwallonia.be"
                direction="left">
-          <h2 id="digital-wallonia">Digital Wallonia</h2>
+          <h2 id="digital-wallonia">
+            Digital Wallonia
+          </h2>
 
           <h5>Stratégie</h5>
-          <p>Programme cadre de la Wallonie numérique qui fixe les priorités et objectifs des politiques
-            publiques et cadre les soutiens aux initiatives privées en faveur du numérique.</p>
+          <p>
+            Programme cadre de la Wallonie numérique qui fixe les priorités et objectifs des politiques
+            publiques et cadre les soutiens aux initiatives privées en faveur du numérique.
+          </p>
 
           <h5>Plateforme</h5>
-          <p>Vitrine du secteur du numérique en Wallonie qui propose des contenus de référence et fournit des
-            services aux acteurs engagés dans la mise en œuvre de la stratégie numérique.</p>
+          <p>
+            Vitrine du secteur du numérique en Wallonie qui propose des contenus de référence et fournit des
+            services aux acteurs engagés dans la mise en œuvre de la stratégie numérique.
+          </p>
 
           <h5>Marque</h5>
-          <p>Identité de l’ambition numérique de la Wallonie et de ses citoyens qui fédère les acteurs et les
-            initiatives publiques et privées lancées dans le cadre de la stratégie numérique.</p>
+          <p>
+            Identité de l’ambition numérique de la Wallonie et de ses citoyens qui fédère les acteurs et les
+            initiatives publiques et privées lancées dans le cadre de la stratégie numérique.
+          </p>
 
           <h5>5 thèmes</h5>
           <ol>
