@@ -100,6 +100,18 @@ export class MainThematic extends React.PureComponent {
             différence, on est capable de faire les mêmes choses… voire même parfois mieux !” [Flavien Gelly – influencer]. 
           </p>
 
+          <br/>
+          <h5>Références :</h5>
+
+          <p>
+            •	<a href="https://fr.wikipedia.org/wiki/Handicap">https://fr.wikipedia.org/wiki/Handicap</a><br/>
+            •	<a href="https://www.boutique-box-internet.fr/actualites/handicap-technologie/">https://www.boutique-box-internet.fr/actualites/handicap-technologie/</a><br/>
+            •	<a href="https://blog.ipedis.com/accessibilite-handicapes-nouvelles-technologie">https://blog.ipedis.com/accessibilite-handicapes-nouvelles-technologie</a><br/>
+            •	<a href="https://www.forbes.fr/technologie/la-technologie-au-service-des-personnes-en-situation-de-handicap/">https://www.forbes.fr/technologie/la-technologie-au-service-des-personnes-en-situation-de-handicap/</a><br/>
+            •	<a href="https://www.lesechos.fr/thema/mobilites-innovations/mobilites-le-handicap-un-moteur-dinnovations-sous-estime-1038277">https://www.lesechos.fr/thema/mobilites-innovations/mobilites-le-handicap-un-moteur-dinnovations-sous-estime-1038277</a><br/>
+            •	<a href="https://www.nouvelobs.com/societe/20190529.AFP7500/handicap-l-innovation-technologique-pour-relever-le-defi-de-l-accessibilite.html">https://www.nouvelobs.com/societe/20190529.AFP7500/handicap-l-innovation-technologique-pour-relever-le-defi-de-l-accessibilite.html</a>
+          </p>
+
         </div>
       </div>
     );
