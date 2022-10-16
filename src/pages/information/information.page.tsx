@@ -21,7 +21,7 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
-          <p>Le week-end du <b>17 au 19 février 2023</b>.</p>
+          <p>Le week-end du <b>17 au 19 février 2023</b></p>
         </InfoItem>
 
         <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">
@@ -35,7 +35,7 @@ export class InformationPage extends React.PureComponent {
         <InfoItem title="Commodités" icon="/infos/commodites.svg">
           <p>Repos: <b>Salle avec des lits prévue</b></p>
           <p>Repas: <b>Repas fournis</b></p>
-          <p>Sanitaire: <b>Installations de l'Université</b></p>
+          <p>Sanitaires: <b>Installations de l'Université</b></p>
         </InfoItem>
 
         <InfoItem title="Inscription" icon="/infos/info.svg">

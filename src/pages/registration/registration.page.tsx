@@ -283,7 +283,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                    onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
             />
             <label htmlFor="form-image-agreement">
-              Consentez-vous à l'utilisation de votre image au sein de l'événement ? (optionnel)
+              Je consens à l'utilisation de mon image dans le cadre de l'événement (optionnel)
             </label>
             {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
           </div>
