@@ -21,60 +21,59 @@ export class MainThematic extends React.PureComponent {
             </p>
           </div>
 
-          <br/>
-          <h5>Qu’entend-on par handicap ?</h5>
+          <div className="main-thematic__section">
+            <h5>Qu’entend-on par handicap ?</h5>
+            <p>
+              Le terme "handicap" réfère à la limitation des possibilités d'interaction d'un individu avec son environnement,
+              menant à des difficultés. On distingue différents types d’handicap : physique, sensoriel, mental ou cognitif.
+              Le handicap est souvent défini comme une inégalité de moyens, et faute de moyen, il peut devenir un facteur d’exclusion.
+            </p>
+          </div>
 
-          <p>
-            Le terme "handicap" réfère à la limitation des possibilités d'interaction d'un individu avec son environnement,
-            menant à des difficultés. On distingue différents types d’handicap : physique, sensoriel, mental ou cognitif.
-            Le handicap est souvent défini comme une inégalité de moyens, et faute de moyen, il peut devenir un facteur d’exclusion.
-          </p>
+          <div className="main-thematic__section">
+            <h5>La technologie peut-elle aider ?</h5>
+            <p>
+              Bien sûr, elle peut tout d’abord sensibiliser notre société à cette problématique ou encore apporter des
+              solutions pour améliorer la qualité de vie.
+            </p>
 
-          <br/>
-          <h5>La technologie peut-elle aider ?</h5>
+            <h6>Quand la technologie sert à sensibiliser ?</h6>
+            <p>
+              La marginalisation des personnes handicapées est un vrai problème. Ce sont, d’abord, les petites différences
+              du quotidien et puis c’est aussi le regard des autres. Sensibiliser à une telle problématique n’est pas chose facile.
+              Pour cela, il faudrait parvenir à se glisser dans la peau d’une personne vivant en situation de handicap, permettant
+              de comprendre ses limitations, la façon de les surmonter, de conserver ou de retrouver son autonomie.
+            </p>
 
-          <p>
-            Bien sûr, elle peut tout d’abord sensibiliser notre société à cette problématique ou encore apporter des
-            solutions pour améliorer la qualité de vie.
-          </p>
+            <h6>La technologie, au service de la qualité de vie ?</h6>
+            <p>
+              La technologie peut aussi se mettre au service du handicap lui-même. Une technologie quotidienne la plus
+              lambda peut s’avérer un véritable gain d’autonomie pour les personnes en situation de handicap. Prenez
+              donc votre smartphone : pour les personnes souffrant de déficience visuelle, il existe des applications
+              décrivant de façon audible son environnement à l’usager, tel qu’il est capté par la caméra du téléphone.
+              Pour les personnes malentendantes, il existe des applications permettant de retranscrire à l’écrit les
+              paroles d’une conversation orale sur votre smartphone, en attribuant une couleur à chaque interlocuteur.
+              Pour les personnes à mobilité réduite, il existe des applications permettant de signaler les lieux facilement
+              accessibles en fauteuil. Et ce ne sont que quelques exemples. Les nouvelles technologies peuvent permettre
+              aux personnes en situation de handicap de recouvrer leur autonomie, de compenser leurs manques. C’est ce
+              genre d’améliorations et d’innovations qui améliorent la qualité de vie malgré le handicap… et d’abaisser
+              les barrières entre personnes handicapées et personnes valides.
+            </p>
 
-          <h6>Quand la technologie sert à sensibiliser ?</h6>
-          <p>
-            La marginalisation des personnes handicapées est un vrai problème. Ce sont, d’abord, les petites différences
-            du quotidien et puis c’est aussi le regard des autres. Sensibiliser à une telle problématique n’est pas chose facile.
-            Pour cela, il faudrait parvenir à se glisser dans la peau d’une personne vivant en situation de handicap, permettant
-            de comprendre ses limitations, la façon de les surmonter, de conserver ou de retrouver son autonomie. 
-          </p>
+            <h6>Et si le handicap était source d'innovation ?</h6>
+            <p>
+              L’innovation au service du handicap, oui – mais le handicap au service de l’innovation, aussi !
+              Le handicap est souvent l’origine trop oubliée d’innovations qui ont aujourd’hui rejoint notre quotidien.
+              Mais cela ne veut pas dire qu’il n’y a pas encore beaucoup de chemin à faire.
+            </p>
+          </div>
 
-          <h6>La technologie, au service de la qualité de vie ?</h6>
-          <p>
-            La technologie peut aussi se mettre au service du handicap lui-même. Une technologie quotidienne la plus
-            lambda peut s’avérer un véritable gain d’autonomie pour les personnes en situation de handicap. Prenez
-            donc votre smartphone : pour les personnes souffrant de déficience visuelle, il existe des applications
-            décrivant de façon audible son environnement à l’usager, tel qu’il est capté par la caméra du téléphone.
-            Pour les personnes malentendantes, il existe des applications permettant de retranscrire à l’écrit les
-            paroles d’une conversation orale sur votre smartphone, en attribuant une couleur à chaque interlocuteur.
-            Pour les personnes à mobilité réduite, il existe des applications permettant de signaler les lieux facilement
-            accessibles en fauteuil. Et ce ne sont que quelques exemples. Les nouvelles technologies peuvent permettre
-            aux personnes en situation de handicap de recouvrer leur autonomie, de compenser leurs manques. C’est ce
-            genre d’améliorations et d’innovations qui améliorent la qualité de vie malgré le handicap… et d’abaisser
-            les barrières entre personnes handicapées et personnes valides.
-          </p>
-
-          <h6>Et si le handicap était source d'innovation ?</h6>
-          <p>
-            L’innovation au service du handicap, oui – mais le handicap au service de l’innovation, aussi !
-            Le handicap est souvent l’origine trop oubliée d’innovations qui ont aujourd’hui rejoint notre quotidien.
-            Mais cela ne veut pas dire qu’il n’y a pas encore beaucoup de chemin à faire. 
-          </p>
-
-          <p>
+          <p className="main-thematic__text">
             Et si, ensemble, nous adaptions le monde pour tous ! A vous de jouer : quelles solutions pouvons-nous
             développer pour rendre l’impossible possible pour les personnes en situation d’handicap ? “Malgré la
-            différence, on est capable de faire les mêmes choses… voire même parfois mieux !” [Flavien Gelly]. 
+            différence, on est capable de faire les mêmes choses… voire même parfois mieux !” <i>Flavien Gelly</i>.
           </p>
 
-          <br/>
           <h5>Références :</h5>
 
           <ul>
