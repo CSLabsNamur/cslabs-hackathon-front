@@ -13,12 +13,21 @@ class Timer extends React.Component<{}, {
   constructor(props: any) {
     super(props);
 
+    const date = new Date(2022, 9, 30, 12, 0, 0);
+    const now = new Date();
+
+    const ms = date.getTime() - now.getTime();
+    const seconds = Math.ceil(ms/1000) % 60;
+    const minutes = Math.ceil(ms/(60*1000)) % 60;
+    const hours = Math.ceil(ms/(60*60*1000)) % 24;
+    const days = Math.ceil(ms/(24*60*60*1000));
+
     this.state = {
-      time: new Date(2022, 9, 5, 12, 0, 0),
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
+      time: date,
+      days,
+      hours,
+      minutes,
+      seconds,
     };
 
     this.updateTimer = this.updateTimer.bind(this);

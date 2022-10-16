@@ -9,7 +9,7 @@ import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
 import Timer from "../../components/timer/timer";
 
-const closeSubscription = false;
+const closeSubscription = true;
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -432,6 +432,9 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Les inscriptions sont bientôt ouvertes !
         </p>
         <Timer/>
+        <p>
+          Tenez-vous prêts !
+        </p>
       </div>);
     }
 
