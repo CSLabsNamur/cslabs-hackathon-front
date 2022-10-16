@@ -3,6 +3,10 @@
     text-justify: inter-word;
 }
 
+#main-thematic p {
+    text-align: justify;
+}
+
 .main-thematic__content {
     max-width: 120rem;
     margin: 1rem auto;
@@ -13,12 +17,6 @@
 
 .main-thematic__content > ul {
     list-style: none;
-}
-
-.main-thematic__content > ul > li {
-    padding: .5rem 1rem;
-    border: .2rem solid var(--primary-accent-color);
-    border-radius: 1.5rem;
 }
 
 .main-thematic__content > ul > li:not(:last-child) {
