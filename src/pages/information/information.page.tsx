@@ -2,6 +2,7 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
+import Timer from "../../components/timer/timer";
 
 export class InformationPage extends React.PureComponent {
 
@@ -45,6 +46,7 @@ export class InformationPage extends React.PureComponent {
           {/*<p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>*/}
           {/*<p>Communication: <b>NOM Prénom</b></p>*/}
           {/* TODO: Enable caution with registration */}
+          <Timer/>
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/info.svg">

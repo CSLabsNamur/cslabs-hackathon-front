@@ -2,3 +2,9 @@
 #information-page {
     padding: 10rem 0;
 }
+
+#information-page #timer {
+    font-size: 1.8rem;
+    border-width: .2rem;
+    padding: .5rem .4rem;
+}
