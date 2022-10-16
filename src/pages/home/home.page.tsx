@@ -13,23 +13,23 @@ export class HomePage extends React.PureComponent {
   private images = [
     {
       src: process.env.PUBLIC_URL + "/images/cslabs_junior.jpg",
-      alt: "CSLabs Junior Entreprise"
+      alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/old_hands.jpg",
-      alt: "Thème du Hackathon CSLabs"
+      src: process.env.PUBLIC_URL + "/images/four_images_1.png",
+      alt: "Thème du Hackathon CSLabs",
     },
     {
       src: process.env.PUBLIC_URL + "/images/edition.jpg",
-      alt: "Troisième Édition CSLabs"
+      alt: "Troisième Édition CSLabs",
     },
     {
       src: process.env.PUBLIC_URL + "/images/hackathon_irl.jpg",
-      alt: "Hackathon Compétition"
+      alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/prix.png",
-      alt: "Récompense"
+      src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
+      alt: "Récompense",
     }
   ];
 
@@ -38,54 +38,53 @@ export class HomePage extends React.PureComponent {
       <div id="home-page">
 
         <PageHero
-          title="Le bien vieillir"
+          title="Le Handicap"
           hasArrow={true}
-          subtitle="Repenser la technologie pour tous"
+          subtitle="Adaptez le monde pour tous !"
           disclaimer={
             <div>
-              <p><strong>Du 18 au 20 février à l'UNamur</strong></p>
-              <p>Le Hackathon CSLabs 2021 est organisé dans le cadre du 50e anniversaire de la Faculté d'Informatique</p>
+              <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
+              <p>Ce Hackathon 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
-                                uri="/sponsors/logo_facinfo.png" />
+                                uri="/sponsors/unamur.png" />
               </Link>
-              <Link to="/sponsors">
-                  <SponsorLogo  title="50 ans de l'université"
-                                uri="/sponsors/logo_50ans_petit.png" />
-              </Link>
+              <a href="https://www.cslabs.be/">
+                  <SponsorLogo  title="CSLabs"
+                                uri="/images/logo/CSLabs.png" />
+              </a>
             </div>}>
         </PageHero>
-
-        {/*<MainCarousel />*/}
 
         <Topic img={this.images[0]} direction='right'>
           <h2>CSLabs</h2>
           <p>
             CSLabs est une junior entreprise de la région de Namur.
             Spécialisée dans l'informatique, elle invite ses membres à
-            participer à des projets, des formations et des activités dans le
-            domaine technologique et informatique.
+            participer à des projets, des formations et des activités dans les
+            domaines de la technologie et de l'informatique.
+          </p>
+          <p>
+          <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le dommaine de l'informatique"
           </p>
         </Topic>
 
         <Topic img={this.images[1]} direction='left'>
           <h2>Le thème</h2>
           <p>
-            Nos ainés sont quotidiennement confrontés à la technologie qui
-            évolue à une vitesse prodigieuse. Comment peuvent-ils
-            l'appréhender ? La comprendre ? L'utiliser ?
+            Avoir un handicap est une chose, être exclus de la société par oubli des majorités en est une autre.
           </p>
           <p>
-            Trouvez des solutions innovantes face à des problèmes réels.
+            Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
           </p>
-          <p>Retrouvez <a href="#main-thematic">la thématique</a> plus en détail !</p>
+          <p>Retrouvez <a href="#main-thematic" className="topic-link on-green">la thématique</a> plus en détail !</p>
         </Topic>
 
         <Topic img={this.images[4]} direction="right">
           <h2>Gagner un prix</h2>
           <p>
-            Envie de remporter un de nos prix ? Un jury et le public désigneront trois vainqueurs !
+            Envie de remporter un de nos prix ?
           </p>
           <p>
             Le <strong>prix de l'idée</strong> est attribué par le jury à la meilleure idée de projet !
@@ -95,20 +94,20 @@ export class HomePage extends React.PureComponent {
             réalisation technique !
           </p>
           <p>
-            Le <strong>prix du public</strong> est attribué au projet qui aura séduit le plus d'équipes !
+            Le <strong>prix de la participation</strong> sera dévoilé le jour J !
           </p>
         </Topic>
 
         <Topic img={this.images[2]} direction="left">
-          <h2>Troisième édition</h2>
+          <h2>Quatrième édition</h2>
           <p>
-            Nous en sommes à notre troisième édition du Hackathon CSLabs !
+            Nous en sommes à la quatrième édition du Hackathon CSLabs !
             Nous avons hâte de poursuivre l'aventure avec vous !
           </p>
           <p>
             Cette édition est celle de la réalisation !
-            La concrétisation de vos projets nous importe dans la mesure où
-            il est envisageable <Link to="/plus-loin">d'aller plus loin</Link> et donc d'apporter votre contribution à l'amélioration du Bien Vieillir !
+            La concrétisation de vos projets nous importe, dans la mesure où
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration des personnes touchés par le handicap !
           </p>
         </Topic>
 
@@ -118,7 +117,7 @@ export class HomePage extends React.PureComponent {
           </h2>
           <p>
             Un Hackathon est un moment de courte durée où des équipes
-            réfléchissent à une <a href="#main-thematic">thématique particulière</a>. Ils tentent d'y
+            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Ils tentent d'y
             apporter des solutions en développant des projets innovants.
             À la fin de l'évènement, un jury détermine quels sont les projets
             qui ont retenu leur attention et qui ont donc gagné la compétition.

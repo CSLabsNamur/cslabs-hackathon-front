@@ -25,7 +25,7 @@ export class GoingFurtherPage extends React.PureComponent {
           <div className="further-page__content">
 
             <div className="further-page__sponsor">
-              <h1 className="tx-centered">Le TRAKK</h1>
+              <h1 className="tx-centered">Le TRAKK | LinKube</h1>
 
               <h5>Toutes tes idées ont un avenir !</h5>
 
@@ -54,20 +54,12 @@ export class GoingFurtherPage extends React.PureComponent {
                   encore
                   en venant y travailler !
                 </li>
-                <li>L’innovation est partout ! Le BEP a d’ailleurs développé un accompagnement
-                  spécifique
-                  pour la
-                  Silver économie, cette économie dédiée aux seniors. Tu veux apporter ta pierre à
-                  l’édifice
-                  pour
-                  le « bien vieillir » ? Encore une fois, le BEP est là !
-                </li>
               </ul>
 
               <p>Un chemin de possibles s’offre à toi pour concrétiser tes beaux projets. On en discute ?</p>
             </div>
 
-            <div className="further-page__sponsor">
+            {/* <div className="further-page__sponsor">
               <h1 className={"tx-centered"}>La Mutualité Chrétienne</h1>
 
               <p>La <a href="https://www.mc.be/">Mutualité Chrétienne</a> sera à tes côtés pour
@@ -82,7 +74,7 @@ export class GoingFurtherPage extends React.PureComponent {
                 <li>Communication et diffusion auprès du public-cible quand ton projet est opérationnel !
                 </li>
               </ul>
-            </div>
+            </div> */}
 
           </div>
         </div>

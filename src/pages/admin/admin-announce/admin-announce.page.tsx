@@ -1,5 +1,8 @@
 import React, {FormEvent} from "react";
+import { Link } from "react-router-dom";
 import {AdminService} from "../../../services/admin.service";
+
+import './admin-announce.page.css';
 
 enum AdminAnnounceField {
   SUBJECT = 'subject',
@@ -52,6 +55,10 @@ export class AdminAnnouncePage extends React.Component<{}, {
       <div>
         <form className="form-container" onSubmit={this.onSubmit}>
           <h2 className="tx-centered">Envoyer une annonce aux membres inscrits</h2>
+
+          <div id="back-button">
+            <Link to="/admin" className="tx-centered"><button className="button-primary-outlined button-large">Retour</button></Link>
+          </div>
 
           <div className="form-control">
             <label htmlFor="form-subject">

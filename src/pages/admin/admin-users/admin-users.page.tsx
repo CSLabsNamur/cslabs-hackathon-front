@@ -288,8 +288,8 @@ export class AdminUsersPage extends React.Component<{}, {
             <li><strong>{users.length} utilisateurs inscrits</strong></li>
             <li><strong>{nonAdminUsers.length} utilisateurs inscrits</strong> (sans admins)</li>
             <li><strong>{usersWithoutCaution.length} utilisateurs qui n'ont pas payé leur caution</strong></li>
-            <li><strong>{members.length} membres d'équipes (sans admins)</strong></li>
-            <li><strong>{membersWithoutTeam.length} sans équipe (sans admins)</strong></li>
+            <li><strong>{members.length} membres d'équipes</strong> (sans admins)</li>
+            <li><strong>{membersWithoutTeam.length} sans équipe</strong> (sans admins)</li>
           </ul>
         </div>
 

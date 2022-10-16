@@ -1,15 +1,12 @@
 import React from "react";
 
 import './team-welcome.page.css';
-import {CovidAlert} from "../../../components/covid-alert/covid-alert";
 
 export class TeamWelcomePage extends React.PureComponent {
 
   render() {
     return (
       <div id="team-welcome-page">
-
-        <CovidAlert />
 
         <h2>Confirmer ma participation</h2>
         <p>Merci pour votre inscription !</p>

@@ -1,7 +1,9 @@
 import React, {FormEvent} from "react";
 import ReactModal from "react-modal";
 import {UserService} from "../../services/user.service";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
+
+import './ask-password-reset.page.css';
 
 export class AskPasswordResetPage extends React.Component<{}, {
   emailInput: string,
@@ -63,9 +65,8 @@ export class AskPasswordResetPage extends React.Component<{}, {
   }
 
   render() {
-
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect}/>
+      return <Navigate to={this.state.redirect}/>
     }
 
     return (
@@ -78,7 +79,7 @@ export class AskPasswordResetPage extends React.Component<{}, {
           <h4 className="tx-centered">Vous avez oublié votre mot de passe ? </h4>
 
           <p>
-            Rentrez votre adresse email afin que nous puissions vous envoyer un mail.
+            Entrez votre adresse email afin que nous puissions vous envoyer un mail.
             De cette façon vous pourrez le réinitialiser !
           </p>
 
@@ -96,7 +97,7 @@ export class AskPasswordResetPage extends React.Component<{}, {
           </div>
 
           <div className="form-control">
-            <button type="submit" className="button-primary button-large">
+            <button type="submit" className="button-primary button-large" id="button-send">
               Envoyer
             </button>
           </div>

@@ -1,3 +1,11 @@
+:root {
+  --primary-bg-color : #f4f4f4;
+  --primary-accent-color : #19a974;
+
+  /* --primary-bg-color : #f4f4f4; */
+  /* --primary-accent-color : #19a974; */
+}
+
 
 html {
   font-size: 62.5%;
@@ -7,7 +15,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  background-color: #fff2c9 !important;
+  background-color: var(--primary-bg-color) !important;
 }
 
 .tx-centered {

@@ -2,7 +2,7 @@
 header, .header {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    background-color: #fff2c9 !important;
+    background-color: var(--primary-bg-color);
 }
 
 .page-hero {
@@ -20,7 +20,7 @@ header, .header {
     object-fit: contain;
     object-position: center;
     transform: translate(-50%, -100%);
-    z-index: 5;
+    z-index: 1;
 }
 
 .page-hero__content {
@@ -31,7 +31,7 @@ header, .header {
     padding-bottom: 4rem;
     text-align: center;
 
-    background-color: #f5cb98;
+    background-color: var(--primary-accent-color);
 
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
 }
@@ -46,11 +46,13 @@ header, .header {
     height: 6rem;
     padding: 1.4rem;
 
-    border: .4rem solid #f5cb98;
+    border: .4rem solid var(--primary-accent-color);
     border-radius: 50%;
     opacity: 0.8;
 
     transition: 0.2s;
+
+    cursor: pointer;
 }
 
 .page-hero__arrow:hover {
