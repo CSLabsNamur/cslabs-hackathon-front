@@ -44,6 +44,7 @@ export class InformationPage extends React.PureComponent {
           {/*<p>Caution: <b>20 €</b></p>*/}
           {/*<p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>*/}
           {/*<p>Communication: <b>NOM Prénom</b></p>*/}
+          {/* TODO: Enable caution with registration */}
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/info.svg">
