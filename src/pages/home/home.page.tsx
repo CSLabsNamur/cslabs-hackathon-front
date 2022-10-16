@@ -28,7 +28,7 @@ export class HomePage extends React.PureComponent {
       alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/prix.png",
+      src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
       alt: "Récompense",
     }
   ];
@@ -55,8 +55,6 @@ export class HomePage extends React.PureComponent {
               </a>
             </div>}>
         </PageHero>
-
-        {/*<MainCarousel />*/}
 
         <Topic img={this.images[0]} direction='right'>
           <h2>CSLabs</h2>
