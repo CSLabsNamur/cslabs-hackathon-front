@@ -253,9 +253,7 @@ export class SponsorsPage extends React.PureComponent {
             Université de Namur
           </h2>
           <p>
-            Le Hackathon 2020 est organisé dans le cadre du 50e anniversaire de la Facultée d'Informatique
-            de l'UNamur.
-            L'université et la faculté nous fournissent les locaux et le matériel nécessaires à
+            L'université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
             l'organisation de cet évènement.
           </p>
         </Topic>

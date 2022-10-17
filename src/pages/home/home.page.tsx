@@ -65,14 +65,14 @@ export class HomePage extends React.PureComponent {
             domaines de la technologie et de l'informatique.
           </p>
           <p>
-          <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le dommaine de l'informatique"
+          <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le domaine de l'informatique"
           </p>
         </Topic>
 
         <Topic img={this.images[1]} direction='left'>
           <h2>Le thème</h2>
           <p>
-            Avoir un handicap est une chose, être exclus de la société par oubli des majorités en est une autre.
+            Avoir un handicap est une chose, être exclu de la société par oubli des majorités en est une autre.
           </p>
           <p>
             Trouvez des solutions innovantes pour faire face à des problèmes réels.
@@ -105,9 +105,8 @@ export class HomePage extends React.PureComponent {
             Nous avons hâte de poursuivre l'aventure avec vous !
           </p>
           <p>
-            Cette édition est celle de la réalisation !
             La concrétisation de vos projets nous importe, dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration des personnes touchés par le handicap !
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration de la vie des personnes touchées par le handicap !
           </p>
         </Topic>
 
