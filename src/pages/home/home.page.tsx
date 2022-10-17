@@ -116,7 +116,7 @@ export class HomePage extends React.PureComponent {
           </h2>
           <p>
             Un Hackathon est un moment de courte durée où des équipes
-            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Ils tentent d'y
+            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Elles tentent d'y
             apporter des solutions en développant des projets innovants.
             À la fin de l'évènement, un jury détermine quels sont les projets
             qui ont retenu leur attention et qui ont donc gagné la compétition.
