@@ -42,11 +42,11 @@ export class InformationPage extends React.PureComponent {
         <InfoItem title="Inscription" icon="/infos/info.svg">
           <p>Équipe: <b>5 membres maximum</b></p>
           <p>Prix d'entrée: <b>Gratuit</b></p>
-          {/*<p>Caution: <b>20 €</b></p>*/}
-          {/*<p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>*/}
-          {/*<p>Communication: <b>NOM Prénom</b></p>*/}
+          <p>Caution: <b>20 €</b></p>
+          <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
+          <p>Communication: <b>NOM Prénom</b></p>
           {/* TODO: Enable caution with registration */}
-          <Timer/>
+          {/* <Timer/> */}
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/info.svg">

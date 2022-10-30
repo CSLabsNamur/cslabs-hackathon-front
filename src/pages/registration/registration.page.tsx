@@ -9,7 +9,7 @@ import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
 import Timer from "../../components/timer/timer";
 
-const closeSubscription = true;
+const closeSubscription = false;
 
 enum RegistrationField {
   EMAIL = 'email',
