@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoItem } from '../../components/info-item/info-item';
+import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
 import Timer from "../../components/timer/timer";
@@ -45,14 +45,14 @@ export class InformationPage extends React.PureComponent {
           <p>Caution: <b>20 €</b></p>
           <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
-          {/* TODO: Enable caution with registration */}
+          {/* TODO: Enable caution with registration */} 
           {/* <Timer/> */}
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/info.svg">
           <p>Si nécessaire, nous pouvons fournir des attestations de participation.</p>
           <p>Contactez-nous à l'adresse <strong><a href="mailto:events@cslabs.be">events[@]cslabs.be</a></strong></p>
-
+          
         </InfoItem>
 
 
