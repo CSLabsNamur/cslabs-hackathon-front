@@ -26,7 +26,7 @@ export class TeamPage extends React.PureComponent {
           <Route path="/join" element={<TeamJoinPage/>}/>
           <Route path="/join/:token" element={<TeamJoinPage/>} />
           <Route path="/team/invite/:token" element={<TeamJoinPage/>} />
-          <Route path="/vote" element={<TeamVotePage/>} />
+          {/*<Route path="/vote" element={<TeamVotePage/>} />*/}
           <Route path="/" element={<TeamWelcomePage/>} />
           <Route path="*" element={<NotFoundPage/>} />
 
