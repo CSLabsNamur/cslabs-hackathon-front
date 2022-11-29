@@ -24,17 +24,17 @@ export class TeamWelcomePage extends React.PureComponent {
           <li>Communication : <b>NOM Prénom</b></li>
         </ul>
 
-        <h2>Une nouveauté dans cette édition !</h2>
+        {/* <h2>Une nouveauté dans cette édition !</h2>
         <p>
           Désormais, une partie du site Hackathon vous est destinée en tant que participant. Mais que
           comporte-t-elle ?
-        </p>
+    </p>*/}
         <h3>Aperçu de votre équipe et de vous</h3>
         <p>
           Rédigez une description de votre équipe. Les autres participants auront accès à cet aperçu ainsi
           qu'aux profils des membres de votre équipe.
         </p>
-        <h3>Un peu de suspens</h3>
+        {/*<h3>Un peu de suspens</h3>
         <p>
           Outre le prix de l'idée, le prix de la technique, un nouveau prix fait son apparition cette année !
         </p>
@@ -44,7 +44,7 @@ export class TeamWelcomePage extends React.PureComponent {
         </p>
         <p>
           Un moyen comme un autre de rétablir la démocratie en ce bas monde.
-        </p>
+        </p> */}
       </div>
     );
   }
