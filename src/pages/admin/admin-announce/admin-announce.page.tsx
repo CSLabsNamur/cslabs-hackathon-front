@@ -7,12 +7,14 @@ import './admin-announce.page.css';
 enum AdminAnnounceField {
   SUBJECT = 'subject',
   ANNOUNCE = 'announce',
+  ADDRESSEE = 'addressee',
 }
 
 export class AdminAnnouncePage extends React.Component<{}, {
   form: {
     subject: string,
     announce: string,
+    addressee: string,
   }
 }> {
 
@@ -23,6 +25,7 @@ export class AdminAnnouncePage extends React.Component<{}, {
       form: {
         subject: "",
         announce: "",
+        addressee: "",
       }
     }
 
@@ -39,14 +42,20 @@ export class AdminAnnouncePage extends React.Component<{}, {
 
   onSubmit(event: FormEvent) {
     event.preventDefault();
-    const {subject, announce} = this.state.form;
-    AdminService.sendAnnounce(subject, announce)
+    const {subject, announce, addressee} = this.state.form;
+    addressee.replace(/ /g, ''); // remove space before and after the sting
+    if ((addressee === null) || ( !(['all', 'formation'].includes(addressee)))) 
+    {
+      alert("Compléter suivant les guillements"); 
+      return null;
+    }
+    AdminService.sendAnnounce(subject, announce, addressee)
       .then(() => {
         alert("Annonce envoyée !")
       })
       .catch((error) => {
         console.error(error);
-        alert("Impossible d'envoyer l'annonce...");
+        alert("Impossible d'envoyer l'annonce...\nRaison: " + error);
       });
   }
 
@@ -67,6 +76,16 @@ export class AdminAnnouncePage extends React.Component<{}, {
             <input type="text" name="form-subject" placeholder="Sujet..."
                    onChange={this.onChange(AdminAnnounceField.SUBJECT)}
             />
+          </div>
+
+          <div className="form-control">
+            <label htmlFor="form-subject">
+              Destinatair(e)s <br />
+              Entré "all" pour envoyé à tout le monde et "formation" pour les gens inscrit aux formations
+            </label>
+            <input type="text" name="form-subject" placeholder="Envoyé à qui ?"
+                    onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}
+            />          
           </div>
 
           <div className="form-control">

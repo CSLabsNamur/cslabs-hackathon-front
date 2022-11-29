@@ -8,6 +8,7 @@ import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
 import Timer from "../../components/timer/timer";
+import MailInfo from "../../components/mail-info/mail-info";
 
 const closeSubscription = false;
 
@@ -409,6 +410,10 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
+          </div>
+
+          <div className="form-control align-center">
+            <MailInfo />
           </div>
 
           <div className="form-control align-center">
