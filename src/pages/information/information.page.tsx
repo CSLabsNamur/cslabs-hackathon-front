@@ -2,7 +2,6 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
-import Timer from "../../components/timer/timer";
 
 export class InformationPage extends React.PureComponent {
 

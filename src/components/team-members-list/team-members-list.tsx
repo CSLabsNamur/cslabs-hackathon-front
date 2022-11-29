@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import {Buffer} from 'buffer';
 
 import './team-members-list.css';
 import {User} from "../../domain/user";

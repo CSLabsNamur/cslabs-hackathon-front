@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 import "./mail-info.css";
 
 export default class MailInfo extends React.Component {
