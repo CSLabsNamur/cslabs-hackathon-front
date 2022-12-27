@@ -41,7 +41,7 @@ export class SponsorsPage extends React.PureComponent {
           src: "/sponsors/ag.svg",
           alt: "AGInsurance"
         }}
-               link="https://www.aginsurance.be"
+               link="https://ag.be/jobs/fr"
                direction="right">
           <h2 id="ag_insurance">
             AG Insurance
