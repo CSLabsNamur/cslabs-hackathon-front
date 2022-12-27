@@ -136,7 +136,8 @@ export class ProfileEditor extends React.Component<{
               Votre CV
               <span className="tooltip-text">
                 Cela remplacera votre ancien CV.
-                N'oubliez pas de sauvegarder le profile pour l'envoyer.
+                N'oubliez pas de sauvegarder le profil pour l'envoyer. <br />
+                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
               </span>
             </span> (optionnel)
           </label>

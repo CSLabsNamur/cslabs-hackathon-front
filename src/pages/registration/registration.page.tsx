@@ -359,6 +359,9 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               <label htmlFor="form-cv">
                 Votre CV (pdf, max 5Mo) (optionnel)
               </label>
+              <span>
+                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
+              </span>
               <div>
                 <input type="file"
                        name="form-cv"
