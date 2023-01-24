@@ -46,6 +46,7 @@ export class InformationPage extends React.PureComponent {
           <p>Communication: <b>NOM Prénom</b></p>
           {/* TODO: Enable caution with registration */} 
           {/* <Timer/> */}
+          <p> <strong> REMARQUE:</strong> Le hackathon étant une opportunité de mettre en pratique des connaissances théoriques, nous demandons à ce que les équipes aient un maximun de 2 professionnels pour laisser à tout le monde sa chance</p>
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/info.svg">
