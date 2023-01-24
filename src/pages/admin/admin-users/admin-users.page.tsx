@@ -208,7 +208,7 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   renderUser(user: User, index: number) {
-    const {team, note, paidCaution, github, linkedIn, createdAt} = user;
+    const {team, note, paidCaution, github, linkedIn, createdAt, imageAgreement, isAdmin} = user;
 
     return (
       <tr key={index}>
@@ -218,6 +218,36 @@ export class AdminUsersPage extends React.Component<{}, {
         <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : '/'}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
+        <td className="tx-centered">
+          {imageAgreement ? (
+            <span className="tooltip" style={{color: "green"}}>
+              &#x2714;
+              <span className="tooltip-text">Ce membre a accepté d'être pris en photo !</span>
+            </span>
+          ) : (
+            <span className="tooltip" style={{color: "red"}}>
+              &#x2716;
+              <span className="tooltip-text">
+                Ce membre a refusé d'être pris en photo !
+              </span>
+            </span>
+          )}
+        </td>
+        <td className="tx-centered">
+          {isAdmin ? (
+            <span className="tooltip" style={{color: "green"}}>
+              &#x2714;
+              <span className="tooltip-text">Ce membre est admin sur le site !</span>
+            </span>
+          ) : (
+            <span className="tooltip" style={{color: "red"}}>
+              &#x2716;
+              <span className="tooltip-text">
+                Ce membre n'est pas admin sur le site !
+              </span>
+            </span>
+          )}
+        </td>
         <td className="tx-centered">
           {note ? (
             <span className="tooltip" style={{color: "orange"}}>&#9888;<span
@@ -301,6 +331,8 @@ export class AdminUsersPage extends React.Component<{}, {
             <th>Team</th>
             <th>Créateur</th>
             <th>Email</th>
+            <th className="align-center">Droit à l'image</th>
+            <th className="align-center">Est admin ?</th>
             <th className="align-center">Remarques</th>
             <th className="align-center">Caution</th>
             <th className="align-center">Date d'inscription</th>
