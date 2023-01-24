@@ -2,7 +2,7 @@ import {UserService} from "./user.service";
 import {HttpMethods, HttpService} from "./http.service";
 import {Team} from "../domain/team";
 import {User} from "../domain/user";
-import {Buffer} from "buffer";
+// import {Buffer} from "buffer";
 
 export class TeamsService {
 
