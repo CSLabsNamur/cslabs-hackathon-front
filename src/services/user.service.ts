@@ -115,6 +115,7 @@ export class UserService {
       paidCaution,
       createdAt,
       voteId,
+      imageAgreement,
     } = userData;
 
     let team;
@@ -136,6 +137,7 @@ export class UserService {
       team, paidCaution,
       createdAt: creationDate,
       voteId,
+      imageAgreement,
     } as User;
   }
 
