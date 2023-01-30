@@ -16,3 +16,9 @@
 #admin-users-page td:hover {
     background-color: #ffebee;
 }
+
+#filter-table {
+    background-color: #56b65a !important;
+    border: #62bb66 !important;
+    color: whitesmoke !important;
+}

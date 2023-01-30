@@ -298,6 +298,38 @@ export class AdminUsersPage extends React.Component<{}, {
 
   }
 
+  renderFiltre() {
+	return (
+		<table>
+			<thead>
+				<tr>
+					<th className="align-center">Valeur de test</th>
+					<th className="align-center">Droit à l'image</th>
+					<th className="align-center">Est admin ?</th>
+					<th className="align-center">Remarques</th>
+					<th className="align-center">Caution</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>True</td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.imageAgreement))}>Accepte les photos</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.isAdmin))}>Liste des admins</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.note))}>N'a aucune remarque</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.paidCaution))}>A payé sa caution</button></td>
+				</tr>
+				<tr>
+					<td>False</td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.imageAgreement))}>Refuse les photos</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.isAdmin))}>Liste des membres</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.note))}>A au moins une remarque</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.paidCaution))}>N'a pas payé sa caution</button></td>
+				</tr>
+			</tbody>
+		</table>
+	)
+  }
+
   render() {
     const users = this.state.users;
     const usersWithoutCaution = users.filter((user) => !user.paidCaution);
@@ -321,6 +353,7 @@ export class AdminUsersPage extends React.Component<{}, {
             <li><strong>{members.length} membres d'équipes</strong> (sans admins)</li>
             <li><strong>{membersWithoutTeam.length} sans équipe</strong> (sans admins)</li>
           </ul>
+		  <button className="button-primary-outlined" onClick={() => this.renderFiltre()}>Filtre</button>
         </div>
 
         <table>
