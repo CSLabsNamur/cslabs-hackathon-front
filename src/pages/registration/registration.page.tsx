@@ -277,18 +277,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             {this.renderValidationError(RegistrationField.LAST_NAME)}
           </div>
 
-          <div className="form-control">
-            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
-                   value="image-agreement"
-                   checked={this.state.form.imageAgreement}
-                   onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
-            />
-            <label htmlFor="form-image-agreement">
-              Je consens à l'utilisation de mon image dans le cadre de l'événement (optionnel)
-            </label>
-            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
-          </div>
-
           <fieldset>
             <legend>Informations complémentaires</legend>
 
@@ -413,6 +401,18 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
+          </div>
+
+          <div className="form-control">
+            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
+                   value="image-agreement"
+                   checked={this.state.form.imageAgreement}
+                   onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
+            />
+            <label htmlFor="form-image-agreement">
+              Je consens à l'utilisation de mon image dans le cadre de l'événement (optionnel)
+            </label>
+            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
           </div>
 
           <div className="form-control align-center">
