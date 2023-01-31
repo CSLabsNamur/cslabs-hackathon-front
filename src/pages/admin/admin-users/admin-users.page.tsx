@@ -298,7 +298,7 @@ export class AdminUsersPage extends React.Component<{}, {
 
   }
 
-  renderFiltre() {
+  renderFilter() {
 	return (
 		<table>
 			<thead>
@@ -329,7 +329,7 @@ export class AdminUsersPage extends React.Component<{}, {
 							return 1;
 						}
 						return 0;
-					}))}>Le plus anciens</button></td>
+					}))}>Le plus ancien</button></td>
 				</tr>
 				<tr>
 					<td>False</td>
@@ -381,7 +381,7 @@ export class AdminUsersPage extends React.Component<{}, {
         </div>
 
 		<div className="tx-centered">
-			{this.renderFiltre()}
+			{this.renderFilter()}
 		</div>
 
         <table>

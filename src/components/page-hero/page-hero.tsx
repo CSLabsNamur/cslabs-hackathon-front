@@ -36,7 +36,7 @@ export class PageHero extends React.PureComponent<{
         <header>
           <div className="page-hero">
             <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2023.png'}
-                 alt="Logo Hackathon 2021"
+                 alt="Logo Hackathon 2023"
                  className="page-hero__logo-hackathon"
             />
             <div className="page-hero__content">

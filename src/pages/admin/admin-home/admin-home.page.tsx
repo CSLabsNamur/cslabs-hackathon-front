@@ -13,7 +13,7 @@ export class AdminHomePage extends React.PureComponent {
 
         <p>Bienvenue sur la page d'administration du Hackathon 2023 du CSLabs.</p>
 
-        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>#Pierre Poitier</strong></p>
+        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>#Pierre Poitier</strong> ou <strong>#Yannis Van Achter</strong></p>
 
         <hr/>
 

@@ -370,7 +370,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             />
             <label htmlFor="form-accept-rules">
               J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon
-              et notamment de la <strong>caution de 20€</strong>.
+              et notamment de la <strong>caution de 20€</strong>.*
             </label>
             {this.renderValidationError(RegistrationField.RULES_AGREEMENT)}
           </div>
@@ -384,12 +384,22 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             <label htmlFor="form-accept-conditions">
               J'ai lu et accepté les <a
               href={"/documents/termes_et_conditions.pdf"}
-              rel="noopener noreferrer" target="_blank">termes et conditions</a>.
+              rel="noopener noreferrer" target="_blank">termes et conditions</a>.*
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
 
-
+          <div className="form-control">
+            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
+                  value="image-agreement"
+                  checked={this.state.form.imageAgreement}
+                  onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
+            />
+            <label htmlFor="form-image-agreement">
+              Je consens à l'utilisation de mon image dans le cadre de l'événement
+            </label>
+            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
+          </div>
 
           <div className="form-control">
             <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
@@ -398,25 +408,14 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                    onChange={this.onCheckboxChange(RegistrationField.SUBSCRIBE_FORMATION)}
             />
             <label htmlFor="form-subscribe-formation">
-              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.*
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
           </div>
 
-          <div className="form-control">
-            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
-                   value="image-agreement"
-                   checked={this.state.form.imageAgreement}
-                   onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
-            />
-            <label htmlFor="form-image-agreement">
-              Je consens à l'utilisation de mon image dans le cadre de l'événement (optionnel)
-            </label>
-            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
-          </div>
-
           <div className="form-control align-center">
             <MailInfo />
+            <p>*Obligatoire</p>
           </div>
 
           <div className="form-control align-center">
