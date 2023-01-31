@@ -308,6 +308,7 @@ export class AdminUsersPage extends React.Component<{}, {
 					<th className="align-center">Est admin ?</th>
 					<th className="align-center">Remarques</th>
 					<th className="align-center">Caution</th>
+					<th className="align-center">Date d'inscription (ordre)</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -317,6 +318,18 @@ export class AdminUsersPage extends React.Component<{}, {
 					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.isAdmin))}>Liste des admins</button></td>
 					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.note))}>N'a aucune remarque</button></td>
 					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.paidCaution))}>A payé sa caution</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
+						if (!user1.createdAt || !user2.createdAt) {
+							return 0
+						}
+						if (user1.createdAt?.toISOString() > user2.createdAt.toISOString()) {
+							return -1;
+						}
+						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
+							return 1;
+						}
+						return 0;
+					}))}>Le plus anciens</button></td>
 				</tr>
 				<tr>
 					<td>False</td>
@@ -324,6 +337,18 @@ export class AdminUsersPage extends React.Component<{}, {
 					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.isAdmin))}>Liste des membres</button></td>
 					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.note))}>A au moins une remarque</button></td>
 					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.paidCaution))}>N'a pas payé sa caution</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
+						if (!user1.createdAt || !user2.createdAt) {
+							return 0
+						}
+						if (user1.createdAt.toISOString() > user2.createdAt.toISOString()) {
+							return -1;
+						}
+						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
+							return 1;
+						}
+						return 0;
+					}))}>Le plus réccent</button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -353,8 +378,11 @@ export class AdminUsersPage extends React.Component<{}, {
             <li><strong>{members.length} membres d'équipes</strong> (sans admins)</li>
             <li><strong>{membersWithoutTeam.length} sans équipe</strong> (sans admins)</li>
           </ul>
-		  <button className="button-primary-outlined" onClick={() => this.renderFiltre()}>Filtre</button>
         </div>
+
+		<div className="tx-centered">
+			{this.renderFiltre()}
+		</div>
 
         <table>
           <thead>
