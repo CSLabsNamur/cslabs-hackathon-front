@@ -247,9 +247,8 @@ export class ProfileEditor extends React.Component<{
           <p className="alert alert-danger info--alert">
             Votre caution n'a pas encore été réceptionnée ou validée !
             Si vous avez payé votre caution et que ce message tarde à disparaitre,
-            veuillez nous contacter à l'adresse mail suivante : {
-            process.env.REACT_APP_SUPPORT_MAIL_ADDR
-          }. <Link to="/infos">Plus d'informations</Link>.
+            veuillez nous contacter à l'adresse mail suivante : <a href="mailto:hackathon@cslabs.be">hackathon@cslabs.be</a>.
+            Pour plus d'information, <Link to="/infos">cliquez ici</Link>.
           </p>
         ) : null}
 
