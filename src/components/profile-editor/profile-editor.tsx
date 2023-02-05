@@ -13,6 +13,7 @@ enum ProfileField {
   LINKEDIN = "linkedIn",
   NOTE = "note",
   CV_FILE = "cvFile",
+  SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
 export class ProfileEditor extends React.Component<{
@@ -24,6 +25,7 @@ export class ProfileEditor extends React.Component<{
     github: string,
     linkedIn: string,
     note: string,
+    subscribeFormation: boolean,
   },
   validationErrors: { [key: string]: string },
   showConfirmationModal: boolean,
@@ -44,6 +46,7 @@ export class ProfileEditor extends React.Component<{
         github: user.github ? user.github : "",
         linkedIn: user.linkedIn ? user.linkedIn : "",
         note: user.note ? user.note : "",
+        subscribeFormation: user.subscribeFormation,
       },
       validationErrors: {},
       showConfirmationModal: false,
@@ -117,6 +120,14 @@ export class ProfileEditor extends React.Component<{
     return (event: any) => {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
+      this.setState(newState);
+    }
+  }
+
+  onCheckboxChange(field: ProfileField) {
+    return (event: any) => {
+      const newState = {...this.state} as any;
+      newState.form[field] = event.target.checked;
       this.setState(newState);
     }
   }
@@ -219,6 +230,17 @@ export class ProfileEditor extends React.Component<{
                     onChange={this.onTextChange(ProfileField.NOTE)}
           />
           {this.renderValidationError(ProfileField.NOTE)}
+        </div>
+
+        <div className="form-control">
+          <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
+                 value="subscribe-formation"
+                 checked={this.state.form.subscribeFormation}
+                 onChange={this.onCheckboxChange(ProfileField.SUBSCRIBE_FORMATION)}
+          />
+          <label htmlFor="form-subscribe-formation">
+            Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+          </label>
         </div>
 
         {!user.paidCaution ? (
