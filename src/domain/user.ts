@@ -15,4 +15,6 @@ export class User {
   team?: Team;
   createdAt?: Date;
   imageAgreement? = false;
+
+  subscribeFormation = false;
 }

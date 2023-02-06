@@ -31,13 +31,13 @@ export class UserService {
     return user;
   }
 
-  static async update({firstName, lastName, github, linkedIn, note}: {
+  static async update({firstName, lastName, github, linkedIn, note, subscribeFormation}: {
     firstName: string, lastName: string,
     github?: string, linkedIn?: string,
-    note?: string
+    note?: string, subscribeFormation: boolean,
   }) {
     const data = await HttpService.send(HttpMethods.PUT, 'users/me', {
-      firstName, lastName,
+      firstName, lastName, subscribeFormation,
       github: github !== "" ? github : undefined,
       linkedIn: linkedIn !== "" ? linkedIn : undefined,
       comment: note !== "" ? note : undefined,
@@ -116,6 +116,7 @@ export class UserService {
       createdAt,
       voteId,
       imageAgreement,
+      subscribeFormation,
     } = userData;
 
     let team;
@@ -138,6 +139,7 @@ export class UserService {
       createdAt: creationDate,
       voteId,
       imageAgreement,
+      subscribeFormation,
     } as User;
   }
 
