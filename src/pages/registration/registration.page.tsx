@@ -408,7 +408,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                    onChange={this.onCheckboxChange(RegistrationField.SUBSCRIBE_FORMATION)}
             />
             <label htmlFor="form-subscribe-formation">
-              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.*
+              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
           </div>
