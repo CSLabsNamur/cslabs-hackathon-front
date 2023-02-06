@@ -380,9 +380,9 @@ export class AdminUsersPage extends React.Component<{}, {
           </ul>
         </div>
 
-		<div className="tx-centered">
-			{this.renderFilter()}
-		</div>
+        <div className="tx-centered">
+          {this.renderFilter()}
+        </div>
 
         <table>
           <thead>
