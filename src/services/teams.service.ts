@@ -32,6 +32,7 @@ export class TeamsService {
       // noinspection PointlessBooleanExpressionJS
       await UserService.updateTeam(team, !!user.isTeamOwner);
     }
+    return memberId;
   }
 
   static async invite(email: string) {
