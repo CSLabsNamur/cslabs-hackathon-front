@@ -359,7 +359,7 @@ export class AdminUsersPage extends React.Component<{}, {
     const users = this.state.users;
     const usersWithoutCaution = users.filter((user) => !user.paidCaution);
     const nonAdminUsers = users.filter((user) => !user.isAdmin);
-    const members = users.filter((user) => user.team);
+    const members = nonAdminUsers.filter((user) => user.team);
     const membersWithoutTeam = nonAdminUsers.filter((user) => !user.team)
 
     return (
