@@ -23,6 +23,15 @@ import {NotFoundPage} from "./pages/not-found/not-found.page";
 
 ReactModal.setAppElement('#root');
 
+const docTitle = "CSLabs Hackathon : Le Handicap";
+document.addEventListener("blur", () => {
+  document.title = "Come back you found an easter egg";
+});
+
+document.addEventListener("focus", () => {
+  document.title = docTitle;
+});
+
 class App extends React.Component<any, any> {
 
   constructor(props: any) {
