@@ -11,6 +11,7 @@ import Timer from "../../components/timer/timer";
 import MailInfo from "../../components/mail-info/mail-info";
 
 const closeSubscription = false;
+const closedSubscription = true;
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -443,6 +444,17 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Tenez-vous prêts !
         </p>
       </div>);
+    }
+
+    if (closedSubscription) {
+      return (<div id="subscription_waiting">
+        <p>
+          Les inscriptions sont fermées !
+        </p>
+        <p>
+          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain 😉
+        </p>
+      </div>)
     }
 
     return (
