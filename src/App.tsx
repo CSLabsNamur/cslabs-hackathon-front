@@ -20,6 +20,7 @@ import {AuthenticatedRoutes} from "./components/authenticated-routes/authenticat
 import {TeamPage} from "./pages/team/team.page";
 import {AdminPage} from "./pages/admin/admin.page";
 import {NotFoundPage} from "./pages/not-found/not-found.page";
+import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
 
 ReactModal.setAppElement('#root');
 
@@ -71,36 +72,15 @@ class App extends React.Component<any, any> {
             <Route path="/deconnexion" element={<LogoutPage/>} />
             <Route path="/ask-password-reset" element={<AskPasswordResetPage/>} />
             <Route path="/password-reset/:token" element={<PasswordResetPage/>} />
+            <Route path="/draw-board" element={<DrawBoardPage/>} />
             <Route element={<AuthenticatedRoutes admin={false}/>}>
               <Route path="/team/*" element={<TeamPage />}/>
             </Route>
             <Route element={<AuthenticatedRoutes admin={true}/>}>
               <Route path="/admin/*" element={<AdminPage />}/>
             </Route>
-            {/*<AuthenticatedRoute admin={false} path={'/team/*'} element={<TeamPage/>}/>*/}
-            {/*<AuthenticatedRoute admin={true} path={'/admin/*'} element={<AdminPage/>}/>*/}
             <Route path="/" element={<HomePage/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
-
-            {/*<Route>*/}
-            {/*  <Navigate to="/not-found" replace={true}/>*/}
-            {/*</Route>*/}
-
-            {/*<Route exact path="/sponsors" component={SponsorsPage}/>*/}
-            {/*<Route exact path="/infos" component={InformationPage}/>*/}
-            {/*<Route exact path="/plus-loin" component={GoingFurtherPage}/>*/}
-            {/*<Route exact path="/inscription" component={RegistrationPage}/>*/}
-            {/*<Route exact path="/connexion" component={LoginPage}/>*/}
-            {/*<Route exact path="/deconnexion" component={LogoutPage}/>*/}
-            {/*<Route exact path="/ask-password-reset" component={AskPasswordResetPage}/>*/}
-            {/*<Route exact path="/password-reset/:token" component={PasswordResetPage}/>*/}
-            {/*<AuthenticatedRoute path="/team" component={TeamPage}/>*/}
-            {/*<AuthenticatedRoute path="/admin" component={AdminPage} admin={true}/>*/}
-            {/*<Route exact path="/" component={HomePage}/>*/}
-            {/*<Route exact path="/not-found" component={NotFoundPage}/>*/}
-            {/*<Route>*/}
-            {/*  <Redirect to={"/not-found"}/>*/}
-            {/*</Route>*/}
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
