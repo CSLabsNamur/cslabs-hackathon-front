@@ -15,12 +15,45 @@ header, .header {
     position: absolute;
     top: 8rem;
     left: 50%;
-    max-width: 20rem;
-    max-height: 20rem;
-    object-fit: contain;
-    object-position: center;
+    width: 24rem;
+    height: 24rem;
     transform: translate(-50%, -100%);
     z-index: 1;
+    user-select: none;
+}
+
+.page-hero__logo-hackathon div {
+    width: 100%;
+    height: 100%;
+}
+
+.page-hero__logo-hackathon .inner {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 1s;
+}
+
+.page-hero__logo-hackathon .front, .page-hero__logo-hackathon .back {
+    position: absolute;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.page-hero__logo-hackathon:active .inner {
+    transform: rotateY(180deg);
+}
+
+.page-hero__logo-hackathon .back {
+    transform: rotateY(180deg);
+}
+
+.page-hero__logo-hackathon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    pointer-events: none;
 }
 
 .page-hero__content {
