@@ -20,7 +20,7 @@ export class UserService {
     subscribeFormation: boolean,
   }) {
     await HttpService.send(HttpMethods.POST, 'authentication/register', {
-      email, password, firstName, lastName, imageAgreement, subscribeFormation,
+      email: email.toLowerCase(), password, firstName, lastName, imageAgreement, subscribeFormation,
       github: github !== "" ? github : null,
       linkedIn: linkedIn !== "" ? linkedIn : null,
       comment: note !== "" ? note : null,
@@ -75,7 +75,11 @@ export class UserService {
   }
 
   static async loginWithCredentials(email: string, password: string): Promise<User> {
-    const response = await HttpService.send(HttpMethods.POST, 'authentication/log-in', {email, password});
+    ''.toLowerCase()
+    const response = await HttpService.send(HttpMethods.POST, 'authentication/log-in', {
+      email: email.toLowerCase(),
+      password,
+    });
     const {accessToken, refreshToken, ...data} = response;
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
@@ -95,7 +99,9 @@ export class UserService {
   }
 
   static async askResetPassword(email: string) {
-    await HttpService.send(HttpMethods.POST, 'authentication/ask-password-reset', {email});
+    await HttpService.send(HttpMethods.POST, 'authentication/ask-password-reset', {
+      email: email.toLowerCase(),
+    });
   }
 
   static async resetPasswordToken(newPassword: string, resetPasswordToken: string) {

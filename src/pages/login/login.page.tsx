@@ -56,7 +56,7 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
   onTextChange(field: LoginField) {
     return (event: any) => {
       const newState = {...this.state} as any;
-      newState.form[field] = event.target.value;
+      newState.form[field] = event.target.value.trim();
       this.setState(newState);
     }
   }

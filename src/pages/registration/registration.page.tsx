@@ -10,7 +10,7 @@ import {withRouter, WithRouterProps} from "../../utils/with-router";
 import Timer from "../../components/timer/timer";
 import MailInfo from "../../components/mail-info/mail-info";
 
-const closeSubscription = false;
+const waitingSubscription = false;
 const closedSubscription = true;
 
 enum RegistrationField {
@@ -434,7 +434,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
   render() {
 
-    if (closeSubscription) {
+    if (waitingSubscription) {
       return (<div id="subscription_waiting">
         <p>
           Les inscriptions sont bientôt ouvertes !
