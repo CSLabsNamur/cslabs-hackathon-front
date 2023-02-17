@@ -21,6 +21,8 @@ import {TeamPage} from "./pages/team/team.page";
 import {AdminPage} from "./pages/admin/admin.page";
 import {NotFoundPage} from "./pages/not-found/not-found.page";
 import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
+import {SpaceInvaderPage} from "./pages/space-invader/space-invader.page";
+import {PizzaClickerPage} from "./pages/pizza-clicker/pizza-clicker.page";
 
 ReactModal.setAppElement('#root');
 
@@ -73,6 +75,8 @@ class App extends React.Component<any, any> {
             <Route path="/ask-password-reset" element={<AskPasswordResetPage/>} />
             <Route path="/password-reset/:token" element={<PasswordResetPage/>} />
             <Route path="/draw-board" element={<DrawBoardPage/>} />
+            <Route path="/space-invader" element={<SpaceInvaderPage/>} />
+            <Route path="/pizza-clicker" element={<PizzaClickerPage/>} />
             <Route element={<AuthenticatedRoutes admin={false}/>}>
               <Route path="/team/*" element={<TeamPage />}/>
             </Route>

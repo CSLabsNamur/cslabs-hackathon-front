@@ -2,6 +2,7 @@ import React from 'react';
 import {PageHero} from '../../components/page-hero/page-hero';
 
 import './going-further.page.css';
+import {Link} from "react-router-dom";
 
 export class GoingFurtherPage extends React.PureComponent {
 
@@ -16,7 +17,7 @@ export class GoingFurtherPage extends React.PureComponent {
         >
           <p className="further-page__intro">
             Ton projet peut changer les choses. N'hésite pas à consulter nos sponsors pour lui construire un
-            avenir !
+            avenir ! <Link to='/space-invader'>🎮</Link>
           </p>
         </PageHero>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
+import {Link} from "react-router-dom";
 
 export class InformationPage extends React.PureComponent {
 
@@ -34,7 +35,7 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Commodités" icon="/infos/commodites.svg">
           <p>Repos: <b>Salle avec des lits prévue</b></p>
-          <p>Repas: <b>Repas fournis</b></p>
+          <p>Repas: <b>Repas fournis</b> <Link to='/pizza-clicker'>🍕</Link></p>
           <p>Sanitaires: <b>Installations de l'Université</b></p>
         </InfoItem>
 
