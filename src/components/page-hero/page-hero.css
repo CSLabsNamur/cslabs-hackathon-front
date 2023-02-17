@@ -20,6 +20,7 @@ header, .header {
     transform: translate(-50%, -100%);
     z-index: 1;
     user-select: none;
+    perspective: 60rem;
 }
 
 .page-hero__logo-hackathon div {
