@@ -12,12 +12,16 @@ import MailInfo from "../../components/mail-info/mail-info";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
+const getMessage = timerModule.getMessage;
 
 let waitingSubscription = false
-const closedSubscription = false;
+let closedSubscription = false;
 
-if (timerModule.getDateEnv()< new Date()) {
+if (getDateEnv(process.env.REACT_APP_DATE) < new Date()) {
   waitingSubscription = true;
+}
+if (getDateEnv(process.env.REACT_APP_DATE_EVENT) < new Date()) {
+  closedSubscription = true;
 }
 
 enum RegistrationField {
@@ -138,6 +142,38 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       ...this.state,
       modal: {error: message},
     })
+  }
+
+  getClosedDate() {
+      const eventDate = getDateEnv(process.env.REACT_APP_DATE_EVENT);
+      const currentDate = new Date();
+      const timeDifference = eventDate.getTime() - currentDate.getTime(); 
+
+      if (timeDifference <= 0) {
+        return "L'événement est déjà clos.";
+      }
+    
+      const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+      let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      const maxMonth = (eventDate: Date, currentDate: Date) => {
+        if (eventDate.getFullYear() === currentDate.getFullYear()) {
+          return eventDate.getMonth();
+        }
+        return 12 + eventDate.getMonth();
+      }
+
+      for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month+=2) {
+        days -= 1; // still have impressision due to february and leap years
+      }
+    
+      const message = getMessage(months, days, hours, minutes, seconds);
+      
+      return message.substring(0, 15); // substring to only get months and days
+    
   }
 
   onFormSubmit(event: FormEvent) {
@@ -424,6 +460,10 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           <div className="form-control align-center">
             <MailInfo />
             <p>*Obligatoire</p>
+          </div>
+
+          <div className="form-control align-center">
+            <p>Attention que les inscriptions ferme dans {this.getClosedDate()}</p>
           </div>
 
           <div className="form-control align-center">

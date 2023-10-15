@@ -1,9 +1,7 @@
 import React from "react";
 import "./timer.css";
 
-function getDateEnv() {
-  const dateEnv = process.env.REACT_APP_DATE; // default: YYYY-MM-DD-hh-mm-ss
-
+function getDateEnv(dateEnv: string | any) {
   if (dateEnv === undefined) return new Date();
 
   let year = parseInt(dateEnv.substring(0, 4));
@@ -16,7 +14,26 @@ function getDateEnv() {
   return new Date(year, month, day, hour, minute, second);
 }
 
-const date = getDateEnv();
+function getMessage(months: any, days: any, hours: any, minutes: any, seconds: any) {
+  let message = seconds.toString() + ' secondes';
+
+  if (minutes > 0) {
+    message = minutes.toString() + ' minutes et ' + message;
+  }
+  if (hours > 0) {
+    message = hours.toString() + ' heures, ' + message;
+  }
+  if (days > 0) {
+    message = days.toString() + ' jours, ' + message;
+  }
+  if (months > 0) {
+    message = months.toString() + ' mois, ' + message;
+  }
+
+  return message;
+}
+
+const date = getDateEnv(process.env.REACT_APP_DATE);
 
 class Timer extends React.Component<{}, {
   time: Date,
@@ -24,6 +41,7 @@ class Timer extends React.Component<{}, {
   hours: number,
   minutes: number,
   seconds: number,
+  message: string,
   id?: any,
 }> {
 
@@ -32,11 +50,26 @@ class Timer extends React.Component<{}, {
 
     const now = new Date();
 
-    const ms = date.getTime() - now.getTime();
-    const seconds = Math.ceil(ms/1000) % 60;
-    const minutes = Math.ceil(ms/(60*1000)) % 60;
-    const hours = Math.ceil(ms/(60*60*1000)) % 24;
-    const days = Math.ceil(ms/(24*60*60*1000));
+    const timeDifference = date.getTime() - now.getTime();
+
+    const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    const maxMonth = (eventDate: Date, currentDate: Date) => {
+      if (eventDate.getFullYear() === currentDate.getFullYear()) {
+        return eventDate.getMonth();
+      }
+      return 12 + eventDate.getMonth();
+    }
+
+    for (let month = now.getMonth(); month < maxMonth(date, now); month+=2) {
+      days -= 1; // still have impressision due to february and leap years
+    }
+
+    const message = getMessage(months, days, hours, minutes, seconds);
 
     this.state = {
       time: date,
@@ -44,6 +77,7 @@ class Timer extends React.Component<{}, {
       hours,
       minutes,
       seconds,
+      message,
     };
 
     this.updateTimer = this.updateTimer.bind(this);
@@ -66,12 +100,26 @@ class Timer extends React.Component<{}, {
   updateTimer() {
     const now = new Date();
 
-    const ms = this.state.time.getTime() - now.getTime();
-    const seconds = Math.ceil(ms/1000) % 60;
-    const minutes = Math.ceil(ms/(60*1000)) % 60;
-    const hours = Math.ceil(ms/(60*60*1000)) % 24;
-    const days = Math.ceil(ms/(24*60*60*1000));
+    const timeDifference = date.getTime() - now.getTime();
 
+    const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    const maxMonth = (eventDate: Date, currentDate: Date) => {
+      if (eventDate.getFullYear() === currentDate.getFullYear()) {
+        return eventDate.getMonth();
+      }
+      return 12 + eventDate.getMonth();
+    }
+
+    for (let month = now.getMonth(); month < maxMonth(date, now); month+=2) {
+      days -= 1; // still have impressision due to february and leap years
+    }
+
+    const message = getMessage(months, days, hours, minutes, seconds);
 
     this.setState({
       ...this.state,
@@ -79,29 +127,16 @@ class Timer extends React.Component<{}, {
       minutes,
       hours,
       days,
+      message,
     });
   }
 
   render() {
-    const {days, hours, minutes, seconds} = this.state;
-
-    let message = seconds.toString() + ' secondes';
-
-    if (minutes > 0) {
-      message = minutes.toString() + ' minutes et ' + message;
-    }
-    if (hours > 0) {
-      message = hours.toString() + ' heures, ' + message;
-    }
-    if (days > 0) {
-      message = days.toString() + ' jours, ' + message;
-    }
-
     return (
-      <div id="timer">{message}</div>
+      <div id="timer">{this.state.message}</div>
     );
   }
 
 }
-const timerModule = {Timer, getDateEnv}
+const timerModule = {Timer, getDateEnv, getMessage}
 export default timerModule;

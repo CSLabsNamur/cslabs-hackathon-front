@@ -1,9 +1,27 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import timerModule from '../timer/timer';
 
 import './registration-info.css';
 
 export class RegistrationInfo extends React.PureComponent {
+
+  renderRegistrationInfo() {
+
+    const date = timerModule.getDateEnv(process.env.REACT_APP_DATE) ;
+
+    if (date > new Date())
+      return (
+        <div>
+          <p>Les inscriptions s'ouvrent dans <timerModule.Timer /></p>
+        </div>
+      );
+
+    return (<Link to="/inscription">
+              <button className="button button-primary">S'inscrire</button>
+            </Link>
+        );
+  }
 
   render() {
     return (
@@ -17,9 +35,7 @@ export class RegistrationInfo extends React.PureComponent {
             une caution de 20€.</p>
 
           <div>
-            <Link to="/inscription">
-              <button className="button button-primary">S'inscrire</button>
-            </Link>
+            {this.renderRegistrationInfo()}
             <Link to="/infos">
               <button className="button button-primary">Plus d'informations</button>
             </Link>
