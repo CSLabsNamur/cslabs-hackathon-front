@@ -7,11 +7,18 @@ import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
-import Timer from "../../components/timer/timer";
+import timerModule from "../../components/timer/timer";
 import MailInfo from "../../components/mail-info/mail-info";
 
-const waitingSubscription = false;
-const closedSubscription = true;
+const Timer = timerModule.Timer;
+const getDateEnv = timerModule.getDateEnv;
+
+let waitingSubscription = false
+const closedSubscription = false;
+
+if (timerModule.getDateEnv()< new Date()) {
+  waitingSubscription = true;
+}
 
 enum RegistrationField {
   EMAIL = 'email',

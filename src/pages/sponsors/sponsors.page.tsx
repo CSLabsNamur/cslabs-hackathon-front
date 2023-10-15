@@ -16,7 +16,7 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#unamur">
               <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
-            <a href="#ag_insurance">
+            {/* <a href="#ag_insurance">
               <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
             </a>
             <a href="#mutualite_chretienne">
@@ -33,11 +33,11 @@ export class SponsorsPage extends React.PureComponent {
             </a>
             <a href="#digital-wallonia">
               <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
-            </a>
+            </a> */}
           </div>
         </PageHero>
 
-        <Topic img={{
+        {/* <Topic img={{
           src: "/sponsors/ag.svg",
           alt: "AGInsurance"
         }}
@@ -240,7 +240,7 @@ export class SponsorsPage extends React.PureComponent {
             <li>Administration numérique</li>
             <li>Territoire numérique</li>
           </ol>
-        </Topic>
+        </Topic> */}
 
 
         <Topic img={{

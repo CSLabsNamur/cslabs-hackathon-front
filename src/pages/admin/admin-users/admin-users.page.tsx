@@ -215,7 +215,7 @@ export class AdminUsersPage extends React.Component<{}, {
         {this.renderModals()}
         <td><strong>{user.firstName}</strong></td>
         <td><strong>{user.lastName}</strong></td>
-        <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : '/'}</td>
+        <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : <span>/</span>}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
         <td className="tx-centered">

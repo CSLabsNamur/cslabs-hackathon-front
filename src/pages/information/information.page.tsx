@@ -22,7 +22,7 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
-          <p>Le week-end du <b>17 au 19 février 2023</b></p>
+          <p>Le week-end du <b>16 au 18 février 2024</b></p>
         </InfoItem>
 
         <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">

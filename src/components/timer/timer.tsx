@@ -1,6 +1,23 @@
 import React from "react";
 import "./timer.css";
 
+function getDateEnv() {
+  const dateEnv = process.env.REACT_APP_DATE; // default: YYYY-MM-DD-hh-mm-ss
+
+  if (dateEnv === undefined) return new Date();
+
+  let year = parseInt(dateEnv.substring(0, 4));
+  let month = parseInt(dateEnv.substring(5, 7)) - 1;
+  let day = parseInt(dateEnv.substring(8, 10));
+  let hour = parseInt(dateEnv.substring(11, 13));
+  let minute = parseInt(dateEnv.substring(14, 16));
+  let second = parseInt(dateEnv.substring(17, 19));
+
+  return new Date(year, month, day, hour, minute, second);
+}
+
+const date = getDateEnv();
+
 class Timer extends React.Component<{}, {
   time: Date,
   days: number,
@@ -13,7 +30,6 @@ class Timer extends React.Component<{}, {
   constructor(props: any) {
     super(props);
 
-    const date = new Date(2022, 9, 30, 12, 0, 0);
     const now = new Date();
 
     const ms = date.getTime() - now.getTime();
@@ -87,5 +103,5 @@ class Timer extends React.Component<{}, {
   }
 
 }
-
-export default Timer;
+const timerModule = {Timer, getDateEnv}
+export default timerModule;
