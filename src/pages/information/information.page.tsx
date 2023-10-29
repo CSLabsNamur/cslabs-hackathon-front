@@ -4,6 +4,11 @@ import {InfoItem} from '../../components/info-item/info-item';
 import './information.page.css';
 import {Link} from "react-router-dom";
 
+import timerModule from "../../components/timer/timer";
+
+const Timer = timerModule.Timer;
+const getDateEnv = timerModule.getDateEnv;
+
 export class InformationPage extends React.PureComponent {
 
   render() {
@@ -46,7 +51,9 @@ export class InformationPage extends React.PureComponent {
           <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
           {/* TODO: Enable caution with registration */} 
-          {/* <Timer/> */}
+          {new Date() > getDateEnv(process.env.REACT_APP_DATE) ? 
+          <Timer />: 
+          <Link to="/inscription">S'inscrire</Link>}
           <p> <strong> REMARQUE:</strong> Le hackathon étant une opportunité de mettre en pratique des connaissances théoriques, nous demandons à ce que les équipes aient un maximun de 2 professionnels pour laisser à tout le monde sa chance</p>
         </InfoItem>
 
