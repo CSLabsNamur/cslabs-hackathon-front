@@ -16,19 +16,19 @@ export class HomePage extends React.PureComponent {
       alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/tampon-en-attente.jpg",
+      src: process.env.PUBLIC_URL + "/images/coming-soon.png",
       alt: "Thème du Hackathon CSLabs",
     },
     {
       src: process.env.PUBLIC_URL + "/images/edition.jpg",
-      alt: "Troisième Édition CSLabs",
+      alt: "Cinquième Édition CSLabs",
     },
     {
       src: process.env.PUBLIC_URL + "/images/hackathon_irl.jpg",
       alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/tampon-en-attente.jpg",
+      src: process.env.PUBLIC_URL + "/images/coming-soon.jpg",
       alt: "Récompense",
     }
   ];
@@ -71,9 +71,9 @@ export class HomePage extends React.PureComponent {
 
         <Topic img={this.images[1]} direction='left'>
           <h2>Le thème</h2>
-          <p>
+          {/** TODO: <p>
             Avoir un handicap est une chose, être exclu de la société par oubli des majorités en est une autre.
-          </p>
+          </p> */}
           <p>
             Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
@@ -93,9 +93,9 @@ export class HomePage extends React.PureComponent {
             Le <strong>prix de la technique</strong> est, lui aussi par le jury, attribué à la meilleure
             réalisation technique !
           </p>
-          <p>
+          {/* TODO: <p>
             Le <strong>prix de la participation</strong> sera dévoilé le jour J !
-          </p>
+          </p> */}
         </Topic>
 
         <Topic img={this.images[2]} direction="left">
@@ -106,7 +106,7 @@ export class HomePage extends React.PureComponent {
           </p>
           <p>
             La concrétisation de vos projets nous importe, dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration de la vie des personnes touchées par <b>TO DO</b>
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration de la vie des personnes touchées par <b>coming soon...{/* TODO:  */}</b>
           </p>
         </Topic>
 
