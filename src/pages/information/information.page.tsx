@@ -26,15 +26,15 @@ export class InformationPage extends React.PureComponent {
           <p>Faculté d'Informatique de l'Université de Namur (<a href="https://goo.gl/maps/FoLgBZXZovtPZ9RSA" target="_blank" rel="noreferrer">Google Maps</a>)</p>
         </InfoItem>
 
-        <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
+        <InfoItem title="Date du Hackathon" icon="/infos/calendar.svg">
           <p>Le week-end du <b>16 au 18 février 2024</b></p>
         </InfoItem>
 
-        <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">
+        <InfoItem title="Contact de l'organisation" icon="/infos/contact.svg">
           <p>
             Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/" target="_blank" rel="noreferrer">Page Facebook</a>
           </p>
-          <p>Mail: <a href="mailto:events@cslabs.be" ><strong>events[@]cslabs.be</strong></a></p>
+          <p>Mail: <a href="mailto:event@cslabs.be" ><strong>event[@]cslabs.be</strong></a></p>
           <p>Serveur Discord: <a href="https://discord.gg/Jf2Dht8">https://discord.gg/Jf2Dht8</a></p>
         </InfoItem>
 
@@ -44,21 +44,21 @@ export class InformationPage extends React.PureComponent {
           <p>Sanitaires: <b>Installations de l'Université</b></p>
         </InfoItem>
 
-        <InfoItem title="Inscription" icon="/infos/info.svg">
+        <InfoItem title="Inscription" icon="/infos/register.svg">
           <p>Équipe: <b>5 membres maximum</b></p>
           <p>Prix d'entrée: <b>Gratuit</b></p>
           <p>Caution: <b>20 €</b></p>
           <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
           {/* TODO: Enable caution with registration */} 
-          {new Date() > getDateEnv(process.env.REACT_APP_DATE_OPEN) ? 
+          {new Date() < getDateEnv(process.env.REACT_APP_DATE_OPEN) ? 
           <Timer />: 
           <Link to="/inscription">S'inscrire</Link>}
-          <p> <strong> REMARQUE:</strong> Le hackathon étant une opportunité de mettre en pratique des connaissances théoriques, nous demandons à ce que les équipes aient un maximun de 2 professionnels pour laisser à tout le monde sa chance</p>
+          <p> <strong> REMARQUE :</strong> Le Hackathon étant une opportunité de mettre en pratique des connaissances théoriques, nous demandons à ce que les équipes aient un maximum de 2 professionnels pour laisser à tout le monde sa chance.</p>
         </InfoItem>
 
-        <InfoItem title="Attestation" icon="/infos/info.svg">
-          <p>Si nécessaire, nous pouvons fournir des attestations de participation.</p>
+        <InfoItem title="Attestation" icon="/infos/attestation.svg">
+          <p>Si nécessaire, nous pouvons confirmer votre participation à l'événement par email.</p>
           <p>Contactez-nous à l'adresse <strong><a href="mailto:event@cslabs.be">event[@]cslabs.be</a></strong></p>
           
         </InfoItem>

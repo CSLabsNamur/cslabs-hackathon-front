@@ -253,7 +253,7 @@ export class SponsorsPage extends React.PureComponent {
             Université de Namur
           </h2>
           <p>
-            L'université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
+            L'Université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
             l'organisation de cet évènement.
           </p>
         </Topic>
