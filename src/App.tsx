@@ -26,7 +26,7 @@ import {PizzaClickerPage} from "./pages/pizza-clicker/pizza-clicker.page";
 
 ReactModal.setAppElement('#root');
 
-const docTitle = "CSLabs Hackathon : Le Handicap";
+const docTitle = "CSLabs Hackathon : " + process.env.REACT_APP_NAME_EVENT;
 document.addEventListener("blur", () => {
   document.title = "Come back you found an easter egg";
 });

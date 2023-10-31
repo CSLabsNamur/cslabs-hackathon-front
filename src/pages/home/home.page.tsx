@@ -38,7 +38,7 @@ export class HomePage extends React.PureComponent {
       <div id="home-page">
 
         <PageHero
-          title="Le Handicap"
+          title={process.env.REACT_APP_NAME_EVENT || "Hackathon"}
           hasArrow={true}
           subtitle="Adaptez le monde pour tous !"
           disclaimer={
@@ -83,14 +83,14 @@ export class HomePage extends React.PureComponent {
             Envie de remporter un de nos prix ?
           </p>
           <p>
-            Le <strong>prix de l'idée</strong> est attribué par le jury à la meilleure idée de projet !
+            Le <strong>prix de l'innovation</strong> est attribué par le jury au projet le plus innovant !
           </p>
           <p>
             Le <strong>prix de la technique</strong> est, lui aussi par le jury, attribué à la meilleure
             réalisation technique !
           </p>
           <p>
-            Le <strong>prix de la participation</strong> sera dévoilé le jour J !
+            Le <strong>prix du public</strong> sera attribué au projet préféré du public !
           </p>
         </Topic>
 
@@ -102,7 +102,7 @@ export class HomePage extends React.PureComponent {
           </p>
           <p>
             La concrétisation de vos projets nous importe, dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration de la vie des personnes touchées par <b>TO DO</b>
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration du système éducatif. 
           </p>
         </Topic>
 
