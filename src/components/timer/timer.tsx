@@ -33,7 +33,7 @@ function getMessage(months: any, days: any, hours: any, minutes: any, seconds: a
   return message;
 }
 
-const date = getDateEnv(process.env.REACT_APP_DATE);
+const date = getDateEnv(process.env.REACT_APP_DATE_OPEN);
 
 class Timer extends React.Component<{}, {
   time: Date,

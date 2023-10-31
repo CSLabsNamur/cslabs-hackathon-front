@@ -16,7 +16,7 @@ export class HomePage extends React.PureComponent {
       alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/tampon-en-attente.jpg",
+      src: process.env.PUBLIC_URL + "/images/coming-soon-500.png",
       alt: "Thème du Hackathon CSLabs",
     },
     {
@@ -28,7 +28,7 @@ export class HomePage extends React.PureComponent {
       alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/tampon-en-attente.jpg",
+      src: process.env.PUBLIC_URL + "/images/coming-soon-500.png",
       alt: "Récompense",
     }
   ];
@@ -43,7 +43,7 @@ export class HomePage extends React.PureComponent {
           subtitle="Adaptez le monde pour tous !"
           disclaimer={
             <div>
-              <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
+              <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'UNamur</strong></p>
               <p>Ce Hackathon 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"

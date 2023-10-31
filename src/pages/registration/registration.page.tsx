@@ -14,13 +14,13 @@ const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
 const getMessage = timerModule.getMessage;
 
-let waitingSubscription = false
+let waitingSubscription = false;
 let closedSubscription = false;
 
-if (getDateEnv(process.env.REACT_APP_DATE) < new Date()) {
+if (getDateEnv(process.env.REACT_APP_DATE_OPEN) > new Date()) {
   waitingSubscription = true;
 }
-if (getDateEnv(process.env.REACT_APP_DATE_EVENT) < new Date()) {
+if (getDateEnv(process.env.REACT_APP_DATE_CLOSE) < new Date()) {
   closedSubscription = true;
 }
 
@@ -172,7 +172,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     
       const message = getMessage(months, days, hours, minutes, seconds);
       
-      return message.substring(0, 15); // substring to only get months and days
+      return message; //.substring(0, 15); // substring to only get months and days
     
   }
 
