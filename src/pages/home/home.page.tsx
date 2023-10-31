@@ -38,9 +38,9 @@ export class HomePage extends React.PureComponent {
       <div id="home-page">
 
         <PageHero
-          title={process.env.REACT_APP_NAME_EVENT || "Hackathon"}
+          title={process.env.REACT_APP_NAME_EVENT || "Le Hackathon"}
           hasArrow={true}
-          subtitle="Adaptez le monde pour tous !"
+          subtitle={process.env.REACT_APP_SLOGAN_EVENT || "CSLabs Hackathon"}
           disclaimer={
             <div>
               <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'UNamur</strong></p>
