@@ -16,8 +16,8 @@ export class InformationPage extends React.PureComponent {
       <div id="information-page">
 
         <div className="tx-centered">
-          <h1>Informations sur l'Hackathon</h1>
-          <h2>Adresse, lieu et commodités</h2>
+          <h1>Informations générales</h1>
+          <h2>Modalités et commodités</h2>
         </div>
 
         <InfoItem title="Lieu du Hackathon" icon="/infos/location.svg">

@@ -58,10 +58,10 @@ export class HomePage extends React.PureComponent {
         <Topic img={this.images[0]} direction='right'>
           <h2>CSLabs</h2>
           <p>
-            CSLabs est une junior entreprise de la région de Namur.
-            Spécialisée dans l'informatique, elle invite ses membres à
-            participer à des projets, des formations et des activités dans les
-            domaines de la technologie et de l'informatique.
+          Le Computer Science Labs est une junior entreprise issue de la Faculté d’Informatique de
+          l’Université de Namur. Pratiquement, ses actions s’articulent autour de la réalisation de projets, 
+          de la formation des membres sur des thématiques liées à l'informatique et 
+          de l'organisation d'événements.
           </p>
           <p>
           <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le domaine de l'informatique"

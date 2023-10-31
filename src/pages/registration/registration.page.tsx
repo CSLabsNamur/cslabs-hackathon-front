@@ -463,7 +463,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           </div>
 
           <div className="form-control align-center">
-            <p>Attention que les inscriptions ferme dans {this.getClosedDate()}</p>
+            <p>Attention que les inscriptions ferment dans {this.getClosedDate()}</p>
           </div>
 
           <div className="form-control align-center">
