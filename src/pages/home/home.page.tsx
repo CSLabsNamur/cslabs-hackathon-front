@@ -28,7 +28,7 @@ export class HomePage extends React.PureComponent {
       alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/coming-soon-500.png",
+      src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
       alt: "Récompense",
     }
   ];
@@ -44,7 +44,6 @@ export class HomePage extends React.PureComponent {
           disclaimer={
             <div>
               <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'UNamur</strong></p>
-              <p>Ce Hackathon 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/unamur.png" />
@@ -71,9 +70,6 @@ export class HomePage extends React.PureComponent {
 
         <Topic img={this.images[1]} direction='left'>
           <h2>Le thème</h2>
-          <p>
-            Avoir un handicap est une chose, être exclu de la société par oubli des majorités en est une autre.
-          </p>
           <p>
             Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.

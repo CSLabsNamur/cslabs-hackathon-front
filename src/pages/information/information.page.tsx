@@ -59,7 +59,7 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Attestation" icon="/infos/info.svg">
           <p>Si nécessaire, nous pouvons fournir des attestations de participation.</p>
-          <p>Contactez-nous à l'adresse <strong><a href="mailto:events@cslabs.be">events[@]cslabs.be</a></strong></p>
+          <p>Contactez-nous à l'adresse <strong><a href="mailto:event@cslabs.be">event[@]cslabs.be</a></strong></p>
           
         </InfoItem>
 

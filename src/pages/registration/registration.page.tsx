@@ -20,7 +20,7 @@ let closedSubscription = false;
 if (getDateEnv(process.env.REACT_APP_DATE_OPEN) > new Date()) {
   waitingSubscription = true;
 }
-if (getDateEnv(process.env.REACT_APP_DATE_CLOSE) < new Date()) {
+if (getDateEnv(process.env.REACT_APP_DATE_CLOSE) > new Date()) {
   closedSubscription = true;
 }
 
