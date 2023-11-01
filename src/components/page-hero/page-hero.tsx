@@ -38,13 +38,13 @@ export class PageHero extends React.PureComponent<{
             <div className="page-hero__logo-hackathon">
               <div className="inner">
                 <div className="front">
-                  <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2023.png'}
-                       alt="Logo Hackathon 2023"
+                  <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2024.png'}
+                       alt="Logo Hackathon 2024"
                   />
                 </div>
                 <div className="back">
                   <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
-                       alt="Logo Pizzathon 2023"
+                       alt="Logo Pizzathon 2024"
                   />
                 </div>
               </div>

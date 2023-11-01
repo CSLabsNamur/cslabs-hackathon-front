@@ -30,7 +30,7 @@ export class InformationPage extends React.PureComponent {
           <p>Le week-end du <b>{process.env.REACT_APP_DATE_EVENT}</b></p>
         </InfoItem>
 
-        <InfoItem title="Contact de l'organisation" icon="/infos/contact.svg">
+        <InfoItem title="Contact" icon="/infos/contact.svg">
           <p>
             Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/" target="_blank" rel="noreferrer">Page Facebook</a>
           </p>
