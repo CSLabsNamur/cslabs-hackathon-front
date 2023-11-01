@@ -11,6 +11,9 @@ export class PageHero extends React.PureComponent<{
 }> {
 
   render() {
+    let logo = "/images/Logo_hackathon_2024.png";
+    const agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("edge") > -1) logo = '/images/logo/Logo.svg';
 
     let arrow = null;
     if (this.props.hasArrow) {
@@ -38,7 +41,7 @@ export class PageHero extends React.PureComponent<{
             <div className="page-hero__logo-hackathon">
               <div className="inner">
                 <div className="front">
-                  <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2024.png'}
+                  <img src={ process.env.PUBLIC_URL + logo}
                        alt="Logo Hackathon 2024"
                   />
                 </div>
