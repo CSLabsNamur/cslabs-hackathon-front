@@ -51,7 +51,8 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
         console.log('Successfully joined team.');
         this.setState({...this.state, redirect: '/team/edit'});
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err)
         console.error('Failed to join team. Wrong token.');
         const newState = {...this.state};
         newState.errors['token'] = "Token invalide.";

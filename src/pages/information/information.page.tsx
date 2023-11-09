@@ -2,7 +2,7 @@ import React from 'react';
 import {InfoItem} from '../../components/info-item/info-item';
 
 import './information.page.css';
-import Timer from "../../components/timer/timer";
+import {Link} from "react-router-dom";
 
 export class InformationPage extends React.PureComponent {
 
@@ -22,7 +22,7 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Date du Hackathon" icon="/infos/info.svg">
-          <p>Le week-end du <b>17 au 19 février 2023</b></p>
+          <p>Le week-end du <b>16 au 18 février 2024</b></p>
         </InfoItem>
 
         <InfoItem title="Contact de l'Organisation" icon="/infos/contact.svg">
@@ -35,18 +35,19 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Commodités" icon="/infos/commodites.svg">
           <p>Repos: <b>Salle avec des lits prévue</b></p>
-          <p>Repas: <b>Repas fournis</b></p>
+          <p>Repas: <b>Repas fournis</b> <Link to='/pizza-clicker'>🍕</Link></p>
           <p>Sanitaires: <b>Installations de l'Université</b></p>
         </InfoItem>
 
         <InfoItem title="Inscription" icon="/infos/info.svg">
           <p>Équipe: <b>5 membres maximum</b></p>
           <p>Prix d'entrée: <b>Gratuit</b></p>
-          {/*<p>Caution: <b>20 €</b></p>*/}
-          {/*<p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>*/}
-          {/*<p>Communication: <b>NOM Prénom</b></p>*/}
-          {/* TODO: Enable caution with registration */}
-          <Timer/>
+          <p>Caution: <b>20 €</b></p>
+          <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
+          <p>Communication: <b>NOM Prénom</b></p>
+          {/* TODO: Enable caution with registration */} 
+          {/* <Timer/> */}
+          <p> <strong> REMARQUE:</strong> Le hackathon étant une opportunité de mettre en pratique des connaissances théoriques, nous demandons à ce que les équipes aient un maximun de 2 professionnels pour laisser à tout le monde sa chance</p>
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/info.svg">

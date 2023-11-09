@@ -2,6 +2,7 @@ import {UserService} from "./user.service";
 import {HttpMethods, HttpService} from "./http.service";
 import {Team} from "../domain/team";
 import {User} from "../domain/user";
+import {Buffer} from "buffer";
 
 export class TeamsService {
 
@@ -31,6 +32,7 @@ export class TeamsService {
       // noinspection PointlessBooleanExpressionJS
       await UserService.updateTeam(team, !!user.isTeamOwner);
     }
+    return memberId;
   }
 
   static async invite(email: string) {

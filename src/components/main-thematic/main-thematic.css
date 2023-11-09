@@ -11,6 +11,10 @@
     font-size: 2rem;
 }
 
+#credits-subtitle {
+    text-align: center;
+}
+
 .main-thematic__content > ul {
     font-size: 1.4rem;
 }

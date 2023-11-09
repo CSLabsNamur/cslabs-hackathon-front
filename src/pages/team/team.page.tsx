@@ -9,7 +9,6 @@ import {TeamWelcomePage} from "./team-welcome/team-welcome.page";
 import {TeamProfilePage} from "./team-profile/team-profile.page";
 import {TeamListPage} from "./team-list/team-list.page";
 import TeamInfoPage from "./team-info/team-info.page";
-import {TeamVotePage} from "./team-vote/team-vote.page";
 import {NotFoundPage} from "../not-found/not-found.page";
 
 export class TeamPage extends React.PureComponent {
@@ -26,22 +25,8 @@ export class TeamPage extends React.PureComponent {
           <Route path="/join" element={<TeamJoinPage/>}/>
           <Route path="/join/:token" element={<TeamJoinPage/>} />
           <Route path="/team/invite/:token" element={<TeamJoinPage/>} />
-          <Route path="/vote" element={<TeamVotePage/>} />
           <Route path="/" element={<TeamWelcomePage/>} />
           <Route path="*" element={<NotFoundPage/>} />
-
-          {/*<Route path="/team/edit" component={TeamEditPage} />*/}
-          {/*<Route path="/team/user" component={TeamProfilePage} />*/}
-          {/*<Route path="/team/all" component={TeamListPage} />*/}
-          {/*<Route path="/team/info/:teamId" component={TeamInfoPage} />*/}
-          {/*<Route path="/team/join" component={TeamJoinPage} />*/}
-          {/*<Route path="/team/join/:token" component={TeamJoinPage} />*/}
-          {/*<Route path="/team/invite/:token" component={TeamJoinPage} />*/}
-          {/*<Route path="/team/vote" component={TeamVotePage} />*/}
-          {/*<Route path="/team" component={TeamWelcomePage} />*/}
-          {/*<Route>*/}
-          {/*  <Redirect to="/not-found" />*/}
-          {/*</Route>*/}
         </Routes>
       </div>
     );

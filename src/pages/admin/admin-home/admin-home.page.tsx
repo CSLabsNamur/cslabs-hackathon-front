@@ -11,9 +11,9 @@ export class AdminHomePage extends React.PureComponent {
 
         <h2 className="tx-centered">Administration</h2>
 
-        <p>Bienvenue sur la page d'administration du Hackathon 2021 du CSLabs.</p>
+        <p>Bienvenue sur la page d'administration du Hackathon 2023 du CSLabs.</p>
 
-        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>#Pierre Poitier</strong></p>
+        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>#Pierre Poitier</strong> ou <strong>#Yannis Van Achter</strong></p>
 
         <hr/>
 

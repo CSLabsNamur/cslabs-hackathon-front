@@ -14,4 +14,7 @@ export class User {
   voteId?: string;
   team?: Team;
   createdAt?: Date;
+  imageAgreement? = false;
+
+  subscribeFormation = false;
 }

@@ -40,8 +40,8 @@ export class AdminService {
     await HttpService.send(HttpMethods.DELETE, `teams/${teamId}`, {}, true);
   }
 
-  static async sendAnnounce(subject: string, announce: string) {
-    await HttpService.send(HttpMethods.POST, 'users/announce', {subject, announce}, true);
+  static async sendAnnounce(subject: string, announce: string, addressee: string) {
+    await HttpService.send(HttpMethods.POST, 'users/announce', {subject, announce, addressee}, true);
   }
 
   static async getVoteResults() {

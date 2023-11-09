@@ -35,10 +35,20 @@ export class PageHero extends React.PureComponent<{
       <div>
         <header>
           <div className="page-hero">
-            <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2023.png'}
-                 alt="Logo Hackathon 2021"
-                 className="page-hero__logo-hackathon"
-            />
+            <div className="page-hero__logo-hackathon">
+              <div className="inner">
+                <div className="front">
+                  <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2023.png'}
+                       alt="Logo Hackathon 2023"
+                  />
+                </div>
+                <div className="back">
+                  <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
+                       alt="Logo Pizzathon 2023"
+                  />
+                </div>
+              </div>
+            </div>
             <div className="page-hero__content">
               <h1 className="title">
                 {this.props.title}

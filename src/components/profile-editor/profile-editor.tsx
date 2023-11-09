@@ -13,6 +13,7 @@ enum ProfileField {
   LINKEDIN = "linkedIn",
   NOTE = "note",
   CV_FILE = "cvFile",
+  SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
 export class ProfileEditor extends React.Component<{
@@ -24,6 +25,7 @@ export class ProfileEditor extends React.Component<{
     github: string,
     linkedIn: string,
     note: string,
+    subscribeFormation: boolean,
   },
   validationErrors: { [key: string]: string },
   showConfirmationModal: boolean,
@@ -44,6 +46,7 @@ export class ProfileEditor extends React.Component<{
         github: user.github ? user.github : "",
         linkedIn: user.linkedIn ? user.linkedIn : "",
         note: user.note ? user.note : "",
+        subscribeFormation: user.subscribeFormation,
       },
       validationErrors: {},
       showConfirmationModal: false,
@@ -121,6 +124,14 @@ export class ProfileEditor extends React.Component<{
     }
   }
 
+  onCheckboxChange(field: ProfileField) {
+    return (event: any) => {
+      const newState = {...this.state} as any;
+      newState.form[field] = event.target.checked;
+      this.setState(newState);
+    }
+  }
+
   renderForm() {
     const {user} = this.props;
     return (
@@ -136,7 +147,8 @@ export class ProfileEditor extends React.Component<{
               Votre CV
               <span className="tooltip-text">
                 Cela remplacera votre ancien CV.
-                N'oubliez pas de sauvegarder le profile pour l'envoyer.
+                N'oubliez pas de sauvegarder le profil pour l'envoyer. <br />
+                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
               </span>
             </span> (optionnel)
           </label>
@@ -220,13 +232,23 @@ export class ProfileEditor extends React.Component<{
           {this.renderValidationError(ProfileField.NOTE)}
         </div>
 
+        <div className="form-control">
+          <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
+                 value="subscribe-formation"
+                 checked={this.state.form.subscribeFormation}
+                 onChange={this.onCheckboxChange(ProfileField.SUBSCRIBE_FORMATION)}
+          />
+          <label htmlFor="form-subscribe-formation">
+            Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+          </label>
+        </div>
+
         {!user.paidCaution ? (
           <p className="alert alert-danger info--alert">
             Votre caution n'a pas encore été réceptionnée ou validée !
             Si vous avez payé votre caution et que ce message tarde à disparaitre,
-            veuillez nous contacter à l'adresse mail suivante : {
-            process.env.REACT_APP_SUPPORT_MAIL_ADDR
-          }. <Link to="/infos">Plus d'informations</Link>.
+            veuillez nous contacter à l'adresse mail suivante : <a href="mailto:hackathon@cslabs.be">hackathon@cslabs.be</a>.
+            Pour plus d'information, <Link to="/infos">cliquez ici</Link>.
           </p>
         ) : null}
 

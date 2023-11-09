@@ -15,7 +15,7 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
     email: string,
     password: string,
   },
-  authFailed: boolean,
+  authFailed?: string,
 }> {
 
   constructor(props: any) {
@@ -26,7 +26,7 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
         email: "",
         password: "",
       },
-      authFailed: false,
+      authFailed: undefined,
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -39,7 +39,16 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
         this.props.navigate(-1);
     }).catch((error) => {
       if (error.response?.status === 400) {
-        this.setState({...this.state, authFailed: true});
+        this.setState({
+          ...this.state,
+          authFailed: "L'email ou le mot de passe est invalide.",
+        });
+      }
+      else {
+        this.setState({
+          ...this.state,
+          authFailed: "Une erreur inconnue est survenue. Veuillez contacter un administrateur.",
+        });
       }
     });
   }
@@ -47,7 +56,7 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
   onTextChange(field: LoginField) {
     return (event: any) => {
       const newState = {...this.state} as any;
-      newState.form[field] = event.target.value;
+      newState.form[field] = event.target.value.trim();
       this.setState(newState);
     }
   }
@@ -78,6 +87,12 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
                    onChange={this.onTextChange(LoginField.PASSWORD)}
             />
           </div>
+
+          {!!this.state.authFailed ?
+            <div className="alert-danger tx-centered" id="login-failed">
+              {this.state.authFailed}
+            </div>
+            : null}
 
           <div className="tx-centered">
             <input className="button-primary button-round" id="input-button" type="submit" value="Se connecter"/>

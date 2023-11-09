@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import {Buffer} from 'buffer';
 
 import './team-members-list.css';
 import {User} from "../../domain/user";
@@ -120,8 +121,11 @@ export class TeamMembersList extends React.Component<{
 
   onLeave(event: any) {
     event.preventDefault();
-    TeamsService.leave(this.props.user, event.target.value).then(() => {
+    TeamsService.leave(this.props.user, event.target.value).then((memberId) => {
       console.log('Member left successfully.');
+      const new_state = {...this.state};
+      new_state.form.members = new_state.form.members.filter(member => member.id !== memberId);
+      this.setState(new_state);
     });
   }
 
@@ -160,7 +164,7 @@ export class TeamMembersList extends React.Component<{
         <td className="tx-right">
           <button className="button-danger-outlined"
           disabled={disabled || newTeam}
-          style={{visibility: disabled || newTeam ? "hidden" : "visible"}}
+          style={{visibility: (disabled || newTeam) ? "hidden" : "visible"}}
           value={member.id}
           onClick={this.onLeave}
           >

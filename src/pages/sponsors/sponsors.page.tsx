@@ -16,7 +16,7 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#unamur">
               <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
-            <a href="#ag_insurance">
+            {/* <a href="#ag_insurance">
               <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
             </a>
             <a href="#mutualite_chretienne">
@@ -33,15 +33,15 @@ export class SponsorsPage extends React.PureComponent {
             </a>
             <a href="#digital-wallonia">
               <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
-            </a>
+            </a> */}
           </div>
         </PageHero>
 
-        <Topic img={{
+        {/* <Topic img={{
           src: "/sponsors/ag.svg",
           alt: "AGInsurance"
         }}
-               link="https://www.aginsurance.be"
+               link="https://ag.be/jobs/fr"
                direction="right">
           <h2 id="ag_insurance">
             AG Insurance
@@ -240,7 +240,7 @@ export class SponsorsPage extends React.PureComponent {
             <li>Administration numérique</li>
             <li>Territoire numérique</li>
           </ol>
-        </Topic>
+        </Topic> */}
 
 
         <Topic img={{
@@ -253,9 +253,7 @@ export class SponsorsPage extends React.PureComponent {
             Université de Namur
           </h2>
           <p>
-            Le Hackathon 2020 est organisé dans le cadre du 50e anniversaire de la Facultée d'Informatique
-            de l'UNamur.
-            L'université et la faculté nous fournissent les locaux et le matériel nécessaires à
+            L'université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
             l'organisation de cet évènement.
           </p>
         </Topic>

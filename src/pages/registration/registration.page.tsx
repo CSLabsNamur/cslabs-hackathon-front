@@ -7,9 +7,22 @@ import {UserService} from "../../services/user.service";
 import {FormValidationService} from "../../services/form-validation.service";
 import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
-import Timer from "../../components/timer/timer";
+import timerModule from "../../components/timer/timer";
+import MailInfo from "../../components/mail-info/mail-info";
 
-const closeSubscription = true;
+const Timer = timerModule.Timer;
+const getDateEnv = timerModule.getDateEnv;
+const getMessage = timerModule.getMessage;
+
+let waitingSubscription = false
+let closedSubscription = false;
+
+if (getDateEnv(process.env.REACT_APP_DATE) < new Date()) {
+  waitingSubscription = true;
+}
+if (getDateEnv(process.env.REACT_APP_DATE_EVENT) < new Date()) {
+  closedSubscription = true;
+}
 
 enum RegistrationField {
   EMAIL = 'email',
@@ -129,6 +142,38 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       ...this.state,
       modal: {error: message},
     })
+  }
+
+  getClosedDate() {
+      const eventDate = getDateEnv(process.env.REACT_APP_DATE_EVENT);
+      const currentDate = new Date();
+      const timeDifference = eventDate.getTime() - currentDate.getTime(); 
+
+      if (timeDifference <= 0) {
+        return "L'événement est déjà clos.";
+      }
+    
+      const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+      let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      const maxMonth = (eventDate: Date, currentDate: Date) => {
+        if (eventDate.getFullYear() === currentDate.getFullYear()) {
+          return eventDate.getMonth();
+        }
+        return 12 + eventDate.getMonth();
+      }
+
+      for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month+=2) {
+        days -= 1; // still have impressision due to february and leap years
+      }
+    
+      const message = getMessage(months, days, hours, minutes, seconds);
+      
+      return message.substring(0, 15); // substring to only get months and days
+    
   }
 
   onFormSubmit(event: FormEvent) {
@@ -276,18 +321,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             {this.renderValidationError(RegistrationField.LAST_NAME)}
           </div>
 
-          <div className="form-control">
-            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
-                   value="image-agreement"
-                   checked={this.state.form.imageAgreement}
-                   onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
-            />
-            <label htmlFor="form-image-agreement">
-              Je consens à l'utilisation de mon image dans le cadre de l'événement (optionnel)
-            </label>
-            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
-          </div>
-
           <fieldset>
             <legend>Informations complémentaires</legend>
 
@@ -358,6 +391,9 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               <label htmlFor="form-cv">
                 Votre CV (pdf, max 5Mo) (optionnel)
               </label>
+              <span>
+                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
+              </span>
               <div>
                 <input type="file"
                        name="form-cv"
@@ -378,7 +414,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             />
             <label htmlFor="form-accept-rules">
               J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon
-              et notamment de la <strong>caution de 20€</strong>.
+              et notamment de la <strong>caution de 20€</strong>.*
             </label>
             {this.renderValidationError(RegistrationField.RULES_AGREEMENT)}
           </div>
@@ -392,12 +428,22 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             <label htmlFor="form-accept-conditions">
               J'ai lu et accepté les <a
               href={"/documents/termes_et_conditions.pdf"}
-              rel="noopener noreferrer" target="_blank">termes et conditions</a>.
+              rel="noopener noreferrer" target="_blank">termes et conditions</a>.*
             </label>
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
 
-
+          <div className="form-control">
+            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
+                  value="image-agreement"
+                  checked={this.state.form.imageAgreement}
+                  onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
+            />
+            <label htmlFor="form-image-agreement">
+              Je consens à l'utilisation de mon image dans le cadre de l'événement
+            </label>
+            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
+          </div>
 
           <div className="form-control">
             <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
@@ -409,6 +455,15 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
+          </div>
+
+          <div className="form-control align-center">
+            <MailInfo />
+            <p>*Obligatoire</p>
+          </div>
+
+          <div className="form-control align-center">
+            <p>Attention que les inscriptions ferme dans {this.getClosedDate()}</p>
           </div>
 
           <div className="form-control align-center">
@@ -426,7 +481,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
   render() {
 
-    if (closeSubscription) {
+    if (waitingSubscription) {
       return (<div id="subscription_waiting">
         <p>
           Les inscriptions sont bientôt ouvertes !
@@ -436,6 +491,17 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Tenez-vous prêts !
         </p>
       </div>);
+    }
+
+    if (closedSubscription) {
+      return (<div id="subscription_waiting">
+        <p>
+          Les inscriptions sont fermées !
+        </p>
+        <p>
+          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain 😉
+        </p>
+      </div>)
     }
 
     return (

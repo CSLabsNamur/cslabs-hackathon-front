@@ -208,16 +208,46 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   renderUser(user: User, index: number) {
-    const {team, note, paidCaution, github, linkedIn, createdAt} = user;
+    const {team, note, paidCaution, github, linkedIn, createdAt, imageAgreement, isAdmin} = user;
 
     return (
       <tr key={index}>
         {this.renderModals()}
         <td><strong>{user.firstName}</strong></td>
         <td><strong>{user.lastName}</strong></td>
-        <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : '/'}</td>
+        <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : <span>/</span>}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
+        <td className="tx-centered">
+          {imageAgreement ? (
+            <span className="tooltip" style={{color: "green"}}>
+              &#x2714;
+              <span className="tooltip-text">Ce membre a accepté d'être pris en photo !</span>
+            </span>
+          ) : (
+            <span className="tooltip" style={{color: "red"}}>
+              &#x2716;
+              <span className="tooltip-text">
+                Ce membre a refusé d'être pris en photo !
+              </span>
+            </span>
+          )}
+        </td>
+        <td className="tx-centered">
+          {isAdmin ? (
+            <span className="tooltip" style={{color: "green"}}>
+              &#x2714;
+              <span className="tooltip-text">Ce membre est admin sur le site !</span>
+            </span>
+          ) : (
+            <span className="tooltip" style={{color: "red"}}>
+              &#x2716;
+              <span className="tooltip-text">
+                Ce membre n'est pas admin sur le site !
+              </span>
+            </span>
+          )}
+        </td>
         <td className="tx-centered">
           {note ? (
             <span className="tooltip" style={{color: "orange"}}>&#9888;<span
@@ -268,11 +298,68 @@ export class AdminUsersPage extends React.Component<{}, {
 
   }
 
+  renderFilter() {
+	return (
+		<table>
+			<thead>
+				<tr>
+					<th className="align-center">Valeur de test</th>
+					<th className="align-center">Droit à l'image</th>
+					<th className="align-center">Est admin ?</th>
+					<th className="align-center">Remarques</th>
+					<th className="align-center">Caution</th>
+					<th className="align-center">Date d'inscription (ordre)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>True</td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.imageAgreement))}>Accepte les photos</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.isAdmin))}>Liste des admins</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.note))}>N'a aucune remarque</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.paidCaution))}>A payé sa caution</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
+						if (!user1.createdAt || !user2.createdAt) {
+							return 0
+						}
+						if (user1.createdAt?.toISOString() > user2.createdAt.toISOString()) {
+							return -1;
+						}
+						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
+							return 1;
+						}
+						return 0;
+					}))}>Le plus ancien</button></td>
+				</tr>
+				<tr>
+					<td>False</td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.imageAgreement))}>Refuse les photos</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.isAdmin))}>Liste des membres</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.note))}>A au moins une remarque</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.paidCaution))}>N'a pas payé sa caution</button></td>
+					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
+						if (!user1.createdAt || !user2.createdAt) {
+							return 0
+						}
+						if (user1.createdAt.toISOString() > user2.createdAt.toISOString()) {
+							return -1;
+						}
+						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
+							return 1;
+						}
+						return 0;
+					}))}>Le plus réccent</button></td>
+				</tr>
+			</tbody>
+		</table>
+	)
+  }
+
   render() {
     const users = this.state.users;
     const usersWithoutCaution = users.filter((user) => !user.paidCaution);
     const nonAdminUsers = users.filter((user) => !user.isAdmin);
-    const members = users.filter((user) => user.team);
+    const members = nonAdminUsers.filter((user) => user.team);
     const membersWithoutTeam = nonAdminUsers.filter((user) => !user.team)
 
     return (
@@ -293,6 +380,10 @@ export class AdminUsersPage extends React.Component<{}, {
           </ul>
         </div>
 
+        <div className="tx-centered">
+          {this.renderFilter()}
+        </div>
+
         <table>
           <thead>
           <tr>
@@ -301,6 +392,8 @@ export class AdminUsersPage extends React.Component<{}, {
             <th>Team</th>
             <th>Créateur</th>
             <th>Email</th>
+            <th className="align-center">Droit à l'image</th>
+            <th className="align-center">Est admin ?</th>
             <th className="align-center">Remarques</th>
             <th className="align-center">Caution</th>
             <th className="align-center">Date d'inscription</th>

@@ -2,13 +2,24 @@ import React from 'react';
 
 import './main-thematic.css';
 
+const thematicReady = false;
+
 export class MainThematic extends React.PureComponent {
 
   render() {
+    if (!thematicReady) return (<div className="row" id="main-thematic">
+        <div className="main-thematic__content">
+          <h2 className="tx-centered">La thématique plus en profondeur</h2>
+
+          <p>Comming soon...</p>
+        </div>
+      </div>);
+
     return (
       <div className="row" id="main-thematic">
         <div className="main-thematic__content">
           <h2 className="tx-centered">La thématique plus en profondeur</h2>
+          <h6 id="credits-subtitle">Par AG Insurance</h6>
 
           <div className="main-thematic__text">
             <p>

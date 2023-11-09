@@ -2,6 +2,7 @@ import React from 'react';
 import {PageHero} from '../../components/page-hero/page-hero';
 
 import './going-further.page.css';
+import {Link} from "react-router-dom";
 
 export class GoingFurtherPage extends React.PureComponent {
 
@@ -16,7 +17,7 @@ export class GoingFurtherPage extends React.PureComponent {
         >
           <p className="further-page__intro">
             Ton projet peut changer les choses. N'hésite pas à consulter nos sponsors pour lui construire un
-            avenir !
+            avenir ! <Link to='/space-invader'>🎮</Link>
           </p>
         </PageHero>
 
@@ -24,7 +25,7 @@ export class GoingFurtherPage extends React.PureComponent {
 
           <div className="further-page__content">
 
-            <div className="further-page__sponsor">
+            {/* <div className="further-page__sponsor">
               <h1 className="tx-centered">Le TRAKK | LinKube</h1>
 
               <h5>Toutes tes idées ont un avenir !</h5>
@@ -57,7 +58,7 @@ export class GoingFurtherPage extends React.PureComponent {
               </ul>
 
               <p>Un chemin de possibles s’offre à toi pour concrétiser tes beaux projets. On en discute ?</p>
-            </div>
+            </div> */}
 
             {/* <div className="further-page__sponsor">
               <h1 className={"tx-centered"}>La Mutualité Chrétienne</h1>
