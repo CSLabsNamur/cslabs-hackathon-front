@@ -252,6 +252,14 @@ export class ProfileEditor extends React.Component<{
           </p>
         ) : null}
 
+        <div className="form-control">
+            <p>Pour rappel, vous pouvez à tout moment consulter les <a 
+                href={"/documents/termes_et_conditions.pdf"}
+                rel="noopener noreferrer" target="_blank">termes et conditions</a> 
+                et faire une réclamation pour le RGPD.
+            </p>
+        </div>
+
         <div className="tx-centered">
           <button className="button-primary button-round" type="submit">Sauvegarder</button>
         </div>
