@@ -16,7 +16,7 @@ export class HomePage extends React.PureComponent {
       alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/coming-soon-500.png",
+      src: process.env.PUBLIC_URL + "/images/image_thème.png",
       alt: "Thème du Hackathon CSLabs",
     },
     {
