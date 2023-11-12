@@ -334,8 +334,37 @@ export class AdminUsersPage extends React.Component<{}, {
     );
   }
 
+  sortUsers(users: User[]): User[] {
+    const {sortBy, sortOrder} = this.state;
+    return users.sort((a, b) => {
+      const isAsc = sortOrder === 'asc';
+      if (sortBy) {
+        if (sortBy === 'team') {
+          return isAsc ? (a.team?.name || '').localeCompare(b.team?.name || '') : (b.team?.name || '').localeCompare(a.team?.name || '');
+        }
+        /** TODO: add other types of sorting (obj.localeCompare does not work on all theses types)
+         * sort by imageAgreement because it is not comparable.
+         * sort by isAdmin because it is not comparable.
+         * sort by note because it is not comparable.
+         * sort by paidCaution because it is not comparable.
+         * sort by createdAt because it is not comparable.
+         * sort by github because it is not comparable.
+         * sort by linkedIn because it is not comparable.
+         * sort by actions because it is not comparable.
+         * sort by isTeamOwner because it is not comparable.
+         */
+        if (!(typeof a[sortBy]?.localeCompare === 'function')) {
+          console.log(`Cannot sort by ${sortBy} because it is not comparable.`);
+          return 0;
+        }
+        return isAsc ? a[sortBy].localeCompare(b[sortBy]) : b[sortBy].localeCompare(a[sortBy]);
+      }
+      return 0;
+    });
+  }
+
   render() {
-    const { users, sortBy, sortOrder } = this.state;
+    const users = this.state.users;
     const usersWithoutCaution = users.filter((user) => !user.paidCaution);
     const nonAdminUsers = users.filter((user) => !user.isAdmin);
     const members = nonAdminUsers.filter((user) => user.team);
@@ -357,20 +386,7 @@ export class AdminUsersPage extends React.Component<{}, {
       {label: "Actions", accessor: "actions"},
     ]
     
-    const sortedUsers = [...users].sort((a, b) => {
-      const isAsc = sortOrder === 'asc';
-      if (sortBy) {
-        if (sortBy === 'team') {
-          return isAsc ? (a.team?.name || '').localeCompare(b.team?.name || '') : (b.team?.name || '').localeCompare(a.team?.name || '');
-        }
-        if (!(typeof a[sortBy]?.localeCompare === 'function')) {
-          console.log(`Cannot sort by ${sortBy} because it is not comparable.`);
-          return 0;
-        }
-        return isAsc ? a[sortBy].localeCompare(b[sortBy]) : b[sortBy].localeCompare(a[sortBy]);
-      }
-      return 0;
-    });
+    const sortedUsers = this.sortUsers(users);
 
     return (
       <div id="admin-users-page">
