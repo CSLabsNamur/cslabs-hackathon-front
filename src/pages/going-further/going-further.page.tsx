@@ -26,11 +26,11 @@ export class GoingFurtherPage extends React.PureComponent {
           <div className="further-page__content">
 
             <div className="further-page__sponsor">
-              <h1 className="tx-centered">Le TRAKK | LinKube</h1>
+              <h1 className="tx-centered on-white">Le TRAKK | LinKube</h1>
 
-              <h5>Toutes tes idées ont un avenir !</h5>
+              <h5 className='on-white'>Toutes tes idées ont un avenir !</h5>
 
-              <ul>
+              <ul className='on-white'>
                 <li>Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un
                   projet de A jusque Z ?
                   Sais-tu que LinKube, l’incubateur étudiant du BEP de la province de Namur, t’offre

@@ -9,9 +9,9 @@ export class MainThematic extends React.PureComponent {
   render() {
     if (!thematicReady) return (<div className="row" id="main-thematic">
         <div className="main-thematic__content">
-          <h2 className="tx-centered">La thématique plus en profondeur</h2>
+          <h2 className="tx-centered on-white">La thématique plus en profondeur</h2>
 
-          <p>Comming soon...</p>
+          <p className='on-white'>Comming soon...</p>
         </div>
       </div>);
 

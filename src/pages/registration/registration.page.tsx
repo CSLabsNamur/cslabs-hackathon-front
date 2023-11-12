@@ -448,7 +448,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
           <div className="form-control align-center">
             <MailInfo />
-            <p>*Obligatoire</p>
+            <p className='on-white'>*Obligatoire</p>
           </div>
 
           <div className="form-control align-center">

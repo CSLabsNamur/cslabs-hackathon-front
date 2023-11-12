@@ -29,7 +29,7 @@ export class PageHero extends React.PureComponent<{
 
     let disclaimer = null;
     if (this.props.disclaimer) {
-      disclaimer = <div className="disclaimer">
+      disclaimer = <div className="disclaimer on-green">
         {this.props.disclaimer}
       </div>
     }
@@ -53,10 +53,10 @@ export class PageHero extends React.PureComponent<{
               </div>
             </div>
             <div className="page-hero__content">
-              <h1 className="title">
+              <h1 className="title on-green">
                 {this.props.title}
               </h1>
-              <h2 className="subtitle">
+              <h2 className="subtitle on-green">
                 {this.props.subtitle}
               </h2>
               {disclaimer}

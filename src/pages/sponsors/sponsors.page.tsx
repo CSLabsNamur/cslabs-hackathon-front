@@ -249,10 +249,10 @@ export class SponsorsPage extends React.PureComponent {
         }}
                link="https://www.unamur.be/info"
                direction="right">
-          <h2 id="unamur">
+          <h2 id="unamur" className='on-white'>
             Université de Namur
           </h2>
-          <p>
+          <p className='on-white'>
             L'Université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
             l'organisation de cet évènement.
           </p>
