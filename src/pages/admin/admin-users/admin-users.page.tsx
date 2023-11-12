@@ -360,6 +360,13 @@ export class AdminUsersPage extends React.Component<{}, {
     const sortedUsers = [...users].sort((a, b) => {
       const isAsc = sortOrder === 'asc';
       if (sortBy) {
+        if (sortBy === 'team') {
+          return isAsc ? (a.team?.name || '').localeCompare(b.team?.name || '') : (b.team?.name || '').localeCompare(a.team?.name || '');
+        }
+        if (!(typeof a[sortBy]?.localeCompare === 'function')) {
+          console.log(`Cannot sort by ${sortBy} because it is not comparable.`);
+          return 0;
+        }
         return isAsc ? a[sortBy].localeCompare(b[sortBy]) : b[sortBy].localeCompare(a[sortBy]);
       }
       return 0;
