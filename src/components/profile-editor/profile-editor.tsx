@@ -255,7 +255,7 @@ export class ProfileEditor extends React.Component<{
         <div className="form-control">
             <p>Pour rappel, vous pouvez à tout moment consulter les <a 
                 href={"/documents/termes_et_conditions.pdf"}
-                rel="noopener noreferrer" target="_blank">termes et conditions</a> 
+                rel="noopener noreferrer" target="_blank">termes et conditions </a> 
                 et faire une réclamation pour le RGPD.
             </p>
         </div>
