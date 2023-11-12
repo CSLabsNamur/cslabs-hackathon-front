@@ -28,7 +28,7 @@ ReactModal.setAppElement('#root');
 
 const docTitle = "CSLabs Hackathon : " + process.env.REACT_APP_NAME_EVENT;
 document.addEventListener("blur", () => {
-  document.title = "Come back you found an easter egg";
+  document.title = "Come back...";
 });
 
 document.addEventListener("focus", () => {
