@@ -17,4 +17,6 @@ export class User {
   imageAgreement? = false;
 
   subscribeFormation = false;
+
+  [key: string]: any; // Allows to get any property of the object as a dictionary
 }
