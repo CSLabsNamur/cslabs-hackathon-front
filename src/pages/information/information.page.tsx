@@ -42,7 +42,7 @@ export class InformationPage extends React.PureComponent {
           <p>Repos: <b>Salle avec des lits prévue*</b></p>
           <p>Repas: <b>Repas fournis</b> <Link to='/pizza-clicker'>🍕</Link></p>
           <p>Sanitaires: <b>Installations de l'Université</b></p>
-          <p>* Des lits de camp seront mis à disposition mais il est vivement recommandé d'apporter votre propre lit de camp ou matelas gonflable</p>
+          <p>*Des lits de camp seront mis à disposition mais il est vivement recommandé d'apporter votre propre lit de camp ou matelas gonflable</p>
         </InfoItem>
 
         <InfoItem title="Inscription" icon="/infos/register.svg">

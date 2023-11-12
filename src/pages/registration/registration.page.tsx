@@ -433,17 +433,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
 
-          <div className="form-control">
-            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
-                  value="image-agreement"
-                  checked={this.state.form.imageAgreement}
-                  onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
-            />
-            <label htmlFor="form-image-agreement">
-              Je consens à l'utilisation de mon image dans le cadre de l'événement
-            </label>
-            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
-          </div>
 
           <div className="form-control">
             <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
@@ -460,10 +449,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           <div className="form-control align-center">
             <MailInfo />
             <p>*Obligatoire</p>
-          </div>
-
-          <div className="form-control align-center">
-            <p>Attention que les inscriptions ferment dans {this.getClosedDate()}</p>
           </div>
 
           <div className="form-control align-center">
