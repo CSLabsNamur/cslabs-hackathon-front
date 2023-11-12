@@ -80,7 +80,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
-        imageAgreement: false,
+        imageAgreement: true,
         subscribeFormation: false,
       },
       validationErrors: {},
