@@ -1,11 +1,14 @@
 :root {
   --primary-bg-color : #f4f4f4;
-  --primary-accent-color : #19a974;
+  --primary-accent-color : #1BB17A; /* More accecible color */
   --primary-text-color : #0b0b0b;
   --secondary-text-color : #0b0b0b;
 
-  /* --primary-bg-color : #f4f4f4; */
-  /* --primary-accent-color : #19a974; */
+  /*
+   * Original color
+   * --primary-bg-color : # f4f4f4; 
+   * --primary-accent-color : # 19a974; 
+   */
 }
 
 
