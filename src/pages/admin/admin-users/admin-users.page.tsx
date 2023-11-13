@@ -222,7 +222,8 @@ export class AdminUsersPage extends React.Component<{}, {
         <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : <span>/</span>}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
-        <td className="tx-centered">
+        {/* auto agree due to accept general condtions and terms */}
+        {/* <td className="tx-centered">
           {imageAgreement ? (
             <span className="tooltip" style={{color: "green"}}>
               &#x2714;
@@ -236,7 +237,7 @@ export class AdminUsersPage extends React.Component<{}, {
               </span>
             </span>
           )}
-        </td>
+        </td> */}
         <td className="tx-centered">
           {isAdmin ? (
             <span className="tooltip" style={{color: "green"}}>
@@ -384,7 +385,8 @@ export class AdminUsersPage extends React.Component<{}, {
       {label: "Équipe", accessor: "team"},
       {label: "Capitaine", accessor: "isTeamOwner"},
       {label: "Email", accessor: "email"},
-      {label: "Droit à l'image", accessor: "imageAgreement"},
+      // auto agree due to accept general condtions and terms
+      // {label: "Droit à l'image", accessor: "imageAgreement"},
       {label: "Admin", accessor: "isAdmin"},
       {label: "Remarques", accessor: "note"},
       {label: "Caution", accessor: "paidCaution"},
