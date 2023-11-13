@@ -14,13 +14,13 @@ const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
 const getMessage = timerModule.getMessage;
 
-let waitingSubscription = false
+let waitingSubscription = false;
 let closedSubscription = false;
 
-if (getDateEnv(process.env.REACT_APP_DATE) < new Date()) {
+if (getDateEnv(process.env.REACT_APP_DATE_OPEN) > new Date()) {
   waitingSubscription = true;
 }
-if (getDateEnv(process.env.REACT_APP_DATE_EVENT) < new Date()) {
+if (getDateEnv(process.env.REACT_APP_DATE_CLOSE) < new Date()) {
   closedSubscription = true;
 }
 
@@ -80,7 +80,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
-        imageAgreement: false,
+        imageAgreement: true,
         subscribeFormation: false,
       },
       validationErrors: {},
@@ -172,7 +172,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     
       const message = getMessage(months, days, hours, minutes, seconds);
       
-      return message.substring(0, 15); // substring to only get months and days
+      return message; //.substring(0, 15); // substring to only get months and days
     
   }
 
@@ -433,17 +433,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
 
-          <div className="form-control">
-            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
-                  value="image-agreement"
-                  checked={this.state.form.imageAgreement}
-                  onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
-            />
-            <label htmlFor="form-image-agreement">
-              Je consens à l'utilisation de mon image dans le cadre de l'événement
-            </label>
-            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
-          </div>
 
           <div className="form-control">
             <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
@@ -459,11 +448,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
           <div className="form-control align-center">
             <MailInfo />
-            <p>*Obligatoire</p>
-          </div>
-
-          <div className="form-control align-center">
-            <p>Attention que les inscriptions ferme dans {this.getClosedDate()}</p>
+            <p className='on-white'>*Obligatoire</p>
           </div>
 
           <div className="form-control align-center">

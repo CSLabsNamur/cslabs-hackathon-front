@@ -11,6 +11,9 @@ export class PageHero extends React.PureComponent<{
 }> {
 
   render() {
+    let logo = "/images/Logo_hackathon_2024.png";
+    const agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("edge") > -1) logo = '/images/logo/Logo.svg';
 
     let arrow = null;
     if (this.props.hasArrow) {
@@ -26,7 +29,7 @@ export class PageHero extends React.PureComponent<{
 
     let disclaimer = null;
     if (this.props.disclaimer) {
-      disclaimer = <div className="disclaimer">
+      disclaimer = <div className="disclaimer on-green">
         {this.props.disclaimer}
       </div>
     }
@@ -38,22 +41,22 @@ export class PageHero extends React.PureComponent<{
             <div className="page-hero__logo-hackathon">
               <div className="inner">
                 <div className="front">
-                  <img src={ process.env.PUBLIC_URL + '/images/logo_hackathon_2023.png'}
-                       alt="Logo Hackathon 2023"
+                  <img src={ process.env.PUBLIC_URL + logo}
+                       alt="Logo Hackathon 2024"
                   />
                 </div>
                 <div className="back">
                   <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
-                       alt="Logo Pizzathon 2023"
+                       alt="Logo Pizzathon 2024"
                   />
                 </div>
               </div>
             </div>
             <div className="page-hero__content">
-              <h1 className="title">
+              <h1 className="title on-green">
                 {this.props.title}
               </h1>
-              <h2 className="subtitle">
+              <h2 className="subtitle on-green">
                 {this.props.subtitle}
               </h2>
               {disclaimer}

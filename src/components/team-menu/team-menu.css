@@ -18,5 +18,5 @@
 }
 
 .team-menu__elements > li > a {
-    color: #424242 !important;
+    color: var(--primary-accent-color) !important;
 }

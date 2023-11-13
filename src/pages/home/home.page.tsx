@@ -16,7 +16,7 @@ export class HomePage extends React.PureComponent {
       alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/coming-soon.png",
+      src: process.env.PUBLIC_URL + "/images/image_thème.png",
       alt: "Thème du Hackathon CSLabs",
     },
     {
@@ -28,7 +28,7 @@ export class HomePage extends React.PureComponent {
       alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/coming-soon.jpg",
+      src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
       alt: "Récompense",
     }
   ];
@@ -38,13 +38,12 @@ export class HomePage extends React.PureComponent {
       <div id="home-page">
 
         <PageHero
-          title="Le Handicap"
+          title={process.env.REACT_APP_NAME_EVENT || "Le Hackathon"}
           hasArrow={true}
-          subtitle="Adaptez le monde pour tous !"
+          subtitle={process.env.REACT_APP_SLOGAN_EVENT || "CSLabs Hackathon"}
           disclaimer={
-            <div>
-              <p><strong>Du 17 au 19 février à l'UNamur</strong></p>
-              <p>Ce Hackathon 2023 est organisé dans le cadre du <strong>5e anniversaire du CSLabs</strong></p>
+            <div className="on-green">
+              <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'UNamur</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/unamur.png" />
@@ -57,64 +56,61 @@ export class HomePage extends React.PureComponent {
         </PageHero>
 
         <Topic img={this.images[0]} direction='right'>
-          <h2>CSLabs</h2>
-          <p>
-            CSLabs est une junior entreprise de la région de Namur.
-            Spécialisée dans l'informatique, elle invite ses membres à
-            participer à des projets, des formations et des activités dans les
-            domaines de la technologie et de l'informatique.
+          <h2 className="on-white">CSLabs</h2>
+          <p className="on-white">
+          Le Computer Science Labs est une junior entreprise issue de la Faculté d’Informatique de
+          l’Université de Namur. Pratiquement, ses actions s’articulent autour de la réalisation de projets, 
+          de la formation des membres sur des thématiques liées à l'informatique et 
+          de l'organisation d'événements.
           </p>
-          <p>
+          <p className="on-white">
           <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le domaine de l'informatique"
           </p>
         </Topic>
 
         <Topic img={this.images[1]} direction='left'>
-          <h2>Le thème</h2>
-          {/** TODO: <p>
-            Avoir un handicap est une chose, être exclu de la société par oubli des majorités en est une autre.
-          </p> */}
-          <p>
+          <h2 className="on-green">Le thème</h2>
+          <p className="on-green">
             Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
           </p>
-          <p>Retrouvez <a href="#main-thematic" className="topic-link on-green">la thématique</a> plus en détail !</p>
+          <p className="on-green">Retrouvez <a href="#main-thematic" className="topic-link on-green">la thématique</a> plus en détail !</p>
         </Topic>
 
         <Topic img={this.images[4]} direction="right">
-          <h2>Gagner un prix</h2>
-          <p>
+          <h2 className="on-white">Gagner un prix</h2>
+          <p className="on-white">
             Envie de remporter un de nos prix ?
           </p>
-          <p>
-            Le <strong>prix de l'idée</strong> est attribué par le jury à la meilleure idée de projet !
+          <p className="on-white">
+            Le <strong>prix de l'innovation</strong> est attribué par le jury au projet le plus innovant !
           </p>
-          <p>
+          <p className="on-white">
             Le <strong>prix de la technique</strong> est, lui aussi par le jury, attribué à la meilleure
             réalisation technique !
           </p>
-          {/* TODO: <p>
-            Le <strong>prix de la participation</strong> sera dévoilé le jour J !
-          </p> */}
+          <p className="on-white">
+            Le <strong>prix du public</strong> sera attribué au projet préféré du public !
+          </p>
         </Topic>
 
         <Topic img={this.images[2]} direction="left">
-          <h2>Cinquième édition</h2>
-          <p>
+          <h2 className="on-green">Cinquième édition</h2>
+          <p className="on-green">
             Nous en sommes à la cinquième édition du Hackathon CSLabs !
             Nous avons hâte de poursuivre l'aventure avec vous !
           </p>
-          <p>
+          <p className="on-green">
             La concrétisation de vos projets nous importe, dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration de la vie des personnes touchées par <b>coming soon...{/* TODO:  */}</b>
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration du système éducatif. 
           </p>
         </Topic>
 
         <Topic img={this.images[3]} direction='right'>
-          <h2>
+          <h2 className="on-white">
             Hackathon
           </h2>
-          <p>
+          <p className="on-white">
             Un Hackathon est un moment de courte durée où des équipes
             réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Elles tentent d'y
             apporter des solutions en développant des projets innovants.

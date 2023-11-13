@@ -14,26 +14,34 @@ function getDateEnv(dateEnv: string | any) {
   return new Date(year, month, day, hour, minute, second);
 }
 
-function getMessage(months: any, days: any, hours: any, minutes: any, seconds: any) {
-  let message = seconds.toString() + ' secondes';
+function keepLength(idTime: number) {
+  if (idTime <= 9)
+    return "0" + idTime.toString();
+  return idTime.toString();
+}
 
-  if (minutes > 0) {
-    message = minutes.toString() + ' minutes et ' + message;
+function getMessage(months: any, days: any, hours: any, minutes: any, seconds: any) {
+  let message = "";
+  if (seconds > 0 || (months + days + hours + minutes) > 0){
+    message = keepLength(seconds) + ' secondes';
   }
-  if (hours > 0) {
-    message = hours.toString() + ' heures, ' + message;
+  if (minutes > 0 || (months + days + hours) > 0) {
+    message = keepLength(minutes) + ' minutes, ' + message;
   }
-  if (days > 0) {
-    message = days.toString() + ' jours, ' + message;
+  if (hours > 0 || (months + days) > 0) {
+    message = keepLength(hours) + ' heures, ' + message;
+  }
+  if (days > 0 || (months) > 0) {
+    message = keepLength(days) + ' jours, ' + message;
   }
   if (months > 0) {
-    message = months.toString() + ' mois, ' + message;
+    message = keepLength(months) + ' mois ' + message;
   }
 
   return message;
 }
 
-const date = getDateEnv(process.env.REACT_APP_DATE);
+const date = getDateEnv(process.env.REACT_APP_DATE_OPEN);
 
 class Timer extends React.Component<{}, {
   time: Date,

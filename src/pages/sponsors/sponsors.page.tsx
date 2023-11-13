@@ -16,6 +16,12 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#unamur">
               <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
+            <a href="#bep">
+              <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
+            </a>
+            <a href="#linkube">
+              <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
+            </a>
             {/* <a href="#ag_insurance">
               <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
             </a>
@@ -25,17 +31,96 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#arhs">
               <SponsorLogo title="Arhs" uri="/images/logo/arhs.png" />
             </a>
-            <a href="#bep">
-              <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
-            </a>
-            <a href="#linkube">
-              <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
-            </a>
             <a href="#digital-wallonia">
               <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
             </a> */}
           </div>
         </PageHero>
+
+        <Topic img={{
+          src: "/sponsors/unamur_big.png",
+          alt: "Faculté d'informatique de l'Université de Namur"
+        }}
+              link="https://www.unamur.be/info"
+              direction="right">
+          <h2 id="unamur" className='on-white'>
+            Université de Namur
+          </h2>
+          <p className='on-white'>
+            L'Université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
+            l'organisation de cet évènement.
+          </p>
+        </Topic>
+
+        <Topic img={{
+          src: "/sponsors/bep.png",
+          alt: "BEP"
+        }}
+               link="https://www.bep.be"
+               direction="left">
+          <h2 id="bep">
+            Trakk et BEP
+          </h2>
+          <p>
+            Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
+            Z ? Sais-tu que LinKube, l’incubateur étudiant du BEP de la province de Namur, t’offre un
+            accompagnement spécifique : coaching personnalisé, ateliers, expertises pointues,… Tu rêves de
+            monter ta start up ? Contacte-nous !
+          </p>
+          <p>
+            Mais le TRAKK, c’est quoi ? Tu as envie d’oser, expérimenter, entreprendre, innover de façon plus
+            créative ? Le TRAKK, c’est 3 partenaires : le KIKK, l’UNamur et le BEP. 3 fois plus d’idées et
+            d’expériences à partager dans ce lieu composé de différents espaces mis à ta disposition :
+            coworking, bureaux, fablab,… Rejoindre le TRAKK peut se faire par différentes portes ! Celle du
+            bâtiment au plein centre de Namur, ou en participant à des conférences, des ateliers, ou encore
+            en venant y travailler !
+          </p>
+          <p>
+            L’innovation est partout ! Le BEP a d’ailleurs développé un accompagnement spécifique pour la
+            Silver économie, cette économie dédiée aux seniors. Tu veux apporter ta pierre à l’édifice pour
+            le « bien vieillir » ? Encore une fois, le BEP est là !
+          </p>
+          <p>
+            Le 11 février 2021 le Mind&Market se tiendra au TRAKK et rassemblera tous les projets sur la
+            Silver économie et issus de LinKube. Un chemin de possibles s’offre à toi pour concrétiser tes
+            beaux projets. On en discute ?
+          </p>
+        </Topic>
+        
+
+        <Topic img={{
+          src: "/sponsors/linkube.png",
+          alt: "LinKube"
+        }}
+               link="https://www.linkube.be"
+               direction="right">
+          <h2 id="linkube">
+            LinKube
+          </h2>
+
+          <p>
+            LinKube est l’<b>incubateur étudiant</b> de la province de <b>Namur</b>.
+          </p>
+          <p>
+            Nous avons pour mission d’<b>accompagner des jeunes</b> (étudiants ou jeunes diplômés) <b>à créer leur
+            entreprise en parallèle de leurs études</b> ou de leurs premiers pas dans la vie active.
+          </p>
+          <p>
+            Pour ce faire, nous proposons du <b>coaching personnalisé</b>, de l’<b>expertise</b> « business »,
+            des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le TRAKK), etc.</p>
+          <p>
+            <b>Envie d'en savoir plus ?</b>
+          </p>
+          <p>
+            N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)
+          </p>
+          <p>
+            Déjà quelques informations sur notre site
+          </p>  
+          <p>
+            Alors… Partant.e.s ?
+          </p>
+        </Topic>
 
         {/* <Topic img={{
           src: "/sponsors/ag.svg",
@@ -132,78 +217,6 @@ export class SponsorsPage extends React.PureComponent {
           </p>
         </Topic>
 
-
-        <Topic img={{
-          src: "/sponsors/bep.png",
-          alt: "BEP"
-        }}
-               link="https://www.bep.be"
-               direction="left">
-          <h2 id="bep">
-            Trakk et BEP
-          </h2>
-          <p>
-            Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
-            Z ? Sais-tu que LinKube, l’incubateur étudiant du BEP de la province de Namur, t’offre un
-            accompagnement spécifique : coaching personnalisé, ateliers, expertises pointues,… Tu rêves de
-            monter ta start up ? Contacte-nous !
-          </p>
-          <p>
-            Mais le TRAKK, c’est quoi ? Tu as envie d’oser, expérimenter, entreprendre, innover de façon plus
-            créative ? Le TRAKK, c’est 3 partenaires : le KIKK, l’UNamur et le BEP. 3 fois plus d’idées et
-            d’expériences à partager dans ce lieu composé de différents espaces mis à ta disposition :
-            coworking, bureaux, fablab,… Rejoindre le TRAKK peut se faire par différentes portes ! Celle du
-            bâtiment au plein centre de Namur, ou en participant à des conférences, des ateliers, ou encore
-            en venant y travailler !
-          </p>
-          <p>
-            L’innovation est partout ! Le BEP a d’ailleurs développé un accompagnement spécifique pour la
-            Silver économie, cette économie dédiée aux seniors. Tu veux apporter ta pierre à l’édifice pour
-            le « bien vieillir » ? Encore une fois, le BEP est là !
-          </p>
-          <p>
-            Le 11 février 2021 le Mind&Market se tiendra au TRAKK et rassemblera tous les projets sur la
-            Silver économie et issus de LinKube. Un chemin de possibles s’offre à toi pour concrétiser tes
-            beaux projets. On en discute ?
-          </p>
-        </Topic>
-
-
-        <Topic img={{
-          src: "/sponsors/linkube.png",
-          alt: "LinKube"
-        }}
-               link="https://www.linkube.be"
-               direction="right">
-          <h2 id="linkube">
-            LinKube
-          </h2>
-
-          <p>
-            LinKube est l’<b>incubateur étudiant</b> de la province de <b>Namur</b>.
-          </p>
-          <p>
-            Nous avons pour mission d’<b>accompagner des jeunes</b> (étudiants ou jeunes diplômés) <b>à créer leur
-            entreprise en parallèle de leurs études</b> ou de leurs premiers pas dans la vie active.
-          </p>
-          <p>
-            Pour ce faire, nous proposons du <b>coaching personnalisé</b>, de l’<b>expertise</b> « business »,
-            des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le TRAKK), etc.</p>
-          <p>
-            <b>Envie d'en savoir plus ?</b>
-          </p>
-          <p>
-            N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)
-          </p>
-          <p>
-            Déjà quelques informations sur notre site
-          </p>  
-          <p>
-            Alors… Partant.e.s ?
-          </p>
-        </Topic>
-
-
         <Topic img={{
           src: "/sponsors/digital_wallonia.png",
           alt: "Digital Wallonia"
@@ -241,22 +254,6 @@ export class SponsorsPage extends React.PureComponent {
             <li>Territoire numérique</li>
           </ol>
         </Topic> */}
-
-
-        <Topic img={{
-          src: "/sponsors/unamur_big.png",
-          alt: "Faculté d'informatique de l'Université de Namur"
-        }}
-               link="https://www.unamur.be/info"
-               direction="right">
-          <h2 id="unamur">
-            Université de Namur
-          </h2>
-          <p>
-            L'université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
-            l'organisation de cet évènement.
-          </p>
-        </Topic>
 
       </div>
     );

@@ -17,7 +17,9 @@ export class AdminUsersPage extends React.Component<{}, {
   modal: {
     kickConfirm: boolean,
     deleteConfirm: boolean,
-  }
+  },
+  sortBy: string,
+  sortOrder: string,
 }> {
 
   constructor(props: any) {
@@ -28,7 +30,9 @@ export class AdminUsersPage extends React.Component<{}, {
       modal: {
         kickConfirm: false,
         deleteConfirm: false,
-      }
+      },
+      sortBy: 'firstName',
+      sortOrder: 'asc',
     }
 
     this.onValidateCaution = this.onValidateCaution.bind(this);
@@ -218,7 +222,8 @@ export class AdminUsersPage extends React.Component<{}, {
         <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : <span>/</span>}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
-        <td className="tx-centered">
+        {/* auto agree due to accept general condtions and terms */}
+        {/* <td className="tx-centered">
           {imageAgreement ? (
             <span className="tooltip" style={{color: "green"}}>
               &#x2714;
@@ -232,7 +237,7 @@ export class AdminUsersPage extends React.Component<{}, {
               </span>
             </span>
           )}
-        </td>
+        </td> */}
         <td className="tx-centered">
           {isAdmin ? (
             <span className="tooltip" style={{color: "green"}}>
@@ -298,61 +303,70 @@ export class AdminUsersPage extends React.Component<{}, {
 
   }
 
-  renderFilter() {
-	return (
-		<table>
-			<thead>
-				<tr>
-					<th className="align-center">Valeur de test</th>
-					<th className="align-center">Droit à l'image</th>
-					<th className="align-center">Est admin ?</th>
-					<th className="align-center">Remarques</th>
-					<th className="align-center">Caution</th>
-					<th className="align-center">Date d'inscription (ordre)</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>True</td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.imageAgreement))}>Accepte les photos</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.isAdmin))}>Liste des admins</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.note))}>N'a aucune remarque</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.paidCaution))}>A payé sa caution</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
-						if (!user1.createdAt || !user2.createdAt) {
-							return 0
-						}
-						if (user1.createdAt?.toISOString() > user2.createdAt.toISOString()) {
-							return -1;
-						}
-						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
-							return 1;
-						}
-						return 0;
-					}))}>Le plus ancien</button></td>
-				</tr>
-				<tr>
-					<td>False</td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.imageAgreement))}>Refuse les photos</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.isAdmin))}>Liste des membres</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.note))}>A au moins une remarque</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.paidCaution))}>N'a pas payé sa caution</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
-						if (!user1.createdAt || !user2.createdAt) {
-							return 0
-						}
-						if (user1.createdAt.toISOString() > user2.createdAt.toISOString()) {
-							return -1;
-						}
-						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
-							return 1;
-						}
-						return 0;
-					}))}>Le plus réccent</button></td>
-				</tr>
-			</tbody>
-		</table>
-	)
+  /**
+   * Update state to sort by a gived column
+   * @param columnName: column to sort by
+   */
+  handleSort(columnName: string) {
+    this.setState((prevState: any) => {
+      let sortOrder = 'asc';
+      if (this.state.sortBy === columnName && this.state.sortOrder === 'asc') {
+        sortOrder = 'desc';
+      }
+
+      return {
+        ...prevState,
+        sortBy: columnName,
+        sortOrder: sortOrder,
+      };
+    });
+  };
+
+  renderTableHead(columns: {label: string, accessor: string, hasSort?: boolean}[]) {
+    const {sortBy, sortOrder} = this.state;
+    return (
+      <thead>
+        <tr>
+          {columns.map(({label, accessor, hasSort}) => {
+            if (hasSort !== undefined && !hasSort) {
+              return <th key={accessor}>{label}</th>;
+            }
+            return <th key={accessor} onClick={() => this.handleSort(accessor)}>{label} {sortBy === accessor && sortOrder === 'asc' ? '▲' : '▼'}</th>;
+          })}
+        </tr>
+      </thead>
+    );
+  }
+
+  sortUsers(users: User[]): User[] {
+    const {sortBy, sortOrder} = this.state;
+    return users.sort((a, b) => {
+      const isAsc = sortOrder === 'asc';
+      if (sortBy) {
+        if (sortBy === 'team') {
+          return isAsc ? (a.team?.name || '').localeCompare(b.team?.name || '') : (b.team?.name || '').localeCompare(a.team?.name || '');
+        }
+        if (typeof a[sortBy] === 'boolean') {
+          return isAsc ? 
+            (a[sortBy] ? 1 : -1) : 
+            (b[sortBy] ? 1 : -1);
+        }
+        if (sortBy === "note") {
+          return isAsc ? 
+            (a.note !== undefined ? 1 : -1) : 
+            (b.note !== undefined ? 1 : -1);
+        }
+        if (a[sortBy] instanceof Date) {
+          return isAsc ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
+        }
+        if (!(typeof a[sortBy]?.localeCompare === 'function')) {
+          console.log(`Cannot sort by ${sortBy} because it is not comparable.`);
+          return 0;
+        }
+        return isAsc ? a[sortBy].localeCompare(b[sortBy]) : b[sortBy].localeCompare(a[sortBy]);
+      }
+      return 0;
+    });
   }
 
   render() {
@@ -361,6 +375,28 @@ export class AdminUsersPage extends React.Component<{}, {
     const nonAdminUsers = users.filter((user) => !user.isAdmin);
     const members = nonAdminUsers.filter((user) => user.team);
     const membersWithoutTeam = nonAdminUsers.filter((user) => !user.team)
+    let columns = [ 
+      // list of properties from User that we want to display
+      // label: column header
+      // accessor: property name in User
+      // hasSort: if false, the column will not be sortable
+      {label: "Prénom", accessor: "firstName"},
+      {label: "Nom", accessor: "lastName"},
+      {label: "Équipe", accessor: "team"},
+      {label: "Capitaine", accessor: "isTeamOwner"},
+      {label: "Email", accessor: "email"},
+      // auto agree due to accept general condtions and terms
+      // {label: "Droit à l'image", accessor: "imageAgreement"},
+      {label: "Admin", accessor: "isAdmin"},
+      {label: "Remarques", accessor: "note"},
+      {label: "Caution", accessor: "paidCaution"},
+      {label: "Date d'inscription", accessor: "createdAt"},
+      {label: "GitHub", accessor: "github", hasSort: false},
+      {label: "LinkedIn", accessor: "linkedIn", hasSort: false},
+      {label: "Actions", accessor: "actions", hasSort: false},
+    ]
+    
+    const sortedUsers = this.sortUsers(users);
 
     return (
       <div id="admin-users-page">
@@ -380,30 +416,11 @@ export class AdminUsersPage extends React.Component<{}, {
           </ul>
         </div>
 
-        <div className="tx-centered">
-          {this.renderFilter()}
-        </div>
-
         <table>
-          <thead>
-          <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Team</th>
-            <th>Créateur</th>
-            <th>Email</th>
-            <th className="align-center">Droit à l'image</th>
-            <th className="align-center">Est admin ?</th>
-            <th className="align-center">Remarques</th>
-            <th className="align-center">Caution</th>
-            <th className="align-center">Date d'inscription</th>
-            <th className="align-center">Github</th>
-            <th className="align-center">LinkedIn</th>
-            <th/>
-          </tr>
-          </thead>
+          <caption>Liste des utilisateurs</caption>
+          {this.renderTableHead(columns)}
           <tbody>
-          {this.state.users.map((user, index) => this.renderUser(user, index))}
+          {sortedUsers.map((user, index) => this.renderUser(user, index))}
           </tbody>
         </table>
       </div>

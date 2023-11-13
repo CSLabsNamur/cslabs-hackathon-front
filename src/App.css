@@ -1,6 +1,8 @@
 :root {
   --primary-bg-color : #f4f4f4;
   --primary-accent-color : #19a974;
+  --primary-text-color : #0b0b0b;
+  --secondary-text-color : #0b0b0b;
 
   /* --primary-bg-color : #f4f4f4; */
   /* --primary-accent-color : #19a974; */
@@ -16,6 +18,7 @@ html {
 body {
   font-size: 1.6rem;
   background-color: var(--primary-bg-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .tx-centered {
@@ -44,4 +47,16 @@ body {
 
 .alert-danger {
   border: .1rem solid red;
+}
+
+.on-green {
+  color: var(--secondary-text-color) !important;
+}
+
+.on-white {
+  color: var(--primary-text-color) !important;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-text-color) !important;
 }

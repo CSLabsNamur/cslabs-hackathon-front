@@ -8,11 +8,11 @@ export class RegistrationInfo extends React.PureComponent {
 
   renderRegistrationInfo() {
 
-    const date = timerModule.getDateEnv(process.env.REACT_APP_DATE) ;
+    const date = timerModule.getDateEnv(process.env.REACT_APP_DATE_OPEN) ;
 
     if (date > new Date())
       return (
-        <div>
+        <div className='on-green'>
           <p>Les inscriptions s'ouvrent dans <timerModule.Timer /></p>
         </div>
       );
@@ -25,13 +25,13 @@ export class RegistrationInfo extends React.PureComponent {
 
   render() {
     return (
-      <div className="row">
+      <div className="row on-green">
         <div className="col inscription-info__content align-center">
-          <h2>Plongez ! Inscrivez vous !</h2>
+          <h2 className='on-green'>Plongez ! Inscrivez vous !</h2>
 
-          <p>Le site vous permet de rejoindre une équipe afin de participer au hackathon. N'hésitez plus et
+          <p className='on-green'>Le site vous permet de rejoindre une équipe afin de participer au hackathon. N'hésitez plus et
             inscrivez vous !</p>
-          <p>L'inscription sur le site est gratuite. Cependant, la participation effective au hackathon demande
+          <p className='on-green'>L'inscription sur le site est gratuite. Cependant, la participation effective au hackathon demande
             une caution de 20€.</p>
 
           <div>
