@@ -13,14 +13,14 @@ export class SponsorsPage extends React.PureComponent {
 
         <PageHero title='Nos sponsors' subtitle='Sans eux, rien ne serait possible !' hasArrow>
           <div className="sponsors-page__sponsors-list">
+            <a href="#unamur">
+              <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
+            </a>
             <a href="#bep">
               <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
             </a>
             <a href="#linkube">
               <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
-            </a>
-            <a href="#unamur">
-              <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
             {/* <a href="#ag_insurance">
               <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
@@ -36,6 +36,22 @@ export class SponsorsPage extends React.PureComponent {
             </a> */}
           </div>
         </PageHero>
+
+        <Topic img={{
+          src: "/sponsors/unamur_big.png",
+          alt: "Faculté d'informatique de l'Université de Namur"
+        }}
+              link="https://www.unamur.be/info"
+              direction="right">
+          <h2 id="unamur" className='on-white'>
+            Université de Namur
+          </h2>
+          <p className='on-white'>
+            L'Université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
+            l'organisation de cet évènement.
+          </p>
+        </Topic>
+
         <Topic img={{
           src: "/sponsors/bep.png",
           alt: "BEP"
@@ -103,21 +119,6 @@ export class SponsorsPage extends React.PureComponent {
           </p>  
           <p>
             Alors… Partant.e.s ?
-          </p>
-        </Topic>
-
-        <Topic img={{
-          src: "/sponsors/unamur_big.png",
-          alt: "Faculté d'informatique de l'Université de Namur"
-        }}
-               link="https://www.unamur.be/info"
-               direction="right">
-          <h2 id="unamur" className='on-white'>
-            Université de Namur
-          </h2>
-          <p className='on-white'>
-            L'Université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
-            l'organisation de cet évènement.
           </p>
         </Topic>
 
