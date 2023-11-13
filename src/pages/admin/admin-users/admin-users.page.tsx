@@ -321,12 +321,15 @@ export class AdminUsersPage extends React.Component<{}, {
     });
   };
 
-  renderTableHead(columns: {label: string, accessor: string}[]) {
+  renderTableHead(columns: {label: string, accessor: string, hasSort?: boolean}[]) {
     const {sortBy, sortOrder} = this.state;
     return (
       <thead>
         <tr>
-          {columns.map(({label, accessor}) => {
+          {columns.map(({label, accessor, hasSort}) => {
+            if (hasSort !== undefined && !hasSort) {
+              return <th key={accessor}>{label}</th>;
+            }
             return <th key={accessor} onClick={() => this.handleSort(accessor)}>{label} {sortBy === accessor && sortOrder === 'asc' ? '▲' : '▼'}</th>;
           })}
         </tr>
@@ -342,17 +345,19 @@ export class AdminUsersPage extends React.Component<{}, {
         if (sortBy === 'team') {
           return isAsc ? (a.team?.name || '').localeCompare(b.team?.name || '') : (b.team?.name || '').localeCompare(a.team?.name || '');
         }
-        /** TODO: add other types of sorting (obj.localeCompare does not work on all theses types)
-         * sort by imageAgreement because it is not comparable.
-         * sort by isAdmin because it is not comparable.
-         * sort by note because it is not comparable.
-         * sort by paidCaution because it is not comparable.
-         * sort by createdAt because it is not comparable.
-         * sort by github because it is not comparable.
-         * sort by linkedIn because it is not comparable.
-         * sort by actions because it is not comparable.
-         * sort by isTeamOwner because it is not comparable.
-         */
+        if (typeof a[sortBy] === 'boolean') {
+          return isAsc ? 
+            (a[sortBy] ? 1 : -1) : 
+            (b[sortBy] ? 1 : -1);
+        }
+        if (sortBy === "note") {
+          return isAsc ? 
+            (a.note !== undefined ? 1 : -1) : 
+            (b.note !== undefined ? 1 : -1);
+        }
+        if (a[sortBy] instanceof Date) {
+          return isAsc ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
+        }
         if (!(typeof a[sortBy]?.localeCompare === 'function')) {
           console.log(`Cannot sort by ${sortBy} because it is not comparable.`);
           return 0;
@@ -371,6 +376,9 @@ export class AdminUsersPage extends React.Component<{}, {
     const membersWithoutTeam = nonAdminUsers.filter((user) => !user.team)
     let columns = [ 
       // list of properties from User that we want to display
+      // label: column header
+      // accessor: property name in User
+      // hasSort: if false, the column will not be sortable
       {label: "Prénom", accessor: "firstName"},
       {label: "Nom", accessor: "lastName"},
       {label: "Équipe", accessor: "team"},
@@ -381,9 +389,9 @@ export class AdminUsersPage extends React.Component<{}, {
       {label: "Remarques", accessor: "note"},
       {label: "Caution", accessor: "paidCaution"},
       {label: "Date d'inscription", accessor: "createdAt"},
-      {label: "GitHub", accessor: "github"},
-      {label: "LinkedIn", accessor: "linkedIn"},
-      {label: "Actions", accessor: "actions"},
+      {label: "GitHub", accessor: "github", hasSort: false},
+      {label: "LinkedIn", accessor: "linkedIn", hasSort: false},
+      {label: "Actions", accessor: "actions", hasSort: false},
     ]
     
     const sortedUsers = this.sortUsers(users);
