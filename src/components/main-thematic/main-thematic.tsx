@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { Topic } from '../topic/topic';
+
 import './main-thematic.css';
 
-const thematicReady = false;
+const thematicReady = true;
 
 export class MainThematic extends React.PureComponent {
 
@@ -19,95 +21,90 @@ export class MainThematic extends React.PureComponent {
       <div className="row" id="main-thematic">
         <div className="main-thematic__content">
           <h2 className="tx-centered">La thématique plus en profondeur</h2>
-          <h6 id="credits-subtitle">Par AG Insurance</h6>
+          <h6 id="credits-subtitle">Par DigiFactory</h6>
 
-          <div className="main-thematic__text">
-            <p>
-              La possibilité de pratiquer le sport de ses rêves, la capacité de vivre de manière autonome,
-              l’accessibilté à un emploi, … autant de préoccupations essentielles pour les personnes en situation
-              d’handicap. Mais, grâce à la technologie, les individus concernés peuvent bénéficier de solutions adaptées
-              permettant de surmonter les difficultés. Simples ou élaborées, conventionnelles ou innovantes, créées par
-              des associations ou des start-ups, ces réalisations techniques apportent une aide concrète.
-              <strong> Handicap et technologie : Adaptons le monde pour tous !</strong>, découvrons cette thématique.
-            </p>
-          </div>
+            <div className="main-thematic__text">
+              <p>
+                Le décrochage scolaire représente un enjeu majeur en Europe. L&#39;éducation inclusive joue un rôle
+                significatif dans la lutte contre ce phénomène, ceci en offrant des environnements d&#39;apprentissage
+                adaptés à la diversité des apprenants et en contribuant ainsi à les retenir, à les motiver et à les
+                intégrer plus efficacement dans le système éducatif.
+              </p>
+            </div>
+              <div className="main-thematic__text">
+                  <p>
+                  <strong>Qu’entend-on exactement par éducation inclusive ?</strong> L&#39;éducation inclusive vise à garantir à chacun
+                  des chances égales de s’engager, de participer pleinement, d’apprendre et de réussir, quelle que soit
+                  sa situation et peu importe ses différences individuelles. Cela signifie reconnaître et respecter la
+                  diversité parmi les apprenants, qu&#39;il s&#39;agisse de handicaps, de bagages culturels, de genre, de langues
+                  parlées ou d&#39;autres particularités. L’éducation inclusive permet de réduire les inégalités de départ, de
+                  promouvoir la diversité, et de créer une société où chacun se sent intégré et a l&#39;opportunité de
+                  réaliser son potentiel, renforçant ainsi le tissu social et permettant à chacun de contribuer de
+                  manière significative à la société tout en restant attaché à ses propres valeurs et capacités.
+                </p>
+              </div>
+              
+              <div className="main-thematic__text">
+                <p>
+                Dans l’enseignement inclusif, ce sont les écoles et les équipes pédagogiques qui adaptent
+                les infrastructures, les méthodes et matériel pédagogiques afin que chaque élève se sente à sa place.
+                Le système éducatif s&#39;adapte alors aux besoins de chaque élève, et non l&#39;inverse.
+                </p>
+              </div>
+              
+              <div  className="main-thematic__text">
+                <p>
+                Concrètement, comment peut-on mettre en place une éducation inclusive ? Il est possible de jouer
+                sur plusieurs facteurs :
+                </p>
 
-          <div className="main-thematic__section">
-            <h5>Qu’entend-on par handicap ?</h5>
-            <p>
-              Le terme "handicap" réfère à la limitation des possibilités d'interaction d'un individu avec son environnement,
-              menant à des difficultés. On distingue différents types d’handicap : physique, sensoriel, mental ou cognitif.
-              Le handicap est souvent défini comme une inégalité de moyens, et faute de moyen, il peut devenir un facteur d’exclusion.
-            </p>
-          </div>
+                <div className="main-thematic__section">
+                  <ul>
+                    <li><strong>Accessibilité :</strong> en veillant à ce que les installations, le matériel pédagogique, les outils
+                    technologiques et les ressources soient accessibles à tous les élèves, indépendamment de
+                    leurs limitations.</li>
+                    <li><strong>Adaptation et flexibilité :</strong> en adoptant une approche flexible de l’enseignement et mettre en
+                    place des pratiques pédagogiques qui s&#39;adaptent aux différents styles d&#39;apprentissage,
+                    capacités et besoins des élèves. Il s’agit par exemple des classes flexibles, des classes
+                    autonomes, des aménagements spécifiques, de la différenciation…</li>
+                    <li><strong>Diversité :</strong> en utilisant et en proposant des ressources pédagogiques variées, allant des
+                    manuels et des outils scolaires dits « traditionnels » aux supports et outils numériques, ceci
+                    afin de s&#39;assurer que chaque élève puisse avoir accès à un enseignement pertinent pour le
+                    développement de son propre potentiel.</li>
+                    <li><strong>Engagement et collaboration :</strong> en encourageant l’implication de l’ensemble des acteurs
+                    (enseignants, direction, élèves, parents, accompagnateurs sociaux et paramédicaux) et leur
+                    collaboration, notamment pour comprendre les besoins individuels des élèves et soutenir
+                    ensemble et de manière cohérente leur apprentissage.</li>
+                  </ul>
+                </div>
+              </div>
 
-          <div className="main-thematic__section">
-            <h5>La technologie peut-elle aider ?</h5>
-            <p>
-              Bien sûr, elle peut tout d’abord sensibiliser notre société à cette problématique ou encore apporter des
-              solutions pour améliorer la qualité de vie.
-            </p>
+              <div className="main-thematic__text">
+                <p>
+                  Investir dans une éducation inclusive c’est faire en sorte d’aider chaque élève, quelques soient ses
+                  particularités, à obtenir les meilleurs résultats et à participer pleinement à l’enseignement qu’on lui
+                  offre. <strong>Dans ce contexte, il est évident que le recours au numérique peut aider.</strong> Le numérique offre
+                  de réelles opportunités pour définir un cadre d’éducation inclusive. Les outils numériques
+                  soutiennent notamment les élèves présentant des troubles DYS. Ils s’intègrent également pleinement
+                  dans la prise en charge des élèves à besoins spécifiques. À titre d’exemples, les outils numériques
+                  permettent entre autres la personnalisation des parcours éducatifs, la ludification des
+                  apprentissages, les espaces d’apprentissages virtuels, l’apprentissage en ligne et à distance, les
+                  supports multimédia, la communication, etc. Les opportunités sont nombreuses et de nouveaux
+                  outils numériques sont continuellement en train de se développer à l’heure actuelle pour s’adapter
+                  toujours mieux aux besoins de chaque apprenant, enseignant et formateur.
+                </p>
+              </div>
 
-            <h6>Quand la technologie sert à sensibiliser ?</h6>
-            <p>
-              La marginalisation des personnes handicapées est un vrai problème. Ce sont, d’abord, les petites différences
-              du quotidien et puis c’est aussi le regard des autres. Sensibiliser à une telle problématique n’est pas chose facile.
-              Pour cela, il faudrait parvenir à se glisser dans la peau d’une personne vivant en situation de handicap, permettant
-              de comprendre ses limitations, la façon de les surmonter, de conserver ou de retrouver son autonomie.
-            </p>
-
-            <h6>La technologie, au service de la qualité de vie ?</h6>
-            <p>
-              La technologie peut aussi se mettre au service du handicap lui-même. Une technologie quotidienne la plus
-              lambda peut s’avérer un véritable gain d’autonomie pour les personnes en situation de handicap. Prenez
-              donc votre smartphone : pour les personnes souffrant de déficience visuelle, il existe des applications
-              décrivant de façon audible son environnement à l’usager, tel qu’il est capté par la caméra du téléphone.
-              Pour les personnes malentendantes, il existe des applications permettant de retranscrire à l’écrit les
-              paroles d’une conversation orale sur votre smartphone, en attribuant une couleur à chaque interlocuteur.
-              Pour les personnes à mobilité réduite, il existe des applications permettant de signaler les lieux facilement
-              accessibles en fauteuil. Et ce ne sont que quelques exemples. Les nouvelles technologies peuvent permettre
-              aux personnes en situation de handicap de recouvrer leur autonomie, de compenser leurs manques. C’est ce
-              genre d’améliorations et d’innovations qui améliorent la qualité de vie malgré le handicap… et d’abaisser
-              les barrières entre personnes handicapées et personnes valides.
-            </p>
-
-            <h6>Et si le handicap était source d'innovation ?</h6>
-            <p>
-              L’innovation au service du handicap, oui – mais le handicap au service de l’innovation, aussi !
-              Le handicap est souvent l’origine trop oubliée d’innovations qui ont aujourd’hui rejoint notre quotidien.
-              Mais cela ne veut pas dire qu’il n’y a pas encore beaucoup de chemin à faire.
-            </p>
-          </div>
-
-          <p className="main-thematic__text">
-            Et si, ensemble, nous adaptions le monde pour tous ! A vous de jouer : quelles solutions pouvons-nous
-            développer pour rendre l’impossible possible pour les personnes en situation d’handicap ? “Malgré la
-            différence, on est capable de faire les mêmes choses… voire même parfois mieux !” <i>Flavien Gelly</i>.
-          </p>
-
-          <h5>Références :</h5>
-
-          <ul>
-            <li>
-              <a href="https://fr.wikipedia.org/wiki/Handicap">https://fr.wikipedia.org/wiki/Handicap</a>
-            </li>
-            <li>
-              <a href="https://www.boutique-box-internet.fr/actualites/handicap-technologie/">https://www.boutique-box-internet.fr/actualites/handicap-technologie/</a>
-            </li>
-            <li>
-              <a href="https://blog.ipedis.com/accessibilite-handicapes-nouvelles-technologie">https://blog.ipedis.com/accessibilite-handicapes-nouvelles-technologie</a>
-            </li>
-            <li>
-              <a href="https://www.forbes.fr/technologie/la-technologie-au-service-des-personnes-en-situation-de-handicap/">https://www.forbes.fr/technologie/la-technologie-au-service-des-personnes-en-situation-de-handicap/</a>
-            </li>
-            <li>
-              <a href="https://www.lesechos.fr/thema/mobilites-innovations/mobilites-le-handicap-un-moteur-dinnovations-sous-estime-1038277">https://www.lesechos.fr/thema/mobilites-innovations/mobilites-le-handicap-un-moteur-dinnovations-sous-estime-1038277</a>
-            </li>
-            <li>
-              <a href="https://www.nouvelobs.com/societe/20190529.AFP7500/handicap-l-innovation-technologique-pour-relever-le-defi-de-l-accessibilite.html">https://www.nouvelobs.com/societe/20190529.AFP7500/handicap-l-innovation-technologique-pour-relever-le-defi-de-l-accessibilite.html</a>
-            </li>
-          </ul>
-
+              <Topic 
+                link="https://www.d1g1factory.org/"
+                img = {{src: "/sponsors/DigiFactory.jpg", alt:"DigiFactory"}}
+                direction="right">
+                <h6>Remerciment</h6>
+                <p>
+                  Nous remercions particulièrement DigiFactory pour la rédaction de ce texte.
+                </p>
+              </Topic>  
+          
         </div>
       </div>
     );
