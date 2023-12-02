@@ -99,7 +99,7 @@ export class MainThematic extends React.PureComponent {
                 link="https://www.d1g1factory.org/"
                 img = {{src: "/sponsors/DigiFactory.jpg", alt:"DigiFactory"}}
                 direction="right">
-                <h6>Remerciment</h6>
+                <h6>Remerciement</h6>
                 <p>
                   Nous remercions particulièrement DigiFactory pour la rédaction de ce texte.
                 </p>
