@@ -74,9 +74,9 @@ class App extends React.Component<any, any> {
             <Route path="/deconnexion" element={<LogoutPage/>} />
             <Route path="/ask-password-reset" element={<AskPasswordResetPage/>} />
             <Route path="/password-reset/:token" element={<PasswordResetPage/>} />
-            <Route path="/draw-board" element={<DrawBoardPage/>} />
+            {/* <Route path="/draw-board" element={<DrawBoardPage/>} />
             <Route path="/space-invader" element={<SpaceInvaderPage/>} />
-            <Route path="/pizza-clicker" element={<PizzaClickerPage/>} />
+            <Route path="/pizza-clicker" element={<PizzaClickerPage/>} /> */}
             <Route element={<AuthenticatedRoutes admin={false}/>}>
               <Route path="/team/*" element={<TeamPage />}/>
             </Route>

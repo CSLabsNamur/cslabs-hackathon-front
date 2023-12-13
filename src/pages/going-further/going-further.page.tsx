@@ -17,7 +17,8 @@ export class GoingFurtherPage extends React.PureComponent {
         >
           <p className="further-page__intro">
             Ton projet peut changer les choses. <br />   N'hésite pas à consulter nos sponsors pour lui construire un
-            avenir ! <Link to='/space-invader'>🎮</Link>
+            avenir ! 
+            {/* <Link to='/space-invader'>🎮</Link> */}
           </p>
         </PageHero>
 

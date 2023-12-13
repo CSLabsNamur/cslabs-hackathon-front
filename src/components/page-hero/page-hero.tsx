@@ -46,8 +46,11 @@ export class PageHero extends React.PureComponent<{
                   />
                 </div>
                 <div className="back">
-                  <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
+                  {/* <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
                        alt="Logo Pizzathon 2024"
+                  /> */}
+                  <img src={ process.env.PUBLIC_URL + logo }
+                       alt="Logo Hackathon 2024"
                   />
                 </div>
               </div>

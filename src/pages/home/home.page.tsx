@@ -48,7 +48,7 @@ export class HomePage extends React.PureComponent {
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/unamur.png" />
               </Link>
-              <a href="https://www.cslabs.be/">
+              <a href="https://www.cslabs.be/" target="_blank" rel="noopener noreferrer">
                   <SponsorLogo  title="CSLabs"
                                 uri="/images/logo/CSLabs.png" />
               </a>
