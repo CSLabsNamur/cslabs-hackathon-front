@@ -25,6 +25,12 @@ export class SponsorsPage extends React.PureComponent {
             <a href="#odoo" aria-label="Odoo">
               <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" />
             </a>
+            <a href='https://www.wallonie.be/fr' target='_blank' rel="noopener noreferrer" aria-label="Wallonie">
+              <SponsorLogo title="Wallonie" uri="/images/logo/wallonie.png" />
+            </a>
+            <a href='https://www.wallonie-entreprendre.be/fr/' target='_blank' rel='noopener noreferrer' aria-label="Wallonie Entreprendre">
+              <SponsorLogo title="Wallonie Entreprendre" uri="/images/logo/WE_Simple_Positif_CMJN.png" />
+            </a>
             {/*<a href="#mutualite_chretienne">
               <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
             </a>

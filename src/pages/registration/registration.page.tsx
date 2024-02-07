@@ -484,7 +484,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Les inscriptions sont fermées !
         </p>
         <p>
-          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain 😉
+          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain <span role='img' aria-label='wink'>😉</span>
         </p>
       </div>)
     }

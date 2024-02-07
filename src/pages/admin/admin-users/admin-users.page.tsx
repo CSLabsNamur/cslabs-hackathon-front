@@ -212,7 +212,7 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   renderUser(user: User, index: number) {
-    const {team, note, paidCaution, github, linkedIn, createdAt, imageAgreement, isAdmin} = user;
+    const {team, note, paidCaution, github, linkedIn, createdAt, isAdmin} = user;
 
     return (
       <tr key={index}>

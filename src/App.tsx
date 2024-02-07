@@ -20,9 +20,9 @@ import {AuthenticatedRoutes} from "./components/authenticated-routes/authenticat
 import {TeamPage} from "./pages/team/team.page";
 import {AdminPage} from "./pages/admin/admin.page";
 import {NotFoundPage} from "./pages/not-found/not-found.page";
-import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
-import {SpaceInvaderPage} from "./pages/space-invader/space-invader.page";
-import {PizzaClickerPage} from "./pages/pizza-clicker/pizza-clicker.page";
+// import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
+// import {SpaceInvaderPage} from "./pages/space-invader/space-invader.page";
+// import {PizzaClickerPage} from "./pages/pizza-clicker/pizza-clicker.page";
 
 ReactModal.setAppElement('#root');
 
