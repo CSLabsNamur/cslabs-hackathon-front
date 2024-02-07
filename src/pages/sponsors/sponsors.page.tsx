@@ -26,7 +26,7 @@ export class SponsorsPage extends React.PureComponent {
               <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" />
             </a>
             <a href='#WallonieEntreprendre' aria-label="Wallonie">
-              <SponsorLogo title="Wallonie" uri="/images/logo/wallonie.png" />
+              <SponsorLogo title="Wallonie" uri="/images/logo/Wallonie.png" />
             </a>
             {/*<a href="#mutualite_chretienne">
               <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
