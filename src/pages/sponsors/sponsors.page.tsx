@@ -13,19 +13,19 @@ export class SponsorsPage extends React.PureComponent {
 
         <PageHero title='Nos sponsors' subtitle='Sans eux, rien ne serait possible !' hasArrow>
           <div className="sponsors-page__sponsors-list">
-            <a href="#unamur">
+            <a href="#unamur" aria-label="Université de Namur">
               <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
             </a>
-            <a href="#bep">
+            <a href="#bep" aria-label="BEP">
               <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
             </a>
-            <a href="#linkube">
+            <a href="#linkube" aria-label="LinKube">
               <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
             </a>
-            {/* <a href="#ag_insurance">
-              <SponsorLogo title="AG Insurance" uri="/images/logo/AG_insurance.png" />
+            <a href="#odoo" aria-label="Odoo">
+              <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" />
             </a>
-            <a href="#mutualite_chretienne">
+            {/*<a href="#mutualite_chretienne">
               <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
             </a>
             <a href="#arhs">
@@ -122,30 +122,36 @@ export class SponsorsPage extends React.PureComponent {
           </p>
         </Topic>
 
-        {/* <Topic img={{
-          src: "/sponsors/ag.svg",
-          alt: "AGInsurance"
+        <Topic img={{
+          src: "/sponsors/odoo-logo.png",
+          alt: "Odoo"
         }}
                link="https://ag.be/jobs/fr"
-               direction="right">
-          <h2 id="ag_insurance">
-            AG Insurance
+               direction="left">
+          <h2 id="odoo">
+            Odoo
           </h2>
           <p>
-            Vous voulez faire la différence ? Pour nos clients, vos collègues et vous-même ? Prendre des
-            responsabilités, faire avancer les choses et obtenir des résultats, ça vous parle ? Chez AG,
-            c’est parfaitement possible. Vous y trouverez un environnement de travail professionnel,
-            dynamique et chaleureux où vous pourrez réellement faire avancer les choses. Montrez-nous ce que
-            vous avez dans le ventre. Osez en faire plus pour nos clients et vos collègues. Et prenez votre
-            carrière en main.
+            We are a Belgian IT company proposing a complete and flexible software solution.<br />
+            Odoo's unique value proposition is to cover a large business scope and be at the same time very easy to use and fully integrated.
           </p>
           <p>
-            Lancez-vous. Optez pour un super job chez le premier assureur du pays.
+            If you're passionate about development, then it's time to come and  do  your  internship or find a job  in  a  company  with  a great Open Source project where your work will count
+          </p>
+          <p>
+            Our stack:
+            <ol>
+              <li>Programming languages: Python & Javascript</li>
+              <li>Database: postgresql (with object relational mapping)</li>
+              <li>Collaboration plateform: GitHub</li>
+              <li>Development model: open with external community</li>
+              <li>Framework: Odoo (ORM, Workflows, Report Engine, Bi, AI)</li>
+            </ol>
           </p>
         </Topic>
 
 
-        <Topic img={{
+        {/*<Topic img={{
           src: "/sponsors/mutualite_chretienne.png",
           alt: "Mutualité Chrétienne"
         }}
