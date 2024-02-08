@@ -66,7 +66,7 @@ class App extends React.Component<any, any> {
           <ScrollToTop/>
           <Navbar/>
           <Routes>
-            <Route path="/sponsors" element={<SponsorsPage/>} />
+            <Route path="/partenaires" element={<SponsorsPage/>} />
             <Route path="/infos" element={<InformationPage/>} />
             <Route path="/plus-loin" element={<GoingFurtherPage/>} />
             <Route path="/inscription" element={<RegistrationPage/>} />

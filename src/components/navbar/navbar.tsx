@@ -20,7 +20,7 @@ export class Navbar extends React.Component<{}, {
     return (
       <Fragment>
         <li className="on-white"><Link to='/inscription'>S'inscrire</Link></li>
-        <li className="on-white"><Link to='/sponsors'>Sponsors</Link></li>
+        <li className="on-white"><Link to='/partenaires'>Partenaires</Link></li>
         <li className="on-white"><Link to='/infos'>Infos</Link></li>
         <li className="on-white"><Link to='/plus-loin'>Plus loin</Link></li>
 
