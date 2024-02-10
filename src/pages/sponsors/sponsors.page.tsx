@@ -129,7 +129,7 @@ export class SponsorsPage extends React.PureComponent {
           src: "/sponsors/odoo-logo.png",
           alt: "Odoo"
         }}
-               link="https://ag.be/jobs/fr"
+               link="https://www.odoo.com/fr_FR"
                direction="left">
           <h2 id="odoo">
             Odoo
