@@ -23,7 +23,7 @@ export class InformationPage extends React.PureComponent {
         <InfoItem title="Lieu du Hackathon" icon="/infos/location.svg">
           <p><b>Rue Grandgagnage 21</b></p>
           <p>5000 Namur</p>
-          <p>Faculté d'Informatique de l'Université de Namur (<a href="https://goo.gl/maps/FoLgBZXZovtPZ9RSA" target="_blank" rel="noreferrer">Google Maps</a>)</p>
+          <p>Faculté d'Informatique de l'Université de Namur (<a href="https://goo.gl/maps/FoLgBZXZovtPZ9RSA" target="_blank" rel="noopener noreferrer">Google Maps</a>)</p>
         </InfoItem>
 
         <InfoItem title="Date du Hackathon" icon="/infos/calendar.svg">
@@ -32,7 +32,7 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Contacts" icon="/infos/contact.svg">
           <p>
-            Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/" target="_blank" rel="noreferrer">Page Facebook</a>
+            Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/" target="_blank" rel="noopener noreferrer">Page Facebook</a>
           </p>
           <p>Mail: <a href="mailto:event@cslabs.be" ><strong>event[@]cslabs.be</strong></a></p>
           <p>Serveur Discord: <a href="https://discord.gg/Jf2Dht8">https://discord.gg/Jf2Dht8</a></p>
@@ -40,7 +40,7 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Commodités" icon="/infos/commodites.svg">
           <p>Repos: <b>Salle avec des lits prévue*</b></p>
-          <p>Repas: <b>Repas fournis</b> <Link to='/pizza-clicker'>🍕</Link></p>
+          <p>Repas: <b>Repas fournis</b> {/*<Link to='/pizza-clicker'>🍕</Link>*/}</p>
           <p>Sanitaires: <b>Installations de l'Université</b></p>
           <p>*Il y aura quelques lits dans le cas où il n'est pas possible pour vous d'amener quelque chose mais c'est vivement recommandé de prendre quelque chose vous même</p>
         </InfoItem>
