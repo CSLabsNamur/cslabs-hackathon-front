@@ -43,7 +43,7 @@ export class HomePage extends React.PureComponent {
           subtitle={process.env.REACT_APP_SLOGAN_EVENT || "CSLabs Hackathon"}
           disclaimer={
             <div className="on-green">
-              <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'UNamur</strong></p>
+              <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'Université de Namur</strong></p>
               <Link to="/sponsors">
                   <SponsorLogo  title="Université de Namur"
                                 uri="/sponsors/unamur.png" />
@@ -95,9 +95,9 @@ export class HomePage extends React.PureComponent {
         </Topic>
 
         <Topic img={this.images[2]} direction="left">
-          <h2 className="on-green">Cinquième édition</h2>
+          <h2 className="on-green">Sixième édition</h2>
           <p className="on-green">
-            Nous en sommes à la cinquième édition du Hackathon CSLabs !
+            Nous en sommes à la sixième édition du Hackathon CSLabs !
             Nous avons hâte de poursuivre l'aventure avec vous !
           </p>
           <p className="on-green">
