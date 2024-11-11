@@ -46,7 +46,7 @@ export class Navbar extends React.Component<{}, {
       <nav>
         <div className="nav-container navbar">
           <div className="nav-logo">
-            <Link to="/" className="on-white">Hackathon</Link>
+            <Link to="/" className="on-white navbar__title">Hackathon</Link>
           </div>
 
           <ul className="nav-links on-white">

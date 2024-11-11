@@ -13,6 +13,11 @@ nav, .nav {
   position: relative;
 }
 
+.navbar__title {
+  font-family: "ZingRust", Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(75, 83, 84);
+}
+
 .navbar__mobile-toggle:focus {
   transform: scale(1.05);
   transition: opacity .1s ease-out;
