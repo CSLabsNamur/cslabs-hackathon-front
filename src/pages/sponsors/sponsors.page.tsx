@@ -1,9 +1,9 @@
-import React from 'react';
-import {PageHero} from '../../components/page-hero/page-hero';
-import {Topic} from '../../components/topic/topic';
+import React from "react";
+import { PageHero } from "../../components/page-hero/page-hero";
+import { Topic } from "../../components/topic/topic";
 
-import './sponsors.page.css';
-import {SponsorLogo} from '../../components/sponsor-logo/sponsor-logo';
+import "./sponsors.page.css";
+import { SponsorLogo } from "../../components/sponsor-logo/sponsor-logo";
 
 // noinspection HtmlUnknownAnchorTarget
 export class SponsorsPage extends React.PureComponent {
@@ -11,23 +11,15 @@ export class SponsorsPage extends React.PureComponent {
     return (
       <div id="sponsors-page">
 
-        <PageHero title='Nos sponsors' subtitle='Sans eux, rien ne serait possible !' hasArrow>
+        <PageHero title="Nos sponsors" subtitle="Sans eux, rien ne serait possible !" hasArrow>
           <div className="sponsors-page__sponsors-list">
-            <a href="#unamur" aria-label="Université de Namur">
-              <SponsorLogo title="Université de Namur" uri="/sponsors/unamur.png" />
-            </a>
-            <a href="#bep" aria-label="BEP">
-              <SponsorLogo title="BEP" uri="/images/logo/bep.png" />
-            </a>
-            <a href="#linkube" aria-label="LinKube">
-              <SponsorLogo title="LinKube" uri="/images/logo/linkube.jpg" />
-            </a>
-            <a href="#odoo" aria-label="Odoo">
-              <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" />
-            </a>
-            <a href='#WallonieEntreprendre' aria-label="Wallonie">
-              <SponsorLogo title="Wallonie" uri="/images/logo/Wallonie.png" />
-            </a>
+            <SponsorLogo href="#unamur" title="Université de Namur" uri="/sponsors/unamur_transparent.png"/>
+            <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
+            <SponsorLogo href="#bep" title="BEP" uri="/images/logo/bep.png"/>
+            <SponsorLogo href="#linkube" title="LinKube" uri="/images/logo/linkube_short.png"/>
+            {/* <a href="#odoo" aria-label="Odoo"> */}
+            {/*   <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" /> */}
+            {/* </a> */}
             {/*<a href="#mutualite_chretienne">
               <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
             </a>
@@ -41,26 +33,35 @@ export class SponsorsPage extends React.PureComponent {
         </PageHero>
 
         <Topic img={{
-          src: "/sponsors/unamur_big.png",
-          alt: "Faculté d'informatique de l'Université de Namur"
-        }}
-              link="https://www.unamur.be/info"
-              direction="right">
-          <h2 id="unamur" className='on-white'>
+          src: "/sponsors/unamur.png",
+          alt: "Université de Namur",
+        }} link="https://www.unamur.be/info" direction="right">
+          <h2 id="unamur" className="on-white">
             Université de Namur
           </h2>
-          <p className='on-white'>
+          <p className="on-white">
             L'Université de Namur et la Faculté d'Informatique nous fournissent les locaux et le matériel nécessaires à
             l'organisation de cet évènement.
           </p>
         </Topic>
 
         <Topic img={{
+          src: "/sponsors/nadi.png",
+          alt: "Institut NADI",
+        }} link="https://www.institut-nadi.be" direction="left">
+          <h2 id="nadi">
+            Institut NADI
+          </h2>
+          {/* TODO */}
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus est et exercitationem fuga harum in
+            itaque maxime molestiae nihil odit omnis provident quibusdam quidem, recusandae repudiandae saepe sint
+            velit, veritatis!</p>
+        </Topic>
+
+        <Topic img={{
           src: "/sponsors/bep.png",
-          alt: "BEP"
-        }}
-               link="https://www.bep.be"
-               direction="left">
+          alt: "BEP",
+        }} link="https://www.bep.be" direction="right">
           <h2 id="bep">
             Trakk et BEP
           </h2>
@@ -89,14 +90,12 @@ export class SponsorsPage extends React.PureComponent {
             beaux projets. On en discute ?
           </p>
         </Topic>
-        
+
 
         <Topic img={{
           src: "/sponsors/linkube.png",
-          alt: "LinKube"
-        }}
-               link="https://www.linkube.be"
-               direction="right">
+          alt: "LinKube",
+        }} link="https://www.linkube.be" direction="left">
           <h2 id="linkube">
             LinKube
           </h2>
@@ -110,7 +109,8 @@ export class SponsorsPage extends React.PureComponent {
           </p>
           <p>
             Pour ce faire, nous proposons du <b>coaching personnalisé</b>, de l’<b>expertise</b> « business »,
-            des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le TRAKK), etc.</p>
+            des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le
+            TRAKK), etc.</p>
           <p>
             <b>Envie d'en savoir plus ?</b>
           </p>
@@ -119,52 +119,41 @@ export class SponsorsPage extends React.PureComponent {
           </p>
           <p>
             Déjà quelques informations sur notre site
-          </p>  
+          </p>
           <p>
             Alors… Partant.e.s ?
           </p>
         </Topic>
 
-        <Topic img={{
-          src: "/sponsors/odoo-logo.png",
-          alt: "Odoo"
-        }}
-               link="https://www.odoo.com/fr_FR"
-               direction="left">
-          <h2 id="odoo">
-            Odoo
-          </h2>
-          <p>
-            We are a Belgian IT company proposing a complete and flexible software solution.<br />
-            Odoo's unique value proposition is to cover a large business scope and be at the same time very easy to use and fully integrated.
-          </p>
-          <p>
-            If you're passionate about development, then it's time to come and  do  your  internship or find a job  in  a  company  with  a great Open Source project where your work will count
-          </p>
-          <p>
-            Our stack:
-            <ol>
-              <li>Programming languages: Python & Javascript</li>
-              <li>Database: postgresql (with object relational mapping)</li>
-              <li>Collaboration plateform: GitHub</li>
-              <li>Development model: open with external community</li>
-              <li>Framework: Odoo (ORM, Workflows, Report Engine, Bi, AI)</li>
-            </ol>
-          </p>
-        </Topic>
-
-        <Topic img={{
-          src: "/images/logo/WE_Simple_Positif_CMJN.png",
-          alt: "Wallonie Entreprendre"
-        }}
-        link="https://www.wallonie-entreprendre.be/fr/"
-        direction="right">
-          <h2 id="WallonieEntreprendre">
-            Wallonie Entreprendre
-          </h2>
-
-        </Topic>
-
+        {/* <Topic img={{ */}
+        {/*   src: "/sponsors/odoo-logo.png", */}
+        {/*   alt: "Odoo", */}
+        {/* }} */}
+        {/*        link="https://www.odoo.com/fr_FR" */}
+        {/*        direction="left"> */}
+        {/*   <h2 id="odoo"> */}
+        {/*     Odoo */}
+        {/*   </h2> */}
+        {/*   <p> */}
+        {/*     We are a Belgian IT company proposing a complete and flexible software solution.<br/> */}
+        {/*     Odoo's unique value proposition is to cover a large business scope and be at the same time very easy to use */}
+        {/*     and fully integrated. */}
+        {/*   </p> */}
+        {/*   <p> */}
+        {/*     If you're passionate about development, then it's time to come and do your internship or find a job in a */}
+        {/*     company with a great Open Source project where your work will count */}
+        {/*   </p> */}
+        {/*   <p> */}
+        {/*     Our stack: */}
+        {/*     <ol> */}
+        {/*       <li>Programming languages: Python & Javascript</li> */}
+        {/*       <li>Database: postgresql (with object relational mapping)</li> */}
+        {/*       <li>Collaboration plateform: GitHub</li> */}
+        {/*       <li>Development model: open with external community</li> */}
+        {/*       <li>Framework: Odoo (ORM, Workflows, Report Engine, Bi, AI)</li> */}
+        {/*     </ol> */}
+        {/*   </p> */}
+        {/* </Topic> */}
 
         {/*<Topic img={{
           src: "/sponsors/mutualite_chretienne.png",

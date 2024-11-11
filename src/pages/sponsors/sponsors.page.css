@@ -1,11 +1,11 @@
-
 #sponsors-page {
-    padding-bottom: 10rem;
+  padding-bottom: 10rem;
 }
 
-.sponsor-page__sponsors-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+.sponsors-page__sponsors-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
 }

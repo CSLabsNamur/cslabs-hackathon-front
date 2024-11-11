@@ -7,7 +7,7 @@ export class PageHero extends React.PureComponent<{
   subtitle: string,
   disclaimer?: React.ReactElement,
   hasArrow?: boolean,
-  children: React.ReactNode,
+  children?: React.ReactNode,
 }> {
 
   render() {

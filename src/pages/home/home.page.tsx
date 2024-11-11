@@ -44,15 +44,13 @@ export class HomePage extends React.PureComponent {
           disclaimer={
             <div className="on-green">
               <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'Université de Namur</strong></p>
-              <Link to="/sponsors">
-                <SponsorLogo title="Université de Namur"
+              <div className="home-page__logo_list">
+                <SponsorLogo to="/sponsors" title="Université de Namur"
                              uri="/sponsors/unamur.png"/>
-              </Link>
-              <a href="https://www.cslabs.be/" target="_blank" rel="noopener noreferrer">
-                <SponsorLogo title="CSLabs"
-                             uri="/images/logo/CSLabs.png"/>
-              </a>
-            </div>}>
+                <SponsorLogo href="https://cslabs.be/" newTab title="CSLabs"
+                             uri="/images/logo/CSLabs.svg"/></div>
+            </div>
+          }>
         </PageHero>
 
         <Topic img={this.images[0]} direction="right">
