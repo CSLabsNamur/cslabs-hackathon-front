@@ -26,14 +26,14 @@ import { NotFoundPage } from "./pages/not-found/not-found.page";
 
 ReactModal.setAppElement("#root");
 
-const docTitle = "CSLabs Hackathon : " + import.meta.env.VITE_NAME_EVENT;
-document.addEventListener("blur", () => {
-  document.title = "Come back...";
-});
+//const docTitle = "CSLabs – Hackathon : " + import.meta.env.VITE_NAME_EVENT;
+//document.addEventListener("blur", () => {
+//  document.title = "Come back...";
+//});
 
-document.addEventListener("focus", () => {
-  document.title = docTitle;
-});
+//document.addEventListener("focus", () => {
+//  document.title = docTitle;
+//});
 
 class App extends React.Component<any, any> {
 
