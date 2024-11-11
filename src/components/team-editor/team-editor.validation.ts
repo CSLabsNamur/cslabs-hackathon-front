@@ -1,5 +1,5 @@
-import {IsBoolean, IsOptional, IsString, MaxLength, MinLength} from "class-validator";
-import {IsTrue} from "@/validators/is-true.validator.ts";
+import { IsBoolean, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { IsTrue } from "@/validators/is-true.validator.ts";
 
 export class TeamEditorValidation {
 
@@ -19,7 +19,7 @@ export class TeamEditorValidation {
   idea: string;
 
   @IsBoolean()
-  @IsTrue( {message: "Il est nécessaire d'accepter les modalités pour créer une équipe."})
+  @IsTrue({message: "Il est nécessaire d'accepter les modalités pour créer une équipe."})
   rulesAgreement: boolean;
 
   @IsBoolean()

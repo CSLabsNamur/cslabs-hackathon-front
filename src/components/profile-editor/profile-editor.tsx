@@ -1,10 +1,10 @@
-import React, {FormEvent, Fragment} from "react";
-import {User} from "@/domain/user.ts";
-import {Link} from "react-router-dom";
-import {ProfileEditorValidation} from "./profile-editor.validation";
-import {FormValidationService} from "@/services/form-validation.service.ts";
+import React, { FormEvent, Fragment } from "react";
+import { User } from "@/domain/user.ts";
+import { Link } from "react-router-dom";
+import { ProfileEditorValidation } from "./profile-editor.validation";
+import { FormValidationService } from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {UserService} from "@/services/user.service.ts";
+import { UserService } from "@/services/user.service.ts";
 
 enum ProfileField {
   FIRST_NAME = "firstName",
@@ -50,7 +50,7 @@ export class ProfileEditor extends React.Component<{
       },
       validationErrors: {},
       showConfirmationModal: false,
-    }
+    };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.closeConfirmation = this.closeConfirmation.bind(this);
@@ -61,10 +61,10 @@ export class ProfileEditor extends React.Component<{
     this.closeConfirmation();
     UserService.update(this.state.form)
       .then(() => {
-        console.log('Profile successfully updated.');
+        console.log("Profile successfully updated.");
         if (this.cvInput.current?.files && this.cvInput.current?.files?.length > 0) {
           UserService.uploadCv(this.cvInput.current.files[0]).then(() => {
-            console.log('CV successfully uploaded.');
+            console.log("CV successfully uploaded.");
           });
         }
       });
@@ -121,7 +121,7 @@ export class ProfileEditor extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onCheckboxChange(field: ProfileField) {
@@ -129,7 +129,7 @@ export class ProfileEditor extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.checked;
       this.setState(newState);
-    }
+    };
   }
 
   renderForm() {
@@ -147,8 +147,9 @@ export class ProfileEditor extends React.Component<{
               Votre CV
               <span className="tooltip-text">
                 Cela remplacera votre ancien CV.
-                N'oubliez pas de sauvegarder le profil pour l'envoyer. <br />
-                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
+                N'oubliez pas de sauvegarder le profil pour l'envoyer. <br/>
+                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a
+                href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
               </span>
             </span> (optionnel)
           </label>
@@ -247,17 +248,18 @@ export class ProfileEditor extends React.Component<{
           <p className="alert alert-danger info--alert">
             Votre caution n'a pas encore été réceptionnée ou validée !
             Si vous avez payé votre caution et que ce message tarde à disparaitre,
-            veuillez nous contacter à l'adresse mail suivante : <a href="mailto:hackathon@cslabs.be">hackathon@cslabs.be</a>.
+            veuillez nous contacter à l'adresse mail suivante : <a
+            href="mailto:hackathon@cslabs.be">hackathon@cslabs.be</a>.
             Pour plus d'information, <Link to="/infos">cliquez ici</Link>.
           </p>
         ) : null}
 
         <div className="form-control">
-            <p>Pour rappel, vous pouvez à tout moment consulter les <a 
-                href={"/documents/termes_et_conditions.pdf"}
-                rel="noopener noreferrer" target="_blank">termes et conditions </a> 
-                et faire une réclamation pour le RGPD.
-            </p>
+          <p>Pour rappel, vous pouvez à tout moment consulter les <a
+            href={"/documents/termes_et_conditions.pdf"}
+            rel="noopener noreferrer" target="_blank">termes et conditions </a>
+            et faire une réclamation pour le RGPD.
+          </p>
         </div>
 
         <div className="tx-centered">

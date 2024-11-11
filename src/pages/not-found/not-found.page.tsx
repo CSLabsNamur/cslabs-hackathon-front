@@ -1,6 +1,6 @@
 import React from "react";
 
-import './not-found.page.css';
+import "./not-found.page.css";
 
 export class NotFoundPage extends React.PureComponent {
 

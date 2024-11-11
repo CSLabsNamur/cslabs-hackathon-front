@@ -1,9 +1,9 @@
 
 #timer {
-    max-width: fit-content;
-    margin: 1rem auto;
-    padding: 1rem 4rem;
+  max-width: fit-content;
+  margin: 1rem auto;
+  padding: 1rem 4rem;
 
-    border: .5rem solid var(--primary-accent-color);
-    border-radius: 1rem;
+  border: .5rem solid var(--primary-accent-color);
+  border-radius: 1rem;
 }

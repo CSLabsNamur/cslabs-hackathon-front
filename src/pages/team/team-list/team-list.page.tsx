@@ -1,10 +1,10 @@
 import React from "react";
-import {Team} from "@/domain/team.ts";
-import {TeamsService} from "@/services/teams.service.ts";
+import { Team } from "@/domain/team.ts";
+import { TeamsService } from "@/services/teams.service.ts";
 
-import './team-list.page.css';
+import "./team-list.page.css";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class TeamListPage extends React.Component<{}, {
   teams: Team[],
@@ -15,7 +15,7 @@ export class TeamListPage extends React.Component<{}, {
 
     this.state = {
       teams: [],
-    }
+    };
 
   }
 

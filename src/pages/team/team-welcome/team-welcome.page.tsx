@@ -1,6 +1,6 @@
 import React from "react";
 
-import './team-welcome.page.css';
+import "./team-welcome.page.css";
 
 export class TeamWelcomePage extends React.PureComponent {
 

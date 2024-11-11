@@ -22,20 +22,20 @@ function keepLength(idTime: number) {
 
 function getMessage(months: any, days: any, hours: any, minutes: any, seconds: any) {
   let message = "";
-  if (seconds > 0 || (months + days + hours + minutes) > 0){
-    message = keepLength(seconds) + ' secondes';
+  if (seconds > 0 || (months + days + hours + minutes) > 0) {
+    message = keepLength(seconds) + " secondes";
   }
   if (minutes > 0 || (months + days + hours) > 0) {
-    message = keepLength(minutes) + ' minutes, ' + message;
+    message = keepLength(minutes) + " minutes, " + message;
   }
   if (hours > 0 || (months + days) > 0) {
-    message = keepLength(hours) + ' heures, ' + message;
+    message = keepLength(hours) + " heures, " + message;
   }
   if (days > 0 || (months) > 0) {
-    message = keepLength(days) + ' jours, ' + message;
+    message = keepLength(days) + " jours, " + message;
   }
   if (months > 0) {
-    message = keepLength(months) + ' mois ' + message;
+    message = keepLength(months) + " mois " + message;
   }
 
   return message;
@@ -71,9 +71,9 @@ class Timer extends React.Component<{}, {
         return eventDate.getMonth();
       }
       return 12 + eventDate.getMonth();
-    }
+    };
 
-    for (let month = now.getMonth(); month < maxMonth(date, now); month+=2) {
+    for (let month = now.getMonth(); month < maxMonth(date, now); month += 2) {
       days -= 1; // still have impressision due to february and leap years
     }
 
@@ -121,9 +121,9 @@ class Timer extends React.Component<{}, {
         return eventDate.getMonth();
       }
       return 12 + eventDate.getMonth();
-    }
+    };
 
-    for (let month = now.getMonth(); month < maxMonth(date, now); month+=2) {
+    for (let month = now.getMonth(); month < maxMonth(date, now); month += 2) {
       days -= 1; // still have impressision due to february and leap years
     }
 
@@ -146,5 +146,6 @@ class Timer extends React.Component<{}, {
   }
 
 }
-const timerModule = {Timer, getDateEnv, getMessage}
+
+const timerModule = {Timer, getDateEnv, getMessage};
 export default timerModule;

@@ -1,9 +1,9 @@
-import React, {FormEvent} from "react";
+import React, { FormEvent } from "react";
 import ReactModal from "react-modal";
-import {UserService} from "@/services/user.service.ts";
-import {Navigate} from "react-router-dom";
+import { UserService } from "@/services/user.service.ts";
+import { Navigate } from "react-router-dom";
 
-import './ask-password-reset.page.css';
+import "./ask-password-reset.page.css";
 
 export class AskPasswordResetPage extends React.Component<{}, {
   emailInput: string,
@@ -17,7 +17,7 @@ export class AskPasswordResetPage extends React.Component<{}, {
     this.state = {
       emailInput: "",
       emailSent: false,
-    }
+    };
 
     this.onLeave = this.onLeave.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -28,7 +28,7 @@ export class AskPasswordResetPage extends React.Component<{}, {
 
     UserService.askResetPassword(this.state.emailInput)
       .then(() => {
-        console.log('Reset password mail sent.');
+        console.log("Reset password mail sent.");
         this.setState({...this.state, emailSent: true});
       });
   }
@@ -61,12 +61,12 @@ export class AskPasswordResetPage extends React.Component<{}, {
           <button className="button-primary" onClick={this.onLeave}>Super !</button>
         </div>
       </ReactModal>
-    )
+    );
   }
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to={this.state.redirect}/>
+      return <Navigate to={this.state.redirect}/>;
     }
 
     return (

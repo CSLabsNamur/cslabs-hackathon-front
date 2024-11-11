@@ -1,10 +1,10 @@
 #home-page {
-    background-color: var(--primary-accent-color);
-    padding-bottom: 10rem;
+  background-color: var(--primary-accent-color);
+  padding-bottom: 10rem;
 }
 
 .topic-link {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .home-page__logo_list {

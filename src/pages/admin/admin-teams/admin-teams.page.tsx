@@ -1,19 +1,19 @@
 import React from "react";
-import {Team} from "@/domain/team.ts";
-import {AdminService} from "@/services/admin.service.ts";
+import { Team } from "@/domain/team.ts";
+import { AdminService } from "@/services/admin.service.ts";
 
-import './admin-teams.page.css';
+import "./admin-teams.page.css";
 import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
 
 enum AdminTeamsModal {
-  TEAM_DELETION = 'deletionModal'
+  TEAM_DELETION = "deletionModal"
 }
 
 enum AdminTeamsField {
-  NAME = 'name',
-  DESCRIPTION = 'description',
-  IDEA = 'idea',
+  NAME = "name",
+  DESCRIPTION = "description",
+  IDEA = "idea",
 }
 
 export class AdminTeamsPage extends React.Component<{}, {
@@ -38,12 +38,12 @@ export class AdminTeamsPage extends React.Component<{}, {
       form: {
         name: "",
         description: "",
-        idea: ""
+        idea: "",
       },
       modal: {
         deletionModal: false,
       },
-    }
+    };
 
     this.onEditTeam = this.onEditTeam.bind(this);
     this.onDeleteTeam = this.onDeleteTeam.bind(this);
@@ -57,8 +57,8 @@ export class AdminTeamsPage extends React.Component<{}, {
 
   getTeams() {
     AdminService.getAllTeams().then((teams) => {
-      this.setState({ teams });
-    })
+      this.setState({teams});
+    });
   }
 
   unselectEditedTeam() {
@@ -91,7 +91,7 @@ export class AdminTeamsPage extends React.Component<{}, {
     const teamId = this.state.deletedTeam;
     if (teamId) {
       AdminService.deleteTeam(teamId).then(() => {
-        console.log('Team deleted.');
+        console.log("Team deleted.");
         this.getTeams();
       });
     }
@@ -109,9 +109,9 @@ export class AdminTeamsPage extends React.Component<{}, {
     if (team) {
       const {name, description, idea} = this.state.form;
       AdminService.updateTeam(team.id, {name, description, idea}).then(() => {
-        console.log('Team updated.');
+        console.log("Team updated.");
         this.getTeams();
-      })
+      });
     }
     this.unselectEditedTeam();
   }
@@ -121,7 +121,7 @@ export class AdminTeamsPage extends React.Component<{}, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onCancelEdition(event: any) {
@@ -157,7 +157,7 @@ export class AdminTeamsPage extends React.Component<{}, {
         <div className="modal-body">
           <p>Êtes-vous certain de vouloir supprimer cette équipe ?</p>
           <p>Tous les membres se retrouveront sans équipe.</p>
-          <p style={{color: 'red'}}>Cette action est irréversible.</p>
+          <p style={{color: "red"}}>Cette action est irréversible.</p>
         </div>
         <div className="modal-footer">
           <button className="button-danger"
@@ -200,7 +200,7 @@ export class AdminTeamsPage extends React.Component<{}, {
       <div className="button button-info button-small"
            onClick={() => {
              navigator.clipboard.writeText(token).then(() => {
-               alert('Le token a bien été copié.');
+               alert("Le token a bien été copié.");
              });
            }}
       >
@@ -209,13 +209,13 @@ export class AdminTeamsPage extends React.Component<{}, {
               <span className="tooltip-text">{token}</span>
           </span>
       </div>
-    )
+    );
   }
 
   renderStaticTeam(team: Team, index: number) {
     const {id, name, description, idea, valid, members, createdAt} = team;
 
-    
+
     return (
       <tr key={index}>
         <td>
@@ -295,7 +295,8 @@ export class AdminTeamsPage extends React.Component<{}, {
                   onClick={this.onSaveEdition}
           >
             Sauvegarder
-          </button>,
+          </button>
+          ,
           <button className="button button-info button-small"
                   onClick={this.onCancelEdition}
           >
@@ -303,7 +304,7 @@ export class AdminTeamsPage extends React.Component<{}, {
           </button>
         </td>
       </tr>
-    )
+    );
 
   }
 

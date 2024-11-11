@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import './topic.css';
+import "./topic.css";
 
 export class Topic extends React.PureComponent<{
   link?: string,
-  direction: 'left' | 'right',
-  img: {src: string, alt: string},
+  direction: "left" | "right",
+  img: { src: string, alt: string },
   children: React.ReactNode,
 }> {
 
@@ -17,7 +17,7 @@ export class Topic extends React.PureComponent<{
            alt={this.props.img.alt}
            title={this.props.img.alt}
            loading="lazy"
-           className="topic-area__info__img" />
+           className="topic-area__info__img"/>
     );
     if (this.props.link) {
       image = (
@@ -28,7 +28,7 @@ export class Topic extends React.PureComponent<{
     }
 
     return (
-      <div className={'row topic-area ' + direction}>
+      <div className={"row topic-area " + direction}>
         <div className="topic-area__info">
           {image}
           <div className="topic-area__info__text">

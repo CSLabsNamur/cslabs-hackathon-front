@@ -1,12 +1,12 @@
-import React, {FormEvent, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import React, { FormEvent, Fragment } from "react";
+import { Link } from "react-router-dom";
 
-import './registration.page.css';
-import {RegistrationValidation} from './registration.validation';
-import {UserService} from "@/services/user.service.ts";
-import {FormValidationService} from "@/services/form-validation.service.ts";
+import "./registration.page.css";
+import { RegistrationValidation } from "./registration.validation";
+import { UserService } from "@/services/user.service.ts";
+import { FormValidationService } from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {withRouter, WithRouterProps} from "../../utils/with-router";
+import { withRouter, WithRouterProps } from "../../utils/with-router";
 import timerModule from "@/components/timer/timer";
 import MailInfo from "@/components/mail-info/mail-info";
 
@@ -25,9 +25,9 @@ if (getDateEnv(import.meta.env.VITE_DATE_CLOSE) < new Date()) {
 }
 
 enum RegistrationField {
-  EMAIL = 'email',
-  PASSWORD = 'password',
-  PASSWORD_CONFIRM = 'passwordConfirm',
+  EMAIL = "email",
+  PASSWORD = "password",
+  PASSWORD_CONFIRM = "passwordConfirm",
   FIRST_NAME = "firstName",
   LAST_NAME = "lastName",
   GITHUB = "github",
@@ -36,9 +36,9 @@ enum RegistrationField {
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
-  CV_FILE = 'cv_file',
-  IMAGE_AGREEMENT = 'imageAgreement',
-  SUBSCRIBE_FORMATION='subscribeFormation',
+  CV_FILE = "cv_file",
+  IMAGE_AGREEMENT = "imageAgreement",
+  SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
 class RegistrationPage extends React.Component<WithRouterProps<{}>, {
@@ -85,7 +85,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       },
       validationErrors: {},
       modal: {},
-    }
+    };
 
     this.cvInput = React.createRef();
 
@@ -111,7 +111,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onCheckboxChange(field: RegistrationField) {
@@ -119,7 +119,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.checked;
       this.setState(newState);
-    }
+    };
   }
 
   async validateForm() {
@@ -141,39 +141,39 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     this.setState({
       ...this.state,
       modal: {error: message},
-    })
+    });
   }
 
   getClosedDate() {
-      const eventDate = getDateEnv(import.meta.env.VITE_DATE_EVENT);
-      const currentDate = new Date();
-      const timeDifference = eventDate.getTime() - currentDate.getTime(); 
+    const eventDate = getDateEnv(import.meta.env.VITE_DATE_EVENT);
+    const currentDate = new Date();
+    const timeDifference = eventDate.getTime() - currentDate.getTime();
 
-      if (timeDifference <= 0) {
-        return "L'événement est déjà clos.";
-      }
-    
-      const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
-      let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
-      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+    if (timeDifference <= 0) {
+      return "L'événement est déjà clos.";
+    }
 
-      const maxMonth = (eventDate: Date, currentDate: Date) => {
-        if (eventDate.getFullYear() === currentDate.getFullYear()) {
-          return eventDate.getMonth();
-        }
-        return 12 + eventDate.getMonth();
-      }
+    const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-      for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month+=2) {
-        days -= 1; // still have impressision due to february and leap years
+    const maxMonth = (eventDate: Date, currentDate: Date) => {
+      if (eventDate.getFullYear() === currentDate.getFullYear()) {
+        return eventDate.getMonth();
       }
-    
-      const message = getMessage(months, days, hours, minutes, seconds);
-      
-      return message; //.substring(0, 15); // substring to only get months and days
-    
+      return 12 + eventDate.getMonth();
+    };
+
+    for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month += 2) {
+      days -= 1; // still have impressision due to february and leap years
+    }
+
+    const message = getMessage(months, days, hours, minutes, seconds);
+
+    return message; //.substring(0, 15); // substring to only get months and days
+
   }
 
   onFormSubmit(event: FormEvent) {
@@ -182,12 +182,12 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       .then((validated) => {
         if (validated) {
           UserService.registerAndLogin(this.state.form).then(() => {
-            console.log('Successfully registered and logged in.');
+            console.log("Successfully registered and logged in.");
             this.props.navigate(-1);
 
             if (this.cvInput.current!.files!.length > 0) {
               UserService.uploadCv(this.cvInput.current!.files![0]).then(() => {
-                console.log('Successfully uploaded CV.');
+                console.log("Successfully uploaded CV.");
               }).catch(() => {
                 return this.showErrorModal("Votre CV n'a pas pu être envoyé.");
               });
@@ -197,17 +197,15 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
             if (message === "User with that email already exists.") {
               return this.showErrorModal("Un utilisateur avec cette adresse email existe déjà.");
-            }
-
-            else if (message === "Max number of users reached.") {
+            } else if (message === "Max number of users reached.") {
               return this.showErrorModal(
                 `Le nombre maximum de participants à été atteint ! Il n'est dès lors plus possible de s'inscrire... 
-                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord où à l'adresse mail events@cslabs.be`
-              )
+                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord où à l'adresse mail events@cslabs.be`,
+              );
             }
 
             return this.showErrorModal(
-              `Erreur inconnue: ${message}. Prenez-contact sur Discord ou via hackathon@cslabs.be`
+              `Erreur inconnue: ${message}. Prenez-contact sur Discord ou via hackathon@cslabs.be`,
             );
           });
         }
@@ -392,7 +390,8 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre CV (pdf, max 5Mo) (optionnel)
               </label>
               <span>
-                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
+                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a
+                href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
               </span>
               <div>
                 <input type="file"
@@ -441,14 +440,15 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                    onChange={this.onCheckboxChange(RegistrationField.SUBSCRIBE_FORMATION)}
             />
             <label htmlFor="form-subscribe-formation">
-              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au
+              Hackathon.
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
           </div>
 
           <div className="form-control align-center">
-            <MailInfo />
-            <p className='on-white'>*Obligatoire</p>
+            <MailInfo/>
+            <p className="on-white">*Obligatoire</p>
           </div>
 
           <div className="form-control align-center">
@@ -484,9 +484,10 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Les inscriptions sont fermées !
         </p>
         <p>
-          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain <span role='img' aria-label='wink'>😉</span>
+          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain <span role="img"
+                                                                                                              aria-label="wink">😉</span>
         </p>
-      </div>)
+      </div>);
     }
 
     return (

@@ -1,8 +1,8 @@
-import React, {Fragment} from "react";
-import {Link} from 'react-router-dom';
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
-import './navbar.css';
-import {UserContext} from "@/contexts/user.context.ts";
+import "./navbar.css";
+import { UserContext } from "@/contexts/user.context.ts";
 
 export class Navbar extends React.Component<{}, {
   showMenu: boolean,
@@ -19,22 +19,22 @@ export class Navbar extends React.Component<{}, {
   renderLinks() {
     return (
       <Fragment>
-        <li className="on-white"><Link to='/inscription'>S'inscrire</Link></li>
-        <li className="on-white"><Link to='/partenaires'>Partenaires</Link></li>
-        <li className="on-white"><Link to='/infos'>Infos</Link></li>
-        <li className="on-white"><Link to='/plus-loin'>Plus loin</Link></li>
+        <li className="on-white"><Link to="/inscription">S'inscrire</Link></li>
+        <li className="on-white"><Link to="/partenaires">Partenaires</Link></li>
+        <li className="on-white"><Link to="/infos">Infos</Link></li>
+        <li className="on-white"><Link to="/plus-loin">Plus loin</Link></li>
 
         <UserContext.Consumer>
           {value => (value?.user ? (
             <Fragment>
-              <li className="on-white"><Link to='/team'>Ma team</Link></li>
+              <li className="on-white"><Link to="/team">Ma team</Link></li>
               {value.user.isAdmin ? (
-                <li className="on-white"><Link to='/admin'>Admin</Link></li>
+                <li className="on-white"><Link to="/admin">Admin</Link></li>
               ) : null}
-              <li className="on-white"><Link to='/deconnexion'>Déconnexion</Link></li>
+              <li className="on-white"><Link to="/deconnexion">Déconnexion</Link></li>
             </Fragment>
           ) : (
-            <li className="on-white"><Link to='/connexion'>Connexion</Link></li>
+            <li className="on-white"><Link to="/connexion">Connexion</Link></li>
           ))}
         </UserContext.Consumer>
       </Fragment>
@@ -46,7 +46,7 @@ export class Navbar extends React.Component<{}, {
       <nav>
         <div className="nav-container navbar">
           <div className="nav-logo">
-            <Link to='/' className="on-white">Hackathon</Link>
+            <Link to="/" className="on-white">Hackathon</Link>
           </div>
 
           <ul className="nav-links on-white">
@@ -64,7 +64,7 @@ export class Navbar extends React.Component<{}, {
 
         </div>
       </nav>
-    )
+    );
   }
 
 }

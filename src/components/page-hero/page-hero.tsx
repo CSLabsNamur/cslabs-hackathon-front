@@ -13,7 +13,7 @@ export class PageHero extends React.PureComponent<{
   render() {
     let logo = "/images/logo.png";
     const agent = navigator.userAgent.toLowerCase();
-    if (agent.indexOf("edge") > -1 || agent.indexOf("firefox") > -1) logo = '/images/logo/logo.svg';
+    if (agent.indexOf("edge") > -1 || agent.indexOf("firefox") > -1) logo = "/images/logo/logo.svg";
 
     let arrow = null;
     if (this.props.hasArrow) {
@@ -31,7 +31,7 @@ export class PageHero extends React.PureComponent<{
     if (this.props.disclaimer) {
       disclaimer = <div className="disclaimer on-green">
         {this.props.disclaimer}
-      </div>
+      </div>;
     }
 
     return (
@@ -41,7 +41,7 @@ export class PageHero extends React.PureComponent<{
             <div className="page-hero__logo-hackathon">
               <div className="inner">
                 <div className="front">
-                  <img src={ import.meta.env.VITE_PUBLIC_URL + logo}
+                  <img src={import.meta.env.VITE_PUBLIC_URL + logo}
                        alt="Logo Hackathon 2025"
                   />
                 </div>
@@ -49,7 +49,7 @@ export class PageHero extends React.PureComponent<{
                   {/* <img src={ import.meta.env.VITE_PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
                        alt="Logo Pizzathon 2024"
                   /> */}
-                  <img src={ import.meta.env.VITE_PUBLIC_URL + logo }
+                  <img src={import.meta.env.VITE_PUBLIC_URL + logo}
                        alt="Logo Hackathon 2025"
                   />
                 </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import {Navigate, Outlet} from "react-router-dom";
-import {UserService} from "@/services/user.service.ts";
-import {Subscription} from "rxjs";
+import { Navigate, Outlet } from "react-router-dom";
+import { UserService } from "@/services/user.service.ts";
+import { Subscription } from "rxjs";
 
 enum Authentication {
   LOADING,
@@ -21,29 +21,29 @@ export class AuthenticatedRoutes extends React.Component<{
 
     this.state = {
       authenticated: Authentication.LOADING,
-    }
+    };
   }
 
   componentDidMount() {
     if (this.state.subscription) {
       this.state.subscription.unsubscribe();
     }
-    const subject = UserService.getUserSubject()
+    const subject = UserService.getUserSubject();
     const subscription = subject.subscribe((user) => {
 
       if (!user) {
-        this.setState({ authenticated: Authentication.NEED_LOGIN});
+        this.setState({authenticated: Authentication.NEED_LOGIN});
         return;
       }
 
       if (this.props.admin && !user.isAdmin) {
-        this.setState({ authenticated: Authentication.REFUSED});
+        this.setState({authenticated: Authentication.REFUSED});
         return;
       }
 
-      this.setState({ authenticated: Authentication.SUCCESS});
+      this.setState({authenticated: Authentication.SUCCESS});
     });
-    this.setState({ subscription });
+    this.setState({subscription});
   }
 
   componentWillUnmount() {

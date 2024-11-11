@@ -1,28 +1,28 @@
 
 #further-page {
-    padding-bottom: 10rem;
+  padding-bottom: 10rem;
 }
 
 .further-page__intro {
-    padding-top: 4rem;
-    font-size: 3rem;
+  padding-top: 4rem;
+  font-size: 3rem;
 }
 
 .further-page__content {
-    max-width: 100rem;
-    margin: 0 auto;
-    font-size: 2rem;
+  max-width: 100rem;
+  margin: 0 auto;
+  font-size: 2rem;
 }
 
 .further-page__content ul {
-    padding-left: 2rem;
-    list-style: inside;
+  padding-left: 2rem;
+  list-style: inside;
 }
 
 .further-page__content ul > li {
-    padding: 1rem 0;
+  padding: 1rem 0;
 }
 
 .further-page__sponsor:not(:first-child) {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }

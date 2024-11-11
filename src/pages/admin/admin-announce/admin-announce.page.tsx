@@ -1,13 +1,13 @@
-import React, {FormEvent} from "react";
+import React, { FormEvent } from "react";
 import { Link } from "react-router-dom";
-import {AdminService} from "@/services/admin.service.ts";
+import { AdminService } from "@/services/admin.service.ts";
 
-import './admin-announce.page.css';
+import "./admin-announce.page.css";
 
 enum AdminAnnounceField {
-  SUBJECT = 'subject',
-  ANNOUNCE = 'announce',
-  ADDRESSEE = 'addressee',
+  SUBJECT = "subject",
+  ANNOUNCE = "announce",
+  ADDRESSEE = "addressee",
 }
 
 export class AdminAnnouncePage extends React.Component<{}, {
@@ -26,8 +26,8 @@ export class AdminAnnouncePage extends React.Component<{}, {
         subject: "",
         announce: "",
         addressee: "",
-      }
-    }
+      },
+    };
 
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -37,21 +37,20 @@ export class AdminAnnouncePage extends React.Component<{}, {
       const newState: any = {...this.state};
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onSubmit(event: FormEvent) {
     event.preventDefault();
     const {subject, announce, addressee} = this.state.form;
-    addressee.replace(/ /g, ''); // remove space before and after the sting
-    if ((!(['all', 'formation'].includes(addressee))))
-    {
+    addressee.replace(/ /g, ""); // remove space before and after the sting
+    if ((!(["all", "formation"].includes(addressee)))) {
       alert("Compléter suivant les guillemets");
       return null;
     }
     AdminService.sendAnnounce(subject, announce, addressee)
       .then(() => {
-        alert("Annonce envoyée !")
+        alert("Annonce envoyée !");
       })
       .catch((error) => {
         console.error(error);
@@ -66,7 +65,9 @@ export class AdminAnnouncePage extends React.Component<{}, {
           <h2 className="tx-centered">Envoyer une annonce aux membres inscrits</h2>
 
           <div id="back-button">
-            <Link to="/admin" className="tx-centered"><button className="button-primary-outlined button-large">Retour</button></Link>
+            <Link to="/admin" className="tx-centered">
+              <button className="button-primary-outlined button-large">Retour</button>
+            </Link>
           </div>
 
           <div className="form-control">
@@ -80,12 +81,12 @@ export class AdminAnnouncePage extends React.Component<{}, {
 
           <div className="form-control">
             <label htmlFor="form-subject">
-              Destinataires <br />
+              Destinataires <br/>
               Entrez "all" pour envoyé à tout le monde et "formation" pour les gens inscrits aux formations
             </label>
             <input type="text" name="form-subject" placeholder="Envoyer à qui ?"
-                    onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}
-            />          
+                   onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}
+            />
           </div>
 
           <div className="form-control">
@@ -100,7 +101,7 @@ export class AdminAnnouncePage extends React.Component<{}, {
           </div>
 
           <div className="form-control tx-centered">
-            <input className="button button-primary" type="submit" value="Envoyer" />
+            <input className="button button-primary" type="submit" value="Envoyer"/>
           </div>
 
         </form>

@@ -1,10 +1,10 @@
-import React, {FormEvent} from "react";
-import {User} from "@/domain/user.ts";
-import {TeamsService} from "@/services/teams.service.ts";
-import {Team} from "@/domain/team.ts";
-import './team-vote.css';
+import React, { FormEvent } from "react";
+import { User } from "@/domain/user.ts";
+import { TeamsService } from "@/services/teams.service.ts";
+import { Team } from "@/domain/team.ts";
+import "./team-vote.css";
 import { Link } from "react-router-dom";
-import {UserService} from "@/services/user.service.ts";
+import { UserService } from "@/services/user.service.ts";
 
 export class TeamVote extends React.Component<{
   user: User,
@@ -18,7 +18,7 @@ export class TeamVote extends React.Component<{
 
     this.state = {
       teams: [],
-    }
+    };
 
     this.submitVote = this.submitVote.bind(this);
     this.onVoteOptionChanged = this.onVoteOptionChanged.bind(this);
@@ -61,19 +61,19 @@ export class TeamVote extends React.Component<{
     }
 
     UserService.updateVote(vote_id).then(() => {
-      console.log('Vote successfully updated.');
+      console.log("Vote successfully updated.");
     });
   }
 
   onVoteOptionChanged(event: any) {
-    this.setState({...this.state, selectedTeam: event.target.value })
+    this.setState({...this.state, selectedTeam: event.target.value});
   }
 
   getTeamName(team_id: string) {
     const team = this.state.teams.find((t) => t.id === team_id);
 
     if (!team) {
-      throw Error(`Team not found [${team_id}].`)
+      throw Error(`Team not found [${team_id}].`);
     }
 
     return team.name;
@@ -90,29 +90,33 @@ export class TeamVote extends React.Component<{
         <h2>Votez pour votre équipe favorite !</h2>
         <p>Un projet vous a fait de l'oeil ? Vous trouver une idée originale et/ou utile ?</p>
 
-        <Link to={'/team/all'}>
+        <Link to={"/team/all"}>
           <button className="button-info">Information sur les équipes</button>
         </Link>
       </div>
     );
 
-    let vote_button = <button className="button-primary button-large" type="submit" disabled={isVoteDisabled}>Voter</button>;
+    let vote_button = <button className="button-primary button-large" type="submit"
+                              disabled={isVoteDisabled}>Voter</button>;
     if (user.voteId) {
-      vote_button = <button className="button-info button-large" type="submit" disabled={isVoteDisabled}>Remplacer mon vote</button>;
+      vote_button = <button className="button-info button-large" type="submit" disabled={isVoteDisabled}>Remplacer mon
+        vote</button>;
     }
 
     const vote_form = (
       <div className="team-vote__vote">
         <h4>Félicitez-le en votant pour lui !</h4>
-        <p>Pour voter, il vous faut être membre d'une équipe valide. À noter que l'on ne peut pas voter pour sa propre équipe (et oui, je vous vois venir les canailles !).</p>
+        <p>Pour voter, il vous faut être membre d'une équipe valide. À noter que l'on ne peut pas voter pour sa propre
+          équipe (et oui, je vous vois venir les canailles !).</p>
 
         <form onSubmit={this.submitVote}>
 
           <div className="form-control">
             <label htmlFor="">Équipes éligibles pour mon vote :</label>
-            <select id="team-vote__select" value={this.state.selectedTeam!} onChange={this.onVoteOptionChanged} disabled={isVoteDisabled}>
+            <select id="team-vote__select" value={this.state.selectedTeam!} onChange={this.onVoteOptionChanged}
+                    disabled={isVoteDisabled}>
               {teams.map((team, index) => (
-                <option className={team.id === user.voteId ? 'voted' : ''} value={team.id} key={index}>
+                <option className={team.id === user.voteId ? "voted" : ""} value={team.id} key={index}>
                   {team.name}
                 </option>
               ))}
@@ -141,7 +145,7 @@ export class TeamVote extends React.Component<{
           Il est nécessaire de faire partie d'une équipe ayant été validée pour voter.
         </p> : null}
         {teams.length > 0 ? vote_form : null}
-        <hr />
+        <hr/>
         {current_vote}
       </div>
     );

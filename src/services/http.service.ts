@@ -12,9 +12,9 @@ export class HttpService {
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem("accessToken");
     if (auth && accessToken) {
-      headers['Authorization'] = `Bearer ${accessToken}`;
+      headers["Authorization"] = `Bearer ${accessToken}`;
     }
 
     const domain = import.meta.env.VITE_API_DOMAIN;
@@ -53,7 +53,7 @@ export class HttpService {
 
       case HttpMethods.FILE:
         const form = new FormData();
-        form.append('file', data as File);
+        form.append("file", data as File);
         response = await axios.post(`${domain}/${uri}`, form, {
           headers: headers,
         });
@@ -68,12 +68,12 @@ export class HttpService {
       return this.send(method, uri, data, auth, false);
     }
 
-    throw Error('Request failed.');
+    throw Error("Request failed.");
   }
 
   static async refreshTokens(): Promise<boolean> {
-    console.log('Try to refresh tokens.');
-    const refreshToken = localStorage.getItem('refreshToken');
+    console.log("Try to refresh tokens.");
+    const refreshToken = localStorage.getItem("refreshToken");
     if (!refreshToken) {
       return false;
     }
@@ -82,15 +82,15 @@ export class HttpService {
 
     try {
       const response = await axios.get(`${domain}/authentication/refresh`, {
-        headers: { 'RefreshToken': refreshToken }
+        headers: {"RefreshToken": refreshToken},
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      localStorage.setItem('accessToken', newAccessToken);
-      localStorage.setItem('refreshToken', newRefreshToken);
-      console.log('Tokens refreshed.');
+      localStorage.setItem("accessToken", newAccessToken);
+      localStorage.setItem("refreshToken", newRefreshToken);
+      console.log("Tokens refreshed.");
     } catch (err) {
-      console.log('Failed to refresh tokens.');
+      console.log("Failed to refresh tokens.");
       return false;
     }
 

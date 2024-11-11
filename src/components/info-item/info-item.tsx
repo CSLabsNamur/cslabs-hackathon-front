@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './info-item.css';
+import "./info-item.css";
 
 export class InfoItem extends React.PureComponent<{
   title: string,

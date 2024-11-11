@@ -1,13 +1,13 @@
-import React, {FormEvent} from "react";
-import {Link, Navigate} from "react-router-dom";
-import {TeamsService} from "@/services/teams.service.ts";
-import {withRouter, WithRouterProps} from "@/utils/with-router.tsx";
+import React, { FormEvent } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { TeamsService } from "@/services/teams.service.ts";
+import { withRouter, WithRouterProps } from "@/utils/with-router.tsx";
 
 class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   token: string,
   rulesAgreement: boolean,
   redirect?: string,
-  errors: { [key: string]: string}
+  errors: { [key: string]: string }
 }> {
 
   constructor(props: any) {
@@ -23,9 +23,9 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   }
 
   componentDidMount() {
-    const token = this.props.params['token'];
+    const token = this.props.params["token"];
     if (token) {
-      this.setState({ ...this.state, token });
+      this.setState({...this.state, token});
     }
   }
 
@@ -41,21 +41,21 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
 
     if (!this.state.rulesAgreement) {
       const newState = {...this.state};
-      newState.errors['rules'] = "Il est nécessaire d'accepter ces conditions pour rejoindre une équipe.";
+      newState.errors["rules"] = "Il est nécessaire d'accepter ces conditions pour rejoindre une équipe.";
       this.setState(newState);
       return;
     }
 
     TeamsService.join(this.state.token)
       .then(() => {
-        console.log('Successfully joined team.');
-        this.setState({...this.state, redirect: '/team/edit'});
+        console.log("Successfully joined team.");
+        this.setState({...this.state, redirect: "/team/edit"});
       })
       .catch((err) => {
-        console.log(err)
-        console.error('Failed to join team. Wrong token.');
+        console.log(err);
+        console.error("Failed to join team. Wrong token.");
         const newState = {...this.state};
-        newState.errors['token'] = "Token invalide.";
+        newState.errors["token"] = "Token invalide.";
         this.setState(newState);
       });
   }
@@ -63,7 +63,7 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   render() {
 
     if (this.state.redirect) {
-      return (<Navigate to={this.state.redirect} />)
+      return (<Navigate to={this.state.redirect}/>);
     }
 
     return (
@@ -86,7 +86,7 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
                    className={!!this.state.errors.token ? "invalid" : ""}
                    value={this.state.token}
                    onChange={(event) => this.setState({
-                     ...this.state, token: event.target.value
+                     ...this.state, token: event.target.value,
                    })}
             />
           </div>
@@ -98,13 +98,13 @@ class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
                    value="accept-rules"
                    checked={this.state.rulesAgreement}
                    onChange={(event) => this.setState({
-                     ...this.state, rulesAgreement: event.target.checked
+                     ...this.state, rulesAgreement: event.target.checked,
                    })}
             />
             <label htmlFor="invitation-accept-rules">
               Je veux participer au hackathon et j'ai pris connaissance de la <strong>caution de 20€</strong>.
             </label>
-            {this.renderError('rules')}
+            {this.renderError("rules")}
           </div>
 
           <div className="form-control align-center">

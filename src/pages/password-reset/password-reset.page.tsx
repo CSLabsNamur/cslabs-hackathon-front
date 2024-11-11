@@ -1,16 +1,16 @@
-import React, {FormEvent, Fragment} from "react";
-import {FormValidationService} from "@/services/form-validation.service.ts";
-import {PasswordResetValidation} from "./password-reset.validation";
+import React, { FormEvent, Fragment } from "react";
+import { FormValidationService } from "@/services/form-validation.service.ts";
+import { PasswordResetValidation } from "./password-reset.validation";
 import ReactModal from "react-modal";
-import {UserService} from "@/services/user.service.ts";
-import {Navigate} from "react-router-dom";
+import { UserService } from "@/services/user.service.ts";
+import { Navigate } from "react-router-dom";
 
-import {WithRouterProps, withRouter} from '../../utils/with-router'
-import './password-reset.page.css';
+import { withRouter, WithRouterProps } from "../../utils/with-router";
+import "./password-reset.page.css";
 
 enum PasswordResetField {
-  PASSWORD = 'password',
-  PASSWORD_CONFIRM = 'passwordConfirm',
+  PASSWORD = "password",
+  PASSWORD_CONFIRM = "passwordConfirm",
 }
 
 class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
@@ -40,7 +40,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
         failure: false,
       },
       validationErrors: {},
-      token: this.props.params['token'] ?? "",
+      token: this.props.params["token"] ?? "",
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -65,7 +65,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   async validateForm() {
@@ -83,7 +83,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
           const {form, token} = this.state;
           UserService.resetPasswordToken(form.password, token)
             .then(() => {
-              console.log('Successfully reset password.');
+              console.log("Successfully reset password.");
               const newState = {...this.state};
               newState.modal.success = true;
               this.setState(newState);
@@ -92,7 +92,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
               const newState = {...this.state};
               newState.modal.failure = true;
               this.setState(newState);
-            })
+            });
         }
       });
   }
@@ -127,7 +127,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
                     onClick={() => {
                       const newState = {...state};
                       newState.modal.success = false;
-                      newState.redirect = '/connexion';
+                      newState.redirect = "/connexion";
                       this.setState(newState);
                     }}
             >
@@ -170,13 +170,13 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
         </ReactModal>
 
       </Fragment>
-    )
+    );
 
   }
 
   render() {
     if (this.state.redirect) {
-      return <Navigate to={this.state.redirect}/>
+      return <Navigate to={this.state.redirect}/>;
     }
 
     return (

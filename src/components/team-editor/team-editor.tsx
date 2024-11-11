@@ -1,28 +1,27 @@
-import React, {FormEvent, Fragment} from 'react';
-import {Link} from "react-router-dom";
+import React, { FormEvent, Fragment } from "react";
+import { Link, Navigate } from "react-router-dom";
 
-import './team-editor.css';
-import {TeamMembersList} from "../team-members-list/team-members-list";
-import {User} from "@/domain/user.ts";
-import {Navigate} from "react-router-dom";
-import {TeamEditorValidation} from "./team-editor.validation";
-import {FormValidationService} from "@/services/form-validation.service.ts";
+import "./team-editor.css";
+import { TeamMembersList } from "../team-members-list/team-members-list";
+import { User } from "@/domain/user.ts";
+import { TeamEditorValidation } from "./team-editor.validation";
+import { FormValidationService } from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {TeamsService} from "@/services/teams.service.ts";
+import { TeamsService } from "@/services/teams.service.ts";
 
 enum TeamField {
-  NAME= 'name',
-  DESCRIPTION = 'description',
-  IDEA = 'idea',
-  RULES_AGREEMENT = 'rulesAgreement',
-  CONDITIONS_AGREEMENT = 'conditionsAgreement'
+  NAME = "name",
+  DESCRIPTION = "description",
+  IDEA = "idea",
+  RULES_AGREEMENT = "rulesAgreement",
+  CONDITIONS_AGREEMENT = "conditionsAgreement"
 }
 
 enum TeamModal {
-  DELETE_TEAM= 'deleteTeam',
-  UPDATE_TEAM= 'updateTeam',
-  CREATED_CONFIRMATION = 'createdConfirmationTeam',
-  ERROR = 'error',
+  DELETE_TEAM = "deleteTeam",
+  UPDATE_TEAM = "updateTeam",
+  CREATED_CONFIRMATION = "createdConfirmationTeam",
+  ERROR = "error",
 }
 
 export class TeamEditor extends React.Component<{
@@ -39,7 +38,7 @@ export class TeamEditor extends React.Component<{
     rulesAgreement: boolean,
     conditionsAgreement: boolean,
   },
-  validationErrors: {[key: string]: string},
+  validationErrors: { [key: string]: string },
   redirect?: string,
   modal: {
     deleteTeam: boolean,
@@ -71,8 +70,8 @@ export class TeamEditor extends React.Component<{
           updateTeam: false,
           createdConfirmationTeam: false,
           error: false,
-        }
-      }
+        },
+      };
     } else {
       this.state = {
         form: {
@@ -90,8 +89,8 @@ export class TeamEditor extends React.Component<{
           updateTeam: false,
           createdConfirmationTeam: false,
           error: false,
-        }
-      }
+        },
+      };
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -103,7 +102,7 @@ export class TeamEditor extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onCheckboxChange(field: TeamField) {
@@ -111,7 +110,7 @@ export class TeamEditor extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.checked;
       this.setState(newState);
-    }
+    };
   }
 
   onSubmit(event: FormEvent) {
@@ -144,12 +143,12 @@ export class TeamEditor extends React.Component<{
           invitations: [],
           rulesAgreement: false,
           conditionsAgreement: false,
-        }
+        },
       });
     } else if (this.props.newTeam) {
       this.setState({
         ...this.state,
-        redirect: "/team"
+        redirect: "/team",
       });
     }
 
@@ -158,7 +157,7 @@ export class TeamEditor extends React.Component<{
   createTeam() {
     const {name, description, idea, invitations} = this.state.form;
     TeamsService.create({name, description, idea, invitations}).then(() => {
-      console.log('Team successfully created.');
+      console.log("Team successfully created.");
       this.showModal(TeamModal.CREATED_CONFIRMATION);
     }).catch(error => {
       const message = error.response?.data?.message;
@@ -178,7 +177,7 @@ export class TeamEditor extends React.Component<{
       const {name, description, idea} = this.state.form;
       TeamsService.update(team.id, {name, description, idea})
         .then(() => {
-          console.log('Team successfully updated.');
+          console.log("Team successfully updated.");
         })
         .catch(() => {
           this.displayError("La mise à jour de l'équipe a échouée.");
@@ -191,10 +190,10 @@ export class TeamEditor extends React.Component<{
     const team = this.props.user?.team;
     if (team) {
       TeamsService.delete(team.id).then(() => {
-        console.log('Team successfully deleted.');
+        console.log("Team successfully deleted.");
       }).catch(() => {
         this.displayError("La suppression de l'équipe a échouée.");
-      })
+      });
     }
   }
 
@@ -207,7 +206,7 @@ export class TeamEditor extends React.Component<{
   async validateForm() {
     const validator = new TeamEditorValidation();
     const errors = await FormValidationService.validateForm(this.state.form, validator);
-    this.setState({ ...this.state, validationErrors: errors });
+    this.setState({...this.state, validationErrors: errors});
     return Object.keys(errors).length === 0;
   }
 
@@ -264,7 +263,7 @@ export class TeamEditor extends React.Component<{
                         return false;
                       }}
                       disabled={disabled}
-                      style={{visibility: disabled ? 'hidden' : 'visible'}}
+                      style={{visibility: disabled ? "hidden" : "visible"}}
               >
                 Supprimer l'équipe
               </button> :
@@ -429,11 +428,14 @@ export class TeamEditor extends React.Component<{
               l'équipe. <strong>N'oubliez pas de vérifier vos spams !</strong></p>
             <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
               confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
-            <p>La participation d'une équipe n'est effective <strong>que lorsqu'au moins un de ses membres a payé sa caution !</strong></p>
+            <p>La participation d'une équipe n'est effective <strong>que lorsqu'au moins un de ses membres a payé sa
+              caution !</strong></p>
             <p>Notez qu'il est toujours possible de modifier la composition de votre équipe après sa création.</p>
           </div>
           <div className="modal-footer">
-            <button className="button-primary" onClick={() => this.closeModal(TeamModal.CREATED_CONFIRMATION)}>Let's go !</button>
+            <button className="button-primary" onClick={() => this.closeModal(TeamModal.CREATED_CONFIRMATION)}>Let's go
+              !
+            </button>
           </div>
         </ReactModal>
 
@@ -468,7 +470,7 @@ export class TeamEditor extends React.Component<{
   render() {
 
     if (this.state.redirect) {
-      return (<Navigate to={this.state.redirect} />)
+      return (<Navigate to={this.state.redirect}/>);
     }
 
     return (

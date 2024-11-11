@@ -1,9 +1,9 @@
-import React from 'react';
-import {TeamJoin} from '@/components/team-join/team-join';
-import {TeamEditor} from '@/components/team-editor/team-editor';
-import {UserContext} from "@/contexts/user.context.ts";
-import {User} from "@/domain/user.ts";
-import {Navigate} from "react-router-dom";
+import React from "react";
+import { TeamJoin } from "@/components/team-join/team-join";
+import { TeamEditor } from "@/components/team-editor/team-editor";
+import { UserContext } from "@/contexts/user.context.ts";
+import { User } from "@/domain/user.ts";
+import { Navigate } from "react-router-dom";
 
 enum EditionMode {
   LOADING,
@@ -22,7 +22,7 @@ export class TeamEditPage extends React.Component<{}, {
 
     this.state = {
       newTeam: false,
-    }
+    };
   }
 
   renderEditor(user: User) {
@@ -37,16 +37,17 @@ export class TeamEditPage extends React.Component<{}, {
 
     if (mode === EditionMode.LOADING) {
       return (<h6 className="tx-centered">Chargement en cours...</h6>);
-    }
-    else if (mode === EditionMode.CREATE_TEAM) {
+    } else if (mode === EditionMode.CREATE_TEAM) {
       return <TeamEditor newTeam={true} user={user} disabled={false}/>;
-    }
-    else if (mode === EditionMode.EDIT_TEAM) {
-      return <TeamEditor newTeam={false} user={user} disabled={!user.isTeamOwner} />;
-    }
-    else {
-      return (<TeamJoin onJoin={() => {this.setState({ ...this.state, redirect: '/team/join' })}}
-                        onCreate={() => {this.setState({ newTeam: true })}}
+    } else if (mode === EditionMode.EDIT_TEAM) {
+      return <TeamEditor newTeam={false} user={user} disabled={!user.isTeamOwner}/>;
+    } else {
+      return (<TeamJoin onJoin={() => {
+        this.setState({...this.state, redirect: "/team/join"});
+      }}
+                        onCreate={() => {
+                          this.setState({newTeam: true});
+                        }}
       />);
     }
   }
@@ -54,7 +55,7 @@ export class TeamEditPage extends React.Component<{}, {
   render() {
 
     if (this.state.redirect) {
-      return (<Navigate to={this.state.redirect} />);
+      return (<Navigate to={this.state.redirect}/>);
     }
 
     return (
