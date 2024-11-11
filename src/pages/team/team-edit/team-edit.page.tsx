@@ -1,8 +1,8 @@
 import React from 'react';
-import {TeamJoin} from '../../../components/team-join/team-join';
-import {TeamEditor} from '../../../components/team-editor/team-editor';
-import {UserContext} from "../../../contexts/user.context";
-import {User} from "../../../domain/user";
+import {TeamJoin} from '@/components/team-join/team-join';
+import {TeamEditor} from '@/components/team-editor/team-editor';
+import {UserContext} from "@/contexts/user.context.ts";
+import {User} from "@/domain/user.ts";
 import {Navigate} from "react-router-dom";
 
 enum EditionMode {

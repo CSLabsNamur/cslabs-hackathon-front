@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './team.page.css';
-import {TeamMenu} from '../../components/team-menu/team-menu';
+import {TeamMenu} from '@/components/team-menu/team-menu';
 import {Route, Routes} from 'react-router-dom';
 import {TeamEditPage} from './team-edit/team-edit.page';
 import TeamJoinPage from "./team-join/team-join.page";

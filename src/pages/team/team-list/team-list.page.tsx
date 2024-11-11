@@ -1,6 +1,6 @@
 import React from "react";
-import {Team} from "../../../domain/team";
-import {TeamsService} from "../../../services/teams.service";
+import {Team} from "@/domain/team.ts";
+import {TeamsService} from "@/services/teams.service.ts";
 
 import './team-list.page.css';
 

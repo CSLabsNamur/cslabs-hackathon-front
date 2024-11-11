@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom';
 
 import './registration.page.css';
 import {RegistrationValidation} from './registration.validation';
-import {UserService} from "../../services/user.service";
-import {FormValidationService} from "../../services/form-validation.service";
+import {UserService} from "@/services/user.service.ts";
+import {FormValidationService} from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
 import {withRouter, WithRouterProps} from "../../utils/with-router";
-import timerModule from "../../components/timer/timer";
-import MailInfo from "../../components/mail-info/mail-info";
+import timerModule from "@/components/timer/timer";
+import MailInfo from "@/components/mail-info/mail-info";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;

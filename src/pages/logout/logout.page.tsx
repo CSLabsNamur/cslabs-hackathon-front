@@ -1,6 +1,6 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@/services/user.service.ts";
 
 export class LogoutPage extends React.PureComponent {
 

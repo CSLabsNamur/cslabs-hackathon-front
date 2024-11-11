@@ -1,10 +1,10 @@
 import React, {FormEvent, Fragment} from "react";
-import {User} from "../../domain/user";
+import {User} from "@/domain/user.ts";
 import {Link} from "react-router-dom";
 import {ProfileEditorValidation} from "./profile-editor.validation";
-import {FormValidationService} from "../../services/form-validation.service";
+import {FormValidationService} from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@/services/user.service.ts";
 
 enum ProfileField {
   FIRST_NAME = "firstName",

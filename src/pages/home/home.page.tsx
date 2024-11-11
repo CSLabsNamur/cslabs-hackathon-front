@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PageHero } from "../../components/page-hero/page-hero";
-import { SponsorLogo } from "../../components/sponsor-logo/sponsor-logo";
-import { Topic } from "../../components/topic/topic";
-import { RegistrationInfo } from "../../components/inscription-info/registration-info";
+import { PageHero } from "@/components/page-hero/page-hero";
+import { SponsorLogo } from "@/components/sponsor-logo/sponsor-logo";
+import { Topic } from "@/components/topic/topic";
+import { RegistrationInfo } from "@/components/inscription-info/registration-info";
 
 import "./home.page.css";
-import { MainThematic } from "../../components/main-thematic/main-thematic";
+import { MainThematic } from "@/components/main-thematic/main-thematic";
 
 export class HomePage extends React.PureComponent {
 

@@ -1,11 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Team} from "../../../domain/team";
-import {User} from "../../../domain/user";
-import {TeamsService} from "../../../services/teams.service";
+import {Team} from "@/domain/team.ts";
+import {User} from "@/domain/user.ts";
+import {TeamsService} from "@/services/teams.service.ts";
 
 import './team-info.page.css';
-import {withRouter, WithRouterProps} from "../../../utils/with-router";
+import {withRouter, WithRouterProps} from "@/utils/with-router.tsx";
 
 class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
   team?: Team,

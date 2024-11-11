@@ -1,5 +1,5 @@
 import {IsString, MinLength} from "class-validator";
-import {IsSameAs} from "../../validators/is-same-as.validator";
+import {IsSameAs} from "@/validators/is-same-as.validator.ts";
 
 export class PasswordResetValidation {
 

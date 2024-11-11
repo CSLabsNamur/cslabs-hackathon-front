@@ -1,7 +1,7 @@
 import React from "react";
 import './admin-votes.page.css';
 import {Link} from "react-router-dom";
-import {AdminService} from "../../../services/admin.service";
+import {AdminService} from "@/services/admin.service.ts";
 
 type VoteResult = {
   id: string,

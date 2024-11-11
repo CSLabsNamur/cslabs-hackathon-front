@@ -1,10 +1,10 @@
 import React, {FormEvent} from "react";
-import {User} from "../../domain/user";
-import {TeamsService} from "../../services/teams.service";
-import {Team} from "../../domain/team";
+import {User} from "@/domain/user.ts";
+import {TeamsService} from "@/services/teams.service.ts";
+import {Team} from "@/domain/team.ts";
 import './team-vote.css';
 import { Link } from "react-router-dom";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@/services/user.service.ts";
 
 export class TeamVote extends React.Component<{
   user: User,

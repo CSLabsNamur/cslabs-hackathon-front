@@ -1,7 +1,7 @@
 import React, {FormEvent} from "react";
 import {Link, Navigate} from "react-router-dom";
-import {TeamsService} from "../../../services/teams.service";
-import {withRouter, WithRouterProps} from "../../../utils/with-router";
+import {TeamsService} from "@/services/teams.service.ts";
+import {withRouter, WithRouterProps} from "@/utils/with-router.tsx";
 
 class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   token: string,

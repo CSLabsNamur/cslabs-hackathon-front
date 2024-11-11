@@ -1,6 +1,6 @@
 import React, {FormEvent} from "react";
 import { Link } from "react-router-dom";
-import {AdminService} from "../../../services/admin.service";
+import {AdminService} from "@/services/admin.service.ts";
 
 import './admin-announce.page.css';
 
@@ -44,9 +44,9 @@ export class AdminAnnouncePage extends React.Component<{}, {
     event.preventDefault();
     const {subject, announce, addressee} = this.state.form;
     addressee.replace(/ /g, ''); // remove space before and after the sting
-    if ((addressee === null) || ( !(['all', 'formation'].includes(addressee)))) 
+    if ((!(['all', 'formation'].includes(addressee))))
     {
-      alert("Compléter suivant les guillements"); 
+      alert("Compléter suivant les guillemets");
       return null;
     }
     AdminService.sendAnnounce(subject, announce, addressee)
@@ -80,10 +80,10 @@ export class AdminAnnouncePage extends React.Component<{}, {
 
           <div className="form-control">
             <label htmlFor="form-subject">
-              Destinatair(e)s <br />
-              Entré "all" pour envoyé à tout le monde et "formation" pour les gens inscrit aux formations
+              Destinataires <br />
+              Entrez "all" pour envoyé à tout le monde et "formation" pour les gens inscrits aux formations
             </label>
-            <input type="text" name="form-subject" placeholder="Envoyé à qui ?"
+            <input type="text" name="form-subject" placeholder="Envoyer à qui ?"
                     onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}
             />          
           </div>

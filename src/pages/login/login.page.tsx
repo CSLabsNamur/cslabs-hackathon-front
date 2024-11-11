@@ -1,6 +1,6 @@
 import React, { FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { UserService } from "../../services/user.service";
+import { UserService } from "@/services/user.service.ts";
 import { withRouter, WithRouterProps } from "../../utils/with-router";
 
 import "./login.page.css";

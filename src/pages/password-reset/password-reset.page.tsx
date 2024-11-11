@@ -1,8 +1,8 @@
 import React, {FormEvent, Fragment} from "react";
-import {FormValidationService} from "../../services/form-validation.service";
+import {FormValidationService} from "@/services/form-validation.service.ts";
 import {PasswordResetValidation} from "./password-reset.validation";
 import ReactModal from "react-modal";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@/services/user.service.ts";
 import {Navigate} from "react-router-dom";
 
 import {WithRouterProps, withRouter} from '../../utils/with-router'

@@ -1,6 +1,6 @@
 import React from "react";
 import {Navigate, Outlet} from "react-router-dom";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@/services/user.service.ts";
 import {Subscription} from "rxjs";
 
 enum Authentication {

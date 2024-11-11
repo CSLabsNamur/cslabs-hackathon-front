@@ -1,6 +1,6 @@
 import React, {FormEvent} from "react";
 import ReactModal from "react-modal";
-import {UserService} from "../../services/user.service";
+import {UserService} from "@/services/user.service.ts";
 import {Navigate} from "react-router-dom";
 
 import './ask-password-reset.page.css';

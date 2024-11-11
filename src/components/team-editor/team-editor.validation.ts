@@ -1,5 +1,5 @@
 import {IsBoolean, IsOptional, IsString, MaxLength, MinLength} from "class-validator";
-import {IsTrue} from "../../validators/is-true.validator";
+import {IsTrue} from "@/validators/is-true.validator.ts";
 
 export class TeamEditorValidation {
 

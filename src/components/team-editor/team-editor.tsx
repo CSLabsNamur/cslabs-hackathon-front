@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 
 import './team-editor.css';
 import {TeamMembersList} from "../team-members-list/team-members-list";
-import {User} from "../../domain/user";
+import {User} from "@/domain/user.ts";
 import {Navigate} from "react-router-dom";
 import {TeamEditorValidation} from "./team-editor.validation";
-import {FormValidationService} from "../../services/form-validation.service";
+import {FormValidationService} from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {TeamsService} from "../../services/teams.service";
+import {TeamsService} from "@/services/teams.service.ts";
 
 enum TeamField {
   NAME= 'name',

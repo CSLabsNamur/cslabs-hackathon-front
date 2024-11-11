@@ -1,5 +1,5 @@
 import React from "react";
-import { PageHero } from "../../components/page-hero/page-hero";
+import { PageHero } from "@/components/page-hero/page-hero";
 
 import "./going-further.page.css";
 

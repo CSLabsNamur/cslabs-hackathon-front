@@ -1,9 +1,9 @@
 import React from "react";
-import { PageHero } from "../../components/page-hero/page-hero";
-import { Topic } from "../../components/topic/topic";
+import { PageHero } from "@/components/page-hero/page-hero";
+import { Topic } from "@/components/topic/topic";
 
 import "./sponsors.page.css";
-import { SponsorLogo } from "../../components/sponsor-logo/sponsor-logo";
+import { SponsorLogo } from "@/components/sponsor-logo/sponsor-logo";
 
 // noinspection HtmlUnknownAnchorTarget
 export class SponsorsPage extends React.PureComponent {

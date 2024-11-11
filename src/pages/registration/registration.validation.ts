@@ -9,8 +9,8 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import {IsSameAs} from '../../validators/is-same-as.validator';
-import {IsTrue} from '../../validators/is-true.validator';
+import {IsSameAs} from "@/validators/is-same-as.validator.ts";
+import {IsTrue} from "@/validators/is-true.validator.ts";
 
 export class RegistrationValidation {
   @IsString()

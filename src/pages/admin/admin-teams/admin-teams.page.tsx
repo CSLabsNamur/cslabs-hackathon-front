@@ -1,6 +1,6 @@
 import React from "react";
-import {Team} from "../../../domain/team";
-import {AdminService} from "../../../services/admin.service";
+import {Team} from "@/domain/team.ts";
+import {AdminService} from "@/services/admin.service.ts";
 
 import './admin-teams.page.css';
 import ReactModal from "react-modal";

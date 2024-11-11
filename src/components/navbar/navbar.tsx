@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {Link} from 'react-router-dom';
 
 import './navbar.css';
-import {UserContext} from "../../contexts/user.context";
+import {UserContext} from "@/contexts/user.context.ts";
 
 export class Navbar extends React.Component<{}, {
   showMenu: boolean,

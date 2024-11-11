@@ -2,10 +2,10 @@ import React, {Fragment} from "react";
 import {Buffer} from 'buffer';
 
 import './team-members-list.css';
-import {User} from "../../domain/user";
+import {User} from "@/domain/user.ts";
 import ReactModal from "react-modal";
-import {Team} from "../../domain/team";
-import {TeamsService} from "../../services/teams.service";
+import {Team} from "@/domain/team.ts";
+import {TeamsService} from "@/services/teams.service.ts";
 
 enum ListModal {
   SEND_INVITATION = 'sendInvitation',

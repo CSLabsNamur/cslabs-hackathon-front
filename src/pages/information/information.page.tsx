@@ -1,10 +1,10 @@
 import React from 'react';
-import {InfoItem} from '../../components/info-item/info-item';
+import {InfoItem} from '@/components/info-item/info-item';
 
 import './information.page.css';
 import {Link} from "react-router-dom";
 
-import timerModule from "../../components/timer/timer";
+import timerModule from "@/components/timer/timer";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
