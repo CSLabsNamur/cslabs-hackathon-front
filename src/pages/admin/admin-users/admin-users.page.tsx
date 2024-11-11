@@ -203,7 +203,7 @@ export class AdminUsersPage extends React.Component<{}, {
             <button className="button-danger"
                     onClick={() => this.deleteUser()}
             >
-              A mort !
+              À mort !
             </button>
             <button className="button-info"
                     onClick={() => this.closeModals()}

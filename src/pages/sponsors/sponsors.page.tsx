@@ -20,15 +20,6 @@ export class SponsorsPage extends React.PureComponent {
             {/* <a href="#odoo" aria-label="Odoo"> */}
             {/*   <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" /> */}
             {/* </a> */}
-            {/*<a href="#mutualite_chretienne">
-              <SponsorLogo title="Mutualité Chrétienne" uri="/images/logo/MC.png" />
-            </a>
-            <a href="#arhs">
-              <SponsorLogo title="Arhs" uri="/images/logo/arhs.png" />
-            </a>
-            <a href="#digital-wallonia">
-              <SponsorLogo title="Digital Wallonia" uri="/images/logo/digital_wallonia.png" />
-            </a> */}
           </div>
         </PageHero>
 
@@ -154,117 +145,6 @@ export class SponsorsPage extends React.PureComponent {
         {/*     </ol> */}
         {/*   </p> */}
         {/* </Topic> */}
-
-        {/*<Topic img={{
-          src: "/sponsors/mutualite_chretienne.png",
-          alt: "Mutualité Chrétienne"
-        }}
-               link="https://www.mc.be/"
-               direction="left">
-          <h2 id="mutualite_chretienne">
-            Mutualité Chrétienne
-          </h2>
-          <p>
-            Forte de son histoire et de son expérience, la Mutualité chrétienne s'intègre dans un <b>environnement
-            en évolution permanente</b>. L'ensemble du contexte social, économique et politique agit sur
-            l'institution et sur les individus : le cadre législatif se complexifie, les nouvelles
-            technologies s'imposent, de nouveaux besoins émergent dans le champ de la santé et des soins de
-            santé. Dans ce contexte, la force et l'originalité de la Mutualité chrétienne résident dans son
-            identité d'assureur social, de mouvement social et d'entrepreneur social.
-          </p>
-          <p>
-            La Mutualité chrétienne, c'est un <b>réseau associatif dynamique</b> composé de services et de
-            mouvements associés actifs dans le domaine de l'aide sociale, de la promotion de la santé et de
-            l'éducation permanente des adultes et des jeunes.
-          </p>
-          <p>
-            <b>Énéo</b>, le mouvement social des aînés, vise plus particulièrement à briser l'isolement des
-            aînés en leur proposant des activités et actions de proximité, créant et facilitant le lien
-            social, la convivialité, la connaissance, la pratique du sport et les sources de bien-être. En
-            les informant de leurs droits et de l’actualité afin de développer leur esprit critique, Énéo a
-            pour objectif de défendre et valoriser le rôle et la place des aînés dans la société, de manière
-            collective tout en luttant contre les inégalités sociales.
-          </p>
-          <p>
-            A travers sa mission d’entrepreneur social, la MC s’investit dans <b>l’innovation sociale</b> et
-            technologique pour apporter des réponses aux défis sociaux et de santé, notamment liés aux
-            enjeux du vieillissement de la population et de la perte d’autonomie.
-          </p>
-          <p>
-            Entourée d'un réseau médico-social varié, la MC soutient et développe la création de services
-            médico-sociaux efficaces et accessibles (Aides et Soins à Domicile, Qualias, Vitatel, Solival,
-            Maisons de Repos (et de soins), hôpitaux,…) et se place comme un partenaire responsable à
-            différents niveaux de pouvoir pour veiller à leur qualité.
-          </p>
-        </Topic>
-
-
-        <Topic img={{
-          src: "/sponsors/arhs.png",
-          alt: "Arhs"
-        }}
-               link="https://www.arhs-group.com"
-               direction="right">
-          <h2 id="arhs">
-            Arhs
-          </h2>
-          <p>
-            Arηs Group est un leader du marché dans la gestion de projets et de systèmes informatiques complexes.
-          </p>
-          <p>
-            Fondée au Luxembourg en 2003, nous avons depuis enregistré une croissance organique et nous comptons
-            aujourd’hui 16 entités dans le monde avec plus de 2 500 employés au Luxembourg, en Belgique, en France,
-            en Grèce, en Italie, au Portugal, en Bulgarie et dernièrement en Jordanie.
-          </p>
-          <p>
-            Au cours des 20 dernières années au cours desquelles nous avons été au service de nos clients,
-            nous avons grandi et élargi nos domaines d'expertise. Du développement logiciel, en passant par l'infrastructure,
-            le Cloud ou encore le Machine Learning, nous maîtrisons et faisons évoluer en permanence de nouvelles compétences
-            pour mener le changement dans le secteur informatique.
-          </p>
-          <p>
-            Notre diversité est notre force. Nous voulons que chacun se sente accepté tel qu'il est... alors venez simplement comme vous êtes !
-          </p>
-        </Topic>
-
-        <Topic img={{
-          src: "/sponsors/digital_wallonia.png",
-          alt: "Digital Wallonia"
-        }}
-               link="https://www.digitalwallonia.be"
-               direction="left">
-          <h2 id="digital-wallonia">
-            Digital Wallonia
-          </h2>
-
-          <h5>Stratégie</h5>
-          <p>
-            Programme cadre de la Wallonie numérique qui fixe les priorités et objectifs des politiques
-            publiques et cadre les soutiens aux initiatives privées en faveur du numérique.
-          </p>
-
-          <h5>Plateforme</h5>
-          <p>
-            Vitrine du secteur du numérique en Wallonie qui propose des contenus de référence et fournit des
-            services aux acteurs engagés dans la mise en œuvre de la stratégie numérique.
-          </p>
-
-          <h5>Marque</h5>
-          <p>
-            Identité de l’ambition numérique de la Wallonie et de ses citoyens qui fédère les acteurs et les
-            initiatives publiques et privées lancées dans le cadre de la stratégie numérique.
-          </p>
-
-          <h5>5 thèmes</h5>
-          <ol>
-            <li>Secteur du Numérique</li>
-            <li>Économie numérique</li>
-            <li>Compétences numériques</li>
-            <li>Administration numérique</li>
-            <li>Territoire numérique</li>
-          </ol>
-        </Topic> */}
-
       </div>
     );
   }
