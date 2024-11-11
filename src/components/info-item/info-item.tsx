@@ -20,7 +20,7 @@ export class InfoItem extends React.PureComponent<{
             </div>
           </div>
           <div className="col col-lg-6">
-            <img src={process.env.PUBLIC_URL + this.props.icon}
+            <img src={import.meta.env.VITE_PUBLIC_URL + this.props.icon}
                  alt="Icon"
                  className="info-item__icon"/>
           </div>

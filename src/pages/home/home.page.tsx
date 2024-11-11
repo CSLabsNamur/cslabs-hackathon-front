@@ -12,23 +12,23 @@ export class HomePage extends React.PureComponent {
 
   private images = [
     {
-      src: process.env.PUBLIC_URL + "/images/cslabs_junior.jpg",
+      src: import.meta.env.VITE_PUBLIC_URL + "/images/cslabs_junior.jpg",
       alt: "CSLabs Junior Entreprise",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/image_thème.png",
+      src: import.meta.env.VITE_PUBLIC_URL + "/images/image_thème.png",
       alt: "Thème du Hackathon CSLabs",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/edition.jpg",
+      src: import.meta.env.VITE_PUBLIC_URL + "/images/edition.jpg",
       alt: "Cinquième Édition CSLabs",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/hackathon_irl.jpg",
+      src: import.meta.env.VITE_PUBLIC_URL + "/images/hackathon_irl.jpg",
       alt: "Hackathon Compétition",
     },
     {
-      src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
+      src: import.meta.env.VITE_PUBLIC_URL + "/images/hackathon_award.jpg",
       alt: "Récompense",
     },
   ];
@@ -38,12 +38,12 @@ export class HomePage extends React.PureComponent {
       <div id="home-page">
 
         <PageHero
-          title={process.env.REACT_APP_NAME_EVENT || "Le Hackathon"}
+          title={import.meta.env.VITE_NAME_EVENT || "Le Hackathon"}
           hasArrow={true}
-          subtitle={process.env.REACT_APP_SLOGAN_EVENT || "CSLabs Hackathon"}
+          subtitle={import.meta.env.VITE_SLOGAN_EVENT || "CSLabs Hackathon"}
           disclaimer={
             <div className="on-green">
-              <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'Université de Namur</strong></p>
+              <p><strong>Du {import.meta.env.VITE_DATE_EVENT} à l'Université de Namur</strong></p>
               <div className="home-page__logo_list">
                 <SponsorLogo to="/sponsors" title="Université de Namur"
                              uri="/sponsors/unamur.png"/>

@@ -14,7 +14,7 @@ export class SponsorLogo extends React.PureComponent<{
   render() {
     const img = (
       <img
-        src={process.env.PUBLIC_URL + this.props.uri}
+        src={import.meta.env.VITE_PUBLIC_URL + this.props.uri}
         alt={this.props.title}
         title={this.props.title}
       />

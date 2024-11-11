@@ -20,7 +20,7 @@ export class TeamWelcomePage extends React.PureComponent {
         <p>La caution devra être payée par un virement bancaire :</p>
         <ul>
           <li>Caution : <b>20€</b></li>
-          <li>Compte : <b>{process.env.REACT_APP_IBAN}</b></li>
+          <li>Compte : <b>{import.meta.env.VITE_IBAN}</b></li>
           <li>Communication : <b>NOM Prénom</b></li>
         </ul>
 

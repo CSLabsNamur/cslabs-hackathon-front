@@ -26,7 +26,7 @@ import {NotFoundPage} from "./pages/not-found/not-found.page";
 
 ReactModal.setAppElement('#root');
 
-const docTitle = "CSLabs Hackathon : " + process.env.REACT_APP_NAME_EVENT;
+const docTitle = "CSLabs Hackathon : " + import.meta.env.VITE_NAME_EVENT;
 document.addEventListener("blur", () => {
   document.title = "Come back...";
 });

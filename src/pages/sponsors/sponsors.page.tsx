@@ -13,7 +13,7 @@ export class SponsorsPage extends React.PureComponent {
 
         <PageHero title="Nos sponsors" subtitle="Sans eux, rien ne serait possible !" hasArrow>
           <div className="sponsors-page__sponsors-list">
-            <SponsorLogo href="#unamur" title="Université de Namur" uri="/sponsors/unamur_transparent.png"/>
+            <SponsorLogo href="#unamur" title="Université de Namur" uri="/sponsors/unamur.png"/>
             <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
             <SponsorLogo href="#bep" title="BEP" uri="/images/logo/bep.png"/>
             <SponsorLogo href="#linkube" title="LinKube" uri="/images/logo/linkube_short.png"/>

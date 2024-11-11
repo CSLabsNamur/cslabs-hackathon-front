@@ -27,7 +27,7 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Date du Hackathon" icon="/infos/calendar.svg">
-          <p>Le week-end du <b>{process.env.REACT_APP_DATE_EVENT}</b></p>
+          <p>Le week-end du <b>{import.meta.env.VITE_DATE_EVENT}</b></p>
         </InfoItem>
 
         <InfoItem title="Contacts" icon="/infos/contact.svg">
@@ -49,10 +49,10 @@ export class InformationPage extends React.PureComponent {
           <p>Équipe: <b>5 membres maximum</b></p>
           <p>Prix d'entrée: <b>Gratuit</b></p>
           <p>Caution: <b>20 €</b></p>
-          <p>Compte: <b>{process.env.REACT_APP_IBAN}</b></p>
+          <p>Compte: <b>{import.meta.env.VITE_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
           {/* TODO: Enable caution with registration */} 
-          {new Date() < getDateEnv(process.env.REACT_APP_DATE_OPEN) ? 
+          {new Date() < getDateEnv(import.meta.env.VITE_DATE_OPEN) ?
           <Timer />: 
           <Link to="/inscription">S'inscrire</Link>}
           <p> <strong> REMARQUE :</strong> Le Hackathon étant une opportunité de mettre en pratique des connaissances théoriques, nous demandons à ce que les équipes aient un maximum de 2 professionnels pour laisser à tout le monde sa chance.</p>

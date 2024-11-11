@@ -19,7 +19,7 @@ export class PageHero extends React.PureComponent<{
     if (this.props.hasArrow) {
       arrow = (
         <img className="page-hero__arrow"
-             src={process.env.PUBLIC_URL + "/infos/arrow_green.svg"}
+             src={import.meta.env.VITE_PUBLIC_URL + "/infos/arrow_green.svg"}
              alt="Flèche vers le bas"
              onClick={() => {
                window.scrollTo(0, window.innerHeight - 48);
@@ -41,15 +41,15 @@ export class PageHero extends React.PureComponent<{
             <div className="page-hero__logo-hackathon">
               <div className="inner">
                 <div className="front">
-                  <img src={ process.env.PUBLIC_URL + logo}
+                  <img src={ import.meta.env.VITE_PUBLIC_URL + logo}
                        alt="Logo Hackathon 2025"
                   />
                 </div>
                 <div className="back">
-                  {/* <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
+                  {/* <img src={ import.meta.env.VITE_PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
                        alt="Logo Pizzathon 2024"
                   /> */}
-                  <img src={ process.env.PUBLIC_URL + logo }
+                  <img src={ import.meta.env.VITE_PUBLIC_URL + logo }
                        alt="Logo Hackathon 2025"
                   />
                 </div>

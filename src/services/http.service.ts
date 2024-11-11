@@ -17,7 +17,7 @@ export class HttpService {
       headers['Authorization'] = `Bearer ${accessToken}`;
     }
 
-    const domain = process.env.REACT_APP_API_DOMAIN;
+    const domain = import.meta.env.VITE_API_DOMAIN;
     let response;
 
     switch (method) {
@@ -78,7 +78,7 @@ export class HttpService {
       return false;
     }
 
-    const domain = process.env.REACT_APP_API_DOMAIN;
+    const domain = import.meta.env.VITE_API_DOMAIN;
 
     try {
       const response = await axios.get(`${domain}/authentication/refresh`, {

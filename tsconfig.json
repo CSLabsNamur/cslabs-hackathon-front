@@ -1,11 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client"
+    ],
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,8 +31,13 @@
     "jsx": "react-jsx",
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
   ]
 }

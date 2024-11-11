@@ -8,12 +8,12 @@ export class RegistrationInfo extends React.PureComponent {
 
   renderRegistrationInfo() {
 
-    const date = timerModule.getDateEnv(process.env.REACT_APP_DATE_OPEN) ;
+    const date = timerModule.getDateEnv(import.meta.env.VITE_DATE_OPEN) ;
 
     if (date > new Date())
       return (
         <div className='on-green'>
-          <p>Les inscriptions s'ouvrent dans <timerModule.Timer /></p>
+          <span><p>Les inscriptions s'ouvrent dans</p> <timerModule.Timer /></span>
         </div>
       );
 

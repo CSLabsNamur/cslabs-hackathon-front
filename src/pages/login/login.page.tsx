@@ -63,7 +63,7 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
   render() {
     const invalid = this.state.authFailed;
 
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.VITE_NODE_ENV === "development") {
       return (
         <div>
           <h2 className="tx-centered">Connexion</h2>

@@ -17,10 +17,10 @@ const getMessage = timerModule.getMessage;
 let waitingSubscription = false;
 let closedSubscription = false;
 
-if (getDateEnv(process.env.REACT_APP_DATE_OPEN) > new Date()) {
+if (getDateEnv(import.meta.env.VITE_DATE_OPEN) > new Date()) {
   waitingSubscription = true;
 }
-if (getDateEnv(process.env.REACT_APP_DATE_CLOSE) < new Date()) {
+if (getDateEnv(import.meta.env.VITE_DATE_CLOSE) < new Date()) {
   closedSubscription = true;
 }
 
@@ -145,7 +145,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
   }
 
   getClosedDate() {
-      const eventDate = getDateEnv(process.env.REACT_APP_DATE_EVENT);
+      const eventDate = getDateEnv(import.meta.env.VITE_DATE_EVENT);
       const currentDate = new Date();
       const timeDifference = eventDate.getTime() - currentDate.getTime(); 
 
