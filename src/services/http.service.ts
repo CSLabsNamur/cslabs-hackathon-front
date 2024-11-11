@@ -25,21 +25,18 @@ export class HttpService {
         response = await axios.get(`${domain}/${uri}`, {
           params: data,
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
       case HttpMethods.POST:
         response = await axios.post(`${domain}/${uri}`, data, {
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
       case HttpMethods.PUT:
         response = await axios.put(`${domain}/${uri}`, data, {
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
@@ -47,7 +44,6 @@ export class HttpService {
         response = await axios.delete(`${domain}/${uri}`, {
           data,
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 

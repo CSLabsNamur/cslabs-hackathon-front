@@ -74,7 +74,7 @@ class Timer extends React.Component<{}, {
     };
 
     for (let month = now.getMonth(); month < maxMonth(date, now); month += 2) {
-      days -= 1; // still have impressision due to february and leap years
+      days -= 1; // still have impression due to february and leap years
     }
 
     const message = getMessage(months, days, hours, minutes, seconds);
@@ -124,7 +124,7 @@ class Timer extends React.Component<{}, {
     };
 
     for (let month = now.getMonth(); month < maxMonth(date, now); month += 2) {
-      days -= 1; // still have impressision due to february and leap years
+      days -= 1; // still have impression due to february and leap years
     }
 
     const message = getMessage(months, days, hours, minutes, seconds);

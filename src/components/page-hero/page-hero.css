@@ -70,6 +70,7 @@ header, .header {
   clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
 }
 
+
 .page-hero__content > .disclaimer {
   font-size: 2rem;
 }

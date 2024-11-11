@@ -15,7 +15,7 @@ export class MainThematic extends React.PureComponent {
       <div className="main-thematic__content">
         <h2 className="tx-centered on-white">La thématique plus en profondeur</h2>
 
-        <p className="on-white">Comming soon...</p>
+        <p className="on-white">Coming soon...</p>
       </div>
     </div>);
 

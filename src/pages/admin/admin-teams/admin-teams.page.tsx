@@ -62,14 +62,14 @@ export class AdminTeamsPage extends React.Component<{}, {
   }
 
   unselectEditedTeam() {
-    const newState = {...this.state};
-    newState.editedTeam = undefined;
-    newState.form = {
-      name: "",
-      description: "",
-      idea: "",
-    };
-    this.setState(newState);
+    this.setState({
+      editedTeam: undefined,
+      form: {
+        name: "",
+        description: "",
+        idea: "",
+      },
+    });
   }
 
   onEditTeam(event: any) {
@@ -80,11 +80,11 @@ export class AdminTeamsPage extends React.Component<{}, {
       return;
     }
 
-    const newState = {...this.state};
     const {id, name, description, idea} = team;
-    newState.editedTeam = id;
-    newState.form = {name, description, idea};
-    this.setState(newState);
+    this.setState({
+      editedTeam: id,
+      form: {name, description, idea},
+    });
   }
 
   deleteTeam() {

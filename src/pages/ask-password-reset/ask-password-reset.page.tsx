@@ -54,7 +54,7 @@ export class AskPasswordResetPage extends React.Component<{}, {
         <div className="modal-body">
           <p>
             Le conseil s'est réuni (en un temps record) et a accepté votre demande de réinitialisation de mot de passe !
-            Vous retrouverez un couriel dans votre boite mail dans quelques instants (vérifiez vos spams aussi...).
+            Vous retrouverez un courrier dans votre boite mail dans quelques instants (vérifiez vos spams aussi...).
           </p>
         </div>
         <div className="modal-footer">

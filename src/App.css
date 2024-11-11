@@ -1,13 +1,13 @@
 :root {
   --primary-bg-color: #f4f4f4;
-  --primary-accent-color: #1BB17A; /* More accecible color */
+  --primary-accent-color: #1BB17A; /* More accessible color */
   --primary-text-color: #0b0b0b;
   --secondary-text-color: #0b0b0b;
 
   /*
    * Original color
-   * --primary-bg-color : # f4f4f4; 
-   * --primary-accent-color : # 19a974; 
+   * --primary-bg-color : # f4f4f4;
+   * --primary-accent-color : # 19a974;
    */
 }
 
@@ -35,6 +35,7 @@ body {
 .tx-right {
   text-align: left;
 }
+
 
 .get-started, .button-primary {
   background-color: #56b65a !important;

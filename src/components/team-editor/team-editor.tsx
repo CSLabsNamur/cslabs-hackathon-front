@@ -212,9 +212,9 @@ export class TeamEditor extends React.Component<{
 
   displayError(message: string) {
     const newState = {...this.state};
-    newState.error = message;
     newState.modal.error = true;
-    this.setState(newState);
+    //this.setState(newState);
+    this.setState({...newState, error: message});
   }
 
   getInputClassname(field: TeamField) {

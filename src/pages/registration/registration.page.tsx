@@ -167,13 +167,10 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     };
 
     for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month += 2) {
-      days -= 1; // still have impressision due to february and leap years
+      days -= 1; // still have impression due to february and leap years
     }
 
-    const message = getMessage(months, days, hours, minutes, seconds);
-
-    return message; //.substring(0, 15); // substring to only get months and days
-
+    return getMessage(months, days, hours, minutes, seconds); //.substring(0, 15); // substring to only get months and days
   }
 
   onFormSubmit(event: FormEvent) {

@@ -10,9 +10,10 @@
 }
 
 #input-button {
-  margin: 1rem 0rem 4rem 0rem;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  margin: 1rem 0 4rem 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
+
 
 #login-failed {
   padding: 1rem;

@@ -127,8 +127,7 @@ class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
                     onClick={() => {
                       const newState = {...state};
                       newState.modal.success = false;
-                      newState.redirect = "/connexion";
-                      this.setState(newState);
+                      this.setState({...newState, redirect: "/connexion"});
                     }}
             >
               Yep

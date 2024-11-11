@@ -227,7 +227,7 @@ export class AdminUsersPage extends React.Component<{}, {
         <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : <span>/</span>}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
-        {/* auto agree due to accept general condtions and terms */}
+        {/* auto agree due to accept general conditions and terms */}
         {/* <td className="tx-centered">
           {imageAgreement ? (
             <span className="tooltip" style={{color: "green"}}>

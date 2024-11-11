@@ -6,10 +6,12 @@
   max-width: 50rem;
 }
 
+
 #admin-votes-page__results > div.result {
   height: 4rem;
   border: .15rem solid #42a5f5;
 }
+
 
 #admin-votes-page__results > div.result > span.votes {
   width: 60%;
