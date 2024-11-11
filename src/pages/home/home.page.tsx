@@ -99,15 +99,21 @@ export class HomePage extends React.PureComponent {
         </Topic>
 
         <Topic img={this.images[2]} direction="left">
-          <h2 className="on-green">Sixième édition</h2>
+          <h2 className="on-green">Notre Hackathon</h2>
           <p className="on-green">
-            Nous en sommes à la sixième édition du Hackathon CSLabs !
-            Nous avons hâte de poursuivre l'aventure avec vous !
+            Nous en sommes à la sixième édition du Hackathon du CSLabs !
+            Nous avons hâte de vous retrouver pour cette nouvelle édition !
+          </p>
+          <p className="on-green">
+            Cet événement nous tient particulièrement à cœur, car il est multidisciplinaire et ouvert à tous et à
+            toutes.
+            Aucune compétence spécifique n'est requise pour notre Hackathon, ce qui permet à chacun d'apporter sa
+            créativité et ses idées.
           </p>
           <p className="on-green">
             La concrétisation de vos projets nous importe, dans la mesure où
             il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc
-            d'apporter votre contribution à l'amélioration du système éducatif.
+            d'apporter une contribution réelle !
           </p>
         </Topic>
 
@@ -128,9 +134,7 @@ export class HomePage extends React.PureComponent {
         <RegistrationInfo/>
 
         <MainThematic/>
-
       </div>
     );
   }
-
 }
