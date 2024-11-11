@@ -42,7 +42,7 @@ export class InformationPage extends React.PureComponent {
           <p>Repos: <b>Salle avec des lits prévue*</b></p>
           <p>Repas: <b>Repas fournis</b> {/*<Link to='/pizza-clicker'>🍕</Link>*/}</p>
           <p>Sanitaires: <b>Installations de l'Université</b></p>
-          <p>*Il y aura quelques lits dans le cas où il n'est pas possible pour vous d'amener quelque chose mais c'est vivement recommandé de prendre quelque chose vous même</p>
+          <p>*Il y aura quelques lits dans le cas où il n'est pas possible pour vous d'amener quelque chose mais c'est vivement recommandé de prendre quelque chose vous-même.</p>
         </InfoItem>
 
         <InfoItem title="Inscription" icon="/infos/register.svg">

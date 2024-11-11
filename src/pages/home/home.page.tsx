@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PageHero } from "../../components/page-hero/page-hero";
 import { SponsorLogo } from "../../components/sponsor-logo/sponsor-logo";
-import {Topic} from '../../components/topic/topic';
-import {RegistrationInfo} from '../../components/inscription-info/registration-info';
+import { Topic } from "../../components/topic/topic";
+import { RegistrationInfo } from "../../components/inscription-info/registration-info";
 
-import './home.page.css';
-import {MainThematic} from '../../components/main-thematic/main-thematic';
+import "./home.page.css";
+import { MainThematic } from "../../components/main-thematic/main-thematic";
 
 export class HomePage extends React.PureComponent {
 
@@ -30,7 +30,7 @@ export class HomePage extends React.PureComponent {
     {
       src: process.env.PUBLIC_URL + "/images/hackathon_award.jpg",
       alt: "Récompense",
-    }
+    },
   ];
 
   render() {
@@ -45,36 +45,40 @@ export class HomePage extends React.PureComponent {
             <div className="on-green">
               <p><strong>Du {process.env.REACT_APP_DATE_EVENT} à l'Université de Namur</strong></p>
               <Link to="/sponsors">
-                  <SponsorLogo  title="Université de Namur"
-                                uri="/sponsors/unamur.png" />
+                <SponsorLogo title="Université de Namur"
+                             uri="/sponsors/unamur.png"/>
               </Link>
               <a href="https://www.cslabs.be/" target="_blank" rel="noopener noreferrer">
-                  <SponsorLogo  title="CSLabs"
-                                uri="/images/logo/CSLabs.png" />
+                <SponsorLogo title="CSLabs"
+                             uri="/images/logo/CSLabs.png"/>
               </a>
             </div>}>
         </PageHero>
 
-        <Topic img={this.images[0]} direction='right'>
+        <Topic img={this.images[0]} direction="right">
           <h2 className="on-white">CSLabs</h2>
           <p className="on-white">
-          Le Computer Science Labs est une junior entreprise issue de la Faculté d’Informatique de
-          l’Université de Namur. Pratiquement, ses actions s’articulent autour de la réalisation de projets, 
-          de la formation des membres sur des thématiques liées à l'informatique et 
-          de l'organisation d'événements.
+            Le Computer Science Labs est une junior entreprise issue de la Faculté d’Informatique de
+            l’Université de Namur. Pratiquement, ses actions s’articulent autour de la réalisation de projets,
+            de la formation des membres sur des thématiques liées à l'informatique et
+            de l'organisation d'événements.
           </p>
           <p className="on-white">
-          <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le domaine de l'informatique"
+            <strong>Notre mission : </strong>"Offrir l'opportunité aux étudiants d'entreprendre dans le domaine de
+            l'informatique"
           </p>
         </Topic>
 
-        <Topic img={this.images[1]} direction='left'>
+        <Topic img={this.images[1]} direction="left">
           <h2 className="on-green">Le thème</h2>
           <p className="on-green">
             Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
           </p>
-          <p className="on-green">Retrouvez <a href="#main-thematic" className="topic-link on-green">la thématique</a> plus en détail !</p>
+          <p className="on-green">Comment l'informatique peut-elle contribuer à la promotion et à la préservation du
+            patrimoine culturel ?</p>
+          <p className="on-green">Retrouvez <a href="#main-thematic" className="topic-link on-green">la
+            thématique</a> plus en détail !</p>
         </Topic>
 
         <Topic img={this.images[4]} direction="right">
@@ -102,28 +106,30 @@ export class HomePage extends React.PureComponent {
           </p>
           <p className="on-green">
             La concrétisation de vos projets nous importe, dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc d'apporter votre contribution à l'amélioration du système éducatif. 
+            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc
+            d'apporter votre contribution à l'amélioration du système éducatif.
           </p>
         </Topic>
 
-        <Topic img={this.images[3]} direction='right'>
+        <Topic img={this.images[3]} direction="right">
           <h2 className="on-white">
             Hackathon
           </h2>
           <p className="on-white">
             Un Hackathon est un moment de courte durée où des équipes
-            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Elles tentent d'y
+            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Elles
+            tentent d'y
             apporter des solutions en développant des projets innovants.
             À la fin de l'évènement, un jury détermine quels sont les projets
             qui ont retenu leur attention et qui ont donc gagné la compétition.
           </p>
         </Topic>
 
-        <RegistrationInfo />
+        <RegistrationInfo/>
 
-        <MainThematic />
+        <MainThematic/>
 
-      </div >
+      </div>
     );
   }
 
