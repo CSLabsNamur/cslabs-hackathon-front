@@ -39,7 +39,7 @@ export class SponsorsPage extends React.PureComponent {
         <Topic img={{
           src: "/sponsors/nadi.png",
           alt: "Institut NADI",
-        }} link="https://www.institut-nadi.be" direction="left">
+        }} link="https://www.unamur.be/fr/nadi" direction="left">
           <h2 id="nadi">
             Institut NADI
           </h2>
@@ -106,7 +106,8 @@ export class SponsorsPage extends React.PureComponent {
             <b>Envie d'en savoir plus ?</b>
           </p>
           <p>
-            N’hésite pas à contacter Coralie Dufloucq : <b>cdu@bep.be</b> pour un premier rendez-vous ! ;-)
+            N’hésite pas à contacter Coralie Dufloucq : <a href="mailto:cdu@bep.be"><b>cdu@bep.be</b></a> pour un
+            premier rendez-vous ! ;-)
           </p>
           <p>
             Déjà quelques informations sur notre site

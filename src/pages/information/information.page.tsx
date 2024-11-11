@@ -37,7 +37,7 @@ export class InformationPage extends React.PureComponent {
             Facebook: <a href="https://www.facebook.com/ComputerScienceLabs/" target="_blank" rel="noopener noreferrer">Page
             Facebook</a>
           </p>
-          <p>Mail: <a href="mailto:event@cslabs.be"><strong>event[@]cslabs.be</strong></a></p>
+          <p>Mail: <a href="mailto:event@cslabs.be"><strong>event@cslabs.be</strong></a></p>
           <p>Serveur Discord: <a href="https://discord.gg/Jf2Dht8">https://discord.gg/Jf2Dht8</a></p>
         </InfoItem>
 
@@ -59,14 +59,14 @@ export class InformationPage extends React.PureComponent {
           {new Date() < getDateEnv(import.meta.env.VITE_DATE_OPEN) ?
             <Timer/> :
             <Link to="/inscription">S'inscrire</Link>}
-          <p><strong> REMARQUE :</strong> Le Hackathon étant une opportunité de mettre en pratique des connaissances
+          <p><strong>REMARQUE :</strong> Le Hackathon étant une opportunité de mettre en pratique des connaissances
             théoriques, nous demandons à ce que les équipes aient un maximum de 2 professionnels pour laisser à tout le
             monde sa chance.</p>
         </InfoItem>
 
         <InfoItem title="Attestation" icon="/infos/attestation.svg">
           <p>Si nécessaire, nous pouvons confirmer votre participation à l'événement par email.</p>
-          <p>Contactez-nous à l'adresse <strong><a href="mailto:event@cslabs.be">event[@]cslabs.be</a></strong></p>
+          <p>Contactez-nous à l'adresse <strong><a href="mailto:event@cslabs.be">event@cslabs.be</a></strong></p>
 
         </InfoItem>
 
