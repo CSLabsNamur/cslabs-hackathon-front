@@ -16,7 +16,7 @@ export class Topic extends React.PureComponent<{
       <img src={this.props.img.src}
            alt={this.props.img.alt}
            title={this.props.img.alt}
-           loading="lazy"
+           loading="eager"
            className="topic-area__info__img"/>
     );
     if (this.props.link) {
