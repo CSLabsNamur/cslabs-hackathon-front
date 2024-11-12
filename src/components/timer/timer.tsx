@@ -10,11 +10,11 @@ function getDateEnv(dateEnv: string) {
 
 function getMessage(date: Duration) {
   return date.toFormat(`
-    ${date.months ? "M 'mois', " : ""} 
-    ${date.days ? "d 'jours', " : ""}
-    ${date.hours ? "h 'heures', " : ""}
-    ${date.minutes ? "m 'minutes', " : ""}
-    ${date.seconds ? "s 'secondes'" : "👀"}`,
+    ${date.months ? "M 'mois', " : ""} 
+    ${date.days ? "d 'jours', " : ""}
+    ${date.hours ? "h 'heures', " : ""}
+    ${date.minutes ? "m 'minutes', " : ""}
+    ${date.seconds ? "ss 'secondes'" : "👀"}`,
   );
 }
 
@@ -68,7 +68,9 @@ class Timer extends React.Component<{}, {
 
   render() {
     return (
-      <div id="timer">{this.state?.message}</div>
+      <div id="timer">
+        <span>{this.state?.message}</span>
+      </div>
     );
   }
 
