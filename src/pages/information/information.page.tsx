@@ -5,6 +5,7 @@ import "./information.page.css";
 import { Link } from "react-router-dom";
 
 import timerModule from "@/components/timer/timer";
+import { DateTime } from "luxon";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
@@ -56,7 +57,7 @@ export class InformationPage extends React.PureComponent {
           <p>Compte: <b>{import.meta.env.VITE_IBAN}</b></p>
           <p>Communication: <b>NOM Prénom</b></p>
           {/* TODO: Enable caution with registration */}
-          {new Date() < getDateEnv(import.meta.env.VITE_DATE_OPEN) ?
+          {DateTime.now() < getDateEnv(import.meta.env.VITE_DATE_OPEN) ?
             <Timer/> :
             <Link to="/inscription">S'inscrire</Link>}
           <p><strong>REMARQUE :</strong> Le Hackathon étant une opportunité de mettre en pratique des connaissances
@@ -69,10 +70,7 @@ export class InformationPage extends React.PureComponent {
           <p>Contactez-nous à l'adresse <strong><a href="mailto:event@cslabs.be">event@cslabs.be</a></strong></p>
 
         </InfoItem>
-
-
       </div>
     );
   }
-
 }

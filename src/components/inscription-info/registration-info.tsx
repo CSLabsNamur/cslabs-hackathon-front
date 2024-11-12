@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import timerModule from "../timer/timer";
 
 import "./registration-info.css";
+import { DateTime } from "luxon";
 
 export class RegistrationInfo extends React.PureComponent {
 
@@ -10,7 +11,7 @@ export class RegistrationInfo extends React.PureComponent {
 
     const date = timerModule.getDateEnv(import.meta.env.VITE_DATE_OPEN);
 
-    if (date > new Date())
+    if (date > DateTime.now())
       return (
         <div className="on-green">
           <span><p>Les inscriptions s'ouvrent dans</p> <timerModule.Timer/></span>

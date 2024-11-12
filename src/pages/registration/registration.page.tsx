@@ -9,6 +9,7 @@ import ReactModal from "react-modal";
 import { withRouter, WithRouterProps } from "../../utils/with-router";
 import timerModule from "@/components/timer/timer";
 import MailInfo from "@/components/mail-info/mail-info";
+import { DateTime } from "luxon";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
@@ -17,10 +18,10 @@ const getMessage = timerModule.getMessage;
 let waitingSubscription = false;
 let closedSubscription = false;
 
-if (getDateEnv(import.meta.env.VITE_DATE_OPEN) > new Date()) {
+if (getDateEnv(import.meta.env.VITE_DATE_OPEN) > DateTime.now()) {
   waitingSubscription = true;
 }
-if (getDateEnv(import.meta.env.VITE_DATE_CLOSE) < new Date()) {
+if (getDateEnv(import.meta.env.VITE_DATE_CLOSE) < DateTime.now()) {
   closedSubscription = true;
 }
 
@@ -142,35 +143,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       ...this.state,
       modal: {error: message},
     });
-  }
-
-  getClosedDate() {
-    const eventDate = getDateEnv(import.meta.env.VITE_DATE_EVENT);
-    const currentDate = new Date();
-    const timeDifference = eventDate.getTime() - currentDate.getTime();
-
-    if (timeDifference <= 0) {
-      return "L'événement est déjà clos.";
-    }
-
-    const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-    const maxMonth = (eventDate: Date, currentDate: Date) => {
-      if (eventDate.getFullYear() === currentDate.getFullYear()) {
-        return eventDate.getMonth();
-      }
-      return 12 + eventDate.getMonth();
-    };
-
-    for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month += 2) {
-      days -= 1; // still have impression due to february and leap years
-    }
-
-    return getMessage(months, days, hours, minutes, seconds); //.substring(0, 15); // substring to only get months and days
   }
 
   onFormSubmit(event: FormEvent) {
@@ -321,7 +293,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
             <div className="form-control">
               <label htmlFor="form-github">
-                Votre compte github (optionnel)
+                Votre compte GitHub (optionnel)
               </label>
               <input type="text" id="form-github" name="form-github"
                      placeholder="Lien vers votre github..."
@@ -387,8 +359,8 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre CV (pdf, max 5Mo) (optionnel)
               </label>
               <span>
-                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a
-                href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
+                Pour toute question sur l'utilisation de votre CV par le CSLabs, contactez le <a
+                href="mailto:rgpd@cslabs.be">responsable RGPD.</a>.
               </span>
               <div>
                 <input type="file"
@@ -453,16 +425,12 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               M'inscrire
             </button>
           </div>
-
         </form>
-
       </div>
     );
-
   }
 
   render() {
-
     if (waitingSubscription) {
       return (<div id="subscription_waiting">
         <p>
@@ -481,8 +449,8 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Les inscriptions sont fermées !
         </p>
         <p>
-          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain <span role="img"
-                                                                                                              aria-label="wink">😉</span>
+          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir
+          quand arrive le prochain <span role="img" aria-label="wink">😉</span>
         </p>
       </div>);
     }
@@ -493,7 +461,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       </Fragment>
     );
   }
-
 }
 
 export default withRouter(RegistrationPage);
