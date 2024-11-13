@@ -21,7 +21,7 @@ export class HomePage extends React.PureComponent {
     },
     {
       src: import.meta.env.VITE_PUBLIC_URL + "/images/edition.jpg",
-      alt: "Cinquième Édition CSLabs",
+      alt: "Illustration Hackathon",
     },
     {
       src: import.meta.env.VITE_PUBLIC_URL + "/images/hackathon_irl.jpg",
