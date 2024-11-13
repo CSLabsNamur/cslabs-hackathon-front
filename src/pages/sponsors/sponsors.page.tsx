@@ -11,7 +11,7 @@ export class SponsorsPage extends React.PureComponent {
     return (
       <div id="sponsors-page">
 
-        <PageHero title="Nos sponsors" subtitle="Sans eux, rien ne serait possible !" hasArrow>
+        <PageHero title="Nos partenaires" subtitle="Sans eux, rien ne serait possible !" hasArrow>
           <div className="sponsors-page__sponsors-list">
             <SponsorLogo href="#unamur" title="Université de Namur" uri="/sponsors/unamur.png"/>
             <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
@@ -38,15 +38,18 @@ export class SponsorsPage extends React.PureComponent {
 
         <Topic img={{
           src: "/sponsors/nadi.png",
-          alt: "Institut NADI",
+          alt: "Institut NaDI",
         }} link="https://www.unamur.be/fr/nadi" direction="left">
           <h2 id="nadi">
-            Institut NADI
+            Institut NaDI
           </h2>
-          {/* TODO */}
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus est et exercitationem fuga harum in
-            itaque maxime molestiae nihil odit omnis provident quibusdam quidem, recusandae repudiandae saepe sint
-            velit, veritatis!</p>
+          <p>
+            Au sein de NaDI, les chercheurs apportent des solutions innovantes aux nouveaux défis sociétaux posés par la
+            révolution digitale (eGov, eHealth, eServices, Big data, etc.). Issus de différentes disciplines, les
+            chercheurs croisent leurs expertises en informatique, technologie, éthique, droit, management ou sociologie.
+            Regroupant six centres de recherche, le Namur Digital Institute offre une expertise multidisciplinaire
+            unique dans tous les domaines de l'informatique, de ses applications et de son impact social.
+          </p>
         </Topic>
 
         <Topic img={{
