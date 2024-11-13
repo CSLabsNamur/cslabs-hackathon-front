@@ -14,7 +14,7 @@ export class RegistrationInfo extends React.PureComponent {
     if (date > DateTime.now())
       return (
         <div className="on-green">
-          <span><p>Les inscriptions s'ouvrent dans</p> <timerModule.Timer/></span>
+          <p><strong>Les inscriptions s'ouvrent dans</strong> <timerModule.Timer/></p>
         </div>
       );
 

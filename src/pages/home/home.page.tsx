@@ -67,6 +67,34 @@ export class HomePage extends React.PureComponent {
           </p>
         </Topic>
 
+        <Topic img={this.images[3]} direction="left">
+          <h2 className="on-green">
+            Hackathon
+          </h2>
+          <p className="on-green">
+            Un Hackathon est un moment de courte durée où des équipes
+            réfléchissent à une <a href="#main-thematic" className="topic-link on-green">thématique particulière</a>.
+            Elles
+            tentent d'y apporter des solutions en développant des projets innovants.
+            À la fin de l'évènement, un jury détermine quels sont les projets
+            qui ont retenu leur attention et qui ont donc gagné la compétition.
+          </p>
+        </Topic>
+
+        <Topic img={this.images[2]} direction="right">
+          <h2 className="on-white">Sixième édition</h2>
+          <p className="on-white">
+            Nous sommes ravis de vous proposer une nouvelle édition de notre Hackathon CSLabs !
+            Cet événement est multidisciplinaire et ouvert à tous et à toutes. Aucune compétence spécifique n'est
+            requise pour notre Hackathon, ce qui permet à chacun d'apporter sa créativité et ses idées.
+          </p>
+          <p className="on-white">
+            La concrétisation de vos projets nous importe, dans la mesure où il est
+            envisageable <Link to="/plus-loin" className="topic-link">d'aller plus loin</Link>, et donc
+            d'apporter une contribution réelle !
+          </p>
+        </Topic>
+
         <Topic img={this.images[1]} direction="left">
           <h2 className="on-green">Le thème</h2>
           <p className="on-green">
@@ -85,46 +113,15 @@ export class HomePage extends React.PureComponent {
             Envie de remporter un de nos prix ?
           </p>
           <p className="on-white">
-            Le <strong>prix de l'innovation</strong> est attribué par le jury au projet le plus innovant !
+            Le <strong>prix de l'innovation</strong> est décerné par le jury au projet le plus novateur, celui qui les a
+            le plus convaincus lors de la présentation finale.
           </p>
           <p className="on-white">
-            Le <strong>prix de la technique</strong> est, lui aussi par le jury, attribué à la meilleure
-            réalisation technique !
+            Le <strong>prix de la technique</strong> est, lui aussi par le jury, attribué à la réalisation technique la
+            plus aboutie.
           </p>
           <p className="on-white">
-            Le <strong>prix du public</strong> sera attribué au projet préféré du public !
-          </p>
-        </Topic>
-
-        <Topic img={this.images[2]} direction="left">
-          <h2 className="on-green">Notre Hackathon</h2>
-          <p className="on-green">
-            Nous en sommes à la sixième édition du Hackathon du CSLabs !
-            Nous avons hâte de vous retrouver pour cette nouvelle édition !
-          </p>
-          <p className="on-green">
-            Cet événement nous tient particulièrement à cœur, car il est multidisciplinaire et ouvert à tous et à
-            toutes.
-            Aucune compétence spécifique n'est requise pour notre Hackathon, ce qui permet à chacun d'apporter sa
-            créativité et ses idées.
-          </p>
-          <p className="on-green">
-            La concrétisation de vos projets nous importe, dans la mesure où
-            il est envisageable <Link to="/plus-loin" className="topic-link on-green">d'aller plus loin</Link>, et donc
-            d'apporter une contribution réelle !
-          </p>
-        </Topic>
-
-        <Topic img={this.images[3]} direction="right">
-          <h2 className="on-white">
-            Hackathon
-          </h2>
-          <p className="on-white">
-            Un Hackathon est un moment de courte durée où des équipes
-            réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>. Elles
-            tentent d'y apporter des solutions en développant des projets innovants.
-            À la fin de l'évènement, un jury détermine quels sont les projets
-            qui ont retenu leur attention et qui ont donc gagné la compétition.
+            Le <strong>prix du public</strong> sera attribué au projet préféré du public.
           </p>
         </Topic>
 
