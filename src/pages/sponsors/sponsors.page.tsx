@@ -15,7 +15,6 @@ export class SponsorsPage extends React.PureComponent {
           <div className="sponsors-page__sponsors-list">
             <SponsorLogo href="#unamur" title="Université de Namur" uri="/sponsors/unamur.png"/>
             <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
-            <SponsorLogo href="#bep" title="BEP" uri="/images/logo/bep.png"/>
             <SponsorLogo href="#linkube" title="LinKube" uri="/images/logo/linkube_short.png"/>
             {/* <a href="#odoo" aria-label="Odoo"> */}
             {/*   <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" /> */}
@@ -53,43 +52,9 @@ export class SponsorsPage extends React.PureComponent {
         </Topic>
 
         <Topic img={{
-          src: "/sponsors/bep.png",
-          alt: "BEP",
-        }} link="https://www.bep.be" direction="right">
-          <h2 id="bep">
-            Trakk et BEP
-          </h2>
-          <p>
-            Étudiant ou jeune diplômé plein d’idée ? La niak d’entreprendre et de mener un projet de A jusque
-            Z ? Sais-tu que LinKube, l’incubateur étudiant du BEP de la province de Namur, t’offre un
-            accompagnement spécifique : coaching personnalisé, ateliers, expertises pointues,… Tu rêves de
-            monter ta start up ? Contacte-nous !
-          </p>
-          <p>
-            Mais le TRAKK, c’est quoi ? Tu as envie d’oser, expérimenter, entreprendre, innover de façon plus
-            créative ? Le TRAKK, c’est 3 partenaires : le KIKK, l’UNamur et le BEP. 3 fois plus d’idées et
-            d’expériences à partager dans ce lieu composé de différents espaces mis à ta disposition :
-            coworking, bureaux, fablab,… Rejoindre le TRAKK peut se faire par différentes portes ! Celle du
-            bâtiment au plein centre de Namur, ou en participant à des conférences, des ateliers, ou encore
-            en venant y travailler !
-          </p>
-          <p>
-            L’innovation est partout ! Le BEP a d’ailleurs développé un accompagnement spécifique pour la
-            Silver économie, cette économie dédiée aux seniors. Tu veux apporter ta pierre à l’édifice pour
-            le « bien vieillir » ? Encore une fois, le BEP est là !
-          </p>
-          <p>
-            Le 11 février 2021 le Mind&Market se tiendra au TRAKK et rassemblera tous les projets sur la
-            Silver économie et issus de LinKube. Un chemin de possibles s’offre à toi pour concrétiser tes
-            beaux projets. On en discute ?
-          </p>
-        </Topic>
-
-
-        <Topic img={{
           src: "/sponsors/linkube.png",
           alt: "LinKube",
-        }} link="https://www.linkube.be" direction="left">
+        }} link="https://www.linkube.be" direction="right">
           <h2 id="linkube">
             LinKube
           </h2>
@@ -106,14 +71,8 @@ export class SponsorsPage extends React.PureComponent {
             des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le
             TRAKK), etc.</p>
           <p>
-            <b>Envie d'en savoir plus ?</b>
-          </p>
-          <p>
-            N’hésite pas à contacter Coralie Dufloucq : <a href="mailto:cdu@bep.be"><b>cdu@bep.be</b></a> pour un
-            premier rendez-vous ! ;-)
-          </p>
-          <p>
-            Déjà quelques informations sur notre site
+            <b>Envie d'en savoir plus ?</b> N’hésite pas à contacter <a href="mailto:cdu@bep.be"><b>Coralie Dufloucq</b></a> pour un
+            premier rendez-vous ! 😉
           </p>
           <p>
             Alors… Partant.e.s ?
