@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { TeamsService } from "@/services/teams.service.ts";
 import { withRouter, WithRouterProps } from "@/utils/with-router.tsx";
 
-class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
+export class TeamJoinPage extends React.Component<WithRouterProps<{}>, {
   token: string,
   rulesAgreement: boolean,
   redirect?: string,

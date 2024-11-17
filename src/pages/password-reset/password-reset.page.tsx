@@ -13,7 +13,7 @@ enum PasswordResetField {
   PASSWORD_CONFIRM = "passwordConfirm",
 }
 
-class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
+export class PasswordResetPage extends React.Component<WithRouterProps<{}>, {
   form: {
     password: string,
     passwordConfirm: string,

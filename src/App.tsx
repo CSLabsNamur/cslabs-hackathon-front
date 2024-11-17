@@ -39,7 +39,7 @@ ReactModal.setAppElement("#root");
 //  document.title = docTitle;
 //});
 
-class App extends React.Component<any, any> {
+export class App extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);

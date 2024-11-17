@@ -42,7 +42,7 @@ enum RegistrationField {
   SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
-class RegistrationPage extends React.Component<WithRouterProps<{}>, {
+export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
   form: {
     email: string,
     password: string,

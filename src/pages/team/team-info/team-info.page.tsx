@@ -7,7 +7,7 @@ import { TeamsService } from "@/services/teams.service.ts";
 import "./team-info.page.css";
 import { withRouter, WithRouterProps } from "@/utils/with-router.tsx";
 
-class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
+export class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
   team?: Team,
 }> {
 

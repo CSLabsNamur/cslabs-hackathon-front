@@ -10,7 +10,7 @@ enum LoginField {
   PASSWORD = "password",
 }
 
-class LoginPage extends React.Component<WithRouterProps<{}>, {
+export class LoginPage extends React.Component<WithRouterProps<{}>, {
   form: {
     email: string,
     password: string,

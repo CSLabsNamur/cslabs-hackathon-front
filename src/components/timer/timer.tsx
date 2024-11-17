@@ -20,7 +20,7 @@ function getMessage(date: Duration) {
 
 const date = getDateEnv(import.meta.env.VITE_DATE_OPEN);
 
-class Timer extends React.Component<{}, {
+export class Timer extends React.Component<{}, {
   time: Date,
   months: number,
   days: number,
