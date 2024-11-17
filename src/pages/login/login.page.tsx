@@ -66,7 +66,7 @@ export class LoginPage extends React.Component<WithRouterProps<{}>, {
 
     if (import.meta.env.VITE_ENV === "development") {
       return (
-        <div>
+        <div className="form-container">
           <h2 className="tx-centered">Connexion</h2>
           <h3 className="tx-centered">La connexion est désactivée sur le site de développement.</h3>
         </div>
