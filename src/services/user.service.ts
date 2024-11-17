@@ -3,6 +3,7 @@ import { User } from "../domain/user";
 import { HttpMethods, HttpService } from "./http.service";
 import { TeamsService } from "./teams.service";
 import { Team } from "../domain/team";
+import { useCookies } from "react-cookie";
 
 export class UserService {
   static lastUserValue: User | null = null;
@@ -85,14 +86,16 @@ export class UserService {
   }
 
   static async loginWithCredentials(email: string, password: string): Promise<User> {
+    const [cookies, setCookie] = useCookies(["Authorization", "refreshToken"]);
+
     "".toLowerCase();
     const response = await HttpService.send(HttpMethods.POST, "authentication/log-in", {
       email: email.toLowerCase(),
       password,
     });
     const {accessToken, refreshToken, ...data} = response;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
+    setCookie("Authorization", `Bearer ${accessToken}`);
+    setCookie("refreshToken", refreshToken);
     const user: User = this.userFromData(data);
     this.user.next(user);
     return user;
@@ -104,7 +107,9 @@ export class UserService {
 
   static async disconnect() {
     await HttpService.send(HttpMethods.POST, "authentication/log-out", {}, true);
-    localStorage.clear();
+    const [cookies, setCookie] = useCookies(['Authorization', 'refreshToken']);
+    setCookie('Authorization', '');
+    setCookie('refreshToken', '');
     this.user.next(null);
   }
 

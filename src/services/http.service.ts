@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export enum HttpMethods {
   GET,
@@ -12,9 +13,10 @@ export class HttpService {
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
-    const accessToken = localStorage.getItem("accessToken");
-    if (auth && accessToken) {
-      headers["Authorization"] = `Bearer ${accessToken}`;
+    const [cookies, _] = useCookies(["Authorization", "refreshToken"]);
+    const authorization = cookies["Authorization"];
+    if (auth && authorization) {
+      headers["Authorization"] = authorization;
     }
 
     const domain = import.meta.env.VITE_API_DOMAIN;
@@ -69,7 +71,8 @@ export class HttpService {
 
   static async refreshTokens(): Promise<boolean> {
     console.log("Try to refresh tokens.");
-    const refreshToken = localStorage.getItem("refreshToken");
+    const [cookies, setCookie] = useCookies(["Authorization", "refreshToken"]);
+    const refreshToken = cookies["refreshToken"];
     if (!refreshToken) {
       return false;
     }
@@ -82,8 +85,8 @@ export class HttpService {
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      localStorage.setItem("accessToken", newAccessToken);
-      localStorage.setItem("refreshToken", newRefreshToken);
+      setCookie("Authorization", `Bearer ${newAccessToken}`);
+      setCookie("refreshToken", newRefreshToken);
       console.log("Tokens refreshed.");
     } catch (err) {
       console.log("Failed to refresh tokens.");
@@ -92,5 +95,4 @@ export class HttpService {
 
     return true;
   }
-
 }
