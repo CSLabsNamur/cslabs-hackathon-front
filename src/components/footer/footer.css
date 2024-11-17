@@ -1,0 +1,25 @@
+#footer {
+  background-color: var(--primary-accent-color);
+  padding: 1.5rem 0;
+  font-weight: 400;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 60dvw;
+  margin: 0 auto;
+}
+
+.footer__content__left {
+  text-align: left;
+}
+
+.footer__content__right {
+  text-align: right;
+}
+
+.footer__content p {
+  margin: 0.5rem 0;
+}

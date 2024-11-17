@@ -21,6 +21,8 @@ import { TeamPage } from "./pages/team/team.page";
 import { AdminPage } from "./pages/admin/admin.page";
 import { NotFoundPage } from "./pages/not-found/not-found.page";
 import { Settings } from "luxon";
+import { CookiePolicyPage } from "@/pages/cookie-policy/cookie-policy.page.tsx";
+import { Footer } from "@/components/footer/footer.tsx";
 // import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
 // import {SpaceInvaderPage} from "./pages/space-invader/space-invader.page";
 // import {PizzaClickerPage} from "./pages/pizza-clicker/pizza-clicker.page";
@@ -86,9 +88,11 @@ class App extends React.Component<any, any> {
             <Route element={<AuthenticatedRoutes admin={true}/>}>
               <Route path="/admin/*" element={<AdminPage/>}/>
             </Route>
+            <Route path="/cookie-policy" element={<CookiePolicyPage/>}/>
             <Route path="/" element={<HomePage/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </UserContext.Provider>
     );

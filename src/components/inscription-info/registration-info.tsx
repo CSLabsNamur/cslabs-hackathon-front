@@ -14,7 +14,8 @@ export class RegistrationInfo extends React.PureComponent {
     if (date > DateTime.now())
       return (
         <div className="on-green">
-          <p><strong>Les inscriptions s'ouvrent dans</strong> <timerModule.Timer/></p>
+          <p><strong>Les inscriptions s'ouvrent dans</strong></p>
+          <timerModule.Timer/>
         </div>
       );
 
@@ -31,11 +32,9 @@ export class RegistrationInfo extends React.PureComponent {
           <h2 className="on-green">Plongez ! Inscrivez vous !</h2>
 
           <p className="on-green">Le site vous permet de rejoindre une équipe afin de participer au hackathon. N'hésitez
-            plus et
-            inscrivez vous !</p>
+            plus et inscrivez vous !</p>
           <p className="on-green">L'inscription sur le site est gratuite. Cependant, la participation effective au
-            hackathon demande
-            une caution de 20€.</p>
+            hackathon demande une caution de 20€.</p>
 
           <div>
             {this.renderRegistrationInfo()}
@@ -47,5 +46,4 @@ export class RegistrationInfo extends React.PureComponent {
       </div>
     );
   }
-
 }
