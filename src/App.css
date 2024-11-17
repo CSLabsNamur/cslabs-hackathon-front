@@ -84,3 +84,13 @@ body {
 p, h1, h2, h3, h4, h5, h6 {
   color: var(--primary-text-color) !important;
 }
+
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > div {
+  flex: 1 0 auto;
+}

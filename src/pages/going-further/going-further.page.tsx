@@ -7,8 +7,7 @@ export class GoingFurtherPage extends React.PureComponent {
 
   render() {
     return (
-      <div id={"further-page"}>
-
+      <div id="further-page">
         <PageHero
           title="Aller plus loin"
           subtitle="Un avenir pour ton projet"
@@ -22,7 +21,6 @@ export class GoingFurtherPage extends React.PureComponent {
         </PageHero>
 
         <div className="row">
-
           <div className="further-page__content">
 
             <div className="further-page__sponsor">
