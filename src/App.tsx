@@ -23,7 +23,6 @@ import { NotFoundPage } from "./pages/not-found/not-found.page";
 import { Settings } from "luxon";
 import { CookiePolicyPage } from "@/pages/cookie-policy/cookie-policy.page.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
-import { CookiesProvider } from "react-cookie";
 // import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
 // import {SpaceInvaderPage} from "./pages/space-invader/space-invader.page";
 // import {PizzaClickerPage} from "./pages/pizza-clicker/pizza-clicker.page";
@@ -76,10 +75,8 @@ export class App extends React.Component<any, any> {
             <Route path="/infos" element={<InformationPage/>}/>
             <Route path="/plus-loin" element={<GoingFurtherPage/>}/>
             <Route path="/inscription" element={<RegistrationPage/>}/>
-            <CookiesProvider defaultSetOptions={{sameSite: "strict", httpOnly: true, secure: true, maxAge: 31536000}}>
-              <Route path="/connexion" element={<LoginPage/>}/>
-              <Route path="/deconnexion" element={<LogoutPage/>}/>
-            </CookiesProvider>
+            <Route path="/connexion" element={<LoginPage/>}/>
+            <Route path="/deconnexion" element={<LogoutPage/>}/>
             <Route path="/ask-password-reset" element={<AskPasswordResetPage/>}/>
             <Route path="/password-reset/:token" element={<PasswordResetPage/>}/>
             {/* <Route path="/draw-board" element={<DrawBoardPage/>} />

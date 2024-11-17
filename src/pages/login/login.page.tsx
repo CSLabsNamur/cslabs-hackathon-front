@@ -4,6 +4,7 @@ import { UserService } from "@/services/user.service.ts";
 import { withRouter, WithRouterProps } from "../../utils/with-router";
 
 import "./login.page.css";
+import { CookiesProvider } from "react-cookie";
 
 enum LoginField {
   EMAIL = "email",
@@ -73,63 +74,65 @@ export class LoginPage extends React.Component<WithRouterProps<{}>, {
     }
 
     return (
-      <div className="form-container">
+      <CookiesProvider defaultSetOptions={{sameSite: "strict", httpOnly: true, secure: true, maxAge: 31536000}}>
+        <div className="form-container">
 
-        <h2 className="tx-centered">Connexion</h2>
+          <h2 className="tx-centered">Connexion</h2>
 
-        <form onSubmit={this.onSubmit}>
-          <div className="form-control">
-            <label htmlFor="email">Adresse email</label>
-            <input type="email" id="email" name="email"
-                   placeholder="jean@example.com"
-                   className={invalid ? "invalid" : ""}
-                   onChange={this.onTextChange(LoginField.EMAIL)}
-            />
-          </div>
-
-          <div className="form-control">
-            <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password"
-                   placeholder="mot de passe secret"
-                   className={invalid ? "invalid" : ""}
-                   onChange={this.onTextChange(LoginField.PASSWORD)}
-            />
-          </div>
-
-          {!!this.state.authFailed ?
-            <div className="alert-danger tx-centered" id="login-failed">
-              {this.state.authFailed}
+          <form onSubmit={this.onSubmit}>
+            <div className="form-control">
+              <label htmlFor="email">Adresse email</label>
+              <input type="email" id="email" name="email"
+                     placeholder="jean@example.com"
+                     className={invalid ? "invalid" : ""}
+                     onChange={this.onTextChange(LoginField.EMAIL)}
+              />
             </div>
-            : null}
 
-          <div className="tx-centered">
-            <input className="button-primary button-round" id="input-button" type="submit" value="Se connecter"/>
+            <div className="form-control">
+              <label htmlFor="password">Mot de passe</label>
+              <input type="password" id="password" name="password"
+                     placeholder="mot de passe secret"
+                     className={invalid ? "invalid" : ""}
+                     onChange={this.onTextChange(LoginField.PASSWORD)}
+              />
+            </div>
+
+            {!!this.state.authFailed ?
+              <div className="alert-danger tx-centered" id="login-failed">
+                {this.state.authFailed}
+              </div>
+              : null}
+
+            <div className="tx-centered">
+              <input className="button-primary button-round" id="input-button" type="submit" value="Se connecter"/>
+            </div>
+
+          </form>
+
+          <hr/>
+
+          <div className="connection__extra-buttons">
+            <div>
+              <Link to="/inscription">
+                <button type="button"
+                        className="button button-primary">
+                  S'inscrire
+                </button>
+              </Link>
+            </div>
+            <div>
+              <Link to="/ask-password-reset">
+                <button type="button"
+                        className="button button-info">
+                  Mot de passe oublié
+                </button>
+              </Link>
+            </div>
           </div>
 
-        </form>
-
-        <hr/>
-
-        <div className="connection__extra-buttons">
-          <div>
-            <Link to="/inscription">
-              <button type="button"
-                      className="button button-primary">
-                S'inscrire
-              </button>
-            </Link>
-          </div>
-          <div>
-            <Link to="/ask-password-reset">
-              <button type="button"
-                      className="button button-info">
-                Mot de passe oublié
-              </button>
-            </Link>
-          </div>
         </div>
-
-      </div>
+      </CookiesProvider>
     );
   }
 
