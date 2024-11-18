@@ -7,7 +7,7 @@ import { Cookies } from "react-cookie";
 import type { CookieSetOptions } from "universal-cookie";
 
 export class UserService {
-  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: true, secure: true};
+  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: false, secure: true};
   static lastUserValue: User | null = null;
   private static user = new ReplaySubject<User | null>(1);
 

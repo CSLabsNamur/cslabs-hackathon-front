@@ -11,7 +11,7 @@ export enum HttpMethods {
 }
 
 export class HttpService {
-  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: true, secure: true};
+  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: false, secure: true};
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
