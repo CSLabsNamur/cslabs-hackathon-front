@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Cookies } from "react-cookie";
+import type { CookieSetOptions } from "universal-cookie";
 
 export enum HttpMethods {
   GET,
@@ -10,7 +11,7 @@ export enum HttpMethods {
 }
 
 export class HttpService {
-  static cookiesHeader = {sameSite: "strict", httpOnly: true, secure: true};
+  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: true, secure: true};
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
@@ -86,8 +87,8 @@ export class HttpService {
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      cookies.set("Authorization", `Bearer ${newAccessToken}`, {maxAge: 7200});
-      cookies.set("refreshToken", newRefreshToken, {maxAge: 1209600});
+      cookies.set("Authorization", `Bearer ${newAccessToken}`, {...HttpService.cookiesHeader, maxAge: 7200});
+      cookies.set("refreshToken", newRefreshToken, {...HttpService.cookiesHeader, maxAge: 1209600});
       console.log("Tokens refreshed.");
     } catch (err) {
       console.log("Failed to refresh tokens.");

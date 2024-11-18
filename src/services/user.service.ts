@@ -4,9 +4,10 @@ import { HttpMethods, HttpService } from "./http.service";
 import { TeamsService } from "./teams.service";
 import { Team } from "../domain/team";
 import { Cookies } from "react-cookie";
+import type { CookieSetOptions } from "universal-cookie";
 
 export class UserService {
-  static cookiesHeader = {sameSite: "strict", httpOnly: true, secure: true};
+  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: true, secure: true};
   static lastUserValue: User | null = null;
   private static user = new ReplaySubject<User | null>(1);
 
@@ -96,8 +97,8 @@ export class UserService {
       password,
     });
     const {accessToken, refreshToken, ...data} = response;
-    cookies.set("Authorization", `Bearer ${accessToken}`, {maxAge: 7200});
-    cookies.set("refreshToken", refreshToken, {maxAge: 1209600});
+    cookies.set("Authorization", `Bearer ${accessToken}`, {...UserService.cookiesHeader, maxAge: 7200});
+    cookies.set("refreshToken", refreshToken, {...UserService.cookiesHeader, maxAge: 1209600});
     const user: User = this.userFromData(data);
     this.user.next(user);
     return user;
