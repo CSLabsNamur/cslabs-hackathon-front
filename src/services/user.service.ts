@@ -3,7 +3,7 @@ import { User } from "../domain/user";
 import { HttpMethods, HttpService } from "./http.service";
 import { TeamsService } from "./teams.service";
 import { Team } from "../domain/team";
-import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 
 export class UserService {
   static lastUserValue: User | null = null;
@@ -79,6 +79,7 @@ export class UserService {
   }
 
   static async tryAutoLogin() {
+    console.log("Try auto login.");
     const data = await HttpService.send(HttpMethods.GET, "users/me", {}, true);
     const user = this.userFromData(data);
     this.user.next(user);
@@ -86,7 +87,7 @@ export class UserService {
   }
 
   static async loginWithCredentials(email: string, password: string): Promise<User> {
-    const [cookies, setCookie] = useCookies(["Authorization", "refreshToken"]);
+    const cookies = new Cookies()
 
     "".toLowerCase();
     const response = await HttpService.send(HttpMethods.POST, "authentication/log-in", {
@@ -94,8 +95,8 @@ export class UserService {
       password,
     });
     const {accessToken, refreshToken, ...data} = response;
-    setCookie("Authorization", `Bearer ${accessToken}`);
-    setCookie("refreshToken", refreshToken);
+    cookies.set("Authorization", `Bearer ${accessToken}`);
+    cookies.set("refreshToken", refreshToken);
     const user: User = this.userFromData(data);
     this.user.next(user);
     return user;
@@ -107,9 +108,10 @@ export class UserService {
 
   static async disconnect() {
     await HttpService.send(HttpMethods.POST, "authentication/log-out", {}, true);
-    const [cookies, setCookie] = useCookies(['Authorization', 'refreshToken']);
-    setCookie('Authorization', '');
-    setCookie('refreshToken', '');
+    const cookies = new Cookies();
+
+    cookies.set('Authorization', '');
+    cookies.set('refreshToken', '');
     this.user.next(null);
   }
 

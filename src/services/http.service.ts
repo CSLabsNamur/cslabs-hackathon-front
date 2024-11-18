@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 
 export enum HttpMethods {
   GET,
@@ -13,8 +13,8 @@ export class HttpService {
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
-    const [cookies, _] = useCookies(["Authorization", "refreshToken"]);
-    const authorization = cookies["Authorization"];
+    const cookies = new Cookies();
+    const authorization = cookies.get("Authorization");
     if (auth && authorization) {
       headers["Authorization"] = authorization;
     }
@@ -71,8 +71,8 @@ export class HttpService {
 
   static async refreshTokens(): Promise<boolean> {
     console.log("Try to refresh tokens.");
-    const [cookies, setCookie] = useCookies(["Authorization", "refreshToken"]);
-    const refreshToken = cookies["refreshToken"];
+    const cookies = new Cookies();
+    const refreshToken = cookies.get("refreshToken");
     if (!refreshToken) {
       return false;
     }
@@ -85,8 +85,8 @@ export class HttpService {
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      setCookie("Authorization", `Bearer ${newAccessToken}`);
-      setCookie("refreshToken", newRefreshToken);
+      cookies.set("Authorization", `Bearer ${newAccessToken}`);
+      cookies.set("refreshToken", newRefreshToken);
       console.log("Tokens refreshed.");
     } catch (err) {
       console.log("Failed to refresh tokens.");

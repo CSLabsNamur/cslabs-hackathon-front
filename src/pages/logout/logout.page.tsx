@@ -15,9 +15,7 @@ export class LogoutPage extends React.PureComponent {
 
   render() {
     return (
-      <CookiesProvider defaultSetOptions={{sameSite: "strict", httpOnly: true, secure: true, maxAge: 31536000}}>
-        <Navigate to="/" replace={true}/>
-      </CookiesProvider>
+      <Navigate to="/" replace={true}/>
     );
   }
 
