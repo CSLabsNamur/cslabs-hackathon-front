@@ -71,8 +71,8 @@ export class SponsorsPage extends React.PureComponent {
             des ateliers sur des thématiques boostantes et liées à à l’entrepreneuriat, un lieu propice au travail (le
             TRAKK), etc.</p>
           <p>
-            <b>Envie d'en savoir plus ?</b> N’hésite pas à contacter <a href="mailto:cdu@bep.be"><b>Coralie Dufloucq</b></a> pour un
-            premier rendez-vous ! 😉
+            <b>Envie d'en savoir plus ?</b> N’hésite pas à contacter <a href="mailto:cdu@bep.be"><b>Coralie Dufloucq</b></a> pour
+            un premier rendez-vous ! 😉
           </p>
           <p>
             Alors… Partant.e.s ?

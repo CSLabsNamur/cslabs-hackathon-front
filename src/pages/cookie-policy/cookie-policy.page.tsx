@@ -151,7 +151,7 @@ export class CookiePolicyPage extends React.PureComponent {
 
           <h3>8. Informations supplémentaires</h3>
           <p><strong>
-            Si vous avez des questions ou des préoccupations concernant notre politique de cookies, veuillez nous
+            Si vous avez des questions ou des préoccupations concernant notre politique de cookies, veuillez
             contacter notre <a href="mailto:rgpd@cslabs.be" className="link">gestionnaire RGPD.</a>
           </strong></p>
         </div>

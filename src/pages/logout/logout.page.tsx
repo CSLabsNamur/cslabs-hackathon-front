@@ -1,7 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { UserService } from "@/services/user.service.ts";
-import { CookiesProvider } from "react-cookie";
 
 export class LogoutPage extends React.PureComponent {
 
