@@ -75,12 +75,12 @@ export class CookiePolicyPage extends React.PureComponent {
             <tr>
               <td>accessToken</td>
               <td>Utilisé pour vous connecter automatiquement à votre compte.</td>
-              <td>1 an</td>
+              <td>2 heures</td>
             </tr>
             <tr>
               <td>refreshToken</td>
               <td>Utilisé pour garder votre session active.</td>
-              <td>1 an</td>
+              <td>14 jours</td>
             </tr>
             <tr>
               <td>cf_clearance</td>

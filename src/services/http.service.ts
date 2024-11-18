@@ -10,10 +10,11 @@ export enum HttpMethods {
 }
 
 export class HttpService {
+  static cookiesHeader = {sameSite: "strict", httpOnly: true, secure: true};
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
-    const cookies = new Cookies();
+    const cookies = new Cookies(HttpService.cookiesHeader);
     const authorization = cookies.get("Authorization");
     if (auth && authorization) {
       headers["Authorization"] = authorization;
@@ -71,7 +72,7 @@ export class HttpService {
 
   static async refreshTokens(): Promise<boolean> {
     console.log("Try to refresh tokens.");
-    const cookies = new Cookies();
+    const cookies = new Cookies(HttpService.cookiesHeader);
     const refreshToken = cookies.get("refreshToken");
     if (!refreshToken) {
       return false;
@@ -85,8 +86,8 @@ export class HttpService {
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      cookies.set("Authorization", `Bearer ${newAccessToken}`);
-      cookies.set("refreshToken", newRefreshToken);
+      cookies.set("Authorization", `Bearer ${newAccessToken}`, {maxAge: 7200});
+      cookies.set("refreshToken", newRefreshToken, {maxAge: 1209600});
       console.log("Tokens refreshed.");
     } catch (err) {
       console.log("Failed to refresh tokens.");

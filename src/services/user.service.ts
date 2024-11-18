@@ -6,6 +6,7 @@ import { Team } from "../domain/team";
 import { Cookies } from "react-cookie";
 
 export class UserService {
+  static cookiesHeader = {sameSite: "strict", httpOnly: true, secure: true};
   static lastUserValue: User | null = null;
   private static user = new ReplaySubject<User | null>(1);
 
@@ -87,7 +88,7 @@ export class UserService {
   }
 
   static async loginWithCredentials(email: string, password: string): Promise<User> {
-    const cookies = new Cookies()
+    const cookies = new Cookies(UserService.cookiesHeader);
 
     "".toLowerCase();
     const response = await HttpService.send(HttpMethods.POST, "authentication/log-in", {
@@ -95,8 +96,8 @@ export class UserService {
       password,
     });
     const {accessToken, refreshToken, ...data} = response;
-    cookies.set("Authorization", `Bearer ${accessToken}`);
-    cookies.set("refreshToken", refreshToken);
+    cookies.set("Authorization", `Bearer ${accessToken}`, {maxAge: 7200});
+    cookies.set("refreshToken", refreshToken, {maxAge: 1209600});
     const user: User = this.userFromData(data);
     this.user.next(user);
     return user;
@@ -108,10 +109,10 @@ export class UserService {
 
   static async disconnect() {
     await HttpService.send(HttpMethods.POST, "authentication/log-out", {}, true);
-    const cookies = new Cookies();
+    const cookies = new Cookies(UserService.cookiesHeader);
 
-    cookies.set('Authorization', '');
-    cookies.set('refreshToken', '');
+    cookies.remove("Authorization");
+    cookies.remove("refreshToken");
     this.user.next(null);
   }
 
