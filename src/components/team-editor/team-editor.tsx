@@ -422,10 +422,10 @@ export class TeamEditor extends React.Component<{
             <p className="modal-title">Équipe créée !</p>
           </div>
           <div className="modal-body">
-            <p>Votre équipe à bel et bien été créée !</p>
-            <p>Chaque membre invité a reçu un email contenant le lien lui permettant de rejoindre
+            <p>Votre équipe a été créée !</p>
+            <p>Chaque membre invité(e) a reçu un email contenant le lien lui permettant de rejoindre
               l'équipe. <strong>N'oubliez pas de vérifier vos spams !</strong></p>
-            <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
+            <p>Veillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
               confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
             <p>La participation d'une équipe n'est effective <strong>que lorsqu'au moins un de ses membres a payé sa
               caution !</strong></p>

@@ -216,7 +216,7 @@ export class TeamMembersList extends React.Component<{
           <div className="modal-body">
             <p>
               Entrez l'adresse email de la personne que vous souhaitez ajouter à l'équipe.
-              Un mail lui sera envoyée, l'invitant à se créer un compte/se connecter et ensuite à rejoindre l'équipe.
+              Un mail lui sera envoyé, l'invitant à se créer un compte/se connecter et ensuite à rejoindre l'équipe.
             </p>
 
             <hr/>
@@ -269,7 +269,7 @@ export class TeamMembersList extends React.Component<{
             <p className="modal-title">Confirmer l'invitation</p>
           </div>
           <div className="modal-body">
-            <p>Vous êtes sur le point d'envoyer une invitation à rejoindre votre équipe à cette e-mail :</p>
+            <p>Vous êtes sur le point d'envoyer une invitation pour rejoindre votre équipe à cette adresse email :</p>
             <h3>{this.state.form.email}</h3>
             <p>Êtes vous certain de vouloir continuer ?</p>
           </div>
@@ -341,7 +341,7 @@ export class TeamMembersList extends React.Component<{
                   {!this.props.newTeam ? "Ajouter" : "Inviter"}
                 </button>
               {(members.length + invitations.length >= 5) ?
-                <span className="tooltip-text">Maximum 5 par équipe!</span> : null}
+                <span className="tooltip-text">Maximum 5 par équipe !</span> : null}
               </span>
           ) : null}
         </div>
