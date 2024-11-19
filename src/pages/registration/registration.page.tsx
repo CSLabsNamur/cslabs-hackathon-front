@@ -152,7 +152,6 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
         if (validated) {
           UserService.registerAndLogin(this.state.form).then(() => {
             console.log("Successfully registered and logged in.");
-            this.props.navigate(-1);
 
             if (this.cvInput.current!.files!.length > 0) {
               UserService.uploadCv(this.cvInput.current!.files![0]).then(() => {
@@ -161,6 +160,8 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 return this.showErrorModal("Votre CV n'a pas pu être envoyé.");
               });
             }
+
+            this.props.navigate("/team");
           }).catch(error => {
             const message = error.response?.data?.message;
 
@@ -168,13 +169,13 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               return this.showErrorModal("Un utilisateur avec cette adresse email existe déjà.");
             } else if (message === "Max number of users reached.") {
               return this.showErrorModal(
-                `Le nombre maximum de participants à été atteint ! Il n'est dès lors plus possible de s'inscrire... 
-                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord où à l'adresse mail events@cslabs.be`,
+                `Le nombre maximum de participants a été atteint ! Il n'est dès lors plus possible de s'inscrire... 
+                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord ou sur l'adresse mail events@cslabs.be`,
               );
             }
 
             return this.showErrorModal(
-              `Erreur inconnue: ${message}. Prenez-contact sur Discord ou via hackathon@cslabs.be`,
+              `Erreur inconnue: ${message}. Prenez contact sur Discord ou via hackathon@cslabs.be`,
             );
           });
         }

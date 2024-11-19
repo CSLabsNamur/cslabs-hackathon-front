@@ -36,7 +36,7 @@ export class LoginPage extends React.Component<WithRouterProps<{}>, {
     event.preventDefault();
     const {email, password} = this.state.form;
     UserService.loginWithCredentials(email, password).then(() => {
-      this.props.navigate(-1);
+      this.props.navigate("/team");
     }).catch((error) => {
       if (error.response?.status === 400) {
         this.setState({
