@@ -296,7 +296,7 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre compte GitHub (optionnel)
               </label>
               <input type="text" id="form-github" name="form-github"
-                     placeholder="Lien vers votre github..."
+                     placeholder="Lien vers votre GitHub..."
                      className={this.getInputClassname(RegistrationField.GITHUB)}
                      value={this.state.form.github}
                      onChange={this.onTextChange(RegistrationField.GITHUB)}
@@ -309,7 +309,7 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre compte LinkedIn (optionnel)
               </label>
               <input type="text" id="form-linkedin" name="form-linkedin"
-                     placeholder="Lien vers votre linkedIn..."
+                     placeholder="Lien vers votre LinkedIn..."
                      className={this.getInputClassname(RegistrationField.LINKEDIN)}
                      value={this.state.form.linkedIn}
                      onChange={this.onTextChange(RegistrationField.LINKEDIN)}
@@ -323,19 +323,22 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               </label>
               <input type="text" list="form-origin-list"
                      id="form-origin" name="form-origin"
-                     placeholder="UNamur..."
+                     placeholder="UNamur, ..."
                      className={this.getInputClassname(RegistrationField.ORIGIN)}
                      value={this.state.form.origin}
                      onChange={this.onTextChange(RegistrationField.ORIGIN)}
               />
               <datalist id="form-origin-list">
                 <option value="UNamur"/>
-                <option value="ULg"/>
                 <option value="UCL"/>
+                <option value="ULg"/>
+                <option value="ULB"/>
                 <option value="KULeuven"/>
+                <option value="Henallux"/>
                 <option value="IESN"/>
                 <option value="HEC"/>
-                <option value="Odoo"/>
+                <option value="HE2B"/>
+                <option value="HEAJ"/>
               </datalist>
               {this.renderValidationError(RegistrationField.ORIGIN)}
             </div>
@@ -359,8 +362,8 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre CV (pdf, max 5Mo) (optionnel)
               </label>
               <span>
-                Pour toute question sur l'utilisation de votre CV par le CSLabs, contactez le <a
-                href="mailto:rgpd@cslabs.be">responsable RGPD.</a>.
+                <br/>Pour toute question sur l'utilisation de votre CV par le CSLabs, contactez le <a
+                href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
               </span>
               <div>
                 <input type="file"
