@@ -13,8 +13,8 @@ enum TeamField {
   NAME = "name",
   DESCRIPTION = "description",
   IDEA = "idea",
-  RULES_AGREEMENT = "rulesAgreement",
-  CONDITIONS_AGREEMENT = "conditionsAgreement"
+  //RULES_AGREEMENT = "rulesAgreement",
+  //CONDITIONS_AGREEMENT = "conditionsAgreement"
 }
 
 enum TeamModal {
@@ -35,8 +35,8 @@ export class TeamEditor extends React.Component<{
     idea: string,
     members: User[],
     invitations: string[],
-    rulesAgreement: boolean,
-    conditionsAgreement: boolean,
+    //rulesAgreement: boolean,
+    //conditionsAgreement: boolean,
   },
   validationErrors: { [key: string]: string },
   redirect?: string,
@@ -61,8 +61,8 @@ export class TeamEditor extends React.Component<{
           idea: team.idea,
           members: team.members,
           invitations: [],
-          rulesAgreement: true,
-          conditionsAgreement: true,
+          //rulesAgreement: true,
+          //conditionsAgreement: true,
         },
         validationErrors: {},
         modal: {
@@ -80,8 +80,8 @@ export class TeamEditor extends React.Component<{
           idea: "",
           members: [this.props.user],
           invitations: [],
-          rulesAgreement: false,
-          conditionsAgreement: false,
+          //rulesAgreement: false,
+          //conditionsAgreement: false,
         },
         validationErrors: {},
         modal: {
@@ -141,8 +141,8 @@ export class TeamEditor extends React.Component<{
           idea: team.idea,
           members: team.members,
           invitations: [],
-          rulesAgreement: false,
-          conditionsAgreement: false,
+          //rulesAgreement: false,
+          //conditionsAgreement: false,
         },
       });
     } else if (this.props.newTeam) {
@@ -318,36 +318,36 @@ export class TeamEditor extends React.Component<{
                          onInvitationAdded={(email) => this.addInvitation(email)}
         />
 
-        {this.props.newTeam && !disabled ? (
-          <Fragment>
-            <div className="form-control">
-              <input type="checkbox" id="form-accept-rules" name="form-accept-rules"
-                     value="accept-rules"
-                     checked={this.state.form.rulesAgreement}
-                     onChange={this.onCheckboxChange(TeamField.RULES_AGREEMENT)}
-              />
-              <label htmlFor="form-accept-rules">
-                J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon
-                et notamment de la <strong>caution de 20€</strong>.
-              </label>
-              {this.renderValidationError(TeamField.RULES_AGREEMENT)}
-            </div>
+        {/* {this.props.newTeam && !disabled ? ( */}
+        {/*   <Fragment> */}
+        {/*     <div className="form-control"> */}
+        {/*       <input type="checkbox" id="form-accept-rules" name="form-accept-rules" */}
+        {/*              value="accept-rules" */}
+        {/*              checked={this.state.form.rulesAgreement} */}
+        {/*              onChange={this.onCheckboxChange(TeamField.RULES_AGREEMENT)} */}
+        {/*       /> */}
+        {/*       <label htmlFor="form-accept-rules"> */}
+        {/*         J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon */}
+        {/*         et notamment de la <strong>caution de 20€</strong>. */}
+        {/*       </label> */}
+        {/*       {this.renderValidationError(TeamField.RULES_AGREEMENT)} */}
+        {/*     </div> */}
 
-            <div className="form-control">
-              <input type="checkbox" id="form-accept-conditions" name="form-accept-conditions"
-                     value="accept-conditions"
-                     checked={this.state.form.conditionsAgreement}
-                     onChange={this.onCheckboxChange(TeamField.CONDITIONS_AGREEMENT)}
-              />
-              <label htmlFor="form-accept-conditions">
-                J'ai lu et accepté les <a
-                href={"/documents/termes_et_conditions.pdf"}
-                rel="noopener noreferrer" target="_blank">termes et conditions</a>.
-              </label>
-              {this.renderValidationError(TeamField.CONDITIONS_AGREEMENT)}
-            </div>
-          </Fragment>
-        ) : null}
+        {/*     <div className="form-control"> */}
+        {/*       <input type="checkbox" id="form-accept-conditions" name="form-accept-conditions" */}
+        {/*              value="accept-conditions" */}
+        {/*              checked={this.state.form.conditionsAgreement} */}
+        {/*              onChange={this.onCheckboxChange(TeamField.CONDITIONS_AGREEMENT)} */}
+        {/*       /> */}
+        {/*       <label htmlFor="form-accept-conditions"> */}
+        {/*         J'ai lu et accepté les <a */}
+        {/*         href={"/documents/termes_et_conditions.pdf"} */}
+        {/*         rel="noopener noreferrer" target="_blank">termes et conditions</a>. */}
+        {/*       </label> */}
+        {/*       {this.renderValidationError(TeamField.CONDITIONS_AGREEMENT)} */}
+        {/*     </div> */}
+        {/*   </Fragment> */}
+        {/* ) : null} */}
 
         {disabled ? null : (
           <div id="team-editor__confirmation">
