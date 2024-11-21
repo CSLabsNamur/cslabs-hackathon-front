@@ -131,7 +131,6 @@ export class LoginPage extends React.Component<WithRouterProps<{}>, {
       </div>
     );
   }
-
 }
 
 export default withRouter(LoginPage);

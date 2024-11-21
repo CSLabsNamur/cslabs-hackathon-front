@@ -74,9 +74,13 @@ export class App extends React.Component<any, any> {
             <Route path="/partenaires" element={<SponsorsPage/>}/>
             <Route path="/infos" element={<InformationPage/>}/>
             <Route path="/plus-loin" element={<GoingFurtherPage/>}/>
-            <Route path="/inscription" element={<RegistrationPage/>}/>
-            <Route path="/connexion" element={<LoginPage/>}/>
-            <Route path="/deconnexion" element={<LogoutPage/>}/>
+            <Route element={<AuthenticatedRoutes admin={false} inverted={true}/>}>
+              <Route path="/inscription" element={<RegistrationPage/>}/>
+              <Route path="/connexion" element={<LoginPage/>}/>
+            </Route>
+            <Route element={<AuthenticatedRoutes admin={false}/>}>
+              <Route path="/deconnexion" element={<LogoutPage/>}/>
+            </Route>
             <Route path="/ask-password-reset" element={<AskPasswordResetPage/>}/>
             <Route path="/password-reset/:token" element={<PasswordResetPage/>}/>
             {/* <Route path="/draw-board" element={<DrawBoardPage/>} />

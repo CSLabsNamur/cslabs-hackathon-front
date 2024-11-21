@@ -19,7 +19,12 @@ export class Navbar extends React.Component<{}, {
   renderLinks() {
     return (
       <Fragment>
-        <li className="on-white"><Link to="/inscription">S'inscrire</Link></li>
+        <UserContext.Consumer>
+          {value => (!value?.user ? (
+            <li className="on-white"><Link to="/inscription">S'inscrire</Link></li>
+          ) : null)}
+        </UserContext.Consumer>
+
         <li className="on-white"><Link to="/partenaires">Partenaires</Link></li>
         <li className="on-white"><Link to="/infos">Infos</Link></li>
         <li className="on-white"><Link to="/plus-loin">Plus loin</Link></li>

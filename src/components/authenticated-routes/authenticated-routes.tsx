@@ -12,6 +12,7 @@ enum Authentication {
 
 export class AuthenticatedRoutes extends React.Component<{
   admin: boolean,
+  inverted?: boolean,
 }, {
   authenticated: Authentication,
   subscription?: Subscription,
@@ -53,10 +54,12 @@ export class AuthenticatedRoutes extends React.Component<{
   }
 
   render() {
-    if (this.state.authenticated === Authentication.SUCCESS) {
+    if ((!this.props.inverted && this.state.authenticated === Authentication.SUCCESS) || (this.props.inverted && this.state.authenticated === Authentication.NEED_LOGIN)) {
       return <Outlet/>;
-    } else if (this.state.authenticated === Authentication.NEED_LOGIN) {
+    } else if (!this.props.inverted && this.state.authenticated === Authentication.NEED_LOGIN) {
       return <Navigate to="/connexion"/>;
+    } else if (this.props.inverted && this.state.authenticated === Authentication.SUCCESS) {
+      return <Navigate to="/team"/>;
     } else if (this.state.authenticated === Authentication.REFUSED) {
       return <Navigate to="/not-found" replace={true}/>;
     }

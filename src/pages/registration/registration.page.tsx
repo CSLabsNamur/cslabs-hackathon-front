@@ -38,7 +38,7 @@ enum RegistrationField {
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
   CV_FILE = "cv_file",
-  IMAGE_AGREEMENT = "imageAgreement",
+  //IMAGE_AGREEMENT = "imageAgreement",
   SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
