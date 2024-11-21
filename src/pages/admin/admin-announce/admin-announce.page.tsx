@@ -14,7 +14,7 @@ export class AdminAnnouncePage extends React.Component<{}, {
   form: {
     subject: string,
     announce: string,
-    addressee: string,
+    addressee: "all" | "formation",
   }
 }> {
 
@@ -25,7 +25,7 @@ export class AdminAnnouncePage extends React.Component<{}, {
       form: {
         subject: "",
         announce: "",
-        addressee: "",
+        addressee: "all",
       },
     };
 
@@ -43,11 +43,6 @@ export class AdminAnnouncePage extends React.Component<{}, {
   onSubmit(event: FormEvent) {
     event.preventDefault();
     const {subject, announce, addressee} = this.state.form;
-    addressee.replace(/ /g, ""); // remove space before and after the sting
-    if ((!(["all", "formation"].includes(addressee)))) {
-      alert("Compléter suivant les guillemets");
-      return null;
-    }
     AdminService.sendAnnounce(subject, announce, addressee)
       .then(() => {
         alert("Annonce envoyée !");
@@ -80,13 +75,13 @@ export class AdminAnnouncePage extends React.Component<{}, {
           </div>
 
           <div className="form-control">
-            <label htmlFor="form-subject">
-              Destinataires <br/>
-              Entrez "all" pour envoyé à tout le monde et "formation" pour les gens inscrits aux formations
+            <label htmlFor="form-addressee">
+              Destinataires
             </label>
-            <input type="text" name="form-subject" placeholder="Envoyer à qui ?"
-                   onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}
-            />
+            <select name="form-addressee" id="form-addressee" onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}>
+                <option value="all">Tout le monde</option>
+                <option value="formation">Personnes intéressées par les formations</option>
+            </select>
           </div>
 
           <div className="form-control">
