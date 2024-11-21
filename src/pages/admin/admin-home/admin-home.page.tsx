@@ -13,9 +13,7 @@ export class AdminHomePage extends React.PureComponent {
 
         <p>Bienvenue sur la page d'administration du Hackathon 2025 du CSLabs.</p>
 
-        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>#Pierre Poitier</strong>, <strong>#Victor
-          Pluvinage</strong>, <strong>#Yannis Van Achter</strong> ou <strong>#Martin Jacob</strong> (de préférence
-          Martin)</p>
+        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>@tinmar_ (Martin Jacob)</strong></p>
 
         <hr/>
 
@@ -39,11 +37,11 @@ export class AdminHomePage extends React.PureComponent {
             </button>
           </Link>
 
-          <Link to="/admin/votes">
-            <button className="button-large" id="admin-home__menu__pink-btn">
-              Résultats des votes
-            </button>
-          </Link>
+          {/* <Link to="/admin/votes"> */}
+          {/*   <button className="button-large" id="admin-home__menu__pink-btn"> */}
+          {/*     Résultats des votes */}
+          {/*   </button> */}
+          {/* </Link> */}
 
         </div>
       </div>

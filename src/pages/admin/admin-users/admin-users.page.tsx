@@ -125,7 +125,6 @@ export class AdminUsersPage extends React.Component<{}, {
     const {id, team, paidCaution, isAdmin, isTeamOwner} = user;
     return (
       <div className="admin-action-bar">
-
         {paidCaution ? (
           <button className="button button-danger button-small"
                   value={id}
@@ -279,7 +278,7 @@ export class AdminUsersPage extends React.Component<{}, {
             </span>
           )}
         </td>
-        <td className="tx-centered">{createdAt?.toISOString()}</td>
+        <td className="tx-centered">{createdAt?.toLocaleString()}</td>
         <td className="tx-centered">
           {github ?
             <span className="tooltip">

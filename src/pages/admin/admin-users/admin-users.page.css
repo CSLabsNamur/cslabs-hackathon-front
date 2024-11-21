@@ -1,6 +1,5 @@
-
 #admin-users-page {
-  padding: 10rem 10% 6rem 10%;
+  padding: 6rem 10% 6rem 10%;
 }
 
 #admin-users-page > table {
@@ -8,17 +7,16 @@
   overflow: auto;
 }
 
-#admin-users-page button:disabled {
-  visibility: hidden;
-}
-
 #admin-users-page td:hover {
   background-color: #ffebee;
 }
-
 
 #filter-table {
   background-color: #56b65a !important;
   border: #62bb66 !important;
   color: whitesmoke !important;
+}
+
+.admin-action-bar button[disabled] {
+  display: none;
 }

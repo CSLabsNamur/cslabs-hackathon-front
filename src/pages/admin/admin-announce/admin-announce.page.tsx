@@ -61,7 +61,7 @@ export class AdminAnnouncePage extends React.Component<{}, {
   render() {
     return (
       <div>
-        <form className="form-container" onSubmit={this.onSubmit}>
+        <form className="form-container" id="admin-announce__form" onSubmit={this.onSubmit}>
           <h2 className="tx-centered">Envoyer une annonce aux membres inscrits</h2>
 
           <div id="back-button">

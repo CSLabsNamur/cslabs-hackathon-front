@@ -47,8 +47,8 @@ export class AdminTeamsPage extends React.Component<{}, {
 
     this.onEditTeam = this.onEditTeam.bind(this);
     this.onDeleteTeam = this.onDeleteTeam.bind(this);
-    this.onSaveEdition = this.onSaveEdition.bind(this);
-    this.onCancelEdition = this.onCancelEdition.bind(this);
+    this.onSaveEdits = this.onSaveEdits.bind(this);
+    this.onCancelEdits = this.onCancelEdits.bind(this);
   }
 
   componentDidMount() {
@@ -103,7 +103,7 @@ export class AdminTeamsPage extends React.Component<{}, {
     this.showModal(AdminTeamsModal.TEAM_DELETION);
   }
 
-  onSaveEdition(event: any) {
+  onSaveEdits(event: any) {
     event.preventDefault();
     const team = this.state.teams.find((team) => team.id === this.state.editedTeam);
     if (team) {
@@ -124,7 +124,7 @@ export class AdminTeamsPage extends React.Component<{}, {
     };
   }
 
-  onCancelEdition(event: any) {
+  onCancelEdits(event: any) {
     event.preventDefault();
     this.unselectEditedTeam();
   }
@@ -200,13 +200,20 @@ export class AdminTeamsPage extends React.Component<{}, {
       <div className="button button-info button-small"
            onClick={() => {
              navigator.clipboard.writeText(token).then(() => {
-               alert("Le token a bien été copié.");
+               const tooltip = document.getElementById("admin-teams__team-token-text");
+               if (tooltip) {
+                 tooltip.innerText = "Copié !";
+               }
+               setInterval(() => {
+                 if (tooltip) {
+                   tooltip.innerText = token;
+                 }
+               }, 2000);
              });
-           }}
-      >
-            <span className="tooltip">
-              Token
-              <span className="tooltip-text">{token}</span>
+           }}>
+          <span className="tooltip">
+            Token
+            <span className="tooltip-text" id="admin-teams__team-token-text">{token}</span>
           </span>
       </div>
     );
@@ -214,7 +221,6 @@ export class AdminTeamsPage extends React.Component<{}, {
 
   renderStaticTeam(team: Team, index: number) {
     const {id, name, description, idea, valid, members, createdAt} = team;
-
 
     return (
       <tr key={index}>
@@ -240,7 +246,7 @@ export class AdminTeamsPage extends React.Component<{}, {
         <td>
           {this.renderTokenField(team)}
         </td>
-        <td>{createdAt?.toISOString()}</td>
+        <td>{createdAt?.toLocaleString()}</td>
         <td>
           <button className="button button-info button-small"
                   value={id}
@@ -288,24 +294,23 @@ export class AdminTeamsPage extends React.Component<{}, {
         <td>
           {this.renderTokenField(team)}
         </td>
-        <td>{team.createdAt?.toISOString()}</td>
+        <td>{team.createdAt?.toLocaleString()}</td>
         <td>
           <button className="button button-primary button-small"
                   value={team.id}
-                  onClick={this.onSaveEdition}
+                  onClick={this.onSaveEdits}
           >
             Sauvegarder
           </button>
           ,
           <button className="button button-info button-small"
-                  onClick={this.onCancelEdition}
+                  onClick={this.onCancelEdits}
           >
             Annuler
           </button>
         </td>
       </tr>
     );
-
   }
 
   render() {
