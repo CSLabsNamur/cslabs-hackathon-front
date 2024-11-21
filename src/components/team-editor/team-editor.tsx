@@ -248,7 +248,7 @@ export class TeamEditor extends React.Component<{
     const team = this.props.newTeam ? undefined : this.props.user.team;
 
     return (
-      <form className="form-container" onSubmit={this.onSubmit} onReset={this.onCancel}>
+      <form className="form-container" id="team-editor__form" onSubmit={this.onSubmit} onReset={this.onCancel}>
 
         <div className="tx-centered">
           {team ? <h2>Détail de votre équipe</h2> : <h2>Création d'une équipe</h2>}

@@ -31,5 +31,4 @@ export class TeamPage extends React.PureComponent {
       </div>
     );
   }
-
 }

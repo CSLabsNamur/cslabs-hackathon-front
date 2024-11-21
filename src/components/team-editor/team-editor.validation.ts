@@ -18,12 +18,12 @@ export class TeamEditorValidation {
   @MaxLength(1024, {message: "L'idée ne peut pas dépasser les 1024 caractères."})
   idea: string;
 
-  @IsBoolean()
-  @IsTrue({message: "Il est nécessaire d'accepter les modalités pour créer une équipe."})
-  rulesAgreement: boolean;
-
-  @IsBoolean()
-  @IsTrue({message: "Il est nécessaire d'accepter le règlement pour créer une équipe."})
-  conditionsAgreement: boolean;
+  //@IsBoolean()
+  //@IsTrue({message: "Il est nécessaire d'accepter les modalités pour créer une équipe."})
+  //rulesAgreement: boolean;
+  //
+  //@IsBoolean()
+  //@IsTrue({message: "Il est nécessaire d'accepter le règlement pour créer une équipe."})
+  //conditionsAgreement: boolean;
 
 }

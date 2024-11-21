@@ -11,5 +11,4 @@ export class TeamVotePage extends React.PureComponent {
       </UserContext.Consumer>
     );
   }
-
 }

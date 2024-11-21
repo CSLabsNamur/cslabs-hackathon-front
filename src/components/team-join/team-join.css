@@ -1,15 +1,12 @@
-
 #team-join {
-  padding: 4rem 1rem;
+  /*padding: 4rem 1rem;*/
   font-size: 2rem;
 }
-
 
 #team-join__disclaimer {
   margin: 1rem auto;
   max-width: 60rem;
 }
-
 
 #team-join__actions {
   display: flex;
