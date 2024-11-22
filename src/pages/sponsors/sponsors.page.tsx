@@ -16,9 +16,7 @@ export class SponsorsPage extends React.PureComponent {
             <SponsorLogo href="#unamur" title="Université de Namur" uri="/sponsors/unamur.png"/>
             <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
             <SponsorLogo href="#linkube" title="LinKube" uri="/images/logo/linkube_short.png"/>
-            {/* <a href="#odoo" aria-label="Odoo"> */}
-            {/*   <SponsorLogo title="Odoo" uri="/images/logo/logo_odoo.png" /> */}
-            {/* </a> */}
+            <SponsorLogo href="#odoo" title="Odoo" uri="/images/logo/logo_odoo.png"/>
           </div>
         </PageHero>
 
@@ -79,35 +77,35 @@ export class SponsorsPage extends React.PureComponent {
           </p>
         </Topic>
 
-        {/* <Topic img={{ */}
-        {/*   src: "/sponsors/odoo-logo.png", */}
-        {/*   alt: "Odoo", */}
-        {/* }} */}
-        {/*        link="https://www.odoo.com/fr_FR" */}
-        {/*        direction="left"> */}
-        {/*   <h2 id="odoo"> */}
-        {/*     Odoo */}
-        {/*   </h2> */}
-        {/*   <p> */}
-        {/*     We are a Belgian IT company proposing a complete and flexible software solution.<br/> */}
-        {/*     Odoo's unique value proposition is to cover a large business scope and be at the same time very easy to use */}
-        {/*     and fully integrated. */}
-        {/*   </p> */}
-        {/*   <p> */}
-        {/*     If you're passionate about development, then it's time to come and do your internship or find a job in a */}
-        {/*     company with a great Open Source project where your work will count */}
-        {/*   </p> */}
-        {/*   <p> */}
-        {/*     Our stack: */}
-        {/*     <ol> */}
-        {/*       <li>Programming languages: Python & Javascript</li> */}
-        {/*       <li>Database: postgresql (with object relational mapping)</li> */}
-        {/*       <li>Collaboration plateform: GitHub</li> */}
-        {/*       <li>Development model: open with external community</li> */}
-        {/*       <li>Framework: Odoo (ORM, Workflows, Report Engine, Bi, AI)</li> */}
-        {/*     </ol> */}
-        {/*   </p> */}
-        {/* </Topic> */}
+        <Topic img={{
+          src: "/sponsors/odoo-logo.png",
+          alt: "Odoo",
+        }}
+               link="https://www.odoo.com/fr_FR"
+               direction="left">
+          <h2 id="odoo">
+            Odoo
+          </h2>
+          <p>
+            We are a Belgian IT company proposing a complete and flexible software solution.<br/>
+            Odoo's unique value proposition is to cover a large business scope and be at the same time very easy to use
+            and fully integrated.
+          </p>
+          <p>
+            If you're passionate about development, then it's time to come and do your internship or find a job in a
+            company with a great Open Source project where your work will count
+          </p>
+          <p>
+            Our stack:
+            <ol>
+              <li>Programming languages: Python & Javascript</li>
+              <li>Database: postgresql (with object relational mapping)</li>
+              <li>Collaboration platform: GitHub</li>
+              <li>Development model: open with external community</li>
+              <li>Framework: Odoo (ORM, Workflows, Report Engine, Bi, AI)</li>
+            </ol>
+          </p>
+        </Topic>
       </div>
     );
   }
