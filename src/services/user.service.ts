@@ -97,7 +97,7 @@ export class UserService {
       password,
     });
     const {accessToken, refreshToken, ...data} = response;
-    cookies.set("Authorization", `Bearer ${accessToken}`, {...UserService.cookiesHeader, maxAge: 7200});
+    cookies.set("accessToken", accessToken, {...UserService.cookiesHeader, maxAge: 7200});
     cookies.set("refreshToken", refreshToken, {...UserService.cookiesHeader, maxAge: 1209600});
     const user: User = this.userFromData(data);
     this.user.next(user);
@@ -112,7 +112,7 @@ export class UserService {
     await HttpService.send(HttpMethods.POST, "authentication/log-out", {}, true);
     const cookies = new Cookies(UserService.cookiesHeader);
 
-    cookies.remove("Authorization");
+    cookies.remove("accessToken");
     cookies.remove("refreshToken");
     this.user.next(null);
   }

@@ -16,7 +16,7 @@ export class HttpService {
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
     const cookies = new Cookies(HttpService.cookiesHeader);
-    const authorization = cookies.get("Authorization");
+    const authorization = `Bearer ${cookies.get("accessToken")}`;
     if (auth && authorization) {
       headers["Authorization"] = authorization;
     }
@@ -87,7 +87,7 @@ export class HttpService {
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      cookies.set("Authorization", `Bearer ${newAccessToken}`, {...HttpService.cookiesHeader, maxAge: 7200});
+      cookies.set("accessToken", newAccessToken, {...HttpService.cookiesHeader, maxAge: 7200});
       cookies.set("refreshToken", newRefreshToken, {...HttpService.cookiesHeader, maxAge: 1209600});
       console.log("Tokens refreshed.");
     } catch (err) {
