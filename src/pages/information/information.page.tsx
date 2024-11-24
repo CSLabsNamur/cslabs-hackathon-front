@@ -31,6 +31,7 @@ export class InformationPage extends React.PureComponent {
 
         <InfoItem title="Date du Hackathon" icon="/infos/calendar.svg">
           <p>Le week-end du <b>{import.meta.env.VITE_DATE_EVENT}</b></p>
+          <p>Le Hackathon débute le vendredi à 18h et se termine le dimanche vers 18h.</p>
         </InfoItem>
 
         <InfoItem title="Contacts" icon="/infos/contact.svg">
@@ -43,11 +44,11 @@ export class InformationPage extends React.PureComponent {
         </InfoItem>
 
         <InfoItem title="Commodités" icon="/infos/commodites.svg">
-          <p>Repos: <b>Salle avec des lits prévue*</b></p>
+          <p>Repos: <b>Une salle pour dormir sera mise à disposition au sein de l'Université*</b></p>
           <p>Repas: <b>Repas fournis</b> {/*<Link to='/pizza-clicker'>🍕</Link>*/}</p>
           <p>Sanitaires: <b>Installations de l'Université</b></p>
-          <p>*Il y aura quelques lits dans le cas où il n'est pas possible pour vous d'amener quelque chose mais c'est
-            vivement recommandé de prendre quelque chose vous-même.</p>
+          <p>*Nous vous demandons de prévoir un matelas/lit de camp que vous pourrez installer dans cette salle.<br/>
+            Quelques lits de camp seront prévus pour dépanner, mais il n'y en aura pas assez pour tout le monde.</p>
         </InfoItem>
 
         <InfoItem title="Inscription" icon="/infos/register.svg">
@@ -68,7 +69,6 @@ export class InformationPage extends React.PureComponent {
         <InfoItem title="Attestation" icon="/infos/attestation.svg">
           <p>Si nécessaire, nous pouvons confirmer votre participation à l'événement par email.</p>
           <p>Contactez-nous à l'adresse <strong><a href="mailto:event@cslabs.be">event@cslabs.be</a></strong></p>
-
         </InfoItem>
       </div>
     );
