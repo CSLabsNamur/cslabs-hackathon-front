@@ -17,6 +17,7 @@ export class SponsorsPage extends React.PureComponent {
             <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
             <SponsorLogo href="#linkube" title="LinKube" uri="/images/logo/linkube_short.png"/>
             <SponsorLogo href="#odoo" title="Odoo" uri="/images/logo/logo_odoo.png"/>
+            <SponsorLogo href="#lepavillon" title="Le Pavillon" uri="/sponsors/lepavillon.png"/>
           </div>
         </PageHero>
 
@@ -104,6 +105,23 @@ export class SponsorsPage extends React.PureComponent {
               <li>Development model: open with external community</li>
               <li>Framework: Odoo (ORM, Workflows, Report Engine, Bi, AI)</li>
             </ol>
+          </p>
+        </Topic>
+
+        <Topic img={{
+          src: "/sponsors/lepavillon-big.png",
+          alt: "Le Pavillon",
+        }} link="https://www.le-pavillon.be/" direction="right">
+          <h2 id="lepavillon">
+            Le Pavillon
+          </h2>
+          <p>
+            Le Pavillon est un centre d’exposition, d’expérimentation et d’innovation qui décloisonne les disciplines et
+            s’empare simultanément des arts, des sciences et des technologies. Il cultive sa singularité pour vous
+            inviter à vivre une expérience inédite.
+          </p>
+          <p>
+            Le Pavillon accueille des expositions temporaires, des conférences, ateliers, stages et performances.
           </p>
         </Topic>
       </div>
