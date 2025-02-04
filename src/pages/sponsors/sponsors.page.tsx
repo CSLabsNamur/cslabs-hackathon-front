@@ -17,6 +17,7 @@ export class SponsorsPage extends React.PureComponent {
             <SponsorLogo href="#nadi" title="Institut NADI" uri="/sponsors/nadi.png"/>
             <SponsorLogo href="#linkube" title="LinKube" uri="/images/logo/linkube_short.png"/>
             <SponsorLogo href="#odoo" title="Odoo" uri="/images/logo/logo_odoo.png"/>
+            <SponsorLogo href="#choboulette" title="Choboulette" uri="/sponsors/choboulette.png"/>
             <SponsorLogo href="#lepavillon" title="Le Pavillon" uri="/sponsors/lepavillon.png"/>
           </div>
         </PageHero>
@@ -109,9 +110,18 @@ export class SponsorsPage extends React.PureComponent {
         </Topic>
 
         <Topic img={{
+          src: "/sponsors/choboulette.png",
+          alt: "Cho'Boulette",
+        }} link="https://www.instagram.com/choboulette_namur/?hl=fr" direction="right">
+          <h2 id="choboulette">
+            Cho'Boulette
+          </h2>
+        </Topic>
+
+        <Topic img={{
           src: "/sponsors/lepavillon-big.png",
           alt: "Le Pavillon",
-        }} link="https://www.le-pavillon.be/" direction="right">
+        }} link="https://www.le-pavillon.be/" direction="left">
           <h2 id="lepavillon">
             Le Pavillon
           </h2>
