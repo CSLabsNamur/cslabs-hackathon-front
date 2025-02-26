@@ -5,7 +5,7 @@ import vitetsConfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "./",
+  base: "/",
   plugins: [
     react(),
     vitetsConfigPaths(),
