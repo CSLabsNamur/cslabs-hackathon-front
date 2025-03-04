@@ -1,7 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import './admin-home.page.css';
+import "./admin-home.page.css";
 
 export class AdminHomePage extends React.PureComponent {
 
@@ -11,9 +11,9 @@ export class AdminHomePage extends React.PureComponent {
 
         <h2 className="tx-centered">Administration</h2>
 
-        <p>Bienvenue sur la page d'administration du Hackathon 2023 du CSLabs.</p>
+        <p>Bienvenue sur la page d'administration du Hackathon 2025 du CSLabs.</p>
 
-        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>#Pierre Poitier</strong> ou <strong>#Yannis Van Achter</strong></p>
+        <p>En cas de problème technique, notifiez moi sur Discord ! <strong>@tinmar_ (Martin Jacob)</strong></p>
 
         <hr/>
 
@@ -37,11 +37,11 @@ export class AdminHomePage extends React.PureComponent {
             </button>
           </Link>
 
-          <Link to="/admin/votes">
-            <button className="button-large" id="admin-home__menu__pink-btn">
-              Résultats des votes
-            </button>
-          </Link>
+          {/* <Link to="/admin/votes"> */}
+          {/*   <button className="button-large" id="admin-home__menu__pink-btn"> */}
+          {/*     Résultats des votes */}
+          {/*   </button> */}
+          {/* </Link> */}
 
         </div>
       </div>

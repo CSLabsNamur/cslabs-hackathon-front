@@ -1,17 +1,17 @@
-
 #admin-teams-page {
-    padding: 10rem 10% 6rem 10%;
+  padding: 6rem 10% 6rem 10%;
 }
 
 #admin-teams-page > table {
-    background-color: white;
-    overflow: auto;
+  background-color: white;
+  overflow: auto;
 }
 
 .admin-teams-page__member-list {
-    list-style: none;
+  list-style: none;
 }
 
+
 .admin-teams-page__text-field {
-    max-width: 15rem;
+  max-width: 15rem;
 }

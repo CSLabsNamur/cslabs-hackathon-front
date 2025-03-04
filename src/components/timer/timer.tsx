@@ -1,42 +1,28 @@
 import React from "react";
 import "./timer.css";
+import { DateTime, Duration } from "luxon";
 
-function getDateEnv(dateEnv: string | any) {
-  if (dateEnv === undefined) return new Date();
+function getDateEnv(dateEnv: string) {
+  if (dateEnv === undefined) return DateTime.now();
 
-  let year = parseInt(dateEnv.substring(0, 4));
-  let month = parseInt(dateEnv.substring(5, 7)) - 1;
-  let day = parseInt(dateEnv.substring(8, 10));
-  let hour = parseInt(dateEnv.substring(11, 13));
-  let minute = parseInt(dateEnv.substring(14, 16));
-  let second = parseInt(dateEnv.substring(17, 19));
-
-  return new Date(year, month, day, hour, minute, second);
+  return DateTime.fromISO(dateEnv);
 }
 
-function getMessage(months: any, days: any, hours: any, minutes: any, seconds: any) {
-  let message = seconds.toString() + ' secondes';
-
-  if (minutes > 0) {
-    message = minutes.toString() + ' minutes et ' + message;
-  }
-  if (hours > 0) {
-    message = hours.toString() + ' heures, ' + message;
-  }
-  if (days > 0) {
-    message = days.toString() + ' jours, ' + message;
-  }
-  if (months > 0) {
-    message = months.toString() + ' mois, ' + message;
-  }
-
-  return message;
+function getMessage(date: Duration) {
+  return date.toFormat(`
+    ${date.months ? "M 'mois', " : ""} 
+    ${date.days ? "d 'jours', " : ""}
+    ${date.hours ? "h 'heures', " : ""}
+    ${date.minutes ? "m 'minutes', " : ""}
+    ${date.seconds ? "ss 'secondes'" : "👀"}`,
+  );
 }
 
-const date = getDateEnv(process.env.REACT_APP_DATE);
+const date = getDateEnv(import.meta.env.VITE_DATE_OPEN);
 
-class Timer extends React.Component<{}, {
+export class Timer extends React.Component<{}, {
   time: Date,
+  months: number,
   days: number,
   hours: number,
   minutes: number,
@@ -47,96 +33,48 @@ class Timer extends React.Component<{}, {
 
   constructor(props: any) {
     super(props);
-
-    const now = new Date();
-
-    const timeDifference = date.getTime() - now.getTime();
-
-    const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-    const maxMonth = (eventDate: Date, currentDate: Date) => {
-      if (eventDate.getFullYear() === currentDate.getFullYear()) {
-        return eventDate.getMonth();
-      }
-      return 12 + eventDate.getMonth();
-    }
-
-    for (let month = now.getMonth(); month < maxMonth(date, now); month+=2) {
-      days -= 1; // still have impressision due to february and leap years
-    }
-
-    const message = getMessage(months, days, hours, minutes, seconds);
-
-    this.state = {
-      time: date,
-      days,
-      hours,
-      minutes,
-      seconds,
-      message,
-    };
-
     this.updateTimer = this.updateTimer.bind(this);
   }
 
   componentDidMount() {
+    this.updateTimer();
     const id = setInterval(this.updateTimer, 1000);
     this.setState({
-      ...this.state,
       id,
     });
   }
 
   componentWillUnmount() {
-    if (!!this.state.id) {
-      clearInterval(this.state.id);
+    if (!!this.state?.id) {
+      clearInterval(this.state?.id);
     }
   }
 
   updateTimer() {
-    const now = new Date();
+    const diff = date.diffNow(["months", "days", "hours", "minutes", "seconds"]);
+    const {months, days, hours, minutes, seconds} = diff;
 
-    const timeDifference = date.getTime() - now.getTime();
-
-    const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
-    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-    const maxMonth = (eventDate: Date, currentDate: Date) => {
-      if (eventDate.getFullYear() === currentDate.getFullYear()) {
-        return eventDate.getMonth();
-      }
-      return 12 + eventDate.getMonth();
-    }
-
-    for (let month = now.getMonth(); month < maxMonth(date, now); month+=2) {
-      days -= 1; // still have impressision due to february and leap years
-    }
-
-    const message = getMessage(months, days, hours, minutes, seconds);
+    const message = getMessage(diff);
 
     this.setState({
-      ...this.state,
       seconds,
       minutes,
       hours,
       days,
+      months,
       message,
     });
   }
 
   render() {
     return (
-      <div id="timer">{this.state.message}</div>
+      <div id="timer">
+        <span>{this.state?.message}</span>
+      </div>
     );
   }
 
 }
-const timerModule = {Timer, getDateEnv, getMessage}
+
+const timerModule = {Timer, getDateEnv, getMessage};
 export default timerModule;

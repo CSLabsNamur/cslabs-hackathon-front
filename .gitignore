@@ -1,6 +1,7 @@
 
 # Jetbrains IDE settings
 /.idea
+*.iml
 
 # NodeJs modules
 /node_modules

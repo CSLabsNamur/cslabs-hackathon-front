@@ -1,4 +1,4 @@
-import {Team} from "./team";
+import { Team } from "./team";
 
 export class User {
   id: string;
@@ -17,4 +17,6 @@ export class User {
   imageAgreement? = false;
 
   subscribeFormation = false;
+
+  [key: string]: any; // Allows to get any property of the object as a dictionary
 }

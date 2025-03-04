@@ -1,4 +1,4 @@
-import {validate} from "class-validator";
+import { validate } from "class-validator";
 
 export class FormValidationService {
 
@@ -20,10 +20,10 @@ export class FormValidationService {
   }
 
   static validatePdfFile(file: File) {
-    if (!file.name.endsWith('.pdf') || file.type !== 'application/pdf') {
+    if (!file.name.endsWith(".pdf") || file.type !== "application/pdf") {
       return "Le CV doit être un fichier PDF.";
     }
-    if (file.size >= 5*1024*1024) {
+    if (file.size >= 5 * 1024 * 1024) {
       return "Le CV ne peut pas dépasser les 5Mo.";
     }
   }

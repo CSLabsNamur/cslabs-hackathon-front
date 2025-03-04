@@ -1,28 +1,27 @@
-import React, {FormEvent, Fragment} from 'react';
-import {Link} from "react-router-dom";
+import React, { FormEvent, Fragment } from "react";
+import { Link, Navigate } from "react-router-dom";
 
-import './team-editor.css';
-import {TeamMembersList} from "../team-members-list/team-members-list";
-import {User} from "../../domain/user";
-import {Navigate} from "react-router-dom";
-import {TeamEditorValidation} from "./team-editor.validation";
-import {FormValidationService} from "../../services/form-validation.service";
+import "./team-editor.css";
+import { TeamMembersList } from "../team-members-list/team-members-list";
+import { User } from "@/domain/user.ts";
+import { TeamEditorValidation } from "./team-editor.validation";
+import { FormValidationService } from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {TeamsService} from "../../services/teams.service";
+import { TeamsService } from "@/services/teams.service.ts";
 
 enum TeamField {
-  NAME= 'name',
-  DESCRIPTION = 'description',
-  IDEA = 'idea',
-  RULES_AGREEMENT = 'rulesAgreement',
-  CONDITIONS_AGREEMENT = 'conditionsAgreement'
+  NAME = "name",
+  DESCRIPTION = "description",
+  IDEA = "idea",
+  //RULES_AGREEMENT = "rulesAgreement",
+  //CONDITIONS_AGREEMENT = "conditionsAgreement"
 }
 
 enum TeamModal {
-  DELETE_TEAM= 'deleteTeam',
-  UPDATE_TEAM= 'updateTeam',
-  CREATED_CONFIRMATION = 'createdConfirmationTeam',
-  ERROR = 'error',
+  DELETE_TEAM = "deleteTeam",
+  UPDATE_TEAM = "updateTeam",
+  CREATED_CONFIRMATION = "createdConfirmationTeam",
+  ERROR = "error",
 }
 
 export class TeamEditor extends React.Component<{
@@ -36,10 +35,10 @@ export class TeamEditor extends React.Component<{
     idea: string,
     members: User[],
     invitations: string[],
-    rulesAgreement: boolean,
-    conditionsAgreement: boolean,
+    //rulesAgreement: boolean,
+    //conditionsAgreement: boolean,
   },
-  validationErrors: {[key: string]: string},
+  validationErrors: { [key: string]: string },
   redirect?: string,
   modal: {
     deleteTeam: boolean,
@@ -62,8 +61,8 @@ export class TeamEditor extends React.Component<{
           idea: team.idea,
           members: team.members,
           invitations: [],
-          rulesAgreement: true,
-          conditionsAgreement: true,
+          //rulesAgreement: true,
+          //conditionsAgreement: true,
         },
         validationErrors: {},
         modal: {
@@ -71,8 +70,8 @@ export class TeamEditor extends React.Component<{
           updateTeam: false,
           createdConfirmationTeam: false,
           error: false,
-        }
-      }
+        },
+      };
     } else {
       this.state = {
         form: {
@@ -81,8 +80,8 @@ export class TeamEditor extends React.Component<{
           idea: "",
           members: [this.props.user],
           invitations: [],
-          rulesAgreement: false,
-          conditionsAgreement: false,
+          //rulesAgreement: false,
+          //conditionsAgreement: false,
         },
         validationErrors: {},
         modal: {
@@ -90,8 +89,8 @@ export class TeamEditor extends React.Component<{
           updateTeam: false,
           createdConfirmationTeam: false,
           error: false,
-        }
-      }
+        },
+      };
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -103,7 +102,7 @@ export class TeamEditor extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onCheckboxChange(field: TeamField) {
@@ -111,7 +110,7 @@ export class TeamEditor extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.checked;
       this.setState(newState);
-    }
+    };
   }
 
   onSubmit(event: FormEvent) {
@@ -142,14 +141,14 @@ export class TeamEditor extends React.Component<{
           idea: team.idea,
           members: team.members,
           invitations: [],
-          rulesAgreement: false,
-          conditionsAgreement: false,
-        }
+          //rulesAgreement: false,
+          //conditionsAgreement: false,
+        },
       });
     } else if (this.props.newTeam) {
       this.setState({
         ...this.state,
-        redirect: "/team"
+        redirect: "/team",
       });
     }
 
@@ -158,7 +157,7 @@ export class TeamEditor extends React.Component<{
   createTeam() {
     const {name, description, idea, invitations} = this.state.form;
     TeamsService.create({name, description, idea, invitations}).then(() => {
-      console.log('Team successfully created.');
+      console.log("Team successfully created.");
       this.showModal(TeamModal.CREATED_CONFIRMATION);
     }).catch(error => {
       const message = error.response?.data?.message;
@@ -178,7 +177,7 @@ export class TeamEditor extends React.Component<{
       const {name, description, idea} = this.state.form;
       TeamsService.update(team.id, {name, description, idea})
         .then(() => {
-          console.log('Team successfully updated.');
+          console.log("Team successfully updated.");
         })
         .catch(() => {
           this.displayError("La mise à jour de l'équipe a échouée.");
@@ -191,10 +190,10 @@ export class TeamEditor extends React.Component<{
     const team = this.props.user?.team;
     if (team) {
       TeamsService.delete(team.id).then(() => {
-        console.log('Team successfully deleted.');
+        console.log("Team successfully deleted.");
       }).catch(() => {
         this.displayError("La suppression de l'équipe a échouée.");
-      })
+      });
     }
   }
 
@@ -207,15 +206,14 @@ export class TeamEditor extends React.Component<{
   async validateForm() {
     const validator = new TeamEditorValidation();
     const errors = await FormValidationService.validateForm(this.state.form, validator);
-    this.setState({ ...this.state, validationErrors: errors });
+    this.setState({...this.state, validationErrors: errors});
     return Object.keys(errors).length === 0;
   }
 
   displayError(message: string) {
     const newState = {...this.state};
-    newState.error = message;
     newState.modal.error = true;
-    this.setState(newState);
+    this.setState({...newState, error: message});
   }
 
   getInputClassname(field: TeamField) {
@@ -250,7 +248,7 @@ export class TeamEditor extends React.Component<{
     const team = this.props.newTeam ? undefined : this.props.user.team;
 
     return (
-      <form className="form-container" onSubmit={this.onSubmit} onReset={this.onCancel}>
+      <form className="form-container" id="team-editor__form" onSubmit={this.onSubmit} onReset={this.onCancel}>
 
         <div className="tx-centered">
           {team ? <h2>Détail de votre équipe</h2> : <h2>Création d'une équipe</h2>}
@@ -264,7 +262,7 @@ export class TeamEditor extends React.Component<{
                         return false;
                       }}
                       disabled={disabled}
-                      style={{visibility: disabled ? 'hidden' : 'visible'}}
+                      style={{visibility: disabled ? "hidden" : "visible"}}
               >
                 Supprimer l'équipe
               </button> :
@@ -320,36 +318,36 @@ export class TeamEditor extends React.Component<{
                          onInvitationAdded={(email) => this.addInvitation(email)}
         />
 
-        {this.props.newTeam && !disabled ? (
-          <Fragment>
-            <div className="form-control">
-              <input type="checkbox" id="form-accept-rules" name="form-accept-rules"
-                     value="accept-rules"
-                     checked={this.state.form.rulesAgreement}
-                     onChange={this.onCheckboxChange(TeamField.RULES_AGREEMENT)}
-              />
-              <label htmlFor="form-accept-rules">
-                J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon
-                et notamment de la <strong>caution de 20€</strong>.
-              </label>
-              {this.renderValidationError(TeamField.RULES_AGREEMENT)}
-            </div>
+        {/* {this.props.newTeam && !disabled ? ( */}
+        {/*   <Fragment> */}
+        {/*     <div className="form-control"> */}
+        {/*       <input type="checkbox" id="form-accept-rules" name="form-accept-rules" */}
+        {/*              value="accept-rules" */}
+        {/*              checked={this.state.form.rulesAgreement} */}
+        {/*              onChange={this.onCheckboxChange(TeamField.RULES_AGREEMENT)} */}
+        {/*       /> */}
+        {/*       <label htmlFor="form-accept-rules"> */}
+        {/*         J'ai pris connaissance des <Link to="/infos">modalités</Link> relatives au hackathon */}
+        {/*         et notamment de la <strong>caution de 20€</strong>. */}
+        {/*       </label> */}
+        {/*       {this.renderValidationError(TeamField.RULES_AGREEMENT)} */}
+        {/*     </div> */}
 
-            <div className="form-control">
-              <input type="checkbox" id="form-accept-conditions" name="form-accept-conditions"
-                     value="accept-conditions"
-                     checked={this.state.form.conditionsAgreement}
-                     onChange={this.onCheckboxChange(TeamField.CONDITIONS_AGREEMENT)}
-              />
-              <label htmlFor="form-accept-conditions">
-                J'ai lu et accepté les <a
-                href={"/documents/termes_et_conditions.pdf"}
-                rel="noopener noreferrer" target="_blank">termes et conditions</a>.
-              </label>
-              {this.renderValidationError(TeamField.CONDITIONS_AGREEMENT)}
-            </div>
-          </Fragment>
-        ) : null}
+        {/*     <div className="form-control"> */}
+        {/*       <input type="checkbox" id="form-accept-conditions" name="form-accept-conditions" */}
+        {/*              value="accept-conditions" */}
+        {/*              checked={this.state.form.conditionsAgreement} */}
+        {/*              onChange={this.onCheckboxChange(TeamField.CONDITIONS_AGREEMENT)} */}
+        {/*       /> */}
+        {/*       <label htmlFor="form-accept-conditions"> */}
+        {/*         J'ai lu et accepté les <a */}
+        {/*         href={"/documents/termes_et_conditions.pdf"} */}
+        {/*         rel="noopener noreferrer" target="_blank">termes et conditions</a>. */}
+        {/*       </label> */}
+        {/*       {this.renderValidationError(TeamField.CONDITIONS_AGREEMENT)} */}
+        {/*     </div> */}
+        {/*   </Fragment> */}
+        {/* ) : null} */}
 
         {disabled ? null : (
           <div id="team-editor__confirmation">
@@ -424,16 +422,19 @@ export class TeamEditor extends React.Component<{
             <p className="modal-title">Équipe créée !</p>
           </div>
           <div className="modal-body">
-            <p>Votre équipe à bel et bien été créée !</p>
-            <p>Chaque membre invité a reçu un email contenant le lien lui permettant de rejoindre
+            <p>Votre équipe a été créée !</p>
+            <p>Chaque membre invité(e) a reçu un email contenant le lien lui permettant de rejoindre
               l'équipe. <strong>N'oubliez pas de vérifier vos spams !</strong></p>
-            <p>Veuillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
+            <p>Veillez à bien prendre connaissance des <Link to={"/infos"}>informations nécessaires</Link> à la
               confirmation de votre participation et notamment de <strong>la caution de 20€</strong>.</p>
-            <p>La participation d'une équipe n'est effective <strong>que lorsqu'au moins un de ses membres a payé sa caution !</strong></p>
+            <p>La participation d'une équipe n'est effective <strong>que lorsqu'au moins un de ses membres a payé sa
+              caution !</strong></p>
             <p>Notez qu'il est toujours possible de modifier la composition de votre équipe après sa création.</p>
           </div>
           <div className="modal-footer">
-            <button className="button-primary" onClick={() => this.closeModal(TeamModal.CREATED_CONFIRMATION)}>Let's go !</button>
+            <button className="button-primary" onClick={() => this.closeModal(TeamModal.CREATED_CONFIRMATION)}>Let's go
+              !
+            </button>
           </div>
         </ReactModal>
 
@@ -468,7 +469,7 @@ export class TeamEditor extends React.Component<{
   render() {
 
     if (this.state.redirect) {
-      return (<Navigate to={this.state.redirect} />)
+      return (<Navigate to={this.state.redirect}/>);
     }
 
     return (

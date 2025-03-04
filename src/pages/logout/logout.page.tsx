@@ -1,12 +1,12 @@
 import React from "react";
-import {Navigate} from "react-router-dom";
-import {UserService} from "../../services/user.service";
+import { Navigate } from "react-router-dom";
+import { UserService } from "@/services/user.service.ts";
 
 export class LogoutPage extends React.PureComponent {
 
   componentDidMount() {
     UserService.disconnect().then(() => {
-      console.log('Successfully disconnected.');
+      console.log("Successfully disconnected.");
     }).catch(() => {
       // Ignore this case.
     });
@@ -14,7 +14,7 @@ export class LogoutPage extends React.PureComponent {
 
   render() {
     return (
-      <Navigate to="/" replace={true} />
+      <Navigate to="/" replace={true}/>
     );
   }
 

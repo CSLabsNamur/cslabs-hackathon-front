@@ -1,20 +1,20 @@
-import React, {Fragment} from "react";
-import {Buffer} from 'buffer';
+import React, { Fragment } from "react";
+import { Buffer } from "buffer";
 
-import './team-members-list.css';
-import {User} from "../../domain/user";
+import "./team-members-list.css";
+import { User } from "@/domain/user.ts";
 import ReactModal from "react-modal";
-import {Team} from "../../domain/team";
-import {TeamsService} from "../../services/teams.service";
+import { Team } from "@/domain/team.ts";
+import { TeamsService } from "@/services/teams.service.ts";
 
 enum ListModal {
-  SEND_INVITATION = 'sendInvitation',
-  CONFIRM_MEMBER_INVITATION = 'confirmMemberInvitation',
-  MEMBER_INVITATION_SENT = 'memberInvitationSent',
+  SEND_INVITATION = "sendInvitation",
+  CONFIRM_MEMBER_INVITATION = "confirmMemberInvitation",
+  MEMBER_INVITATION_SENT = "memberInvitationSent",
 }
 
 enum Field {
-  INVITATION_EMAIL = 'email'
+  INVITATION_EMAIL = "email"
 }
 
 export class TeamMembersList extends React.Component<{
@@ -122,7 +122,7 @@ export class TeamMembersList extends React.Component<{
   onLeave(event: any) {
     event.preventDefault();
     TeamsService.leave(this.props.user, event.target.value).then((memberId) => {
-      console.log('Member left successfully.');
+      console.log("Member left successfully.");
       const new_state = {...this.state};
       new_state.form.members = new_state.form.members.filter(member => member.id !== memberId);
       this.setState(new_state);
@@ -134,7 +134,7 @@ export class TeamMembersList extends React.Component<{
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   renderMember(member: User, index: number) {
@@ -163,10 +163,10 @@ export class TeamMembersList extends React.Component<{
 
         <td className="tx-right">
           <button className="button-danger-outlined"
-          disabled={disabled || newTeam}
-          style={{visibility: (disabled || newTeam) ? "hidden" : "visible"}}
-          value={member.id}
-          onClick={this.onLeave}
+                  disabled={disabled || newTeam}
+                  style={{visibility: (disabled || newTeam) ? "hidden" : "visible"}}
+                  value={member.id}
+                  onClick={this.onLeave}
           >
             {member.id === user.id ? "Quitter" : "Supprimer"}
           </button>
@@ -198,8 +198,8 @@ export class TeamMembersList extends React.Component<{
 
   renderModals(team?: Team) {
 
-    const token = team?.token ? Buffer.from(team.token).toString('base64') : null;
-    const inviteLink = `${process.env.REACT_APP_FRONT_DOMAIN}/team/join/${token}`;
+    const token = team?.token ? Buffer.from(team.token).toString("base64") : null;
+    const inviteLink = `${import.meta.env.VITE_FRONT_DOMAIN}/team/join/${token}`;
 
     return (
       <Fragment>
@@ -216,7 +216,7 @@ export class TeamMembersList extends React.Component<{
           <div className="modal-body">
             <p>
               Entrez l'adresse email de la personne que vous souhaitez ajouter à l'équipe.
-              Un mail lui sera envoyée, l'invitant à se créer un compte/se connecter et ensuite à rejoindre l'équipe.
+              Un mail lui sera envoyé, l'invitant à se créer un compte/se connecter et ensuite à rejoindre l'équipe.
             </p>
 
             <hr/>
@@ -239,7 +239,7 @@ export class TeamMembersList extends React.Component<{
                   </a>
                 </p>
                 <p>Vous pouvez également envoyer ce code à la personne voulant rejoindre l'équipe.</p>
-                <h5 style={{wordBreak: 'break-word'}}>{token}</h5>
+                <h5 style={{wordBreak: "break-word"}}>{token}</h5>
                 <p>Celui-ci peut être utilisé après avoir appuyé sur le bouton <strong>rejoindre</strong> dans
                   le menu <strong>team</strong> lorsque l'on ne possède pas déjà une équipe.</p>
               </div>
@@ -269,7 +269,7 @@ export class TeamMembersList extends React.Component<{
             <p className="modal-title">Confirmer l'invitation</p>
           </div>
           <div className="modal-body">
-            <p>Vous êtes sur le point d'envoyer une invitation à rejoindre votre équipe à cette e-mail :</p>
+            <p>Vous êtes sur le point d'envoyer une invitation pour rejoindre votre équipe à cette adresse email :</p>
             <h3>{this.state.form.email}</h3>
             <p>Êtes vous certain de vouloir continuer ?</p>
           </div>
@@ -333,14 +333,15 @@ export class TeamMembersList extends React.Component<{
             </tbody>
           </table>
           {!disabled ? (
-              <span className="tooltip">
+            <span className="tooltip">
                 <button className="button-primary-outlined"
                         disabled={disabled || (members.length + invitations.length >= 5)}
                         onClick={this.onInvite}
                 >
                   {!this.props.newTeam ? "Ajouter" : "Inviter"}
                 </button>
-                {(members.length + invitations.length >= 5) ? <span className="tooltip-text">Maximum 5 par équipe!</span> : null}
+              {(members.length + invitations.length >= 5) ?
+                <span className="tooltip-text">Maximum 5 par équipe !</span> : null}
               </span>
           ) : null}
         </div>

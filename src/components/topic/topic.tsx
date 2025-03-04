@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import './topic.css';
+import "./topic.css";
 
 export class Topic extends React.PureComponent<{
   link?: string,
-  direction: 'left' | 'right',
-  img: {src: string, alt: string},
+  direction: "left" | "right",
+  img: { src: string, alt: string },
   children: React.ReactNode,
 }> {
 
@@ -16,19 +16,19 @@ export class Topic extends React.PureComponent<{
       <img src={this.props.img.src}
            alt={this.props.img.alt}
            title={this.props.img.alt}
-           loading="lazy"
-           className="topic-area__info__img" />
+           loading="eager"
+           className="topic-area__info__img"/>
     );
     if (this.props.link) {
       image = (
-        <a href={this.props.link} target="_blank" rel="noreferrer">
+        <a href={this.props.link} target="_blank" rel="noopener noreferrer">
           {image}
         </a>
       );
     }
 
     return (
-      <div className={'row topic-area ' + direction}>
+      <div className={"row topic-area " + direction}>
         <div className="topic-area__info">
           {image}
           <div className="topic-area__info__text">
@@ -36,7 +36,7 @@ export class Topic extends React.PureComponent<{
             {this.props.link ?
               <div className="tx-centered">
                 <a className="topic-area__info__link button button-primary"
-                   href={this.props.link} target="_blank" rel="noreferrer">
+                   href={this.props.link} target="_blank" rel="noopener noreferrer">
                   Site officiel
                 </a>
               </div>

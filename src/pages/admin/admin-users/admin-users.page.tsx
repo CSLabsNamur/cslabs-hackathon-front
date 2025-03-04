@@ -1,14 +1,14 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import ReactModal from "react-modal";
-import {User} from "../../../domain/user";
-import {AdminService} from "../../../services/admin.service";
+import { User } from "@/domain/user.ts";
+import { AdminService } from "@/services/admin.service.ts";
 
-import './admin-users.page.css';
-import {Link} from "react-router-dom";
+import "./admin-users.page.css";
+import { Link } from "react-router-dom";
 
 enum AdminUsersModal {
-  KICK_CONFIRM= 'kickConfirm',
-  DELETE_CONFIRM= 'deleteConfirm',
+  KICK_CONFIRM = "kickConfirm",
+  DELETE_CONFIRM = "deleteConfirm",
 }
 
 export class AdminUsersPage extends React.Component<{}, {
@@ -17,7 +17,9 @@ export class AdminUsersPage extends React.Component<{}, {
   modal: {
     kickConfirm: boolean,
     deleteConfirm: boolean,
-  }
+  },
+  sortBy: string,
+  sortOrder: string,
 }> {
 
   constructor(props: any) {
@@ -28,8 +30,10 @@ export class AdminUsersPage extends React.Component<{}, {
       modal: {
         kickConfirm: false,
         deleteConfirm: false,
-      }
-    }
+      },
+      sortBy: "firstName",
+      sortOrder: "asc",
+    };
 
     this.onValidateCaution = this.onValidateCaution.bind(this);
     this.onCancelCaution = this.onCancelCaution.bind(this);
@@ -50,7 +54,7 @@ export class AdminUsersPage extends React.Component<{}, {
   onValidateCaution(event: any) {
     event.preventDefault();
     AdminService.setCaution(event.target.value, true).then(() => {
-      console.log('Validated caution.');
+      console.log("Validated caution.");
       this.getUsers();
     });
   }
@@ -58,7 +62,7 @@ export class AdminUsersPage extends React.Component<{}, {
   onCancelCaution(event: any) {
     event.preventDefault();
     AdminService.setCaution(event.target.value, false).then(() => {
-      console.log('Canceled caution.');
+      console.log("Canceled caution.");
       this.getUsers();
     });
   }
@@ -74,27 +78,32 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   openModal(modal: AdminUsersModal, userId: string) {
-    const newState = {...this.state};
-    newState.modal[modal] = true;
-    newState.selectedUser = userId;
-    this.setState(newState);
+    this.setState((prevState) => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        [modal]: true,
+      },
+      selectedUser: userId,
+    }));
   }
 
   closeModals() {
-    const newState = {...this.state};
-    newState.modal = {
-      kickConfirm: false,
-      deleteConfirm: false,
-    };
-    newState.selectedUser = undefined;
-    this.setState(newState);
+    this.setState((prevState) => ({
+      ...prevState,
+      modal: {
+        kickConfirm: false,
+        deleteConfirm: false,
+      },
+      selectedUser: undefined,
+    }));
   }
 
   kickUser() {
     const userId = this.state.selectedUser;
     if (userId) {
       AdminService.kickUser(userId).then(() => {
-        console.log('User kicked from its team.');
+        console.log("User kicked from its team.");
       });
     }
     this.closeModals();
@@ -105,7 +114,7 @@ export class AdminUsersPage extends React.Component<{}, {
     const userId = this.state.selectedUser;
     if (userId) {
       AdminService.deleteUser(userId).then(() => {
-        console.log('User deleted.');
+        console.log("User deleted.");
       });
     }
     this.closeModals();
@@ -116,7 +125,6 @@ export class AdminUsersPage extends React.Component<{}, {
     const {id, team, paidCaution, isAdmin, isTeamOwner} = user;
     return (
       <div className="admin-action-bar">
-
         {paidCaution ? (
           <button className="button button-danger button-small"
                   value={id}
@@ -194,7 +202,7 @@ export class AdminUsersPage extends React.Component<{}, {
             <button className="button-danger"
                     onClick={() => this.deleteUser()}
             >
-              A mort !
+              À mort !
             </button>
             <button className="button-info"
                     onClick={() => this.closeModals()}
@@ -208,7 +216,7 @@ export class AdminUsersPage extends React.Component<{}, {
   }
 
   renderUser(user: User, index: number) {
-    const {team, note, paidCaution, github, linkedIn, createdAt, imageAgreement, isAdmin} = user;
+    const {team, note, paidCaution, github, linkedIn, createdAt, isAdmin} = user;
 
     return (
       <tr key={index}>
@@ -218,7 +226,8 @@ export class AdminUsersPage extends React.Component<{}, {
         <td>{team ? <span style={{color: team.valid ? "green" : "red"}}>{team.name}</span> : <span>/</span>}</td>
         <td>{user.isTeamOwner ? "Oui" : "/"}</td>
         <td>{user.email}</td>
-        <td className="tx-centered">
+        {/* auto agree due to accept general conditions and terms */}
+        {/* <td className="tx-centered">
           {imageAgreement ? (
             <span className="tooltip" style={{color: "green"}}>
               &#x2714;
@@ -232,7 +241,7 @@ export class AdminUsersPage extends React.Component<{}, {
               </span>
             </span>
           )}
-        </td>
+        </td> */}
         <td className="tx-centered">
           {isAdmin ? (
             <span className="tooltip" style={{color: "green"}}>
@@ -269,7 +278,7 @@ export class AdminUsersPage extends React.Component<{}, {
             </span>
           )}
         </td>
-        <td className="tx-centered">{createdAt?.toISOString()}</td>
+        <td className="tx-centered">{createdAt?.toLocaleString()}</td>
         <td className="tx-centered">
           {github ?
             <span className="tooltip">
@@ -278,7 +287,7 @@ export class AdminUsersPage extends React.Component<{}, {
                 {github}
               </span>
             </span>
-            : '/'}
+            : "/"}
         </td>
         <td className="align-center">
           {linkedIn ?
@@ -288,7 +297,7 @@ export class AdminUsersPage extends React.Component<{}, {
                 {linkedIn}
               </span>
             </span>
-            : '/'}
+            : "/"}
         </td>
         <td>
           {this.renderActionBar(user)}
@@ -298,61 +307,71 @@ export class AdminUsersPage extends React.Component<{}, {
 
   }
 
-  renderFilter() {
-	return (
-		<table>
-			<thead>
-				<tr>
-					<th className="align-center">Valeur de test</th>
-					<th className="align-center">Droit à l'image</th>
-					<th className="align-center">Est admin ?</th>
-					<th className="align-center">Remarques</th>
-					<th className="align-center">Caution</th>
-					<th className="align-center">Date d'inscription (ordre)</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>True</td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.imageAgreement))}>Accepte les photos</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.isAdmin))}>Liste des admins</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.note))}>N'a aucune remarque</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => user.paidCaution))}>A payé sa caution</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
-						if (!user1.createdAt || !user2.createdAt) {
-							return 0
-						}
-						if (user1.createdAt?.toISOString() > user2.createdAt.toISOString()) {
-							return -1;
-						}
-						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
-							return 1;
-						}
-						return 0;
-					}))}>Le plus ancien</button></td>
-				</tr>
-				<tr>
-					<td>False</td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.imageAgreement))}>Refuse les photos</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.isAdmin))}>Liste des membres</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.note))}>A au moins une remarque</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.filter((user) => !user.paidCaution))}>N'a pas payé sa caution</button></td>
-					<td><button className="filter-table" onClick={() => (this.state.users.sort((user1, user2) => {
-						if (!user1.createdAt || !user2.createdAt) {
-							return 0
-						}
-						if (user1.createdAt.toISOString() > user2.createdAt.toISOString()) {
-							return -1;
-						}
-						if (user1.createdAt.toISOString() < user2.createdAt.toISOString()) {
-							return 1;
-						}
-						return 0;
-					}))}>Le plus réccent</button></td>
-				</tr>
-			</tbody>
-		</table>
-	)
+  /**
+   * Update state to sort by a given column
+   * @param columnName Column to sort by
+   */
+  handleSort(columnName: string) {
+    this.setState((prevState: any) => {
+      let sortOrder = "asc";
+      if (this.state.sortBy === columnName && this.state.sortOrder === "asc") {
+        sortOrder = "desc";
+      }
+
+      return {
+        ...prevState,
+        sortBy: columnName,
+        sortOrder: sortOrder,
+      };
+    });
+  };
+
+  renderTableHead(columns: { label: string, accessor: string, hasSort?: boolean }[]) {
+    const {sortBy, sortOrder} = this.state;
+    return (
+      <thead>
+      <tr>
+        {columns.map(({label, accessor, hasSort}) => {
+          if (hasSort !== undefined && !hasSort) {
+            return <th key={accessor}>{label}</th>;
+          }
+          return <th key={accessor}
+                     onClick={() => this.handleSort(accessor)}>{label} {sortBy === accessor && sortOrder === "asc" ? "▲" : "▼"}</th>;
+        })}
+      </tr>
+      </thead>
+    );
+  }
+
+  sortUsers(users: User[]): User[] {
+    const {sortBy, sortOrder} = this.state;
+    return users.sort((a, b) => {
+      const isAsc = sortOrder === "asc";
+      if (sortBy) {
+        if (sortBy === "team") {
+          return isAsc ? (a.team?.name || "").localeCompare(b.team?.name || "") : (b.team?.name || "").localeCompare(a.team?.name || "");
+        }
+        if (typeof a[sortBy] === "boolean") {
+          return isAsc ?
+            (a[sortBy] ? 1 : -1) :
+            (b[sortBy] ? 1 : -1);
+        }
+        if (sortBy === "note") {
+          return isAsc ?
+            (a.note !== undefined ? 1 : -1) :
+            (b.note !== undefined ? 1 : -1);
+        }
+        if (a[sortBy] instanceof Date) {
+          return isAsc ? Number(a[sortBy]) - Number(b[sortBy]) : Number(b[sortBy]) - Number(a[sortBy]);
+        }
+        if (!(typeof a[sortBy]?.localeCompare === "function")) {
+          console.log(`Cannot sort by ${sortBy} because it is not comparable.`);
+          return 0;
+        }
+        return isAsc ? a[sortBy].localeCompare(b[sortBy]) : b[sortBy].localeCompare(a[sortBy]);
+      }
+      return 0;
+    });
   }
 
   render() {
@@ -360,14 +379,38 @@ export class AdminUsersPage extends React.Component<{}, {
     const usersWithoutCaution = users.filter((user) => !user.paidCaution);
     const nonAdminUsers = users.filter((user) => !user.isAdmin);
     const members = nonAdminUsers.filter((user) => user.team);
-    const membersWithoutTeam = nonAdminUsers.filter((user) => !user.team)
+    const membersWithoutTeam = nonAdminUsers.filter((user) => !user.team);
+    let columns = [
+      // list of properties from User that we want to display
+      // label: column header
+      // accessor: property name in User
+      // hasSort: if false, the column will not be sortable
+      {label: "Prénom", accessor: "firstName"},
+      {label: "Nom", accessor: "lastName"},
+      {label: "Équipe", accessor: "team"},
+      {label: "Capitaine", accessor: "isTeamOwner"},
+      {label: "Email", accessor: "email"},
+      // auto agree due to accept general conditions and terms
+      // {label: "Droit à l'image", accessor: "imageAgreement"},
+      {label: "Admin", accessor: "isAdmin"},
+      {label: "Remarques", accessor: "note"},
+      {label: "Caution", accessor: "paidCaution"},
+      {label: "Date d'inscription", accessor: "createdAt"},
+      {label: "GitHub", accessor: "github", hasSort: false},
+      {label: "LinkedIn", accessor: "linkedIn", hasSort: false},
+      {label: "Actions", accessor: "actions", hasSort: false},
+    ];
+
+    const sortedUsers = this.sortUsers(users);
 
     return (
       <div id="admin-users-page">
 
         <div className="tx-centered">
           <h3>Gestion des utilisateurs</h3>
-          <Link to="/admin"><button className="button-primary-outlined button-large">Retour</button></Link>
+          <Link to="/admin">
+            <button className="button-primary-outlined button-large">Retour</button>
+          </Link>
           <p>
             Il y a actuellement :
           </p>
@@ -380,34 +423,15 @@ export class AdminUsersPage extends React.Component<{}, {
           </ul>
         </div>
 
-        <div className="tx-centered">
-          {this.renderFilter()}
-        </div>
-
         <table>
-          <thead>
-          <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Team</th>
-            <th>Créateur</th>
-            <th>Email</th>
-            <th className="align-center">Droit à l'image</th>
-            <th className="align-center">Est admin ?</th>
-            <th className="align-center">Remarques</th>
-            <th className="align-center">Caution</th>
-            <th className="align-center">Date d'inscription</th>
-            <th className="align-center">Github</th>
-            <th className="align-center">LinkedIn</th>
-            <th/>
-          </tr>
-          </thead>
+          <caption>Liste des utilisateurs</caption>
+          {this.renderTableHead(columns)}
           <tbody>
-          {this.state.users.map((user, index) => this.renderUser(user, index))}
+          {sortedUsers.map((user, index) => this.renderUser(user, index))}
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 
 }

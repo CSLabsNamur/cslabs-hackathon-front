@@ -1,38 +1,40 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import timerModule from '../timer/timer';
+import React from "react";
+import { Link } from "react-router-dom";
+import timerModule from "../timer/timer";
 
-import './registration-info.css';
+import "./registration-info.css";
+import { DateTime } from "luxon";
 
 export class RegistrationInfo extends React.PureComponent {
 
   renderRegistrationInfo() {
 
-    const date = timerModule.getDateEnv(process.env.REACT_APP_DATE) ;
+    const date = timerModule.getDateEnv(import.meta.env.VITE_DATE_OPEN);
 
-    if (date > new Date())
+    if (date > DateTime.now())
       return (
-        <div>
-          <p>Les inscriptions s'ouvrent dans <timerModule.Timer /></p>
+        <div className="on-green">
+          <p><strong>Les inscriptions s'ouvrent dans</strong></p>
+          <timerModule.Timer/>
         </div>
       );
 
     return (<Link to="/inscription">
-              <button className="button button-primary">S'inscrire</button>
-            </Link>
-        );
+        <button className="button button-primary">S'inscrire</button>
+      </Link>
+    );
   }
 
   render() {
     return (
-      <div className="row">
+      <div className="row on-green">
         <div className="col inscription-info__content align-center">
-          <h2>Plongez ! Inscrivez vous !</h2>
+          <h2 className="on-green">Plongez ! Inscrivez vous !</h2>
 
-          <p>Le site vous permet de rejoindre une équipe afin de participer au hackathon. N'hésitez plus et
-            inscrivez vous !</p>
-          <p>L'inscription sur le site est gratuite. Cependant, la participation effective au hackathon demande
-            une caution de 20€.</p>
+          <p className="on-green">Le site vous permet de rejoindre une équipe afin de participer au hackathon. N'hésitez
+            plus et inscrivez vous !</p>
+          <p className="on-green">L'inscription sur le site est gratuite. Cependant, la participation effective au
+            hackathon demande une caution de 20€.</p>
 
           <div>
             {this.renderRegistrationInfo()}
@@ -44,5 +46,4 @@ export class RegistrationInfo extends React.PureComponent {
       </div>
     );
   }
-
 }

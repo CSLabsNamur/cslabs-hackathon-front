@@ -1,7 +1,7 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './team-menu.css';
+import "./team-menu.css";
 
 export class TeamMenu extends React.PureComponent {
 

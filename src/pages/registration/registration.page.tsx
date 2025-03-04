@@ -1,33 +1,34 @@
-import React, {FormEvent, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import React, { FormEvent, Fragment } from "react";
+import { Link } from "react-router-dom";
 
-import './registration.page.css';
-import {RegistrationValidation} from './registration.validation';
-import {UserService} from "../../services/user.service";
-import {FormValidationService} from "../../services/form-validation.service";
+import "./registration.page.css";
+import { RegistrationValidation } from "./registration.validation";
+import { UserService } from "@/services/user.service.ts";
+import { FormValidationService } from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
-import {withRouter, WithRouterProps} from "../../utils/with-router";
-import timerModule from "../../components/timer/timer";
-import MailInfo from "../../components/mail-info/mail-info";
+import { withRouter, WithRouterProps } from "../../utils/with-router";
+import timerModule from "@/components/timer/timer";
+import MailInfo from "@/components/mail-info/mail-info";
+import { DateTime } from "luxon";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
 const getMessage = timerModule.getMessage;
 
-let waitingSubscription = false
+let waitingSubscription = false;
 let closedSubscription = false;
 
-if (getDateEnv(process.env.REACT_APP_DATE) < new Date()) {
+if (getDateEnv(import.meta.env.VITE_DATE_OPEN) > DateTime.now()) {
   waitingSubscription = true;
 }
-if (getDateEnv(process.env.REACT_APP_DATE_EVENT) < new Date()) {
+if (getDateEnv(import.meta.env.VITE_DATE_CLOSE) < DateTime.now()) {
   closedSubscription = true;
 }
 
 enum RegistrationField {
-  EMAIL = 'email',
-  PASSWORD = 'password',
-  PASSWORD_CONFIRM = 'passwordConfirm',
+  EMAIL = "email",
+  PASSWORD = "password",
+  PASSWORD_CONFIRM = "passwordConfirm",
   FIRST_NAME = "firstName",
   LAST_NAME = "lastName",
   GITHUB = "github",
@@ -36,12 +37,12 @@ enum RegistrationField {
   NOTE = "note",
   RULES_AGREEMENT = "rulesAgreement",
   CONDITIONS_AGREEMENT = "conditionsAgreement",
-  CV_FILE = 'cv_file',
-  IMAGE_AGREEMENT = 'imageAgreement',
-  SUBSCRIBE_FORMATION='subscribeFormation',
+  CV_FILE = "cv_file",
+  //IMAGE_AGREEMENT = "imageAgreement",
+  SUBSCRIBE_FORMATION = "subscribeFormation",
 }
 
-class RegistrationPage extends React.Component<WithRouterProps<{}>, {
+export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
   form: {
     email: string,
     password: string,
@@ -80,12 +81,12 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
         note: "",
         rulesAgreement: false,
         conditionsAgreement: false,
-        imageAgreement: false,
+        imageAgreement: true,
         subscribeFormation: false,
       },
       validationErrors: {},
       modal: {},
-    }
+    };
 
     this.cvInput = React.createRef();
 
@@ -111,7 +112,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
   onCheckboxChange(field: RegistrationField) {
@@ -119,7 +120,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.checked;
       this.setState(newState);
-    }
+    };
   }
 
   async validateForm() {
@@ -141,39 +142,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     this.setState({
       ...this.state,
       modal: {error: message},
-    })
-  }
-
-  getClosedDate() {
-      const eventDate = getDateEnv(process.env.REACT_APP_DATE_EVENT);
-      const currentDate = new Date();
-      const timeDifference = eventDate.getTime() - currentDate.getTime(); 
-
-      if (timeDifference <= 0) {
-        return "L'événement est déjà clos.";
-      }
-    
-      const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
-      let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) - (months * 30);
-      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-      const maxMonth = (eventDate: Date, currentDate: Date) => {
-        if (eventDate.getFullYear() === currentDate.getFullYear()) {
-          return eventDate.getMonth();
-        }
-        return 12 + eventDate.getMonth();
-      }
-
-      for (let month = currentDate.getMonth(); month < maxMonth(eventDate, currentDate); month+=2) {
-        days -= 1; // still have impressision due to february and leap years
-      }
-    
-      const message = getMessage(months, days, hours, minutes, seconds);
-      
-      return message.substring(0, 15); // substring to only get months and days
-    
+    });
   }
 
   onFormSubmit(event: FormEvent) {
@@ -182,32 +151,31 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       .then((validated) => {
         if (validated) {
           UserService.registerAndLogin(this.state.form).then(() => {
-            console.log('Successfully registered and logged in.');
-            this.props.navigate(-1);
+            console.log("Successfully registered and logged in.");
 
             if (this.cvInput.current!.files!.length > 0) {
               UserService.uploadCv(this.cvInput.current!.files![0]).then(() => {
-                console.log('Successfully uploaded CV.');
+                console.log("Successfully uploaded CV.");
               }).catch(() => {
                 return this.showErrorModal("Votre CV n'a pas pu être envoyé.");
               });
             }
+
+            this.props.navigate("/team");
           }).catch(error => {
             const message = error.response?.data?.message;
 
             if (message === "User with that email already exists.") {
               return this.showErrorModal("Un utilisateur avec cette adresse email existe déjà.");
-            }
-
-            else if (message === "Max number of users reached.") {
+            } else if (message === "Max number of users reached.") {
               return this.showErrorModal(
-                `Le nombre maximum de participants à été atteint ! Il n'est dès lors plus possible de s'inscrire... 
-                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord où à l'adresse mail events@cslabs.be`
-              )
+                `Le nombre maximum de participants a été atteint ! Il n'est dès lors plus possible de s'inscrire... 
+                 Si vous voulez être informé d'un désistement, contactez un organisateur sur Discord ou sur l'adresse mail events@cslabs.be`,
+              );
             }
 
             return this.showErrorModal(
-              `Erreur inconnue: ${message}. Prenez-contact sur Discord ou via hackathon@cslabs.be`
+              `Erreur inconnue: ${message}. Prenez contact sur Discord ou via hackathon@cslabs.be`,
             );
           });
         }
@@ -326,10 +294,10 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
 
             <div className="form-control">
               <label htmlFor="form-github">
-                Votre compte github (optionnel)
+                Votre compte GitHub (optionnel)
               </label>
               <input type="text" id="form-github" name="form-github"
-                     placeholder="Lien vers votre github..."
+                     placeholder="Lien vers votre GitHub..."
                      className={this.getInputClassname(RegistrationField.GITHUB)}
                      value={this.state.form.github}
                      onChange={this.onTextChange(RegistrationField.GITHUB)}
@@ -342,7 +310,7 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre compte LinkedIn (optionnel)
               </label>
               <input type="text" id="form-linkedin" name="form-linkedin"
-                     placeholder="Lien vers votre linkedIn..."
+                     placeholder="Lien vers votre LinkedIn..."
                      className={this.getInputClassname(RegistrationField.LINKEDIN)}
                      value={this.state.form.linkedIn}
                      onChange={this.onTextChange(RegistrationField.LINKEDIN)}
@@ -356,19 +324,22 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               </label>
               <input type="text" list="form-origin-list"
                      id="form-origin" name="form-origin"
-                     placeholder="UNamur..."
+                     placeholder="UNamur, ..."
                      className={this.getInputClassname(RegistrationField.ORIGIN)}
                      value={this.state.form.origin}
                      onChange={this.onTextChange(RegistrationField.ORIGIN)}
               />
               <datalist id="form-origin-list">
                 <option value="UNamur"/>
-                <option value="ULg"/>
                 <option value="UCL"/>
+                <option value="ULg"/>
+                <option value="ULB"/>
                 <option value="KULeuven"/>
+                <option value="Henallux"/>
                 <option value="IESN"/>
                 <option value="HEC"/>
-                <option value="Odoo"/>
+                <option value="HE2B"/>
+                <option value="HEAJ"/>
               </datalist>
               {this.renderValidationError(RegistrationField.ORIGIN)}
             </div>
@@ -392,7 +363,8 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                 Votre CV (pdf, max 5Mo) (optionnel)
               </label>
               <span>
-                Pour toute question sur l'utilisation de votre CV par le CSLabs contacter le <a href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
+                <br/>Pour toute question sur l'utilisation de votre CV par le CSLabs, contactez le <a
+                href="mailto:rgpd@cslabs.be">responsable RGPD</a>.
               </span>
               <div>
                 <input type="file"
@@ -433,17 +405,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
             {this.renderValidationError(RegistrationField.CONDITIONS_AGREEMENT)}
           </div>
 
-          <div className="form-control">
-            <input type="checkbox" id="form-image-agreement" name="form-image-agreement"
-                  value="image-agreement"
-                  checked={this.state.form.imageAgreement}
-                  onChange={this.onCheckboxChange(RegistrationField.IMAGE_AGREEMENT)}
-            />
-            <label htmlFor="form-image-agreement">
-              Je consens à l'utilisation de mon image dans le cadre de l'événement
-            </label>
-            {this.renderValidationError(RegistrationField.IMAGE_AGREEMENT)}
-          </div>
 
           <div className="form-control">
             <input type="checkbox" id="form-subscribe-formation" name="form-subscribe-formation"
@@ -452,18 +413,15 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
                    onChange={this.onCheckboxChange(RegistrationField.SUBSCRIBE_FORMATION)}
             />
             <label htmlFor="form-subscribe-formation">
-              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au Hackathon.
+              Je souhaite recevoir un avertissement pour les formations du CSLabs permettant de se préparer au
+              Hackathon.
             </label>
             {this.renderValidationError(RegistrationField.SUBSCRIBE_FORMATION)}
           </div>
 
           <div className="form-control align-center">
-            <MailInfo />
-            <p>*Obligatoire</p>
-          </div>
-
-          <div className="form-control align-center">
-            <p>Attention que les inscriptions ferme dans {this.getClosedDate()}</p>
+            <MailInfo/>
+            <p className="on-white">*Obligatoire</p>
           </div>
 
           <div className="form-control align-center">
@@ -471,16 +429,12 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
               M'inscrire
             </button>
           </div>
-
         </form>
-
       </div>
     );
-
   }
 
   render() {
-
     if (waitingSubscription) {
       return (<div id="subscription_waiting">
         <p>
@@ -499,9 +453,10 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
           Les inscriptions sont fermées !
         </p>
         <p>
-          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir quand arrive le prochain 😉
+          Nous t'invitons à suivre le CSLabs sur les réseaux sociaux pour voir
+          quand arrive le prochain <span role="img" aria-label="wink">😉</span>
         </p>
-      </div>)
+      </div>);
     }
 
     return (
@@ -510,7 +465,6 @@ class RegistrationPage extends React.Component<WithRouterProps<{}>, {
       </Fragment>
     );
   }
-
 }
 
 export default withRouter(RegistrationPage);
