@@ -1,13 +1,13 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {Team} from "../../../domain/team";
-import {User} from "../../../domain/user";
-import {TeamsService} from "../../../services/teams.service";
+import { Link } from "react-router-dom";
+import { Team } from "@/domain/team.ts";
+import { User } from "@/domain/user.ts";
+import { TeamsService } from "@/services/teams.service.ts";
 
-import './team-info.page.css';
-import {withRouter, WithRouterProps} from "../../../utils/with-router";
+import "./team-info.page.css";
+import { withRouter, WithRouterProps } from "@/utils/with-router.tsx";
 
-class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
+export class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
   team?: Team,
 }> {
 
@@ -16,7 +16,7 @@ class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
 
     this.state = {
       team: undefined,
-    }
+    };
   }
 
   renderMember(member: User, index: number) {
@@ -43,14 +43,14 @@ class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
   }
 
   componentDidMount() {
-    const team_id = this.props.params['id'];
+    const team_id = this.props.params["id"];
 
     if (!team_id) {
-      throw Error('Missing team id.');
+      throw Error("Missing team id.");
     }
 
     TeamsService.get(team_id).then((team) => {
-      this.setState({ team });
+      this.setState({team});
     });
   }
 
@@ -67,7 +67,7 @@ class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
 
         <div className="panel-head">
           <h3>{team.name}</h3>
-          <Link to={'/team/all'}>
+          <Link to={"/team/all"}>
             <button className="button button-primary">
               Retour aux équipes
             </button>
@@ -103,4 +103,4 @@ class TeamInfoPage extends React.Component<WithRouterProps<{}>, {
 
 }
 
-export default withRouter(TeamInfoPage)
+export default withRouter(TeamInfoPage);

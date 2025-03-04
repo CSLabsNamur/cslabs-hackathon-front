@@ -1,13 +1,13 @@
-import {HttpMethods, HttpService} from "./http.service";
-import {UserService} from "./user.service";
-import {TeamsService} from "./teams.service";
-import {Team} from "../domain/team";
-import {User} from "../domain/user";
+import { HttpMethods, HttpService } from "./http.service";
+import { UserService } from "./user.service";
+import { TeamsService } from "./teams.service";
+import { Team } from "../domain/team";
+import { User } from "../domain/user";
 
 export class AdminService {
 
   static async getAllUsers(): Promise<User[]> {
-    const data = await HttpService.send(HttpMethods.GET, 'users', {}, true);
+    const data = await HttpService.send(HttpMethods.GET, "users", {}, true);
     return data.map((userData: any) => UserService.userFromData(userData));
   }
 
@@ -24,7 +24,7 @@ export class AdminService {
   }
 
   static async getAllTeams(): Promise<Team[]> {
-    const data = await HttpService.send(HttpMethods.GET, 'teams', {}, true);
+    const data = await HttpService.send(HttpMethods.GET, "teams", {}, true);
     return data.map((teamData: any) => TeamsService.teamFromData(teamData));
   }
 
@@ -41,11 +41,11 @@ export class AdminService {
   }
 
   static async sendAnnounce(subject: string, announce: string, addressee: string) {
-    await HttpService.send(HttpMethods.POST, 'users/announce', {subject, announce, addressee}, true);
+    await HttpService.send(HttpMethods.POST, "users/announce", {subject, announce, addressee}, true);
   }
 
   static async getVoteResults() {
-    return await HttpService.send(HttpMethods.GET, 'teams/vote/results', {}, true);
+    return await HttpService.send(HttpMethods.GET, "teams/vote/results", {}, true);
   }
 
 }

@@ -1,4 +1,11 @@
-
 #team-page {
-    padding-top: 7rem;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+#team-page .form-container {
+  margin-top: 0;
+  padding-top: 0;
 }

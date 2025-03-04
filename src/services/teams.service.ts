@@ -1,13 +1,13 @@
-import {UserService} from "./user.service";
-import {HttpMethods, HttpService} from "./http.service";
-import {Team} from "../domain/team";
-import {User} from "../domain/user";
-import {Buffer} from "buffer";
+import { UserService } from "./user.service";
+import { HttpMethods, HttpService } from "./http.service";
+import { Team } from "../domain/team";
+import { User } from "../domain/user";
+import { Buffer } from "buffer";
 
 export class TeamsService {
 
   static async getAll(): Promise<Team[]> {
-    const data: any[] = await HttpService.send(HttpMethods.GET, 'teams', {}, true);
+    const data: any[] = await HttpService.send(HttpMethods.GET, "teams", {}, true);
     return data.map((teamData) => this.teamFromData(teamData));
   }
 
@@ -17,7 +17,7 @@ export class TeamsService {
   }
 
   static async join(encodedToken: string) {
-    const token = Buffer.from(encodedToken, 'base64').toString();
+    const token = Buffer.from(encodedToken, "base64").toString();
     const teamData = await HttpService.send(HttpMethods.POST, `teams/join/${token}`, {}, true);
     const team = this.teamFromData(teamData);
     await UserService.updateTeam(team, false);
@@ -36,7 +36,7 @@ export class TeamsService {
   }
 
   static async invite(email: string) {
-    await HttpService.send(HttpMethods.POST, 'teams/invite', {email}, true);
+    await HttpService.send(HttpMethods.POST, "teams/invite", {email}, true);
   }
 
   static async create({name, description, idea, invitations}: {
@@ -45,8 +45,8 @@ export class TeamsService {
     idea: string,
     invitations: string[]
   }) {
-    const teamData = await HttpService.send(HttpMethods.POST, 'teams/new', {
-      name, description, idea, invitations
+    const teamData = await HttpService.send(HttpMethods.POST, "teams/new", {
+      name, description, idea, invitations,
     }, true);
     const team = this.teamFromData(teamData);
     await UserService.updateTeam(team, true);
@@ -58,7 +58,7 @@ export class TeamsService {
     idea: string
   }) {
     const teamData = await HttpService.send(HttpMethods.PUT, `teams/${teamId}`, {
-      name, description, idea
+      name, description, idea,
     }, true);
     const team = this.teamFromData(teamData);
     await UserService.updateTeam(team, true);

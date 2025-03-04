@@ -1,4 +1,6 @@
 import axios from "axios";
+import { Cookies } from "react-cookie";
+import type { CookieSetOptions } from "universal-cookie";
 
 export enum HttpMethods {
   GET,
@@ -9,15 +11,17 @@ export enum HttpMethods {
 }
 
 export class HttpService {
+  static cookiesHeader: CookieSetOptions = {sameSite: "strict", httpOnly: false, secure: true};
 
   static async send(method: HttpMethods, uri: string, data: Object = {}, auth = false, tryRefresh = true): Promise<any> {
     const headers: any = {};
-    const accessToken = localStorage.getItem('accessToken');
-    if (auth && accessToken) {
-      headers['Authorization'] = `Bearer ${accessToken}`;
+    const cookies = new Cookies(HttpService.cookiesHeader);
+    const authorization = `Bearer ${cookies.get("accessToken")}`;
+    if (auth && authorization) {
+      headers["Authorization"] = authorization;
     }
 
-    const domain = process.env.REACT_APP_API_DOMAIN;
+    const domain = import.meta.env.VITE_API_DOMAIN;
     let response;
 
     switch (method) {
@@ -25,21 +29,18 @@ export class HttpService {
         response = await axios.get(`${domain}/${uri}`, {
           params: data,
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
       case HttpMethods.POST:
         response = await axios.post(`${domain}/${uri}`, data, {
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
       case HttpMethods.PUT:
         response = await axios.put(`${domain}/${uri}`, data, {
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
@@ -47,13 +48,12 @@ export class HttpService {
         response = await axios.delete(`${domain}/${uri}`, {
           data,
           headers,
-          validateStatus: (status: number) => [200, 201, 401].includes(status),
         });
         break;
 
       case HttpMethods.FILE:
         const form = new FormData();
-        form.append('file', data as File);
+        form.append("file", data as File);
         response = await axios.post(`${domain}/${uri}`, form, {
           headers: headers,
         });
@@ -68,33 +68,33 @@ export class HttpService {
       return this.send(method, uri, data, auth, false);
     }
 
-    throw Error('Request failed.');
+    throw Error("Request failed.");
   }
 
   static async refreshTokens(): Promise<boolean> {
-    console.log('Try to refresh tokens.');
-    const refreshToken = localStorage.getItem('refreshToken');
+    console.log("Try to refresh tokens.");
+    const cookies = new Cookies(HttpService.cookiesHeader);
+    const refreshToken = cookies.get("refreshToken");
     if (!refreshToken) {
       return false;
     }
 
-    const domain = process.env.REACT_APP_API_DOMAIN;
+    const domain = import.meta.env.VITE_API_DOMAIN;
 
     try {
       const response = await axios.get(`${domain}/authentication/refresh`, {
-        headers: { 'RefreshToken': refreshToken }
+        headers: {"RefreshToken": refreshToken},
       });
       const newAccessToken = response.data.accessToken;
       const newRefreshToken = response.data.refreshToken;
-      localStorage.setItem('accessToken', newAccessToken);
-      localStorage.setItem('refreshToken', newRefreshToken);
-      console.log('Tokens refreshed.');
+      cookies.set("accessToken", newAccessToken, {...HttpService.cookiesHeader, maxAge: 7200});
+      cookies.set("refreshToken", newRefreshToken, {...HttpService.cookiesHeader, maxAge: 1209600});
+      console.log("Tokens refreshed.");
     } catch (err) {
-      console.log('Failed to refresh tokens.');
+      console.log("Failed to refresh tokens.");
       return false;
     }
 
     return true;
   }
-
 }

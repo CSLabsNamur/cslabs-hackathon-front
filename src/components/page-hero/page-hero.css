@@ -1,124 +1,125 @@
 
 header, .header {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    background-color: var(--primary-bg-color);
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: var(--primary-bg-color);
 }
 
 .page-hero {
-    position: relative;
-    margin-top: 1.6rem;
-    width: 100%;
+  position: relative;
+  margin-top: 1.6rem;
+  width: 100%;
 }
 
 .page-hero__logo-hackathon {
-    position: absolute;
-    top: 8rem;
-    left: 50%;
-    width: 24rem;
-    height: 24rem;
-    transform: translate(-50%, -100%);
-    z-index: 1;
-    user-select: none;
-    perspective: 60rem;
+  position: absolute;
+  top: 8rem;
+  left: 50%;
+  width: 24rem;
+  height: 24rem;
+  transform: translate(-50%, -100%);
+  z-index: 1;
+  user-select: none;
+  perspective: 60rem;
 }
 
 .page-hero__logo-hackathon div {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .page-hero__logo-hackathon .inner {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: 1s;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 1s;
 }
 
 .page-hero__logo-hackathon .front, .page-hero__logo-hackathon .back {
-    position: absolute;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
+  position: absolute;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
 
 .page-hero__logo-hackathon:active .inner {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .page-hero__logo-hackathon .back {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .page-hero__logo-hackathon img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    pointer-events: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
 }
 
 .page-hero__content {
-    width: 100%;
-    height: 40rem;
+  width: 100%;
+  height: 40rem;
 
-    padding-top: 8rem;
-    padding-bottom: 4rem;
-    text-align: center;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  text-align: center;
 
-    background-color: var(--primary-accent-color);
+  background-color: var(--primary-accent-color);
 
-    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
 }
 
+
 .page-hero__content > .disclaimer {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .page-hero__arrow {
-    margin-top: 2rem;
-    width: 6rem;
-    height: 6rem;
-    padding: 1.4rem;
+  margin-top: 2rem;
+  width: 6rem;
+  height: 6rem;
+  padding: 1.4rem;
 
-    border: .4rem solid var(--primary-accent-color);
-    border-radius: 50%;
-    opacity: 0.8;
+  border: .4rem solid var(--primary-accent-color);
+  border-radius: 50%;
+  opacity: 0.8;
 
-    transition: 0.2s;
+  transition: 0.2s;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .page-hero__arrow:hover {
-    transform: scale(1.4);
-    opacity: 1.0;
-    transition: 0.5s;
+  transform: scale(1.4);
+  opacity: 1.0;
+  transition: 0.5s;
 }
 
 .page-hero__arrow:active {
-    transform: scale(1.2);
-    transition: 0.1s;
+  transform: scale(1.2);
+  transition: 0.1s;
 }
 
 @media only screen and (max-height: 800px) {
-    .page-hero__logo-hackathon {
-        width: 14rem;
-        height: 14rem;
-    }
+  .page-hero__logo-hackathon {
+    width: 14rem;
+    height: 14rem;
+  }
 }
 
 @media only screen and (max-height: 600px) {
-    .page-hero__logo-hackathon {
-        display: none;
-    }
+  .page-hero__logo-hackathon {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .page-hero__content {
-        height: 50rem;
-    }
+  .page-hero__content {
+    height: 50rem;
+  }
 
-    .page-hero__logo-hackathon {
-        display: none;
-    }
+  .page-hero__logo-hackathon {
+    display: none;
+  }
 }

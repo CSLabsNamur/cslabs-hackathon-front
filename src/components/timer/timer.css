@@ -1,9 +1,11 @@
-
 #timer {
-    max-width: fit-content;
-    margin: 1rem auto;
-    padding: 1rem 4rem;
+  font-family: "Consolas", "DejaVu Sans Mono", Menlo, Monaco, "Courier New", monospace;
+  font-size: 90%;
+  max-width: fit-content;
+  margin: 1rem auto;
+  padding: 1rem 4rem;
 
-    border: .5rem solid var(--primary-accent-color);
-    border-radius: 1rem;
+  border: .5rem solid var(--primary-accent-color);
+  border-radius: 1rem;
+  text-align: center;
 }

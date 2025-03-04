@@ -7,19 +7,19 @@ export class PageHero extends React.PureComponent<{
   subtitle: string,
   disclaimer?: React.ReactElement,
   hasArrow?: boolean,
-  children: React.ReactNode,
+  children?: React.ReactNode,
 }> {
 
   render() {
-    let logo = "/images/Logo_hackathon_2024.png";
+    let logo = "/images/logo.png";
     const agent = navigator.userAgent.toLowerCase();
-    if (agent.indexOf("edge") > -1) logo = '/images/logo/Logo.svg';
+    if (agent.indexOf("edge") > -1 || agent.indexOf("firefox") > -1) logo = "/images/logo/logo.svg";
 
     let arrow = null;
     if (this.props.hasArrow) {
       arrow = (
         <img className="page-hero__arrow"
-             src={process.env.PUBLIC_URL + "/infos/arrow_green.svg"}
+             src={import.meta.env.VITE_PUBLIC_URL + "/infos/arrow_green.svg"}
              alt="Flèche vers le bas"
              onClick={() => {
                window.scrollTo(0, window.innerHeight - 48);
@@ -31,7 +31,7 @@ export class PageHero extends React.PureComponent<{
     if (this.props.disclaimer) {
       disclaimer = <div className="disclaimer on-green">
         {this.props.disclaimer}
-      </div>
+      </div>;
     }
 
     return (
@@ -41,16 +41,16 @@ export class PageHero extends React.PureComponent<{
             <div className="page-hero__logo-hackathon">
               <div className="inner">
                 <div className="front">
-                  <img src={ process.env.PUBLIC_URL + logo}
-                       alt="Logo Hackathon 2024"
+                  <img src={import.meta.env.VITE_PUBLIC_URL + logo}
+                       alt="Logo Hackathon 2025"
                   />
                 </div>
                 <div className="back">
-                  {/* <img src={ process.env.PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
+                  {/* <img src={ import.meta.env.VITE_PUBLIC_URL + '/images/logo_pizzathon_2023.png'}
                        alt="Logo Pizzathon 2024"
                   /> */}
-                  <img src={ process.env.PUBLIC_URL + logo }
-                       alt="Logo Hackathon 2024"
+                  <img src={import.meta.env.VITE_PUBLIC_URL + logo}
+                       alt="Logo Hackathon 2025"
                   />
                 </div>
               </div>

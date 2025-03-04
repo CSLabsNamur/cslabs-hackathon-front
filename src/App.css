@@ -1,13 +1,13 @@
 :root {
-  --primary-bg-color : #f4f4f4;
-  --primary-accent-color : #1BB17A; /* More accecible color */
-  --primary-text-color : #0b0b0b;
-  --secondary-text-color : #0b0b0b;
+  --primary-bg-color: #f4f4f4;
+  --primary-accent-color: #1BB17A; /* More accessible color */
+  --primary-text-color: #2c2c2c;
+  --secondary-text-color: #0b0b0b;
 
   /*
    * Original color
-   * --primary-bg-color : # f4f4f4; 
-   * --primary-accent-color : # 19a974; 
+   * --primary-bg-color : # f4f4f4;
+   * --primary-accent-color : # 19a974;
    */
 }
 
@@ -24,6 +24,26 @@ body {
   color: var(--primary-text-color) !important;
 }
 
+@font-face {
+  font-family: ZingRust;
+  src: url("../public/fonts/ZingRustDemo-Base.otf") format("opentype");
+}
+
+@font-face {
+  font-family: ZingRust Sans Rust;
+  src: url("../public/fonts/ZingSansRustLDemo-Base.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Orator Std";
+  src: url("../public/fonts/OratorStd.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Avenir Next;
+  src: url("../public/fonts/Avenir Next.ttc") format("truetype");
+}
+
 .tx-centered {
   text-align: center;
 }
@@ -35,6 +55,7 @@ body {
 .tx-right {
   text-align: left;
 }
+
 
 .get-started, .button-primary {
   background-color: #56b65a !important;
@@ -62,4 +83,15 @@ body {
 
 p, h1, h2, h3, h4, h5, h6 {
   color: var(--primary-text-color) !important;
+}
+
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > div {
+  flex: 1 0 auto;
+  margin-top: 60px;
 }

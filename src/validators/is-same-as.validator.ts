@@ -1,9 +1,9 @@
-import {registerDecorator, ValidationArguments, ValidationOptions} from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from "class-validator";
 
 export function IsSameAs(property: string, validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {
     registerDecorator({
-      name: 'isSameAs',
+      name: "isSameAs",
       target: object.constructor,
       propertyName: propertyName,
       constraints: [property],
