@@ -79,8 +79,8 @@ export class AdminAnnouncePage extends React.Component<{}, {
               Destinataires
             </label>
             <select name="form-addressee" id="form-addressee" onChange={this.onChange(AdminAnnounceField.ADDRESSEE)}>
-                <option value="all">Tout le monde</option>
-                <option value="formation">Personnes intéressées par les formations</option>
+              <option value="all">Tout le monde</option>
+              <option value="formation">Personnes intéressées par les formations</option>
             </select>
           </div>
 
