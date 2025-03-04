@@ -1,7 +1,7 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './team-join.css';
+import "./team-join.css";
 
 export class TeamJoin extends React.PureComponent<{
   onJoin: () => void,

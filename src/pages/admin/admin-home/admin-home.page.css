@@ -1,21 +1,23 @@
 
 #admin-home {
-    margin: 0 auto;
-    padding: 8rem 1rem 4rem 1rem;
-    max-width: 80rem;
-    font-size: 2rem;
+  margin: 0 auto;
+  padding: 8rem 1rem 4rem 1rem;
+  max-width: 80rem;
+  font-size: 2rem;
 }
+
 
 #admin-home__menu {
-    margin: 2rem 1rem;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+  margin: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
+
 #admin-home__menu__pink-btn {
-    border-color: #b039db;
-    background-color: #9930bf;
-    color: whitesmoke;
+  border-color: #b039db;
+  background-color: #9930bf;
+  color: whitesmoke;
 }

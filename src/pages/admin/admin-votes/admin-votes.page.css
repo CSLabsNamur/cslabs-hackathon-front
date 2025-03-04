@@ -1,23 +1,25 @@
 
 #admin-votes-page {
-    margin: 10rem auto 6rem auto;
-    padding: 2rem;
+  margin: 10rem auto 6rem auto;
+  padding: 2rem;
 
-    max-width: 50rem;
+  max-width: 50rem;
 }
+
 
 #admin-votes-page__results > div.result {
-    height: 4rem;
-    border: .15rem solid #42a5f5;
+  height: 4rem;
+  border: .15rem solid #42a5f5;
 }
 
+
 #admin-votes-page__results > div.result > span.votes {
-    width: 60%;
+  width: 60%;
 }
 
 #admin-votes-page__results > div.result > span.name {
-    line-height: 4rem;
-    padding-left: 2rem;
-    font-size: 1.8rem;
-    font-weight: bold;
+  line-height: 4rem;
+  padding-left: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
 }

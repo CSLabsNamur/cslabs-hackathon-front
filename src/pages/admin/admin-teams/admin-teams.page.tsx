@@ -1,19 +1,19 @@
 import React from "react";
-import {Team} from "../../../domain/team";
-import {AdminService} from "../../../services/admin.service";
+import { Team } from "@/domain/team.ts";
+import { AdminService } from "@/services/admin.service.ts";
 
-import './admin-teams.page.css';
+import "./admin-teams.page.css";
 import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
 
 enum AdminTeamsModal {
-  TEAM_DELETION = 'deletionModal'
+  TEAM_DELETION = "deletionModal"
 }
 
 enum AdminTeamsField {
-  NAME = 'name',
-  DESCRIPTION = 'description',
-  IDEA = 'idea',
+  NAME = "name",
+  DESCRIPTION = "description",
+  IDEA = "idea",
 }
 
 export class AdminTeamsPage extends React.Component<{}, {
@@ -38,17 +38,17 @@ export class AdminTeamsPage extends React.Component<{}, {
       form: {
         name: "",
         description: "",
-        idea: ""
+        idea: "",
       },
       modal: {
         deletionModal: false,
       },
-    }
+    };
 
     this.onEditTeam = this.onEditTeam.bind(this);
     this.onDeleteTeam = this.onDeleteTeam.bind(this);
-    this.onSaveEdition = this.onSaveEdition.bind(this);
-    this.onCancelEdition = this.onCancelEdition.bind(this);
+    this.onSaveEdits = this.onSaveEdits.bind(this);
+    this.onCancelEdits = this.onCancelEdits.bind(this);
   }
 
   componentDidMount() {
@@ -57,19 +57,19 @@ export class AdminTeamsPage extends React.Component<{}, {
 
   getTeams() {
     AdminService.getAllTeams().then((teams) => {
-      this.setState({ teams });
-    })
+      this.setState({teams});
+    });
   }
 
   unselectEditedTeam() {
-    const newState = {...this.state};
-    newState.editedTeam = undefined;
-    newState.form = {
-      name: "",
-      description: "",
-      idea: "",
-    };
-    this.setState(newState);
+    this.setState({
+      editedTeam: undefined,
+      form: {
+        name: "",
+        description: "",
+        idea: "",
+      },
+    });
   }
 
   onEditTeam(event: any) {
@@ -80,18 +80,18 @@ export class AdminTeamsPage extends React.Component<{}, {
       return;
     }
 
-    const newState = {...this.state};
     const {id, name, description, idea} = team;
-    newState.editedTeam = id;
-    newState.form = {name, description, idea};
-    this.setState(newState);
+    this.setState({
+      editedTeam: id,
+      form: {name, description, idea},
+    });
   }
 
   deleteTeam() {
     const teamId = this.state.deletedTeam;
     if (teamId) {
       AdminService.deleteTeam(teamId).then(() => {
-        console.log('Team deleted.');
+        console.log("Team deleted.");
         this.getTeams();
       });
     }
@@ -103,15 +103,15 @@ export class AdminTeamsPage extends React.Component<{}, {
     this.showModal(AdminTeamsModal.TEAM_DELETION);
   }
 
-  onSaveEdition(event: any) {
+  onSaveEdits(event: any) {
     event.preventDefault();
     const team = this.state.teams.find((team) => team.id === this.state.editedTeam);
     if (team) {
       const {name, description, idea} = this.state.form;
       AdminService.updateTeam(team.id, {name, description, idea}).then(() => {
-        console.log('Team updated.');
+        console.log("Team updated.");
         this.getTeams();
-      })
+      });
     }
     this.unselectEditedTeam();
   }
@@ -121,10 +121,10 @@ export class AdminTeamsPage extends React.Component<{}, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value;
       this.setState(newState);
-    }
+    };
   }
 
-  onCancelEdition(event: any) {
+  onCancelEdits(event: any) {
     event.preventDefault();
     this.unselectEditedTeam();
   }
@@ -157,7 +157,7 @@ export class AdminTeamsPage extends React.Component<{}, {
         <div className="modal-body">
           <p>Êtes-vous certain de vouloir supprimer cette équipe ?</p>
           <p>Tous les membres se retrouveront sans équipe.</p>
-          <p style={{color: 'red'}}>Cette action est irréversible.</p>
+          <p style={{color: "red"}}>Cette action est irréversible.</p>
         </div>
         <div className="modal-footer">
           <button className="button-danger"
@@ -200,22 +200,28 @@ export class AdminTeamsPage extends React.Component<{}, {
       <div className="button button-info button-small"
            onClick={() => {
              navigator.clipboard.writeText(token).then(() => {
-               alert('Le token a bien été copié.');
+               const tooltip = document.getElementById("admin-teams__team-token-text");
+               if (tooltip) {
+                 tooltip.innerText = "Copié !";
+               }
+               setInterval(() => {
+                 if (tooltip) {
+                   tooltip.innerText = token;
+                 }
+               }, 2000);
              });
-           }}
-      >
-            <span className="tooltip">
-              Token
-              <span className="tooltip-text">{token}</span>
+           }}>
+          <span className="tooltip">
+            Token
+            <span className="tooltip-text" id="admin-teams__team-token-text">{token}</span>
           </span>
       </div>
-    )
+    );
   }
 
   renderStaticTeam(team: Team, index: number) {
     const {id, name, description, idea, valid, members, createdAt} = team;
 
-    
     return (
       <tr key={index}>
         <td>
@@ -240,7 +246,7 @@ export class AdminTeamsPage extends React.Component<{}, {
         <td>
           {this.renderTokenField(team)}
         </td>
-        <td>{createdAt?.toISOString()}</td>
+        <td>{createdAt?.toLocaleString()}</td>
         <td>
           <button className="button button-info button-small"
                   value={id}
@@ -288,23 +294,23 @@ export class AdminTeamsPage extends React.Component<{}, {
         <td>
           {this.renderTokenField(team)}
         </td>
-        <td>{team.createdAt?.toISOString()}</td>
+        <td>{team.createdAt?.toLocaleString()}</td>
         <td>
           <button className="button button-primary button-small"
                   value={team.id}
-                  onClick={this.onSaveEdition}
+                  onClick={this.onSaveEdits}
           >
             Sauvegarder
-          </button>,
+          </button>
+          ,
           <button className="button button-info button-small"
-                  onClick={this.onCancelEdition}
+                  onClick={this.onCancelEdits}
           >
             Annuler
           </button>
         </td>
       </tr>
-    )
-
+    );
   }
 
   render() {

@@ -1,16 +1,16 @@
-import React, {FormEvent} from "react";
-import {Link} from "react-router-dom";
-import {UserService} from "../../services/user.service";
-import {withRouter, WithRouterProps} from "../../utils/with-router";
+import React, { FormEvent } from "react";
+import { Link } from "react-router-dom";
+import { UserService } from "@/services/user.service.ts";
+import { withRouter, WithRouterProps } from "../../utils/with-router";
 
-import './login.page.css';
+import "./login.page.css";
 
 enum LoginField {
-  EMAIL = 'email',
-  PASSWORD = 'password',
+  EMAIL = "email",
+  PASSWORD = "password",
 }
 
-class LoginPage extends React.Component<WithRouterProps<{}>, {
+export class LoginPage extends React.Component<WithRouterProps<{}>, {
   form: {
     email: string,
     password: string,
@@ -27,7 +27,7 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
         password: "",
       },
       authFailed: undefined,
-    }
+    };
 
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -36,15 +36,14 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
     event.preventDefault();
     const {email, password} = this.state.form;
     UserService.loginWithCredentials(email, password).then(() => {
-        this.props.navigate(-1);
+      this.props.navigate("/team");
     }).catch((error) => {
       if (error.response?.status === 400) {
         this.setState({
           ...this.state,
           authFailed: "L'email ou le mot de passe est invalide.",
         });
-      }
-      else {
+      } else {
         this.setState({
           ...this.state,
           authFailed: "Une erreur inconnue est survenue. Veuillez contacter un administrateur.",
@@ -58,15 +57,23 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
       const newState = {...this.state} as any;
       newState.form[field] = event.target.value.trim();
       this.setState(newState);
-    }
+    };
   }
 
   render() {
     const invalid = this.state.authFailed;
 
+    //if (import.meta.env.VITE_ENV === "development") {
+    //  return (
+    //    <div className="form-container">
+    //      <h2 className="tx-centered">Connexion</h2>
+    //      <h3 className="tx-centered">La connexion est désactivée sur le site de développement.</h3>
+    //    </div>
+    //  );
+    //}
+
     return (
       <div className="form-container">
-
         <h2 className="tx-centered">Connexion</h2>
 
         <form onSubmit={this.onSubmit}>
@@ -103,28 +110,27 @@ class LoginPage extends React.Component<WithRouterProps<{}>, {
         <hr/>
 
         <div className="connection__extra-buttons">
-            <div>
-                <Link to="/inscription">
-                    <button type="button"
-                            className="button button-primary">
-                      S'inscrire
-                    </button>
-                </Link>
-            </div>
-            <div>
-                <Link to="/ask-password-reset">
-                    <button type="button"
-                            className="button button-info">
-                      Mot de passe oublié
-                    </button>
-                </Link>
-            </div>
+          <div>
+            <Link to="/inscription">
+              <button type="button"
+                      className="button button-primary">
+                S'inscrire
+              </button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/ask-password-reset">
+              <button type="button"
+                      className="button button-info">
+                Mot de passe oublié
+              </button>
+            </Link>
+          </div>
         </div>
 
       </div>
     );
   }
-
 }
 
 export default withRouter(LoginPage);

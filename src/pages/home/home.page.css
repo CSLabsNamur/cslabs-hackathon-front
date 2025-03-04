@@ -1,10 +1,14 @@
-
-#home-page {
-    background-color: var(--primary-accent-color);
-    padding-bottom: 10rem;
-}
+/*#home-page {*/
+/*  background-color: var(--primary-accent-color);*/
+/*}*/
 
 .topic-link {
-    font-weight: 400;
+  font-weight: 400;
 }
 
+.home-page__logo_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
