@@ -1,38 +1,64 @@
 {
-  "name": "cslabs-hackathon-2025",
-  "version": "3.0.0",
+  "name": "@cslabs/hackathon-front",
+  "description": "Frontend for the CSLabs' Hackathon website",
+  "version": "2026.0.1",
+  "license": "BSD-3-Clause",
+  "author": "CSLabs",
+  "contributors": [
+    {
+      "name": "Pierre Poitier",
+      "email": "hanofound@hotmail.com"
+    },
+    "Vincent Higginson",
+    {
+      "name": "Yannis Van Achter",
+      "email": "yannis.van.achter@gmail.com"
+    },
+    "Ugho Raherisoanjato",
+    {
+      "name": "Martin Jacob",
+      "email": "martin.jcb@proton.me"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSLabsNamur/cslabs-hackathon-front.git"
+  },
+  "engines": {
+    "node": "^22.18.0"
+  },
   "private": true,
   "type": "module",
   "dependencies": {
-    "axios": "^1.8.1",
+    "axios": "^1.12.2",
     "buffer": "^6.0.3",
-    "class-validator": "^0.14.1",
-    "luxon": "^3.5.0",
-    "react": "^19.0.0",
-    "react-cookie": "^7.2.2",
-    "react-dom": "^19.0.0",
+    "class-validator": "^0.14.2",
+    "luxon": "^3.7.2",
+    "react": "^19.2.0",
+    "react-cookie": "^8.0.1",
+    "react-dom": "^19.2.0",
     "react-modal": "^3.16.3",
-    "react-router-dom": "^7.2.0",
+    "react-router-dom": "^7.9.3",
     "rxjs": "^7.8.2",
-    "typescript": "^5.8.2",
-    "web-vitals": "^4.2.4"
+    "typescript": "^5.9.3",
+    "web-vitals": "^5.1.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^29.5.14",
-    "@types/luxon": "^3.4.2",
-    "@types/node": "^22.13.9",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
+    "@types/jest": "^30.0.0",
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "@types/react-modal": "^3.16.3",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "9.21.0",
-    "vite": "^6.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "9.36.0",
+    "vite": "^7.1.8",
     "vite-plugin-commonjs": "^0.10.4",
-    "vite-plugin-svgr": "^4.3.0",
+    "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "homepage": ".",
