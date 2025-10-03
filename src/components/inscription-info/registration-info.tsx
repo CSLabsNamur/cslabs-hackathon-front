@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import timerModule from "../timer/timer";
 
 import "./registration-info.css";
-import { DateTime } from "luxon";
+import dayjs from "dayjs";
 
 export class RegistrationInfo extends React.PureComponent {
 
@@ -11,7 +11,7 @@ export class RegistrationInfo extends React.PureComponent {
 
     const date = timerModule.getDateEnv(import.meta.env.VITE_DATE_OPEN);
 
-    if (date > DateTime.now())
+    if (date.isAfter(dayjs()))
       return (
         <div className="on-green">
           <p><strong>Les inscriptions s'ouvrent dans</strong></p>
