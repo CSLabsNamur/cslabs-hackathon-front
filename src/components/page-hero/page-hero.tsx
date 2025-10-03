@@ -11,9 +11,9 @@ export class PageHero extends React.PureComponent<{
 }> {
 
   render() {
-    let logo = "/images/logo.png";
+    let logo = "/images/logo-vide.png";
     const agent = navigator.userAgent.toLowerCase();
-    if (agent.indexOf("edge") > -1 || agent.indexOf("firefox") > -1) logo = "/images/logo/logo.svg";
+    if (agent.indexOf("edge") > -1 || agent.indexOf("firefox") > -1) logo = "/images/logo/logo-vide.svg";
 
     let arrow = null;
     if (this.props.hasArrow) {

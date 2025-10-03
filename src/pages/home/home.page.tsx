@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 import { PageHero } from "@/components/page-hero/page-hero";
 import { SponsorLogo } from "@/components/sponsor-logo/sponsor-logo";
 import { Topic } from "@/components/topic/topic";
@@ -7,6 +8,7 @@ import { RegistrationInfo } from "@/components/inscription-info/registration-inf
 
 import "./home.page.css";
 import { MainThematic } from "@/components/main-thematic/main-thematic";
+import { Timer } from "@/components/timer/timer.tsx";
 
 export class HomePage extends React.PureComponent {
 
@@ -34,16 +36,19 @@ export class HomePage extends React.PureComponent {
   ];
 
   render() {
+    const dateEventStart = dayjs.utc(import.meta.env.VITE_DATE_EVENT_START).format("DD MMMM");
+    const dateEventEnd = dayjs.utc(import.meta.env.VITE_DATE_EVENT_END).format("DD MMMM YYYY");
+
     return (
       <div id="home-page">
 
         <PageHero
           title={import.meta.env.VITE_NAME_EVENT || "Le Hackathon"}
           hasArrow={true}
-          subtitle={import.meta.env.VITE_SLOGAN_EVENT || "CSLabs Hackathon"}
+          subtitle={import.meta.env.VITE_SLOGAN_EVENT || "CSLabs - Hackathon"}
           disclaimer={
             <div className="on-green">
-              <p><strong>Du {import.meta.env.VITE_DATE_EVENT} à l'Université de Namur</strong></p>
+              <p><strong>Notez déjà la date du {dateEventStart} au {dateEventEnd} !</strong></p>
               <div className="home-page__logo_list">
                 <SponsorLogo href="https://cslabs.be/" newTab title="CSLabs"
                              uri="/images/logo/CSLabs.svg"/>
@@ -61,8 +66,7 @@ export class HomePage extends React.PureComponent {
           <p className="on-white">
             Un Hackathon est un moment de courte durée où des équipes
             réfléchissent à une <a href="#main-thematic" className="topic-link">thématique particulière</a>.
-            Elles
-            tentent d'y apporter des solutions en développant des projets innovants.
+            Elles tentent d'y apporter des solutions en développant des projets innovants.
             À la fin de l'évènement, un jury détermine quels sont les projets
             qui ont retenu leur attention et qui ont donc gagné la compétition.
           </p>
@@ -88,10 +92,10 @@ export class HomePage extends React.PureComponent {
             Trouvez des solutions innovantes pour faire face à des problèmes réels.
             Développez de nouveaux concepts afin de rendre leur vie meilleure.
           </p>
-          <p className="on-white">Comment l'informatique peut-elle contribuer à la promotion et à la préservation du
-            patrimoine culturel ?</p>
-          <p className="on-white">Retrouvez <a href="#main-thematic" className="topic-link">la
-            thématique</a> plus en détail !</p>
+          {/* <p className="on-white">Comment l'informatique peut-elle contribuer à la promotion et à la préservation du */}
+          {/*   patrimoine culturel ?</p> */}
+          {/* <p className="on-white">Retrouvez <a href="#main-thematic" className="topic-link">la */}
+          {/*   thématique</a> plus en détail !</p> */}
         </Topic>
 
         <Topic img={this.images[4]} direction="left">
@@ -126,9 +130,9 @@ export class HomePage extends React.PureComponent {
           </p>
         </Topic>
 
-        <RegistrationInfo/>
+        {/* <RegistrationInfo/> */}
 
-        <MainThematic/>
+        {/* <MainThematic/> */}
       </div>
     );
   }

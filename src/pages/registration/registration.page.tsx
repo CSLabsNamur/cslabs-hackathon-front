@@ -8,20 +8,19 @@ import { FormValidationService } from "@/services/form-validation.service.ts";
 import ReactModal from "react-modal";
 import { withRouter, WithRouterProps } from "../../utils/with-router";
 import timerModule from "@/components/timer/timer";
+import dayjs from "dayjs";
 import MailInfo from "@/components/mail-info/mail-info";
-import { DateTime } from "luxon";
 
 const Timer = timerModule.Timer;
 const getDateEnv = timerModule.getDateEnv;
-const getMessage = timerModule.getMessage;
 
 let waitingSubscription = false;
 let closedSubscription = false;
 
-if (getDateEnv(import.meta.env.VITE_DATE_OPEN) > DateTime.now()) {
+if (getDateEnv(import.meta.env.VITE_DATE_OPEN).isAfter(dayjs())) {
   waitingSubscription = true;
 }
-if (getDateEnv(import.meta.env.VITE_DATE_CLOSE) < DateTime.now()) {
+if (getDateEnv(import.meta.env.VITE_DATE_CLOSE).isBefore(dayjs())) {
   closedSubscription = true;
 }
 
@@ -63,7 +62,7 @@ export class RegistrationPage extends React.Component<WithRouterProps<{}>, {
     error?: string,
   },
 }> {
-  private readonly cvInput: React.RefObject<HTMLInputElement>;
+  private readonly cvInput: React.RefObject<HTMLInputElement | null>;
 
   constructor(props: any) {
     super(props);

@@ -19,29 +19,29 @@ export class Navbar extends React.Component<{}, {
   renderLinks() {
     return (
       <Fragment>
-        <UserContext.Consumer>
-          {value => (!value?.user ? (
-            <li className="on-white"><Link to="/inscription">S'inscrire</Link></li>
-          ) : null)}
-        </UserContext.Consumer>
+        {/* <UserContext.Consumer> */}
+        {/*   {value => (!value?.user ? ( */}
+        {/*     <li className="on-white"><Link to="/inscription">S'inscrire</Link></li> */}
+        {/*   ) : null)} */}
+        {/* </UserContext.Consumer> */}
 
-        <li className="on-white"><Link to="/partenaires">Partenaires</Link></li>
-        <li className="on-white"><Link to="/infos">Infos</Link></li>
+        {/* <li className="on-white"><Link to="/partenaires">Partenaires</Link></li> */}
+        {/* <li className="on-white"><Link to="/infos">Infos</Link></li> */}
         <li className="on-white"><Link to="/plus-loin">Plus loin</Link></li>
 
-        <UserContext.Consumer>
-          {value => (value?.user ? (
-            <Fragment>
-              <li className="on-white"><Link to="/team">Ma team</Link></li>
-              {value.user.isAdmin ? (
-                <li className="on-white"><Link to="/admin">Admin</Link></li>
-              ) : null}
-              <li className="on-white"><Link to="/deconnexion">Déconnexion</Link></li>
-            </Fragment>
-          ) : (
-            <li className="on-white"><Link to="/connexion">Connexion</Link></li>
-          ))}
-        </UserContext.Consumer>
+        {/* <UserContext.Consumer> */}
+        {/*   {value => (value?.user ? ( */}
+        {/*     <Fragment> */}
+        {/*       <li className="on-white"><Link to="/team">Ma team</Link></li> */}
+        {/*       {value.user.isAdmin ? ( */}
+        {/*         <li className="on-white"><Link to="/admin">Admin</Link></li> */}
+        {/*       ) : null} */}
+        {/*       <li className="on-white"><Link to="/deconnexion">Déconnexion</Link></li> */}
+        {/*     </Fragment> */}
+        {/*   ) : ( */}
+        {/*     <li className="on-white"><Link to="/connexion">Connexion</Link></li> */}
+        {/*   ))} */}
+        {/* </UserContext.Consumer> */}
       </Fragment>
     );
   }

@@ -11,3 +11,4 @@
 
 # Env variables
 .env
+.env.development

@@ -1,5 +1,10 @@
 import React from "react";
 import ReactModal from "react-modal";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import duration from "dayjs/plugin/duration";
+import "dayjs/locale/fr";
 import "./App.css";
 import { UserContext } from "./contexts/user.context";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -20,7 +25,6 @@ import { AuthenticatedRoutes } from "./components/authenticated-routes/authentic
 import { TeamPage } from "./pages/team/team.page";
 import { AdminPage } from "./pages/admin/admin.page";
 import { NotFoundPage } from "./pages/not-found/not-found.page";
-import { Settings } from "luxon";
 import { CookiePolicyPage } from "@/pages/cookie-policy/cookie-policy.page.tsx";
 import { Footer } from "@/components/footer/footer.tsx";
 // import {DrawBoardPage} from "./pages/draw-board/draw-board.page";
@@ -45,6 +49,11 @@ export class App extends React.Component<any, any> {
     this.state = {
       user: null,
     };
+    dayjs.extend(timezone);
+    dayjs.extend(utc);
+    dayjs.extend(duration);
+    dayjs.tz.setDefault("Europe/Brussels");
+    dayjs.locale("fr");
   }
 
   componentDidMount() {
@@ -60,8 +69,6 @@ export class App extends React.Component<any, any> {
       .catch(() => {
         UserService.getUserSubject().next(null);
       });
-
-    Settings.defaultLocale = "fr";
   }
 
   render() {
@@ -71,24 +78,24 @@ export class App extends React.Component<any, any> {
           <ScrollToTop/>
           <Navbar/>
           <Routes>
-            <Route path="/partenaires" element={<SponsorsPage/>}/>
-            <Route path="/infos" element={<InformationPage/>}/>
+            {/* <Route path="/partenaires" element={<SponsorsPage/>}/> */}
+            {/* <Route path="/infos" element={<InformationPage/>}/> */}
             <Route path="/plus-loin" element={<GoingFurtherPage/>}/>
-            <Route element={<AuthenticatedRoutes admin={false} inverted={true}/>}>
-              <Route path="/inscription" element={<RegistrationPage/>}/>
-              <Route path="/connexion" element={<LoginPage/>}/>
-            </Route>
-            <Route element={<AuthenticatedRoutes admin={false}/>}>
-              <Route path="/deconnexion" element={<LogoutPage/>}/>
-            </Route>
-            <Route path="/ask-password-reset" element={<AskPasswordResetPage/>}/>
-            <Route path="/password-reset/:token" element={<PasswordResetPage/>}/>
+            {/* <Route element={<AuthenticatedRoutes admin={false} inverted={true}/>}> */}
+            {/*   <Route path="/inscription" element={<RegistrationPage/>}/> */}
+            {/*   <Route path="/connexion" element={<LoginPage/>}/> */}
+            {/* </Route> */}
+            {/* <Route element={<AuthenticatedRoutes admin={false}/>}> */}
+            {/*   <Route path="/deconnexion" element={<LogoutPage/>}/> */}
+            {/* </Route> */}
+            {/* <Route path="/ask-password-reset" element={<AskPasswordResetPage/>}/> */}
+            {/* <Route path="/password-reset/:token" element={<PasswordResetPage/>}/> */}
             {/* <Route path="/draw-board" element={<DrawBoardPage/>} />
             <Route path="/space-invader" element={<SpaceInvaderPage/>} />
             <Route path="/pizza-clicker" element={<PizzaClickerPage/>} /> */}
-            <Route element={<AuthenticatedRoutes admin={false}/>}>
-              <Route path="/team/*" element={<TeamPage/>}/>
-            </Route>
+            {/* <Route element={<AuthenticatedRoutes admin={false}/>}> */}
+            {/*   <Route path="/team/*" element={<TeamPage/>}/> */}
+            {/* </Route> */}
             <Route element={<AuthenticatedRoutes admin={true}/>}>
               <Route path="/admin/*" element={<AdminPage/>}/>
             </Route>
