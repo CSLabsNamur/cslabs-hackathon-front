@@ -26,22 +26,22 @@ body {
 
 @font-face {
   font-family: ZingRust;
-  src: url("public/fonts/ZingRustDemo-Base.otf") format("opentype");
+  src: url("fonts/ZingRustDemo-Base.otf") format("opentype");
 }
 
 @font-face {
   font-family: ZingRust Sans Rust;
-  src: url("public/fonts/ZingSansRustLDemo-Base.otf") format("opentype");
+  src: url("fonts/ZingSansRustLDemo-Base.otf") format("opentype");
 }
 
 @font-face {
   font-family: "Orator Std";
-  src: url("public/fonts/OratorStd.otf") format("opentype");
+  src: url("fonts/OratorStd.otf") format("opentype");
 }
 
 @font-face {
   font-family: Avenir Next;
-  src: url("public/fonts/Avenir Next.ttc") format("truetype");
+  src: url("fonts/Avenir Next.ttc") format("truetype");
 }
 
 .tx-centered {
